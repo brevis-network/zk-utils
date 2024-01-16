@@ -40,6 +40,8 @@ const (
 type ChunkUpdate struct {
 	StartBlockNum uint64 `json:"start_block_num"`
 	Count         uint64 `json:"count"`
+	ChainId       uint64 `json:"chain_id"`
+	TargetChainId uint64 `json:"target_chain_id"`
 }
 
 type StorageProvingInfo struct {
