@@ -307,6 +307,7 @@ type SDKQueryProvingInfoForReceipt struct {
 	SmtStartBlockParentHash string                    `json:"smt_start_block_parent_hash"`
 	SmtProofs               []string                  `json:"smt_proofs"`
 	CommitHash              string                    `json:"commit_hash"`
+	QueryRaw                []string                  `json:"query_raw"`
 }
 
 type SDKQueryLogExtractInfo struct {
@@ -336,6 +337,7 @@ type SDKQueryProvingInfoForStorageSlot struct {
 	SmtStartBlockParentHash string   `json:"smt_start_block_parent_hash"`
 	SmtProofs               []string `json:"smt_proofs"`
 	CommitHash              string   `json:"commit_hash"`
+	QueryRaw                []string `json:"query_raw"`
 }
 
 type SDKQueryProvingInfoForTransaction struct {
@@ -357,6 +359,7 @@ type SDKQueryProvingInfoForTransaction struct {
 	UnsignedTxRlp           string               `json:"unsigned_tx_rlp"`
 	ExtraInfo               TransactionExtraInfo `json:"extra_info"`
 	CommitHash              string               `json:"commit_hash"`
+	QueryRaw                []string             `json:"query_raw"`
 }
 
 type TransactionExtraInfo struct {
