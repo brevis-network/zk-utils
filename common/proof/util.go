@@ -61,8 +61,10 @@ func RecoverTransactionSignerAddress(transaction *ethtypes.Transaction) ([]byte,
 
 	var sigBytes []byte
 	v, r, s := transaction.RawSignatureValues()
-	sigBytes = append(sigBytes, r.Bytes()...)
-	sigBytes = append(sigBytes, s.Bytes()...)
+	var rBuf [32]byte
+	var sBuf [32]byte
+	sigBytes = append(sigBytes, r.FillBytes(rBuf[:])...)
+	sigBytes = append(sigBytes, s.FillBytes(sBuf[:])...)
 	if v.Int64() == 0 {
 		sigBytes = append(sigBytes, 0)
 	} else {
