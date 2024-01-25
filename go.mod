@@ -4,11 +4,13 @@ go 1.20
 
 require (
 	github.com/aws/aws-sdk-go v1.41.15
+	github.com/cbergoon/merkletree v0.2.0
 	github.com/celer-network/goutils v0.1.60
 	github.com/consensys/gnark v0.0.0
 	github.com/consensys/gnark-crypto v0.12.2-0.20231208203441-d4eab6ddd2af
 	github.com/ethereum/go-ethereum v1.13.8
 	github.com/iden3/go-iden3-crypto v0.0.15
+	github.com/rs/zerolog v1.30.0
 	github.com/stretchr/testify v1.8.4
 )
 
@@ -69,7 +71,6 @@ require (
 	github.com/prometheus/procfs v0.9.0 // indirect
 	github.com/rivo/uniseg v0.2.0 // indirect
 	github.com/rogpeppe/go-internal v1.12.0 // indirect
-	github.com/rs/zerolog v1.30.0 // indirect
 	github.com/shirou/gopsutil v3.21.4-0.20210419000835-c7a38de76ee5+incompatible // indirect
 	github.com/stretchr/objx v0.5.0 // indirect
 	github.com/supranational/blst v0.3.11 // indirect
@@ -83,7 +84,7 @@ require (
 	golang.org/x/sync v0.5.0 // indirect
 	golang.org/x/sys v0.15.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
-	golang.org/x/tools v0.15.0 // indirect
+	golang.org/x/tools v0.16.1 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	rsc.io/tmplfunc v0.0.3 // indirect
