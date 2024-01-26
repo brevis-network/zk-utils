@@ -2,8 +2,9 @@ package rlp
 
 import (
 	"fmt"
-	"github.com/consensys/gnark/std/selector"
 	"math"
+
+	"github.com/consensys/gnark/std/selector"
 
 	"github.com/consensys/gnark/frontend"
 )
@@ -19,6 +20,17 @@ type Transaction struct {
 	R                   [2]frontend.Variable // 32 byte
 	S                   [2]frontend.Variable // 32 byte
 	V                   frontend.Variable    // 1 byte
+}
+
+type LegacyTransaction struct {
+	Nonce    []frontend.Variable  // 8 byte
+	GasPrice []frontend.Variable  // 8 byte
+	GasLimit []frontend.Variable  // 4 byte
+	To       []frontend.Variable  // 20 byte
+	Value    []frontend.Variable  // 32 byte
+	R        [2]frontend.Variable // 32 byte
+	S        [2]frontend.Variable // 32 byte
+	V        frontend.Variable    // 1 byte
 }
 
 var TxLeafArrayRlpParams = ArrayCheck{
@@ -138,6 +150,88 @@ func DecodeTxLeafRlp(api frontend.API, data []frontend.Variable) (transaction Tr
 
 	fieldsHexLen = append(fieldsHexLen, fieldHexLens[:7]...)
 	fieldsHexLen = append(fieldsHexLen, 40)
+
+	return
+}
+
+// nonce gasPrice gas to value data v r s
+var SignedTxArrayCheckParams0 = ArrayCheck{
+	MaxHexLen:            3258,
+	MaxFields:            9,
+	ArrayPrefixMaxHexLen: 6,
+	FieldMinHexLen:       []int{0, 0, 0, 0, 0, 0, 0, 0, 0},
+	FieldMaxHexLen:       []int{16, 16, 8, 40, 64, 2950, 2, 64, 64},
+}
+
+func DecodeLegacyTxLeafRlp(api frontend.API, data []frontend.Variable) (transaction LegacyTransaction, signedTxRlp []frontend.Variable, fieldsHexLen []frontend.Variable) {
+
+	out, totalRlpHexLen, fieldHexLens, lFields := SignedTxArrayCheckParams0.RlpNestArrayCheck(api, data)
+	api.AssertIsEqual(out, 1)
+	fmt.Println("totalRlpHexLen:", totalRlpHexLen)
+	fmt.Println("fieldHexLens:", fieldHexLens)
+
+	nonceHex := lFields[0][:16]
+	gasPriceHex := lFields[1][:16]
+	gasLimitHex := lFields[2][:8]
+	toHex := lFields[3][:40]
+	valueHex := lFields[4][:64]
+	vHex := HexToDecimal(api, lFields[6][:], 2, fieldHexLens[6])
+	rHex := Hex64To2Fr(api, lFields[7][:], fieldHexLens[7])
+	sHex := Hex64To2Fr(api, lFields[8][:], fieldHexLens[8])
+
+	// NonceBytes := lFields[0]
+	// GasPriceBytes := lFields[1]
+	// GasLimitBytes := lFields[2]
+	// ToBytes := lFields[3]
+	// ValueBytes := lFields[4]
+
+	// Nonce := [16]frontend.Variable{}
+	// for i := 0; i < 16; i++ {
+	// 	Nonce[i] = NonceBytes[i]
+	// }
+
+	// GasPrice := [16]frontend.Variable{}
+	// for i := 0; i < 16; i++ {
+	// 	GasPrice[i] = GasPriceBytes[i]
+	// }
+
+	// GasLimit := [8]frontend.Variable{}
+	// for i := 0; i < 8; i++ {
+	// 	GasLimit[i] = GasLimitBytes[i]
+	// }
+
+	// To := [40]frontend.Variable{}
+	// for i := 0; i < 40; i++ {
+	// 	To[i] = ToBytes[i]
+	// }
+
+	// Value := [64]frontend.Variable{}
+	// for i := 0; i < 64; i++ {
+	// 	Value[i] = ValueBytes[i]
+	// }
+
+	// fmt.Println("Nonce:", nonceHex)
+	// fmt.Println("GasPrice:", gasPriceHex)
+	// fmt.Println("GasLimit:", gasLimitHex)
+	// fmt.Println("To:", toHex)
+	// fmt.Println("Value:", valueHex)
+	// fmt.Println("rHex:", rHex)
+	// fmt.Println("sHex:", sHex)
+	// fmt.Println("vHex:", vHex)
+
+	transaction = LegacyTransaction{
+		nonceHex,
+		gasPriceHex,
+		gasLimitHex,
+		toHex,
+		valueHex,
+		rHex,
+		sHex,
+		vHex,
+	}
+
+	signedTxRlp = data
+	fieldsHexLen = fieldHexLens[:5]
 
 	return
 }
