@@ -155,7 +155,7 @@ func DecodeTxLeafRlp(api frontend.API, data []frontend.Variable) (transaction Tr
 }
 
 // nonce gasPrice gas to value data v r s
-var SignedTxArrayCheckParams0 = ArrayCheck{
+var LegacySignedTxArrayCheckParams = ArrayCheck{
 	MaxHexLen:            3258,
 	MaxFields:            9,
 	ArrayPrefixMaxHexLen: 6,
@@ -165,7 +165,7 @@ var SignedTxArrayCheckParams0 = ArrayCheck{
 
 func DecodeLegacyTxLeafRlp(api frontend.API, data []frontend.Variable) (transaction LegacyTransaction, signedTxRlp []frontend.Variable, fieldsHexLen []frontend.Variable) {
 
-	out, totalRlpHexLen, fieldHexLens, lFields := SignedTxArrayCheckParams0.RlpNestArrayCheck(api, data)
+	out, totalRlpHexLen, fieldHexLens, lFields := LegacySignedTxArrayCheckParams.RlpNestArrayCheck(api, data)
 	api.AssertIsEqual(out, 1)
 	fmt.Println("totalRlpHexLen:", totalRlpHexLen)
 	fmt.Println("fieldHexLens:", fieldHexLens)
@@ -178,46 +178,6 @@ func DecodeLegacyTxLeafRlp(api frontend.API, data []frontend.Variable) (transact
 	vHex := HexToDecimal(api, lFields[6][:], 2, fieldHexLens[6])
 	rHex := Hex64To2Fr(api, lFields[7][:], fieldHexLens[7])
 	sHex := Hex64To2Fr(api, lFields[8][:], fieldHexLens[8])
-
-	// NonceBytes := lFields[0]
-	// GasPriceBytes := lFields[1]
-	// GasLimitBytes := lFields[2]
-	// ToBytes := lFields[3]
-	// ValueBytes := lFields[4]
-
-	// Nonce := [16]frontend.Variable{}
-	// for i := 0; i < 16; i++ {
-	// 	Nonce[i] = NonceBytes[i]
-	// }
-
-	// GasPrice := [16]frontend.Variable{}
-	// for i := 0; i < 16; i++ {
-	// 	GasPrice[i] = GasPriceBytes[i]
-	// }
-
-	// GasLimit := [8]frontend.Variable{}
-	// for i := 0; i < 8; i++ {
-	// 	GasLimit[i] = GasLimitBytes[i]
-	// }
-
-	// To := [40]frontend.Variable{}
-	// for i := 0; i < 40; i++ {
-	// 	To[i] = ToBytes[i]
-	// }
-
-	// Value := [64]frontend.Variable{}
-	// for i := 0; i < 64; i++ {
-	// 	Value[i] = ValueBytes[i]
-	// }
-
-	// fmt.Println("Nonce:", nonceHex)
-	// fmt.Println("GasPrice:", gasPriceHex)
-	// fmt.Println("GasLimit:", gasLimitHex)
-	// fmt.Println("To:", toHex)
-	// fmt.Println("Value:", valueHex)
-	// fmt.Println("rHex:", rHex)
-	// fmt.Println("sHex:", sHex)
-	// fmt.Println("vHex:", vHex)
 
 	transaction = LegacyTransaction{
 		nonceHex,
@@ -233,6 +193,40 @@ func DecodeLegacyTxLeafRlp(api frontend.API, data []frontend.Variable) (transact
 	signedTxRlp = data
 	fieldsHexLen = fieldHexLens[:5]
 
+	return
+}
+
+var LegacyUnSignedTxArrayCheckParams = ArrayCheck{
+	MaxHexLen:            3258,
+	MaxFields:            9,
+	ArrayPrefixMaxHexLen: 6,
+	FieldMinHexLen:       []int{0, 0, 0, 0, 0, 0, 0, 0, 0},
+	FieldMaxHexLen:       []int{16, 16, 8, 40, 64, 2950, 8, 8, 8},
+}
+
+type unSignedLegacyTransaction struct {
+	ChainId []frontend.Variable // 8 byte
+	Pad1    []frontend.Variable // 8 byte
+	Pad2    []frontend.Variable // 8 byte
+}
+
+func DecodeLegacyUnsignedTxLeafRlp(api frontend.API, data []frontend.Variable) (transaction unSignedLegacyTransaction) {
+	out, totalRlpHexLen, fieldHexLens, fields := LegacyUnSignedTxArrayCheckParams.RlpNestArrayCheck(api, data)
+	api.AssertIsEqual(out, 1)
+	fmt.Println("out:", out)
+	fmt.Println("totalRlpHexLen:", totalRlpHexLen)
+	fmt.Println("fieldHexLens:", fieldHexLens)
+	fmt.Println("fields:", fields)
+
+	chainIdHex := fields[6][:8]
+	pad1Hex := fields[7][:8]
+	pad2Hex := fields[8][:8]
+
+	transaction = unSignedLegacyTransaction{
+		chainIdHex,
+		pad1Hex,
+		pad2Hex,
+	}
 	return
 }
 
