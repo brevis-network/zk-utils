@@ -81,19 +81,10 @@ func (c *LegacyCircuit) Define(api frontend.API) error {
 	for i := len(unsignedPaddedLeafBytes) * 2; i < 3264; i++ {
 		unsignedLeafRlpHex[i] = 0
 	}
-	unsignedLeafFields := DecodeLegacyUnsignedTxLeafRlp(api, unsignedLeafRlpHex[:])
-	api.Println("unsignedLeafFields:", unsignedLeafFields)
 
-	// check unsigned tx rlp inclusion in leaf rlp (signed tx raw)
-	// unSignedTxArrayHex, unSignedTxArrayLen := UnsignedTxArrayRlpParams.LeftShiftRlpArrayPrefix(api, unsignedRlpHex[:])
-	// api.Println(unSignedTxArrayHex)
-	// api.Println(unSignedTxArrayLen)
-	// signedTxArrayHex, signedTxArrayLen := SignedTxArrayCheckParams.LeftShiftRlpArrayPrefix(api, signedTxRlp)
-	// api.Println(signedTxArrayHex)
-	// api.Println(signedTxArrayLen)
-	// isUnsignedTxInclusion := ArrayEqual(api, unSignedTxArrayHex[:], signedTxArrayHex[:], UnsignedTxArrayRlpParams.MaxHexLen, unSignedTxArrayLen)
-	// api.AssertIsEqual(isUnsignedTxInclusion, 1)
-	// fmt.Printf("unsigned tx: %x\n", unsignedRlpHex)
+	unsignedLeafFields, unsignedFieldsHexLen := DecodeLegacyUnsignedTxLeafRlp(api, unsignedLeafRlpHex[:])
+	chainId := HexToDecimal(api, unsignedLeafFields.ChainId, 16, unsignedFieldsHexLen[0])
+	api.AssertIsEqual(chainId, 1)
 
 	// keccak256 hash unsigned tx raw to get the recover msg hash
 	var unsignedTxBits []frontend.Variable

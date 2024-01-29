@@ -210,23 +210,24 @@ type unSignedLegacyTransaction struct {
 	Pad2    []frontend.Variable // 8 byte
 }
 
-func DecodeLegacyUnsignedTxLeafRlp(api frontend.API, data []frontend.Variable) (transaction unSignedLegacyTransaction) {
+func DecodeLegacyUnsignedTxLeafRlp(api frontend.API, data []frontend.Variable) (transaction unSignedLegacyTransaction, fieldsHexLen []frontend.Variable) {
 	out, totalRlpHexLen, fieldHexLens, fields := LegacyUnSignedTxArrayCheckParams.RlpNestArrayCheck(api, data)
 	api.AssertIsEqual(out, 1)
-	fmt.Println("out:", out)
 	fmt.Println("totalRlpHexLen:", totalRlpHexLen)
 	fmt.Println("fieldHexLens:", fieldHexLens)
 	fmt.Println("fields:", fields)
 
-	chainIdHex := fields[6][:8]
-	pad1Hex := fields[7][:8]
-	pad2Hex := fields[8][:8]
+	chainIdHex := fields[6][:16]
+	pad1Hex := fields[7][:16]
+	pad2Hex := fields[8][:16]
 
 	transaction = unSignedLegacyTransaction{
 		chainIdHex,
 		pad1Hex,
 		pad2Hex,
 	}
+	fieldsHexLen = fieldHexLens[6:9]
+
 	return
 }
 
