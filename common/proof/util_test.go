@@ -32,5 +32,5 @@ func TestRecoverTransactionSignerAddressForType0(t *testing.T) {
 	assert.NoError(err)
 	addrBytes, err := RecoverTransactionSignerAddress(tx)
 	assert.NoError(err)
-	assert.Equal(fmt.Sprintf("%x", addrBytes), "fCAAf32bDE89A81C71a8C2Fb2C7Bc8358C9E3696")
+	assert.Equal(fmt.Sprintf("%x", addrBytes), "fcaaf32bde89a81c71a8c2fb2c7bc8358c9e3696")
 }

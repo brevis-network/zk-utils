@@ -86,13 +86,21 @@ func RecoverTransactionSignerAddress(transaction *ethtypes.Transaction) ([]byte,
 
 	transactionType := transaction.Type()
 	var unsignedTxBytes []byte
-	unsignedTxBytes = append(unsignedTxBytes, transactionType)
+	if transactionType != types.LegacyTxType {
+		unsignedTxBytes = append(unsignedTxBytes, transactionType)
+	}
 	unsignedTxBytes = append(unsignedTxBytes, unsignedTransactionRlp[:]...)
 
 	preImage := crypto.Keccak256(unsignedTxBytes)
 
 	var sigBytes []byte
 	v, r, s := transaction.RawSignatureValues()
+
+	if transactionType == types.LegacyTxType {
+		actualV := v.Uint64() - 35 - transaction.ChainId().Uint64()*2
+		v = new(big.Int).SetUint64(actualV)
+	}
+
 	var rBuf [32]byte
 	var sBuf [32]byte
 	sigBytes = append(sigBytes, r.FillBytes(rBuf[:])...)
