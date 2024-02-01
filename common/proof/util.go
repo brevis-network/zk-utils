@@ -13,6 +13,7 @@ import (
 
 	"github.com/celer-network/goutils/log"
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/core/types"
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/rlp"
@@ -31,19 +32,37 @@ type unsignedTransactionData struct {
 }
 
 func PrepareUnsignedTransactionRlp(transaction *ethtypes.Transaction) ([]byte, error) {
-	unsignedTransaction := &unsignedTransactionData{
-		ChainID:    transaction.ChainId(),
-		Nonce:      transaction.Nonce(),
-		GasTipCap:  transaction.GasTipCap(),
-		GasFeeCap:  transaction.GasFeeCap(),
-		Gas:        transaction.Gas(),
-		To:         transaction.To(),
-		Value:      transaction.Value(),
-		Data:       transaction.Data(),
-		AccessList: transaction.AccessList(),
-	}
+	if transaction.Type() == types.LegacyTxType {
+		unsignedTransaction := &unsignedLegacyTransactionData{
+			Nonce:    transaction.Nonce(),
+			GasPrice: transaction.GasPrice(),
+			Gas:      transaction.Gas(),
+			To:       transaction.To(),
+			Value:    transaction.Value(),
+			Data:     transaction.Data(),
+			ChainID:  transaction.ChainId(),
+			Pad1:     big.NewInt(0),
+			Pad2:     big.NewInt(0),
+		}
 
-	return rlp.EncodeToBytes(unsignedTransaction)
+		return rlp.EncodeToBytes(unsignedTransaction)
+	} else if transaction.Type() == types.DynamicFeeTxType {
+		unsignedTransaction := &unsignedTransactionData{
+			ChainID:    transaction.ChainId(),
+			Nonce:      transaction.Nonce(),
+			GasTipCap:  transaction.GasTipCap(),
+			GasFeeCap:  transaction.GasFeeCap(),
+			Gas:        transaction.Gas(),
+			To:         transaction.To(),
+			Value:      transaction.Value(),
+			Data:       transaction.Data(),
+			AccessList: transaction.AccessList(),
+		}
+
+		return rlp.EncodeToBytes(unsignedTransaction)
+	} else {
+		return nil, fmt.Errorf("unsupported transaction type")
+	}
 }
 
 type unsignedLegacyTransactionData struct {
@@ -56,22 +75,6 @@ type unsignedLegacyTransactionData struct {
 	ChainID  *big.Int
 	Pad1     *big.Int
 	Pad2     *big.Int
-}
-
-func PrepareUnsignedLegacyTransactionRlp(transaction *ethtypes.Transaction) ([]byte, error) {
-	unsignedTransaction := &unsignedLegacyTransactionData{
-		Nonce:    transaction.Nonce(),
-		GasPrice: transaction.GasPrice(),
-		Gas:      transaction.Gas(),
-		To:       transaction.To(),
-		Value:    transaction.Value(),
-		Data:     transaction.Data(),
-		ChainID:  transaction.ChainId(),
-		Pad1:     big.NewInt(0),
-		Pad2:     big.NewInt(0),
-	}
-
-	return rlp.EncodeToBytes(unsignedTransaction)
 }
 
 func RecoverTransactionSignerAddress(transaction *ethtypes.Transaction) ([]byte, error) {
