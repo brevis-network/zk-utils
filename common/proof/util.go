@@ -2,13 +2,14 @@ package proof
 
 import (
 	"fmt"
+	"math/big"
+
 	fr_bls12377 "github.com/consensys/gnark-crypto/ecc/bls12-377/fr"
 	fr_761 "github.com/consensys/gnark-crypto/ecc/bw6-761/fr"
 	"github.com/consensys/gnark/backend/groth16"
 	groth16_bls12377 "github.com/consensys/gnark/backend/groth16/bls12-377"
 	groth16_761 "github.com/consensys/gnark/backend/groth16/bw6-761"
 	"github.com/consensys/gnark/backend/witness"
-	"math/big"
 
 	"github.com/celer-network/goutils/log"
 	"github.com/ethereum/go-ethereum/common"
@@ -40,6 +41,34 @@ func PrepareUnsignedTransactionRlp(transaction *ethtypes.Transaction) ([]byte, e
 		Value:      transaction.Value(),
 		Data:       transaction.Data(),
 		AccessList: transaction.AccessList(),
+	}
+
+	return rlp.EncodeToBytes(unsignedTransaction)
+}
+
+type unsignedLegacyTransactionData struct {
+	Nonce    uint64
+	GasPrice *big.Int
+	Gas      uint64
+	To       *common.Address `rlp:"nil"`
+	Value    *big.Int
+	Data     []byte
+	ChainID  *big.Int
+	Pad1     *big.Int
+	Pad2     *big.Int
+}
+
+func PrepareUnsignedLegacyTransactionRlp(transaction *ethtypes.Transaction) ([]byte, error) {
+	unsignedTransaction := &unsignedLegacyTransactionData{
+		Nonce:    transaction.Nonce(),
+		GasPrice: transaction.GasPrice(),
+		Gas:      transaction.Gas(),
+		To:       transaction.To(),
+		Value:    transaction.Value(),
+		Data:     transaction.Data(),
+		ChainID:  transaction.ChainId(),
+		Pad1:     big.NewInt(0),
+		Pad2:     big.NewInt(0),
 	}
 
 	return rlp.EncodeToBytes(unsignedTransaction)
