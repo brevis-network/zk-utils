@@ -7,7 +7,7 @@ require (
 	github.com/cbergoon/merkletree v0.2.0
 	github.com/celer-network/goutils v0.1.60
 	github.com/consensys/gnark v0.0.0
-	github.com/consensys/gnark-crypto v0.12.2-0.20231208203441-d4eab6ddd2af
+	github.com/consensys/gnark-crypto v0.12.2-0.20231221171913-5d5eded6bb15
 	github.com/ethereum/go-ethereum v1.13.8
 	github.com/iden3/go-iden3-crypto v0.0.15
 	github.com/rs/zerolog v1.30.0
@@ -50,8 +50,8 @@ require (
 	github.com/gorilla/websocket v1.5.0 // indirect
 	github.com/holiman/uint256 v1.2.4 // indirect
 	github.com/huin/goupnp v1.3.0 // indirect
-	github.com/ingonyama-zk/icicle v0.1.0 // indirect
-	github.com/ingonyama-zk/iciclegnark v0.1.1 // indirect
+	github.com/ingonyama-zk/icicle v0.1.1-0.20240120093837-db9eff751859 // indirect
+	github.com/ingonyama-zk/iciclegnark v0.1.2-0.20240120100015-8653136f9db4 // indirect
 	github.com/jackpal/go-nat-pmp v1.0.2 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/klauspost/compress v1.15.15 // indirect
@@ -90,4 +90,4 @@ require (
 	rsc.io/tmplfunc v0.0.3 // indirect
 )
 
-replace github.com/consensys/gnark => github.com/celer-network/gnark v0.0.0-20240116092645-77ec19e53a84
+replace github.com/consensys/gnark => github.com/celer-network/gnark v0.0.0-20240204054508-d08e3ed6bd9f
