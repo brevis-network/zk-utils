@@ -22,27 +22,27 @@ type Transaction struct {
 }
 
 var TxLeafArrayRlpParams = ArrayCheck{
-	MaxHexLen:            16320,
+	MaxHexLen:            4080,
 	MaxFields:            2,
 	ArrayPrefixMaxHexLen: 4,
 	FieldMinHexLen:       []int{0, 0},
-	FieldMaxHexLen:       []int{2, 16312},
+	FieldMaxHexLen:       []int{2, 4072},
 }
 
 var SignedTxArrayCheckParams = ArrayCheck{
-	MaxHexLen:            16312,
+	MaxHexLen:            4072,
 	MaxFields:            12,
 	ArrayPrefixMaxHexLen: 6,
 	FieldMinHexLen:       []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-	FieldMaxHexLen:       []int{16, 16, 16, 16, 8, 40, 64, 16000, 2, 2, 64, 64},
+	FieldMaxHexLen:       []int{16, 16, 16, 16, 8, 40, 64, 3760, 2, 2, 64, 64},
 }
 
 var UnsignedTxArrayRlpParams = ArrayCheck{
-	MaxHexLen:            15866,
+	MaxHexLen:            3626,
 	MaxFields:            2,
 	ArrayPrefixMaxHexLen: 4,
 	FieldMinHexLen:       []int{0, 0},
-	FieldMaxHexLen:       []int{2, 15858},
+	FieldMaxHexLen:       []int{2, 3624},
 }
 
 // DecodeTxLeafRlp decode transaction raw rlp, decode depth fixed 2 nested rlp array of tx rlp
