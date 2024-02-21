@@ -7,7 +7,7 @@ import (
 	"github.com/consensys/gnark/std/permutation/keccakf"
 )
 
-const MAX_RECEPIT_RLP_ROUNDS = 15
+const MAX_RECEPIT_RLP_ROUNDS = 16
 const MAX_ROUNDS = 10
 const NORMAL_TRANSACTION_LEAF_ROUNDS = 13
 const MAX_TRANSACTION_LEAF_ROUNDS = 13
