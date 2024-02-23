@@ -1,7 +1,7 @@
 package mock
 
 import (
-	"github.com/celer-network/zk-utils/circuits/gadgets/index-proof/core"
+	"github.com/brevis-network/zk-utils/circuits/gadgets/index-proof/core"
 	"github.com/consensys/gnark/frontend"
 )
 

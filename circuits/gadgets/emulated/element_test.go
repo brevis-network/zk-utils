@@ -2,7 +2,7 @@ package emulated
 
 import (
 	"fmt"
-	"github.com/celer-network/zk-utils/circuits/gadgets/utils"
+	"github.com/brevis-network/zk-utils/circuits/gadgets/utils"
 	"github.com/consensys/gnark-crypto/ecc"
 	"github.com/consensys/gnark/frontend"
 	"github.com/consensys/gnark/frontend/cs/r1cs"

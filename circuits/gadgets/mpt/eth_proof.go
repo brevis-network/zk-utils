@@ -4,8 +4,8 @@ import (
 	"math"
 	"math/big"
 
-	"github.com/celer-network/zk-utils/circuits/gadgets/keccak"
-	"github.com/celer-network/zk-utils/circuits/gadgets/rlp"
+	"github.com/brevis-network/zk-utils/circuits/gadgets/keccak"
+	"github.com/brevis-network/zk-utils/circuits/gadgets/rlp"
 	"github.com/consensys/gnark/frontend"
 )
 

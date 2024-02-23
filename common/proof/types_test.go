@@ -6,8 +6,8 @@ import (
 	"reflect"
 	"testing"
 
+	"github.com/brevis-network/zk-utils/common/utils"
 	"github.com/celer-network/goutils/log"
-	"github.com/celer-network/zk-utils/common/utils"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/ethclient"
 )

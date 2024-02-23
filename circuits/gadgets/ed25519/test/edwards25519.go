@@ -7,7 +7,7 @@ package edwards25519
 import (
 	"errors"
 
-	"github.com/celer-network/zk-utils/circuits/gadgets/ed25519/test/field"
+	"github.com/brevis-network/zk-utils/circuits/gadgets/ed25519/test/field"
 )
 
 // Point types.

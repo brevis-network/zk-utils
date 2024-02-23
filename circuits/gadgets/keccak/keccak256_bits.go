@@ -3,8 +3,8 @@ package keccak
 import (
 	"fmt"
 
-	"github.com/celer-network/zk-utils/circuits/gadgets/keccak/keccakf"
-	"github.com/celer-network/zk-utils/circuits/gadgets/mux"
+	"github.com/brevis-network/zk-utils/circuits/gadgets/keccak/keccakf"
+	"github.com/brevis-network/zk-utils/circuits/gadgets/mux"
 
 	"github.com/consensys/gnark/frontend"
 )

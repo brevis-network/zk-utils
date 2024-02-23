@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/celer-network/zk-utils/circuits/gadgets/keccak"
+	"github.com/brevis-network/zk-utils/circuits/gadgets/keccak"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 
 	"github.com/celer-network/goutils/log"

@@ -10,7 +10,7 @@ import (
 	"runtime/debug"
 	"time"
 
-	cSha512 "github.com/celer-network/zk-utils/circuits/gadgets/sha512"
+	cSha512 "github.com/brevis-network/zk-utils/circuits/gadgets/sha512"
 
 	"github.com/consensys/gnark-crypto/ecc"
 	"github.com/consensys/gnark/backend/groth16"

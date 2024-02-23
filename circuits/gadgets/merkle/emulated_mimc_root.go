@@ -2,7 +2,7 @@ package merkle
 
 import (
 	"fmt"
-	"github.com/celer-network/zk-utils/circuits/gadgets/emulated/mimc"
+	"github.com/brevis-network/zk-utils/circuits/gadgets/emulated/mimc"
 	"github.com/consensys/gnark-crypto/ecc"
 	"github.com/consensys/gnark/frontend"
 	"github.com/consensys/gnark/std/math/emulated"

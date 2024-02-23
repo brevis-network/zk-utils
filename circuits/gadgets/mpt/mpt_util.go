@@ -1,7 +1,7 @@
 package mpt
 
 import (
-	"github.com/celer-network/zk-utils/circuits/gadgets/rlp"
+	"github.com/brevis-network/zk-utils/circuits/gadgets/rlp"
 
 	"github.com/celer-network/goutils/log"
 	"github.com/consensys/gnark/frontend"

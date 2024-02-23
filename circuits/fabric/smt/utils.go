@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/celer-network/zk-utils/common/circuits"
-	"github.com/celer-network/zk-utils/common/utils"
+	"github.com/brevis-network/zk-utils/common/circuits"
+	"github.com/brevis-network/zk-utils/common/utils"
 	"github.com/consensys/gnark-crypto/ecc/bls12-377/fr"
 	"github.com/consensys/gnark-crypto/ecc/bls12-377/fr/mimc"
 	"github.com/consensys/gnark/frontend"

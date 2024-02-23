@@ -3,7 +3,7 @@ package mpt
 import (
 	"testing"
 
-	"github.com/celer-network/zk-utils/circuits/gadgets/keccak"
+	"github.com/brevis-network/zk-utils/circuits/gadgets/keccak"
 	"github.com/consensys/gnark-crypto/ecc"
 	"github.com/consensys/gnark/frontend"
 	"github.com/consensys/gnark/test"

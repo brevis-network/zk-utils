@@ -1,4 +1,4 @@
-module github.com/celer-network/zk-utils
+module github.com/brevis-network/zk-utils
 
 go 1.20
 

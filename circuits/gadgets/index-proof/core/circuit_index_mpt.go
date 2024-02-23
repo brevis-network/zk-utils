@@ -1,7 +1,7 @@
 package core
 
 import (
-	rlputil "github.com/celer-network/zk-utils/circuits/gadgets/rlp"
+	rlputil "github.com/brevis-network/zk-utils/circuits/gadgets/rlp"
 	"github.com/consensys/gnark/frontend"
 )
 

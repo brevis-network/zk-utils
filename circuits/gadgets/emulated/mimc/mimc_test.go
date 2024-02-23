@@ -2,7 +2,7 @@ package mimc
 
 import (
 	"fmt"
-	emu "github.com/celer-network/zk-utils/circuits/gadgets/emulated"
+	emu "github.com/brevis-network/zk-utils/circuits/gadgets/emulated"
 	"github.com/consensys/gnark-crypto/ecc"
 	bls12377MiMC "github.com/consensys/gnark-crypto/ecc/bls12-377/fr/mimc"
 	"github.com/consensys/gnark-crypto/ecc/bn254/fr"

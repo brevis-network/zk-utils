@@ -9,7 +9,7 @@ import (
 	"math/big"
 	"testing"
 
-	ed25519test "github.com/celer-network/zk-utils/circuits/gadgets/ed25519/test"
+	ed25519test "github.com/brevis-network/zk-utils/circuits/gadgets/ed25519/test"
 
 	"github.com/consensys/gnark-crypto/ecc"
 	"github.com/consensys/gnark/frontend"

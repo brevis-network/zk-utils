@@ -1,9 +1,9 @@
 package mpt
 
 import (
-	"github.com/celer-network/zk-utils/circuits/gadgets/keccak"
-	"github.com/celer-network/zk-utils/circuits/gadgets/rlp"
-	"github.com/celer-network/zk-utils/common/utils"
+	"github.com/brevis-network/zk-utils/circuits/gadgets/keccak"
+	"github.com/brevis-network/zk-utils/circuits/gadgets/rlp"
+	"github.com/brevis-network/zk-utils/common/utils"
 
 	"github.com/celer-network/goutils/log"
 	"github.com/consensys/gnark/frontend"

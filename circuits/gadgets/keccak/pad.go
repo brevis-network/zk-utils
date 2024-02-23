@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/celer-network/zk-utils/circuits/gadgets/mux"
-	"github.com/celer-network/zk-utils/circuits/gadgets/utils"
+	"github.com/brevis-network/zk-utils/circuits/gadgets/mux"
+	"github.com/brevis-network/zk-utils/circuits/gadgets/utils"
 
 	"github.com/consensys/gnark/frontend"
 )

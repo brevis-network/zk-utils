@@ -1,7 +1,7 @@
 package keccak
 
 import (
-	"github.com/celer-network/zk-utils/circuits/gadgets/mux"
+	"github.com/brevis-network/zk-utils/circuits/gadgets/mux"
 
 	"github.com/consensys/gnark/frontend"
 	"github.com/consensys/gnark/std/permutation/keccakf"

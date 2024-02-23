@@ -3,8 +3,8 @@ package proof
 import (
 	"math/big"
 
-	"github.com/celer-network/zk-utils/common/eth"
-	"github.com/celer-network/zk-utils/common/utils"
+	"github.com/brevis-network/zk-utils/common/eth"
+	"github.com/brevis-network/zk-utils/common/utils"
 	"github.com/ethereum/go-ethereum/common"
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
 )

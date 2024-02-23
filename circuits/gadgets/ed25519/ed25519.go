@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 
-	sha512 "github.com/celer-network/zk-utils/circuits/gadgets/sha512"
+	sha512 "github.com/brevis-network/zk-utils/circuits/gadgets/sha512"
 
 	"github.com/consensys/gnark/frontend"
 	"github.com/consensys/gnark/logger"

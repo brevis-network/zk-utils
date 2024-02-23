@@ -10,10 +10,10 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/celer-network/zk-utils/circuits/gadgets/keccak"
+	"github.com/brevis-network/zk-utils/circuits/gadgets/keccak"
 
+	"github.com/brevis-network/zk-utils/common/proof"
 	"github.com/celer-network/goutils/log"
-	"github.com/celer-network/zk-utils/common/proof"
 	"github.com/consensys/gnark-crypto/ecc"
 	"github.com/consensys/gnark/frontend"
 	"github.com/consensys/gnark/test"

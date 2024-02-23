@@ -1,7 +1,7 @@
 package conv
 
 import (
-	"github.com/celer-network/zk-utils/circuits/gadgets/utils"
+	"github.com/brevis-network/zk-utils/circuits/gadgets/utils"
 
 	"github.com/consensys/gnark/frontend"
 )

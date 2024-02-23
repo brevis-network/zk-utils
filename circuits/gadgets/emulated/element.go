@@ -3,8 +3,8 @@ package emulated
 import (
 	"fmt"
 
-	"github.com/celer-network/zk-utils/circuits/gadgets/limbs"
-	"github.com/celer-network/zk-utils/circuits/gadgets/utils"
+	"github.com/brevis-network/zk-utils/circuits/gadgets/limbs"
+	"github.com/brevis-network/zk-utils/circuits/gadgets/utils"
 	"github.com/consensys/gnark/frontend"
 	"github.com/consensys/gnark/std/math/emulated"
 )

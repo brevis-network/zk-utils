@@ -1,7 +1,7 @@
 package merkle
 
 import (
-	"github.com/celer-network/zk-utils/circuits/gadgets/rlp"
+	"github.com/brevis-network/zk-utils/circuits/gadgets/rlp"
 	"github.com/consensys/gnark/frontend"
 	"github.com/consensys/gnark/std/hash/mimc"
 )

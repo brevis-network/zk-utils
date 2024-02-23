@@ -7,7 +7,7 @@ import (
 	"runtime/debug"
 	"time"
 
-	pairing_bls12381 "github.com/celer-network/zk-utils/circuits/gadgets/pairing_bls12381"
+	pairing_bls12381 "github.com/brevis-network/zk-utils/circuits/gadgets/pairing_bls12381"
 
 	"github.com/consensys/gnark-crypto/ecc"
 	bls12381 "github.com/consensys/gnark-crypto/ecc/bls12-381"

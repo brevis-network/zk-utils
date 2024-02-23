@@ -4,7 +4,7 @@ import (
 	"log"
 	"math/big"
 
-	"github.com/celer-network/zk-utils/circuits/gadgets/sha256"
+	"github.com/brevis-network/zk-utils/circuits/gadgets/sha256"
 
 	"github.com/consensys/gnark-crypto/ecc/bls12-381/fp"
 	"github.com/consensys/gnark/frontend"

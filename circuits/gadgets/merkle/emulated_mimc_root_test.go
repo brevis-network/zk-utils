@@ -2,9 +2,9 @@ package merkle
 
 import (
 	"fmt"
+	emu "github.com/brevis-network/zk-utils/circuits/gadgets/emulated"
+	"github.com/brevis-network/zk-utils/circuits/gadgets/utils"
 	"github.com/cbergoon/merkletree"
-	emu "github.com/celer-network/zk-utils/circuits/gadgets/emulated"
-	"github.com/celer-network/zk-utils/circuits/gadgets/utils"
 	"github.com/consensys/gnark-crypto/ecc"
 	"github.com/consensys/gnark-crypto/ecc/bls12-377/fr/mimc"
 	"github.com/consensys/gnark/frontend"

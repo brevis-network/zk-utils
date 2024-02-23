@@ -1,7 +1,7 @@
 package proof
 
 import (
-	"github.com/celer-network/zk-utils/common/utils"
+	"github.com/brevis-network/zk-utils/common/utils"
 	"github.com/consensys/gnark/backend/groth16"
 	"github.com/consensys/gnark/backend/witness"
 	"github.com/ethereum/go-ethereum/common/hexutil"
