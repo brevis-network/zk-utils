@@ -330,8 +330,8 @@ func CheckMPTInclusionNoBranchTermination(
 	}
 
 	for layer := maxDepth - 2; layer >= 0; layer-- {
-		var keySubArrayInput [6]frontend.Variable
-		for i := 0; i < 6; i++ {
+		var keySubArrayInput [7]frontend.Variable
+		for i := 0; i < 7; i++ {
 			keySubArrayInput[i] = key[i]
 		}
 

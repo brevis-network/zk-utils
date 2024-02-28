@@ -8,7 +8,7 @@ import (
 type IndexCheckCircuit struct {
 	Index frontend.Variable `gnark:",public"`
 
-	RlpString [6]frontend.Variable // pad 0 at right
+	RlpString [7]frontend.Variable // pad 0 at right
 }
 
 func SumNibble(api frontend.API, nb []frontend.Variable) frontend.Variable {
@@ -27,7 +27,7 @@ func (c *IndexCheckCircuit) Define(api frontend.API) error {
 	return nil
 }
 
-func CalTxOrReceiptIndexRlp(api frontend.API, index frontend.Variable) [6]frontend.Variable {
+func CalTxOrReceiptIndexRlp(api frontend.API, index frontend.Variable) [7]frontend.Variable {
 	//var b [6]frontend.Variable
 	equaltozero := api.IsZero(index)
 	lessthan7 := rlputil.LessThan(api, index, 128)
@@ -108,13 +108,14 @@ func CalTxOrReceiptIndexRlp(api frontend.API, index frontend.Variable) [6]fronte
 		n1[i] = api.Mul(n1[i], api.IsZero(lessthan7))
 	}
 
-	var res [6]frontend.Variable
+	var res [7]frontend.Variable
 	res[0] = np[0]
 	res[1] = np[1]
 	res[2] = n0[0]
 	res[3] = n0[1]
 	res[4] = n1[0]
 	res[5] = n1[1]
+	res[6] = 0
 
 	return res
 }
