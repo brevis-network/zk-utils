@@ -14,7 +14,7 @@ const (
 	EthBlockHeadMaxBlockHexSize = ethBlockHeadMaxRound * 272
 
 	StorageMaxValueLength     = 66
-	StorageMPTMaxDepth        = 7
+	StorageMPTMaxDepth        = 8
 	StorageLeafMaxBlockHexLen = 272
 
 	AccountMPTMaxDepth       = 10
