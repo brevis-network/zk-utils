@@ -305,6 +305,7 @@ type SDKQueryProvingInfoForReceipt struct {
 	ChunkProofs             []string                  `json:"chunk_proofs"`
 	SmtStartBlockNumber     uint64                    `json:"smt_start_block_number"`
 	SmtStartBlockParentHash string                    `json:"smt_start_block_parent_hash"`
+	SMTInitialBlockNum      uint64                    `json:"smt_initial_block_number"`
 	SmtProofs               []string                  `json:"smt_proofs"`
 	CommitHash              string                    `json:"commit_hash"`
 	TransactionType         uint8                     `json:"transaction_type"`
@@ -336,6 +337,7 @@ type SDKQueryProvingInfoForStorageSlot struct {
 	ChunkProofs             []string `json:"chunk_proofs"`
 	SmtStartBlockNumber     uint64   `json:"smt_start_block_number"`
 	SmtStartBlockParentHash string   `json:"smt_start_block_parent_hash"`
+	SMTInitialBlockNum      uint64   `json:"smt_initial_block_number"`
 	SmtProofs               []string `json:"smt_proofs"`
 	CommitHash              string   `json:"commit_hash"`
 	QueryRaw                []string `json:"query_raw"`
@@ -356,6 +358,7 @@ type SDKQueryProvingInfoForTransaction struct {
 	ChunkProofs             []string             `json:"chunk_proofs"`
 	SMTStartBlockNumber     uint64               `json:"smt_start_block_number"`
 	SMTStartBlockParentHash string               `json:"smt_start_block_parent_hash"`
+	SMTInitialBlockNum      uint64               `json:"smt_initial_block_number"`
 	SMTProofs               []string             `json:"smt_proofs"`
 	UnsignedTxRlp           string               `json:"unsigned_tx_rlp"`
 	ExtraInfo               TransactionExtraInfo `json:"extra_info"`
