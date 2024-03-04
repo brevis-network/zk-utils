@@ -2,10 +2,14 @@ package mpt
 
 import (
 	"github.com/brevis-network/zk-utils/circuits/gadgets/rlp"
+	"github.com/consensys/gnark/std/selector"
 
 	"github.com/celer-network/goutils/log"
 	"github.com/consensys/gnark/frontend"
 )
+
+// max rlp len 6 + (per rlp prefix len 2 + per rlp len 64) + 0x80
+const MaxBranchNodeRlpHexLen = 6 + (64+2)*16 + 2
 
 type MPTTwoItemsNodeCircuit struct {
 	api frontend.API
@@ -193,9 +197,28 @@ type MPTBranchCheck struct {
 func NewMPTBranchCheck(maxNodeRefLength int) MPTBranchCheck {
 	branchCheck := &MPTBranchCheck{}
 	branchCheck.maxNodeRefLength = maxNodeRefLength
-	branchCheck.maxRLPLength = 1064
+	branchCheck.maxRLPLength = MaxBranchNodeRlpHexLen
 	branchCheck.maxRLPArrayPrefixLength = 8
 	return *branchCheck
+}
+
+// CheckBranchForNonExistence prove the location of nibble key point to a data is 0x80, meaning that's an empty, length of this rlp is 0
+func (branchCheck *MPTBranchCheck) CheckBranchForNonExistence(
+	api frontend.API,
+	keyNibble frontend.Variable,
+	nodeRLP []frontend.Variable,
+) frontend.Variable {
+	arrayCheck := &rlp.ArrayCheck{}
+	arrayCheck.MaxHexLen = branchCheck.maxRLPLength
+	arrayCheck.MaxFields = 17
+	arrayCheck.ArrayPrefixMaxHexLen = 8
+	arrayCheck.FieldMinHexLen = []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+	arrayCheck.FieldMaxHexLen = []int{64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 0}
+
+	valid, _, fieldsLength, _ := arrayCheck.RlpArrayCheck(api, nodeRLP)
+	isEmpty := api.IsZero(selector.Mux(api, keyNibble, fieldsLength...))
+	out := api.Add(valid, isEmpty)
+	return api.IsZero(api.Sub(out, 2))
 }
 
 func (branchCheck *MPTBranchCheck) CheckBranch(
@@ -205,16 +228,6 @@ func (branchCheck *MPTBranchCheck) CheckBranch(
 	nodeRefs []frontend.Variable,
 	nodeRLP []frontend.Variable,
 ) MPTCheckResult {
-
-	log.Debug("branch check params: ",
-		branchCheck.maxNodeRefLength,
-		branchCheck.maxRLPArrayPrefixLength,
-		branchCheck.maxRLPLength,
-		keyNibble,
-		nodeRefLength,
-		nodeRefs,
-		nodeRLP)
-
 	arrayCheck := &rlp.ArrayCheck{}
 	arrayCheck.MaxHexLen = branchCheck.maxRLPLength
 	arrayCheck.MaxFields = 17
@@ -244,8 +257,6 @@ func (branchCheck *MPTBranchCheck) CheckBranch(
 
 	rlpFieldLength := rlp.Multiplexer(api, keyNibble, 1, 16, fieldsLengthMultiplexerInput)[0]
 	nodeRefLengthCheck := rlp.Equal(api, rlpFieldLength, nodeRefLength)
-
-	log.Debug("Branch check result: ", rlpout, nodeRefCheck, nodeRefLengthCheck, 1)
 
 	return MPTCheckResult{
 		output:         api.Add(rlpout, nodeRefCheck, nodeRefLengthCheck, 1),

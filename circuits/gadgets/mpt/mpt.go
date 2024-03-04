@@ -4,6 +4,7 @@ import (
 	"github.com/brevis-network/zk-utils/circuits/gadgets/keccak"
 	"github.com/brevis-network/zk-utils/circuits/gadgets/rlp"
 	"github.com/brevis-network/zk-utils/common/utils"
+	"github.com/consensys/gnark/std/selector"
 
 	"github.com/celer-network/goutils/log"
 	"github.com/consensys/gnark/frontend"
@@ -23,19 +24,19 @@ func CheckMPTInclusionFixedKeyLength(
 	value []frontend.Variable, // [maxValueLength]
 	rootHash [64]frontend.Variable, // Root hash should be 32-bytes long value. Divide it by 4-bits ===> 0xcf78 will be [c, f, 7, 8]
 	keyFragmentStarts []frontend.Variable, // [maxDepth]
-	leafRlp []frontend.Variable,
-	leafRoundIndex frontend.Variable,
+	lastNodeRlp []frontend.Variable, // last layer node, branch node or a leaf node
+	lastNodeRoundIndex frontend.Variable, // keccak round index of last node
 	leafPathPrefixLength frontend.Variable,
 	nodeRlp [][]frontend.Variable, // [maxDepth - 1][maxBranchRlpHexLen]
 	nodeRoundIndexes []frontend.Variable,
 	nodePathPrefixLength []frontend.Variable, // [maxDepth - 1]
 	nodeTypes []frontend.Variable, // [maxDepth - 1]
 	depth frontend.Variable,
+	isStorageProof bool,
 ) CheckMPTInclusionFixedKeyLengthResult {
 	api.AssertIsLessOrEqual(maxDepth, 10)
 
 	//maxLeafRLPLength := 4 + (keyLength + 2) + 4 + maxValueLength
-	maxBranchRlpHexLen := 1064
 	maxExtensionRlpHexLen := 4 + 2 + keyLength + 2 + 64
 
 	// KEY_BITS := LogCeil(keyLength)
@@ -91,10 +92,25 @@ func CheckMPTInclusionFixedKeyLength(
 	leafSelector, leafSelectorLength := subArray.SubArray(api, leafSubArrayInput[:], leafStartMultiplexer[0], keyLength)
 
 	leafCheck := NewMPTLeafCheck(keyLength, maxValueLength)
-	leafCheckResult := leafCheck.CheckLeaf(api, leafSelectorLength, leafSelector, value, leafRlp, leafPathPrefixLength)
+	lastNodeCheckResult := leafCheck.CheckLeaf(api, leafSelectorLength, leafSelector, value, lastNodeRlp, leafPathPrefixLength)
 
-	leafRlpBlock := keccak.NibblesToU64Array(api, leafRlp[:])
-	leafHash := rlp.Keccak256AsNibbles(api, len(leafRlp), leafRlpBlock, leafRoundIndex)
+	// Storage  non-existence proving, the follow statements must be met:
+	// 1. the node is last node
+	// 2. assume the node is branch node
+	// 3. node key nibble rlp = 0x80, and rlp length = 0
+	if isStorageProof {
+		lastNodeLayer := api.Sub(depth, 1)
+		lastNodeKeySelector := selector.Mux(api, lastNodeLayer, key[:]...)
+
+		// layer index start at 0, last node layer = depth -1
+		lastNodeBranchCheck := NewMPTBranchCheck(64)
+		branchNonExistenceCheckResult := lastNodeBranchCheck.CheckBranchForNonExistence(api, lastNodeKeySelector, lastNodeRlp)
+
+		lastNodeCheckResult.result.output = api.Select(branchNonExistenceCheckResult, 4, lastNodeCheckResult.result.output)
+	}
+
+	leafRlpBlock := keccak.NibblesToU64Array(api, lastNodeRlp[:])
+	leafHash := rlp.Keccak256AsNibbles(api, len(lastNodeRlp), leafRlpBlock, lastNodeRoundIndex)
 
 	log.Debug("leafHash:", leafHash.Output)
 
@@ -106,9 +122,6 @@ func CheckMPTInclusionFixedKeyLength(
 		depthEqual = append(depthEqual, rlp.Equal(api, depth, i+1))
 		depthLessThan = append(depthLessThan, rlp.LessThan(api, i, depth))
 	}
-
-	//maxNodeRLPLength := 1064
-	// maxRounds := (maxNodeRLPLength + 272) / 272
 
 	var extensionCheckResults []MPTCheckResult // [maxDepth - 1]
 	var branchCheckResults []MPTCheckResult    // [maxDepth - 1]
@@ -175,12 +188,11 @@ func CheckMPTInclusionFixedKeyLength(
 
 		var branchCheckNodeRlpAtCurrentLayer []frontend.Variable
 
-		for i := 0; i < maxBranchRlpHexLen; i++ {
+		for i := 0; i < MaxBranchNodeRlpHexLen; i++ {
 			rlpAtI := api.Mul(nodeTypes[layer], nodeRlp[layer][i])
 			extesionCheckNodeRlpAtCurrentLayer = append(extesionCheckNodeRlpAtCurrentLayer, rlpAtI)
 			branchCheckNodeRlpAtCurrentLayer = append(branchCheckNodeRlpAtCurrentLayer, api.Sub(nodeRlp[layer][i], rlpAtI))
 		}
-
 		branchCheckResults[layer] = branchCheck.CheckBranch(
 			api,
 			nibbleSelector[0],
@@ -206,10 +218,10 @@ func CheckMPTInclusionFixedKeyLength(
 	}
 
 	rootHashCheck := rlp.ArrayEqual(api, rootHash[:], nodeHashes[0].Output[:], 64, 64)
-	log.Debug(rootHashCheck, leafCheckResult.result.output, allFragmentsValid, extensionCheckResults, branchCheckResults)
+	log.Debug(rootHashCheck, lastNodeCheckResult.result.output, allFragmentsValid, extensionCheckResults, branchCheckResults)
 
 	var allCheckMultiplexerInput [][]frontend.Variable
-	allCheckMultiplexerInput = append(allCheckMultiplexerInput, []frontend.Variable{api.Add(rootHashCheck, leafCheckResult.result.output, allFragmentsValid)})
+	allCheckMultiplexerInput = append(allCheckMultiplexerInput, []frontend.Variable{api.Add(rootHashCheck, lastNodeCheckResult.result.output, allFragmentsValid)})
 
 	for layer := 0; layer < maxDepth-1; layer++ {
 		currentLayerValue :=
@@ -234,7 +246,7 @@ func CheckMPTInclusionFixedKeyLength(
 
 	return CheckMPTInclusionFixedKeyLengthResult{
 		Output:      rlp.Equal(api, allCheckMultiplexer[0], api.Add(api.Mul(depth, 4), 2)),
-		ValueLength: leafCheckResult.valueLength,
+		ValueLength: lastNodeCheckResult.valueLength,
 	}
 }
 

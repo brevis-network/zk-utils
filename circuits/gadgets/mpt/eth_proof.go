@@ -41,7 +41,7 @@ func CheckEthAccountProof(
 	api frontend.API,
 	maxDepth int,
 	stateRoot [64]frontend.Variable,
-	addressHash [64]frontend.Variable, // padded address hash
+	addressHash [64]frontend.Variable,     // padded address hash
 	keyFragmentStarts []frontend.Variable, // [maxDepth]
 	addressRlp [228]frontend.Variable,
 	leafRlp []frontend.Variable, // [maxLeafRlpLength]
@@ -50,7 +50,7 @@ func CheckEthAccountProof(
 	nodeRlp [][]frontend.Variable, // [maxDepth - 1][maxBranchRlpLength]
 	nodeRoundIndexs []frontend.Variable,
 	nodePathPrefixLength []frontend.Variable, // [maxDepth - 1]
-	nodeTypes []frontend.Variable, // [maxDepth - 1]
+	nodeTypes []frontend.Variable,            // [maxDepth - 1]
 	depth frontend.Variable,
 ) EthAccountProofResult {
 	addressValueArrayCheck := rlp.ArrayCheck{
@@ -96,6 +96,7 @@ func CheckEthAccountProof(
 		nodePathPrefixLength,
 		nodeTypes,
 		depth,
+		false,
 	)
 
 	return EthAccountProofResult{
@@ -122,20 +123,17 @@ func CheckEthStorageProof(
 	slotHash [64]frontend.Variable, // padded slotHash
 	valueRlp [66]frontend.Variable,
 	keyFragmentStarts []frontend.Variable, // [maxDepth]
-	leafRlp []frontend.Variable, // [maxLeafRlpLength]
+	leafRlp []frontend.Variable,           // [maxLeafRlpLength]
 	leafRoundIndex frontend.Variable,
 	leafPathPrefixLength frontend.Variable,
 	nodeRlp [][]frontend.Variable, // [maxDepth - 1][maxBranchRlpLength]
 	nodeRoundIndexs []frontend.Variable,
 	nodePathPrefixLength []frontend.Variable, // [maxDepth - 1]
-	nodeTypes []frontend.Variable, // [maxDepth - 1]
+	nodeTypes []frontend.Variable,            // [maxDepth - 1]
 	depth frontend.Variable,
 ) EthStorageProofResult {
 	keyLength := 64
 	maxValueLength := 66
-	// maxLeafRlpLength := 4 + (keyLength + 2) + 4 + maxValueLength
-	// maxBranchRlpLength := 1064
-	// maxExtensionRlpLength := 4 + 2 + keyLength + 2 + 64
 
 	mptInclusionResult := CheckMPTInclusionFixedKeyLength(
 		api,
@@ -154,6 +152,7 @@ func CheckEthStorageProof(
 		nodePathPrefixLength,
 		nodeTypes,
 		depth,
+		true,
 	)
 
 	isBig, isLiteral, prefixOrTotalHexLen, _, _, _, _ := rlp.RlpFieldPrefix(api, [2]frontend.Variable{valueRlp[0], valueRlp[1]})
@@ -263,7 +262,7 @@ func CheckEthAddressStorageProof(
 	blockFieldsNum frontend.Variable,
 	blockRoundIndex frontend.Variable,
 	addressHash [64]frontend.Variable, // padded address hash
-	slot [64]frontend.Variable, // 128-bit
+	slot [64]frontend.Variable,        // 128-bit
 	blockHashRlp [EthBlockHeadMaxBlockHexSize]frontend.Variable,
 	addressKeyFragmentStarts []frontend.Variable, // [addressMaxDepth]
 	addressRlp [228]frontend.Variable,
@@ -273,7 +272,7 @@ func CheckEthAddressStorageProof(
 	addressNodeRlp [][]frontend.Variable, // [addressMaxDepth - 1][addressMaxBranchRlpLength]
 	addressNodeRlpRoundIndexes [AccountMPTMaxDepth - 1]frontend.Variable,
 	addressNodePathPrefixLength []frontend.Variable, // [addressMaxDepth - 1]
-	addressNodeTypes []frontend.Variable, // [addressMaxDepth - 1]
+	addressNodeTypes []frontend.Variable,            // [addressMaxDepth - 1]
 	addressDepth frontend.Variable,
 	storageKeyFragmentStarts []frontend.Variable, // [storageMaxDepth]
 	slotValueRlp [66]frontend.Variable,
@@ -283,7 +282,7 @@ func CheckEthAddressStorageProof(
 	storageNodeRlp [][]frontend.Variable, // [storageMaxDepth - 1][storageMaxBranchRlpLength]
 	storageNodeRlpRoundIndex []frontend.Variable,
 	storageNodePathPrefixLength []frontend.Variable, // [storageMaxDepth - 1]
-	storageNodeTypes []frontend.Variable, // [storageMaxDepth - 1]
+	storageNodeTypes []frontend.Variable,            // [storageMaxDepth - 1]
 	storageProofDepth frontend.Variable,
 ) EthAddressStorageProofResult {
 	rlpBlockHashResult := CheckEthBlockHash(api, blockHashRlp, blockFieldsNum, blockRoundIndex)
