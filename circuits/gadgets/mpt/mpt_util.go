@@ -51,6 +51,12 @@ func NewMPTLeafCheck(maxKeyLength int, maxValueLength int) MPTLeafCheck {
 	return *leafCheck
 }
 
+//	Valid Leaf Case
+//	1. No-zero value: rlpout: 1, prefixCheck: 1, keyPass: 1, valueMatched: 1
+//
+//  2. Non-existence value:  In case of leaf-type, value must be pointing to a different relative-path in order to proof that the requested path does not exist.
+//  rlpout: 1, prefixCheck: 1, isZeroValue: 1, keyNibblesMatched: 0
+
 func (leafCheck *MPTLeafCheck) CheckLeaf(
 	api frontend.API,
 	keyNibbleLen frontend.Variable,
@@ -63,8 +69,8 @@ func (leafCheck *MPTLeafCheck) CheckLeaf(
 	api.AssertIsEqual(len(values), leafCheck.maxValueLength)
 
 	valuePrefix := values[:2]
-	isSingleValue := rlp.ArrayEqual(api, valuePrefix[:], []frontend.Variable{8,0}, 2,2)
-	isZeroArr := rlp.ArrayEqual(api, values[2:], []frontend.Variable{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, 64, 64)
+	isSingleValue := rlp.ArrayEqual(api, valuePrefix[:], []frontend.Variable{8, 0}, 2, 2)
+	isZeroArr := rlp.ArrayEqual(api, values[2:], []frontend.Variable{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 64, 64)
 	isZeroValue := api.And(isSingleValue, isZeroArr)
 
 	arrayCheck := &rlp.ArrayCheck{}
