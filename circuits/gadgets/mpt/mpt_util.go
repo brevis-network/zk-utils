@@ -59,10 +59,13 @@ func (leafCheck *MPTLeafCheck) CheckLeaf(
 	leafRlp []frontend.Variable,
 	leafPathPrefixLength frontend.Variable,
 ) MPTLeafCheckResult {
-	log.Debug("Leaf check params: ", leafCheck.maxKeyLength, leafCheck.maxRLPArrayPrefixLength, leafCheck.maxRLPLength, leafCheck.maxValueLength, keyNibbleLen, keyNibbles, values, leafRlp, leafPathPrefixLength)
-
 	api.AssertIsEqual(len(keyNibbles), leafCheck.maxKeyLength)
 	api.AssertIsEqual(len(values), leafCheck.maxValueLength)
+
+	valuePrefix := values[:2]
+	isSingleValue := rlp.ArrayEqual(api, valuePrefix[:], []frontend.Variable{8,0}, 2,2)
+	isZeroArr := rlp.ArrayEqual(api, values[2:], []frontend.Variable{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, 64, 64)
+	isZeroValue := api.And(isSingleValue, isZeroArr)
 
 	arrayCheck := &rlp.ArrayCheck{}
 	arrayCheck.MaxHexLen = leafCheck.maxRLPLength
@@ -85,18 +88,17 @@ func (leafCheck *MPTLeafCheck) CheckLeaf(
 	keyNibblesFromRLP := rlp.ShiftLeft(api, leafCheck.maxRLPLength, 0, 2, fields[0], leafPathPrefixLength)
 
 	keyNibblesMatched := rlp.ArrayEqual(api, keyNibbles, keyNibblesFromRLP, leafCheck.maxKeyLength, api.Sub(fieldsLength[0], leafPathPrefixLength))
-
+	isNonExistence := api.And(isZeroValue, api.Sub(1, keyNibblesMatched))
 	keyNibblesLengthMatched := rlp.Equal(api, keyNibbleLen, api.Sub(fieldsLength[0], leafPathPrefixLength))
 
 	keyPass := api.Mul(keyNibblesMatched, keyNibblesLengthMatched)
-
 	valueMatched := rlp.ArrayEqual(api, values, fields[1], leafCheck.maxValueLength, fieldsLength[1])
-
-	log.Debug("Leaf check result: ", rlpout, prefixCheck, keyPass, valueMatched)
-
+	rlpCheckOut := api.Add(rlpout, prefixCheck)
+	checkOut := api.Add(rlpCheckOut, keyPass, valueMatched)
+	checkOut = api.Select(isNonExistence, api.Add(rlpCheckOut, 2), checkOut)
 	return MPTLeafCheckResult{
 		result: MPTCheckResult{
-			output:         api.Add(rlpout, prefixCheck, keyPass, valueMatched),
+			output:         checkOut,
 			rlpTotalLength: totalRlpLength,
 		},
 		valueLength: fieldsLength[1],
