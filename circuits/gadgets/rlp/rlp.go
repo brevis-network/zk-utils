@@ -169,7 +169,9 @@ func Hex64To2Fr(api frontend.API, in []frontend.Variable, realLen frontend.Varia
 		temp = api.Add(api.Mul(16, temp), in[idx])
 		resultArr = append(resultArr, temp)
 	}
-	var loSel = api.Select(LessThan(api, realLen, 1), 1, api.Sub(realLen, 3))
+
+	var loSel = api.Select(LessThan(api, realLen, 3), 1, api.Sub(realLen, 3))
+	loSel = api.Select(LessThan(api, realLen, 1), 1, loSel)
 	lo := selector.Mux(api, loSel, resultArr...)
 
 	var result [2]frontend.Variable
