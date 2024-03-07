@@ -8,8 +8,10 @@ import (
 	"github.com/consensys/gnark-crypto/ecc"
 	"github.com/consensys/gnark/backend/groth16"
 	"github.com/consensys/gnark/backend/plonk"
+	cs "github.com/consensys/gnark/constraint/bn254"
 	"github.com/consensys/gnark/frontend"
 	"github.com/consensys/gnark/frontend/cs/r1cs"
+	"github.com/consensys/gnark/frontend/cs/scs"
 	"github.com/consensys/gnark/test/unsafekzg"
 )
 
@@ -37,10 +39,11 @@ func check(err error) {
 func benchKeccakPlonk(rounds int) {
 	circuit := newKeccakCircuit(rounds)
 	assign := newKeccakCircuit(rounds)
-	ccs, err := frontend.Compile(ecc.BN254.ScalarField(), r1cs.NewBuilder, circuit)
+	ccs, err := frontend.Compile(ecc.BN254.ScalarField(), scs.NewBuilder, circuit)
 	check(err)
-	canonical, lagrange, err := unsafekzg.NewSRS(ccs)
-	pk, _, err := plonk.Setup(ccs, canonical, lagrange)
+	r1cs := ccs.(*cs.SparseR1CS)
+	canonical, lagrange, err := unsafekzg.NewSRS(r1cs)
+	pk, _, err := plonk.Setup(r1cs, canonical, lagrange)
 	check(err)
 	w, err := frontend.NewWitness(assign, ecc.BN254.ScalarField())
 	proof, err := plonk.Prove(ccs, pk, w)
