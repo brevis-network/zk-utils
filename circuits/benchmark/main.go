@@ -18,6 +18,7 @@ import (
 var rounds = flag.Int("rounds", 1, "number of rounds to run")
 var mode = flag.String("mode", "groth16", "the proving system to use")
 
+// usage: go run main.go -mode=groth16 -rounds=64
 func main() {
 	flag.Parse()
 	switch *mode {
