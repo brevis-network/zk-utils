@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"github.com/brevis-network/zk-utils/circuits/gadgets/keccak"
 	"github.com/consensys/gnark-crypto/ecc"
+	"github.com/consensys/gnark/backend"
 	"github.com/consensys/gnark/backend/groth16"
 	"github.com/consensys/gnark/backend/plonk"
 	cs "github.com/consensys/gnark/constraint/bn254"
@@ -65,7 +66,7 @@ func benchKeccakGroth16(rounds int) {
 	pk, vk, err := groth16.Setup(ccs)
 
 	w, err := frontend.NewWitness(assign, ecc.BN254.ScalarField())
-	proof, err := groth16.Prove(ccs, pk, w)
+	proof, err := groth16.Prove(ccs, pk, w, backend.WithIcicleAcceleration())
 	check(err)
 
 	wp, err := w.Public()
