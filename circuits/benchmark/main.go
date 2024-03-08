@@ -61,16 +61,22 @@ func benchKeccakGroth16(rounds int) {
 	assign := newKeccakCircuit(rounds)
 	ccs, err := frontend.Compile(ecc.BN254.ScalarField(), r1cs.NewBuilder, circuit)
 	check(err)
-	pk, err := groth16.DummySetup(ccs)
+
+	pk, vk, err := groth16.Setup(ccs)
 
 	w, err := frontend.NewWitness(assign, ecc.BN254.ScalarField())
 	proof, err := groth16.Prove(ccs, pk, w)
+	check(err)
+
+	wp, err := w.Public()
 	check(err)
 
 	buf := bytes.NewBuffer(nil)
 	n, err := proof.WriteRawTo(buf)
 	check(err)
 	fmt.Printf("proof size %d\n", n)
+
+	err = groth16.Verify(proof, vk, wp)
 }
 
 func getTestData(rounds int) []frontend.Variable {
