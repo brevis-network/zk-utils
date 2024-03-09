@@ -5,13 +5,35 @@ import (
 	"fmt"
 	"math/big"
 	"os"
+	"strings"
 
 	"github.com/consensys/gnark-crypto/ecc"
 	"github.com/consensys/gnark/frontend"
+	"github.com/ethereum/go-ethereum/common/hexutil"
 
 	"github.com/celer-network/goutils/log"
 	bls12377MiMC "github.com/consensys/gnark-crypto/ecc/bls12-377/fr/mimc"
 )
+
+func CheckErr(err error, msg string) {
+	if err != nil {
+		log.Fatalln("error ("+msg+"):", err)
+	}
+}
+
+func CheckOk(ok bool, msg string) {
+	if !ok {
+		log.Fatalln("check ok failed (" + msg + ")")
+	}
+}
+
+func Convert2DimensionalByteArrayToString(input [][]byte) string {
+	data := make([]string, len(input))
+	for i := range data {
+		data[i] = hexutil.Encode(input[i])
+	}
+	return strings.Join(data, ",")
+}
 
 func CheckErrf(err error, msg string, args ...interface{}) {
 	if err != nil {
