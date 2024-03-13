@@ -49,42 +49,6 @@ func EscalarProduct(api frontend.API, width int, inputA []frontend.Variable, inp
 	return
 }
 
-func Keccak256ForReceiptRLP(
-	api frontend.API,
-	inLen frontend.Variable, // if input is a padded rlp data, the inlen is the decoded rlp length without padding part
-	blocks [][17]frontend.Variable,
-	roundIndex frontend.Variable,
-) *KeccakOrLiteralHex {
-	var h = keccak.Keccak256ForReceipRLP(api, blocks, roundIndex)
-
-	// 64 nibble
-	var nibbles [64]frontend.Variable
-	for i, r := range h {
-		rBits := api.ToBinary(r, 64)
-
-		for j := 0; j < 16; j++ {
-			nibbles[i*16+j] = api.FromBinary(rBits[j*4 : (j+1)*4]...)
-		}
-	}
-
-	var results [64]frontend.Variable
-	for i := 0; i < 32; i++ {
-		results[i*2] = nibbles[2*i+1]
-		results[i*2+1] = nibbles[2*i]
-	}
-
-	// inLen <= 62 returns 1
-	isShort := LessThan(api, inLen, 63)
-
-	outLen := api.Mul(isShort, api.Sub(inLen, 64))
-	outLen = api.Add(outLen, 64)
-
-	return &KeccakOrLiteralHex{
-		Output:       results,
-		OutputLength: outLen,
-	}
-}
-
 func Keccak256AsNibbles(
 	api frontend.API,
 	inLen frontend.Variable, // if input is a padded rlp data, the inlen is the decoded rlp length without padding part

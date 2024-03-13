@@ -7,7 +7,6 @@ import (
 	"github.com/consensys/gnark/std/permutation/keccakf"
 )
 
-const MAX_RECEPIT_RLP_ROUNDS = 16
 const MAX_ROUNDS = 10
 const NORMAL_TRANSACTION_LEAF_ROUNDS = 13
 const MAX_TRANSACTION_LEAF_ROUNDS = 13
@@ -57,23 +56,6 @@ func Keccak256ForMaxTransaction(api frontend.API, blocks [MAX_TRANSACTION_LEAF_R
 		outputStates = append(outputStates, newS[:])
 	}
 	selected := mux.Multiplex(api, roundIndex, 25, MAX_TRANSACTION_LEAF_ROUNDS, transpose(outputStates))
-	for i := 0; i < 4; i++ {
-		out[i] = selected[i]
-	}
-	return
-}
-
-func Keccak256ForReceipRLP(api frontend.API, blocks [][17]frontend.Variable, roundIndex frontend.Variable) (out [4]frontend.Variable) {
-	var allStates [MAX_RECEPIT_RLP_ROUNDS + 1][25]frontend.Variable
-	var outputStates [][]frontend.Variable
-	// initial state
-	allStates[0] = [25]frontend.Variable{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-	for i := 0; i < MAX_RECEPIT_RLP_ROUNDS; i++ {
-		newS := absorb(api, allStates[i], blocks[i])
-		allStates[i+1] = newS
-		outputStates = append(outputStates, newS[:])
-	}
-	selected := mux.Multiplex(api, roundIndex, 25, MAX_RECEPIT_RLP_ROUNDS, transpose(outputStates))
 	for i := 0; i < 4; i++ {
 		out[i] = selected[i]
 	}
