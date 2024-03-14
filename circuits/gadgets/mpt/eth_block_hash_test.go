@@ -39,9 +39,8 @@ func Test_Eth_Block_Hash(t *testing.T) {
 	// 0x67c5d26ae6ef00adcf970d9b1876f0eaec41f94d88b7a0299e9d6109cdd9bcd8
 	rlpBytes, _ := hexutil.Decode(blockRlpHex)
 
-	blockRlpRoundIndex := keccak.GetRoundIndex(len(rlpBytes) * 8)
-
 	paddedRlpBytes := keccak.Pad101Bytes(rlpBytes)
+	blockRlpRoundIndex := keccak.GetKeccakRoundForPaddedBytes(paddedRlpBytes)
 
 	var nibbles [EthBlockHeadMaxBlockHexSize]frontend.Variable
 	for i, b := range paddedRlpBytes {

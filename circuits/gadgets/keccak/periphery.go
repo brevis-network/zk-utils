@@ -32,6 +32,14 @@ func Pad101Bytes(data []byte) []byte {
 	return data
 }
 
+func GetKeccakRoundForPaddedBytes(data []byte) int {
+	return len(data)/136 - 1
+}
+
+func GetRoundIndex(bitsLen int) int {
+	return (bitsLen + 8) / 1088
+}
+
 func Bytes2BlockBits(bytes []byte) (bits []uint8) {
 	if len(bytes)%136 != 0 {
 		panic("invalid length")
@@ -230,19 +238,6 @@ func NibblesToU64ArrayForMaxTransactionLeafValue(api frontend.API, nibbles []fro
 	}
 
 	return ret
-}
-
-func GetKeccakRoundIndex(dataLenInHex int) int {
-	var chunkSizeInHex = 272
-	chunkNum := (dataLenInHex + chunkSizeInHex - 1) / chunkSizeInHex
-	if chunkNum > 0 {
-		chunkNum--
-	}
-	return chunkNum
-}
-
-func GetRoundIndex(bitsLen int) int {
-	return (bitsLen + 8) / 1088
 }
 
 func PadBits101(api frontend.API, data []frontend.Variable, maxRound int) []frontend.Variable {
