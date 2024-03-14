@@ -106,6 +106,7 @@ func (c *MPTInclusionCircuit) Define(api frontend.API) error {
 		c.NodePathPrefixLength,
 		c.NodeTypes,
 		c.Depth,
+		true,
 	)
 
 	api.AssertIsEqual(result.Output, c.Output)
@@ -213,9 +214,9 @@ func Test_Storage_MPT_INCLUSION(t *testing.T) {
 	var nodeRlpRoundIndexes [MaxDepth - 1]frontend.Variable
 	nodeRlp[0] = paddedNodeRlp0Hex
 
-	nodeRlpRoundIndexes[0] = keccak.GetKeccakRoundIndex(len(nodeRlp0HexString) - 2)
+	nodeRlpRoundIndexes[0] = keccak.GetKeccakRoundForPaddedBytes(paddedNodeRlp0Bytes)
 	nodeRlp[1] = paddedNodeRlp1Hex
-	nodeRlpRoundIndexes[1] = keccak.GetKeccakRoundIndex(len(nodeRlp1HexString) - 2)
+	nodeRlpRoundIndexes[1] = keccak.GetKeccakRoundForPaddedBytes(paddedNodeRlp1Bytes)
 
 	for i := 2; i < MaxDepth-1; i++ {
 		var empty [1088]frontend.Variable
@@ -309,6 +310,7 @@ func (c *AccountMPTInclusionCircuit) Define(api frontend.API) error {
 		c.NodePathPrefixLength,
 		c.NodeTypes,
 		c.Depth,
+		true,
 	)
 
 	api.AssertIsEqual(result.Output, c.Output)
@@ -379,7 +381,7 @@ func Test_Account_MPT_INCLUSION(t *testing.T) {
 		paddedLeafRlpHex[i] = 0
 	}
 
-	leafRlpRoundIndex := keccak.GetKeccakRoundIndex(len(leafRlpHexString) - 2)
+	leafRlpRoundIndex := keccak.GetKeccakRoundForPaddedBytes(paddedLeafRlpBytes)
 
 	/// 64 - (depth - 1) ===> length of nibbles represented by branch/extension node
 	/// depth = len(accountProof[])/len(storageProof[])
@@ -429,7 +431,7 @@ func Test_Account_MPT_INCLUSION(t *testing.T) {
 
 			nodeRlp[i] = rlp
 
-			nodeRlpRoundIndexes[i] = keccak.GetKeccakRoundIndex(len(rlpHexString) - 2)
+			nodeRlpRoundIndexes[i] = keccak.GetKeccakRoundForPaddedBytes(paddedBytes)
 		} else {
 			// Add placeholder data
 			var empty [1088]frontend.Variable
@@ -536,7 +538,7 @@ func Test_Storage_MPT_with_Extension_INCLUSION(t *testing.T) {
 		paddedLeafRlpHex[i] = 0
 	}
 
-	leafRlpRoundIndex := keccak.GetKeccakRoundIndex(len(leafRlpHexString) - 2)
+	leafRlpRoundIndex := keccak.GetKeccakRoundForPaddedBytes(paddedLeafRlpBytes)
 
 	/// 64 - (depth - 1) ===> length of nibbles represented by branch/extension node
 	/// depth = len(accountProof[])/len(storageProof[])
@@ -586,7 +588,7 @@ func Test_Storage_MPT_with_Extension_INCLUSION(t *testing.T) {
 
 			nodeRlp[i] = rlp
 
-			nodeRlpRoundIndexes[i] = keccak.GetKeccakRoundIndex(len(rlpHexString) - 2)
+			nodeRlpRoundIndexes[i] = keccak.GetKeccakRoundForPaddedBytes(paddedBytes)
 		} else {
 			// Add placeholder data
 			var empty [1088]frontend.Variable

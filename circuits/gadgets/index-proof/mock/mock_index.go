@@ -12,7 +12,7 @@ func GetIndexProofWitness() core.IndexCheckCircuit {
 		//Index:     280,
 		//RlpString: [6]frontend.Variable{8, 2, 0, 1, 1, 8},
 		Index:     4664,
-		RlpString: [6]frontend.Variable{8, 2, 1, 2, 3, 8},
+		RlpString: [7]frontend.Variable{8, 2, 1, 2, 3, 8, 0},
 		//Index:     0,
 		//RlpString: [6]frontend.Variable{8, 0, 0, 0, 0, 0},
 		//Index:     121,
