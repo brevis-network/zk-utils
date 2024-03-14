@@ -36,6 +36,10 @@ func GetKeccakRoundForPaddedBytes(data []byte) int {
 	return len(data)/136 - 1
 }
 
+func GetRoundIndex(bitsLen int) int {
+	return (bitsLen + 8) / 1088
+}
+
 func Bytes2BlockBits(bytes []byte) (bits []uint8) {
 	if len(bytes)%136 != 0 {
 		panic("invalid length")
