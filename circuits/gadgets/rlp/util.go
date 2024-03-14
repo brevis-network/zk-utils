@@ -2,7 +2,6 @@ package rlp
 
 import (
 	"github.com/brevis-network/zk-utils/circuits/gadgets/keccak"
-
 	"github.com/celer-network/goutils/log"
 	"github.com/consensys/gnark/frontend"
 )
@@ -165,6 +164,35 @@ func Equal(api frontend.API, a frontend.Variable, b frontend.Variable) frontend.
 
 func LessThan(api frontend.API, a frontend.Variable, b frontend.Variable) frontend.Variable {
 	return api.IsZero(api.Add(api.Cmp(a, b), 1))
+}
+
+func HexLessThanCheck(api frontend.API, a frontend.Variable, b frontend.Variable) frontend.Variable {
+	return api.IsZero(api.Add(cmp(api, a, b, 4), 1))
+}
+
+func cmp(api frontend.API, a, b frontend.Variable, bound int) frontend.Variable {
+
+	bi1 := api.ToBinary(a, 4)
+	bi2 := api.ToBinary(b, 4)
+
+	res := frontend.Variable(0)
+
+	for i := bound - 1; i >= 0; i-- {
+
+		iszeroi1 := api.IsZero(bi1[i])
+		iszeroi2 := api.IsZero(bi2[i])
+
+		i1i2 := api.And(bi1[i], iszeroi2)
+		i2i1 := api.And(bi2[i], iszeroi1)
+
+		n := api.Select(i2i1, -1, 0)
+		m := api.Select(i1i2, 1, n)
+
+		res = api.Select(api.IsZero(res), m, res)
+
+	}
+
+	return res
 }
 
 func ArrayEqual(api frontend.API, a []frontend.Variable, b []frontend.Variable, maxLength int, targetLength frontend.Variable) frontend.Variable {

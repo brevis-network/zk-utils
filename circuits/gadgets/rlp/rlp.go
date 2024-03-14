@@ -184,12 +184,12 @@ func Hex64To2Fr(api frontend.API, in []frontend.Variable, realLen frontend.Varia
 func RlpArrayPrefix(api frontend.API, in [2]frontend.Variable) (frontend.Variable, frontend.Variable, frontend.Variable) {
 
 	//    // if starts with < 'c', then invalid
-	lt1 := LessThan(api, in[0], 12)
+	lt1 := HexLessThanCheck(api, in[0], 12)
 
 	// if starts with == 'f'
 	eq := api.IsZero(api.Sub(in[0], 15))
 
-	lt2 := LessThan(api, in[1], 8)
+	lt2 := HexLessThanCheck(api, in[1], 8)
 
 	//	    isBig <== eq.out * (1 - lt2.out);
 	isBig := api.Mul(eq, api.Sub(1, lt2))
@@ -220,16 +220,16 @@ func RlpFieldPrefix(api frontend.API, in [2]frontend.Variable) (frontend.Variabl
 	isArrayBig, arrayHexLen, isArray := RlpArrayPrefix(api, in)
 
 	// if starts with < 'c'
-	lt1 := LessThan(api, in[0], 12)
+	lt1 := HexLessThanCheck(api, in[0], 12)
 
 	// if starts with < '8', then literal
 
-	lt2 := LessThan(api, in[0], 8)
+	lt2 := HexLessThanCheck(api, in[0], 8)
 
 	// if starts with 'b' and >= 8, then has length bytes
 	eq := api.IsZero(api.Sub(in[0], 11))
 
-	lt3 := LessThan(api, in[1], 8)
+	lt3 := HexLessThanCheck(api, in[1], 8)
 
 	// if is 'c0', then is an empty list
 	eq1 := api.IsZero(api.Sub(in[0], 12))
