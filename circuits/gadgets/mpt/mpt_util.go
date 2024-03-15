@@ -95,6 +95,7 @@ func (leafCheck *MPTLeafCheck) CheckLeaf(
 
 	keyNibblesMatched := rlp.ArrayEqual(api, keyNibbles, keyNibblesFromRLP, leafCheck.maxKeyLength, api.Sub(fieldsLength[0], leafPathPrefixLength))
 	isNonExistence := api.And(isZeroValue, api.Sub(1, keyNibblesMatched))
+	log.Infoln("isLeafNodeNonExistence:", isNonExistence)
 	keyNibblesLengthMatched := rlp.Equal(api, keyNibbleLen, api.Sub(fieldsLength[0], leafPathPrefixLength))
 
 	keyPass := api.Mul(keyNibblesMatched, keyNibblesLengthMatched)
@@ -194,6 +195,50 @@ func (extensionCheck *MPTExtensionCheck) CheckExtension(
 		output:         api.Add(rlpout, prefixCheck, keyPass, nodeRefPass),
 		rlpTotalLength: totalRlpLength,
 	}
+}
+
+func (ec *MPTExtensionCheck) checkExtensionNodeNonExistence(
+	api frontend.API,
+	keyNibbles []frontend.Variable,
+	keyNibbleLen frontend.Variable,
+	nodeRlp []frontend.Variable,
+	nodeTypePrefixLength frontend.Variable) frontend.Variable {
+
+	arrayCheck := &rlp.ArrayCheck{}
+	arrayCheck.MaxHexLen = ec.maxRLPLength
+	arrayCheck.MaxFields = 2
+	arrayCheck.ArrayPrefixMaxHexLen = ec.maxRLPArrayPrefixLength
+	arrayCheck.FieldMinHexLen = []int{0, 0}
+	arrayCheck.FieldMaxHexLen = []int{ec.maxKeyLength + 2, ec.maxNodeRefLength}
+
+	rlpout, totalRlpLength, fieldsLength, fields := arrayCheck.RlpArrayCheck(api, nodeRlp)
+
+	log.Debug(rlpout, totalRlpLength, fieldsLength, fields)
+
+	/// Extension
+	/// If odd --> rlpFields[0][0] = 1
+	/// If even ---> rlpFields[0][0] = 0 rlpFields[0][1] = 0
+	oddLengthPrefix := rlp.Equal(api, nodeTypePrefixLength, 1)
+	oddPath := rlp.Equal(api, fields[0][0], 1)
+
+	evenLengthPrefix := rlp.Equal(api, nodeTypePrefixLength, 2)
+	firstPrefixForEven := rlp.Equal(api, fields[0][0], 0)
+	secondPrefixForEven := rlp.Equal(api, fields[0][1], 0)
+
+	prefixCheck := api.Add(api.Mul(oddLengthPrefix, oddPath), api.Mul(evenLengthPrefix, firstPrefixForEven, secondPrefixForEven))
+
+	// shift node type (node prefix), max type len = 2
+	keyPathsArr := rlp.ShiftLeft(api, ec.maxRLPLength, 0, 2, fields[0], nodeTypePrefixLength)
+
+	// check key path part
+	keyNibblesMatched := rlp.ArrayEqual(api, keyNibbles, keyPathsArr, ec.maxKeyLength, api.Sub(fieldsLength[0], nodeTypePrefixLength))
+	keyNibblesLengthMatched := rlp.Equal(api, keyNibbleLen, api.Sub(fieldsLength[0], nodeTypePrefixLength))
+
+	keyNotExistInPath := api.Sub(1, api.And(keyNibblesMatched, keyNibblesLengthMatched))
+
+	isNotExist := rlp.Equal(api, api.Add(prefixCheck, keyNotExistInPath), 2)
+	return isNotExist
+
 }
 
 type MPTBranchCheck struct {
