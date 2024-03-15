@@ -50,7 +50,7 @@ func CheckMPTInclusionFixedKeyLength(
 	for index := 0; index < maxDepth-1; index++ {
 		isSingleKeyFragment = append(isSingleKeyFragment, rlp.Equal(api, api.Add(keyFragmentStarts[index], 1), keyFragmentStarts[index+1]))
 		isMonotoneStart = append(isMonotoneStart, rlp.LessThan(api, keyFragmentStarts[index], keyFragmentStarts[index+1]))
-		keyFragmentValidBranch = append(keyFragmentValidBranch, api.Or(isSingleKeyFragment[index], api.Sub(1, nodeTypes[index])))
+		keyFragmentValidBranch = append(keyFragmentValidBranch, api.Or(isSingleKeyFragment[index], nodeTypes[index]))
 		isStartRange = append(isStartRange, rlp.LessThan(api, keyFragmentStarts[index], keyLength))
 	}
 
