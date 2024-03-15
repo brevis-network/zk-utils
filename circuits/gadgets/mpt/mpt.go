@@ -96,17 +96,23 @@ func CheckMPTInclusionFixedKeyLength(
 
 	// Storage  non-existence proving, the follow statements must be met:
 	// 1. the node is last node
-	// 2. assume the node is branch node
-	// 3. node key nibble rlp = 0x80, and rlp length = 0
+	// 2. in case of the node is branch node or an extension node, but the key path is not matched
 	if isStorageProof {
 		lastNodeLayer := api.Sub(depth, 1)
 		lastNodeKeySelector := selector.Mux(api, lastNodeLayer, key[:]...)
 
 		// layer index start at 0, last node layer = depth -1
 		lastNodeBranchCheck := NewMPTBranchCheck(64)
-		branchNonExistenceCheckResult := lastNodeBranchCheck.CheckBranchForNonExistence(api, lastNodeKeySelector, lastNodeRlp)
+		lastNodeBranchNonExistence := lastNodeBranchCheck.CheckBranchForNonExistence(api, lastNodeKeySelector, lastNodeRlp)
+		log.Infoln("lastNodeBranchNonExistence:", lastNodeBranchNonExistence)
 
-		lastNodeCheckResult.result.output = api.Select(branchNonExistenceCheckResult, 4, lastNodeCheckResult.result.output)
+		lastNodeExtensionCheck := NewMPTExtensionCheck(keyLength, 64)
+		lastNodeExtensionNonExistence := lastNodeExtensionCheck.checkExtensionNodeNonExistence(api, leafSelector, leafSelectorLength, lastNodeRlp, leafPathPrefixLength)
+		log.Infoln("lastNodeExtensionNonExistence:", lastNodeExtensionNonExistence)
+
+		isNotExist := api.Or(lastNodeBranchNonExistence, lastNodeExtensionNonExistence)
+		lastNodeCheckResult.result.output = api.Select(isNotExist, 4, lastNodeCheckResult.result.output)
+
 	}
 
 	leafRlpBlock := keccak.NibblesToU64Array(api, lastNodeRlp[:])
