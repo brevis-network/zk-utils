@@ -323,7 +323,7 @@ type SDKQueryLogExtractInfo struct {
 
 type SDKQueryProvingInfoForStorageSlot struct {
 	AccountAddress          string   `json:"account_address"`
-	StorageKey              string   `json:"storage_key"`
+	Slot                    string   `json:"slot"`
 	SlotValue               string   `json:"slot_value"`
 	AccountProofs           []string `json:"account_proofs"`
 	AccountRlp              string   `json:"account_rlp"`

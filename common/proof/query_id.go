@@ -1,9 +1,7 @@
 package proof
 
 import (
-	"fmt"
 	"math/big"
-	"strings"
 
 	"github.com/brevis-network/zk-utils/common/utils"
 	"github.com/consensys/gnark-crypto/ecc/bls12-377/fr/mimc"
@@ -67,7 +65,7 @@ func MiMCHashStorageCustomInputs(
 	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(data.BlockNumber), 8*4)...)
 	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(data.AccountAddress), 8*20)...)
 
-	slotKey := GetStorageMPTProofKey(data.StorageKey)
+	slotKey := GetStorageMPTProofKey(data.Slot)
 	var slot32Byte = utils.ParseBytes32(hexutil.MustDecode(slotKey), 248)
 	bits = append(bits, utils.Byte32ToFrBits(slot32Byte, 248)...)
 
@@ -115,14 +113,9 @@ func MiMCHashTxCustomInputs(
 	return hasher.Sum(nil), nil
 }
 
-func GetStorageMPTProofKey(storageKey string) string {
-	key := strings.ReplaceAll(storageKey, "0x", "")
-	storageKeyLength := len(key)
-	for i := 0; i < 64-storageKeyLength; i++ {
-		key = fmt.Sprintf("0%s", key)
-	}
-	key = fmt.Sprintf("0x%s", key)
-	storageProofKey := hexutil.MustDecode(key)
-
-	return hexutil.Encode(keccak256.Hash(storageProofKey))
+func GetStorageMPTProofKey(slot string) string {
+	slotBytes := utils.Hex2Bytes(slot)
+	padded32SlotBytes := [32]byte{}
+	copy(padded32SlotBytes[32-len(slotBytes):32], slotBytes)
+	return hexutil.Encode(keccak256.Hash(padded32SlotBytes[:]))
 }
