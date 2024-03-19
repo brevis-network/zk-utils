@@ -7,7 +7,6 @@ import (
 	"github.com/consensys/gnark-crypto/ecc/bls12-377/fr/mimc"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/iden3/go-iden3-crypto/keccak256"
 )
 
 func MiMCHashReceiptCustomInputs(
@@ -112,9 +111,10 @@ func MiMCHashTxCustomInputs(
 	return hasher.Sum(nil), nil
 }
 
-func GetStorageMPTProofKey(slot string) string {
+// 0x01 ===> 0x0000000000000000000000000000000000000000000000000000000000000001
+func GetPaddedSlot(slot string) string {
 	slotBytes := utils.Hex2Bytes(slot)
 	padded32SlotBytes := [32]byte{}
 	copy(padded32SlotBytes[32-len(slotBytes):32], slotBytes)
-	return hexutil.Encode(keccak256.Hash(padded32SlotBytes[:]))
+	return hexutil.Encode(padded32SlotBytes[:])
 }
