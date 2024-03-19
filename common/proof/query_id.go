@@ -64,7 +64,7 @@ func MiMCHashStorageCustomInputs(
 	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(data.BlockNumber), 8*4)...)
 	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(data.AccountAddress), 8*20)...)
 
-	var slot = utils.ParseBytes32(utils.Hex2Bytes(data.Slot), 248)
+	var slot = utils.ParseBytes32(GetPaddedSlotBytes(data.Slot), 248)
 	bits = append(bits, utils.Byte32ToFrBits(slot, 248)...)
 
 	storageValue, _ := new(big.Int).SetString(data.SlotValue, 10)
@@ -112,9 +112,9 @@ func MiMCHashTxCustomInputs(
 }
 
 // 0x01 ===> 0x0000000000000000000000000000000000000000000000000000000000000001
-func GetPaddedSlot(slot string) string {
+func GetPaddedSlotBytes(slot string) []byte {
 	slotBytes := utils.Hex2Bytes(slot)
 	padded32SlotBytes := [32]byte{}
 	copy(padded32SlotBytes[32-len(slotBytes):32], slotBytes)
-	return hexutil.Encode(padded32SlotBytes[:])
+	return padded32SlotBytes[:]
 }
