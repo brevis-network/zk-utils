@@ -65,14 +65,13 @@ func MiMCHashStorageCustomInputs(
 	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(data.BlockNumber), 8*4)...)
 	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(data.AccountAddress), 8*20)...)
 
-	slotKey := GetStorageMPTProofKey(data.Slot)
-	var slot32Byte = utils.ParseBytes32(hexutil.MustDecode(slotKey), 248)
-	bits = append(bits, utils.Byte32ToFrBits(slot32Byte, 248)...)
+	var slot = utils.ParseBytes32(utils.Hex2Bytes(data.Slot), 248)
+	bits = append(bits, utils.Byte32ToFrBits(slot, 248)...)
 
 	storageValue, _ := new(big.Int).SetString(data.SlotValue, 10)
 
-	var slotV32Byte = utils.ParseBytes32(storageValue.Bytes(), 248)
-	bits = append(bits, utils.Byte32ToFrBits(slotV32Byte, 248)...)
+	var value = utils.ParseBytes32(storageValue.Bytes(), 248)
+	bits = append(bits, utils.Byte32ToFrBits(value, 248)...)
 
 	roundData := utils.PackBitsToInt(bits)
 	for _, v := range roundData {
