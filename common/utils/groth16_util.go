@@ -12,7 +12,7 @@ import (
 )
 
 // only for bn254
-func ExportProof(proof groth16.Proof) (a [2]*big.Int, b [2][2]*big.Int, c [2]*big.Int, commitment [2]*big.Int) {
+func ExportProof(proof groth16.Proof) (a [2]*big.Int, b [2][2]*big.Int, c [2]*big.Int, commitment [2]*big.Int, commitmentPok [2]*big.Int) {
 	bn254Proof := proof.(*groth16_bn254.Proof)
 	// proof.Ar, proof.Bs, proof.Krs
 	a[0] = bn254Proof.Ar.X.BigInt(new(big.Int))
@@ -28,6 +28,9 @@ func ExportProof(proof groth16.Proof) (a [2]*big.Int, b [2][2]*big.Int, c [2]*bi
 
 	commitment[0] = bn254Proof.Commitments[0].X.BigInt(new(big.Int))
 	commitment[1] = bn254Proof.Commitments[0].Y.BigInt(new(big.Int))
+
+	commitmentPok[0] = bn254Proof.CommitmentPok.X.BigInt(new(big.Int))
+	commitmentPok[1] = bn254Proof.CommitmentPok.Y.BigInt(new(big.Int))
 	return
 }
 

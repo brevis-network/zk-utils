@@ -7,9 +7,8 @@ require (
 	github.com/cbergoon/merkletree v0.2.0
 	github.com/celer-network/goutils v0.1.60
 	github.com/consensys/gnark v0.0.0
-	github.com/consensys/gnark-crypto v0.12.2-0.20231221171913-5d5eded6bb15
+	github.com/consensys/gnark-crypto v0.12.2-0.20240215234832-d72fcb379d3e
 	github.com/ethereum/go-ethereum v1.13.8
-	github.com/iden3/go-iden3-crypto v0.0.15
 	github.com/rs/zerolog v1.30.0
 	github.com/stretchr/testify v1.8.4
 )
@@ -90,4 +89,4 @@ require (
 	rsc.io/tmplfunc v0.0.3 // indirect
 )
 
-replace github.com/consensys/gnark => github.com/celer-network/gnark v0.0.0-20240204054508-d08e3ed6bd9f
+replace github.com/consensys/gnark => github.com/celer-network/gnark v0.0.2-0.20240317132835-69698bd58166

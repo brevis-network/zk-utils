@@ -180,10 +180,11 @@ func (p *ChunkProof) EncodeABI() []byte {
 }
 
 type Groth16Proof struct {
-	A          [2]string    `json:"a"`
-	B          [2][2]string `json:"b"`
-	C          [2]string    `json:"c"`
-	Commitment [2]string    `json:"commitment"`
+	A             [2]string    `json:"a"`
+	B             [2][2]string `json:"b"`
+	C             [2]string    `json:"c"`
+	Commitment    [2]string    `json:"commitment"`
+	CommitmentPok [2]string    `json:"CommitmentPok"`
 }
 
 func (p Groth16Proof) AsBigInts() (a [2]*big.Int, b [2][2]*big.Int, c [2]*big.Int, commitment [2]*big.Int) {
