@@ -12,6 +12,7 @@ import (
 	"github.com/consensys/gnark/std/math/emulated"
 	"github.com/consensys/gnark/test"
 	"github.com/ethereum/go-ethereum/common/hexutil"
+	hash2 "hash"
 	"testing"
 )
 
@@ -71,7 +72,7 @@ var leaves = []merkletree.Content{
 
 func TestMimcRootAPI_MimcRoot(t *testing.T) {
 	assert := test.NewAssert(t)
-	tree, err := merkletree.NewTreeWithHashStrategy(leaves, mimc.NewMiMC)
+	tree, err := merkletree.NewTreeWithHashStrategy(leaves, newMimcHash)
 	assert.NoError(err)
 	root := tree.MerkleRoot()
 	fmt.Printf("root %x\n", root)
@@ -138,9 +139,13 @@ func (c *TestRestoreMimcRootCircuit) Define(api frontend.API) error {
 	return nil
 }
 
+func newMimcHash() hash2.Hash {
+	return mimc.NewMiMC()
+}
+
 func TestMimcRootAPI_RestoreMimcRoot(t *testing.T) {
 	assert := test.NewAssert(t)
-	tree, err := merkletree.NewTreeWithHashStrategy(leaves, mimc.NewMiMC)
+	tree, err := merkletree.NewTreeWithHashStrategy(leaves, newMimcHash)
 	assert.NoError(err)
 	root := tree.MerkleRoot()
 	path, leftRight, err := tree.GetMerklePath(leaves[1])

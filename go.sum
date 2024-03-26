@@ -123,8 +123,8 @@ github.com/btcsuite/btcd/chaincfg/chainhash v1.0.1/go.mod h1:7SFka0XMvUgj3hfZtyd
 github.com/c-bata/go-prompt v0.2.2/go.mod h1:VzqtzE2ksDBcdln8G7mk2RX9QyGjH+OVqOCSiVIqS34=
 github.com/cbergoon/merkletree v0.2.0 h1:Bttqr3OuoiZEo4ed1L7fTasHka9II+BF9fhBfbNEEoQ=
 github.com/cbergoon/merkletree v0.2.0/go.mod h1:5c15eckUgiucMGDOCanvalj/yJnD+KAZj1qyJtRW5aM=
-github.com/celer-network/gnark v0.0.0-20240204054508-d08e3ed6bd9f h1:jnQdUB9RerA8cDst4w2++1Bc4EeKUt/9FkJRpwxTS5I=
-github.com/celer-network/gnark v0.0.0-20240204054508-d08e3ed6bd9f/go.mod h1:ADyECY7hSqe+hSyFuIrm1t3fCZ1VCX5gQbiGC2iPjy8=
+github.com/celer-network/gnark v0.0.2 h1:xeMf+e+pOEOdccvPWDafzab5x2MAjBtkiCWCoTGh2GY=
+github.com/celer-network/gnark v0.0.2/go.mod h1:YYboGlcHY8SU8ffwaOgmbmoivzJgPUTyzjc+OY/NUP4=
 github.com/celer-network/goutils v0.1.60 h1:/FfVaK4j1zzRXGUHlH0QGnBRDzxwYhOaUFnoZQphkAU=
 github.com/celer-network/goutils v0.1.60/go.mod h1:jk1BUuNQLr7hByLX5hdFMcovAta5UEGQ0BlI6NCXDwQ=
 github.com/census-instrumentation/opencensus-proto v0.2.1/go.mod h1:f6KPmirojxKA12rnyqOA5BBL4O983OfeGPqjHWSTneU=
@@ -171,8 +171,8 @@ github.com/consensys/bavard v0.1.13 h1:oLhMLOFGTLdlda/kma4VOJazblc7IM5y5QPd2A/Yj
 github.com/consensys/bavard v0.1.13/go.mod h1:9ItSMtA/dXMAiL7BG6bqW2m3NdSEObYWoH223nGHukI=
 github.com/consensys/gnark-crypto v0.4.1-0.20210426202927-39ac3d4b3f1f/go.mod h1:815PAHg3wvysy0SyIqanF8gZ0Y1wjk/hrDHD/iT88+Q=
 github.com/consensys/gnark-crypto v0.9.1-0.20230105202408-1a7a29904a7c/go.mod h1:CkbdF9hbRidRJYMRzmfX8TMOr95I2pYXRHF18MzRrvA=
-github.com/consensys/gnark-crypto v0.12.2-0.20231221171913-5d5eded6bb15 h1:mcxhrDtXKIepsKXofxSuXRst+41yzAcoNWKIotsjMTQ=
-github.com/consensys/gnark-crypto v0.12.2-0.20231221171913-5d5eded6bb15/go.mod h1:wKqwsieaKPThcFkHe0d0zMsbHEUWFmZcG7KBCse210o=
+github.com/consensys/gnark-crypto v0.12.2-0.20240215234832-d72fcb379d3e h1:MKdOuCiy2DAX1tMp2YsmtNDaqdigpY6B5cZQDJ9BvEo=
+github.com/consensys/gnark-crypto v0.12.2-0.20240215234832-d72fcb379d3e/go.mod h1:wKqwsieaKPThcFkHe0d0zMsbHEUWFmZcG7KBCse210o=
 github.com/coreos/bbolt v1.3.2/go.mod h1:iRUV2dpdMOn7Bo10OQBFzIJO9kkE559Wcmn+qkEiiKk=
 github.com/coreos/etcd v3.3.10+incompatible/go.mod h1:uF7uidLiAD3TWHmW31ZFd/JWoc32PjwdhPthX9715RE=
 github.com/coreos/go-etcd v2.0.0+incompatible/go.mod h1:Jez6KQU2B/sWsbdaef3ED8NzMklzPG4d5KIOhIy30Tk=
@@ -488,8 +488,6 @@ github.com/hydrogen18/memlistener v0.0.0-20141126152155-54553eb933fb/go.mod h1:q
 github.com/hydrogen18/memlistener v0.0.0-20200120041712-dcc25e7acd91/go.mod h1:qEIFzExnS6016fRpRfxrExeVn2gbClQA99gQhnIcdhE=
 github.com/ianlancetaylor/demangle v0.0.0-20181102032728-5e5cf60278f6/go.mod h1:aSSvb/t6k1mPoxDqO4vJh6VOCGPwU4O0C2/Eqndh1Sc=
 github.com/ianlancetaylor/demangle v0.0.0-20200824232613-28f6c0f3b639/go.mod h1:aSSvb/t6k1mPoxDqO4vJh6VOCGPwU4O0C2/Eqndh1Sc=
-github.com/iden3/go-iden3-crypto v0.0.15 h1:4MJYlrot1l31Fzlo2sF56u7EVFeHHJkxGXXZCtESgK4=
-github.com/iden3/go-iden3-crypto v0.0.15/go.mod h1:dLpM4vEPJ3nDHzhWFXDjzkn1qHoBeOT/3UEhXsEsP3E=
 github.com/imkira/go-interpol v1.1.0/go.mod h1:z0h2/2T3XF8kyEPpRgJ3kmNv+C43p+I/CoI+jC3w2iA=
 github.com/inconshreveable/mousetrap v1.0.0/go.mod h1:PxqpIevigyE2G7u3NXJIT2ANytuPF1OarO4DADm73n8=
 github.com/influxdata/flux v0.65.1/go.mod h1:J754/zds0vvpfwuq7Gc2wRdVwEodfpCFM7mYlOw2LqY=

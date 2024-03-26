@@ -4,13 +4,6 @@ import (
 	"fmt"
 	"math/big"
 
-	fr_bls12377 "github.com/consensys/gnark-crypto/ecc/bls12-377/fr"
-	fr_761 "github.com/consensys/gnark-crypto/ecc/bw6-761/fr"
-	"github.com/consensys/gnark/backend/groth16"
-	groth16_bls12377 "github.com/consensys/gnark/backend/groth16/bls12-377"
-	groth16_761 "github.com/consensys/gnark/backend/groth16/bw6-761"
-	"github.com/consensys/gnark/backend/witness"
-
 	"github.com/celer-network/goutils/log"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
@@ -123,22 +116,4 @@ func RecoverTransactionSignerAddress(transaction *ethtypes.Transaction) ([]byte,
 	}
 	signer := crypto.PubkeyToAddress(*publicKey)
 	return signer[:], nil
-}
-
-func Verify377ReturnCommitPub(proof groth16.Proof, vk groth16.VerifyingKey, pubW witness.Witness) (fr_bls12377.Element, error) {
-	w, ok := pubW.Vector().(fr_bls12377.Vector)
-	if !ok {
-		return fr_bls12377.Element{}, fmt.Errorf("witness.Vector().(fr.Vector) fail")
-	} else {
-		return groth16_bls12377.VerifyExportCommitPub(proof.(*groth16_bls12377.Proof), vk.(*groth16_bls12377.VerifyingKey), w)
-	}
-}
-
-func Verify761ReturnCommitPub(proof groth16.Proof, vk groth16.VerifyingKey, pubW witness.Witness) (fr_761.Element, error) {
-	w, ok := pubW.Vector().(fr_761.Vector)
-	if !ok {
-		return fr_761.Element{}, fmt.Errorf("witness.Vector().(fr.Vector) fail")
-	} else {
-		return groth16_761.VerifyExportCommitPub(proof.(*groth16_761.Proof), vk.(*groth16_761.VerifyingKey), w)
-	}
 }

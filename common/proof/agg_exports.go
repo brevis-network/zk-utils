@@ -3,7 +3,6 @@ package proof
 import (
 	"github.com/brevis-network/zk-utils/common/utils"
 	"github.com/consensys/gnark/backend/groth16"
-	"github.com/consensys/gnark/backend/witness"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 )
 
@@ -15,12 +14,8 @@ type ZKSDKAggPubInputs struct {
 	QueryId      string
 }
 
-func (pubs *ZKSDKAggPubInputs) GenerateBatchProofAndPublicInputs(proof groth16.Proof,
-	witness witness.Witness,
-	vk groth16.VerifyingKey,
-) string {
-	a, b, c, commitment := utils.ExportProof(proof)
-	cPub := utils.GenGroth16Bn254CommitmentPub(witness, vk, proof)
+func (pubs *ZKSDKAggPubInputs) GenerateBatchProofAndPublicInputs(proof groth16.Proof) string {
+	a, b, c, commitment, commitmentPok := utils.ExportProof(proof)
 	var A [2]string
 	for i := 0; i < 2; i++ {
 		A[i] = hexutil.Encode(a[i].Bytes())
@@ -43,11 +38,17 @@ func (pubs *ZKSDKAggPubInputs) GenerateBatchProofAndPublicInputs(proof groth16.P
 		Commitment[i] = hexutil.Encode(commitment[i].Bytes())
 	}
 
+	var CommitmentPok [2]string
+	for i := 0; i < 2; i++ {
+		CommitmentPok[i] = hexutil.Encode(commitmentPok[i].Bytes())
+	}
+
 	proofData := Groth16Proof{
-		A:          A,
-		B:          B,
-		C:          C,
-		Commitment: Commitment,
+		A:             A,
+		B:             B,
+		C:             C,
+		Commitment:    Commitment,
+		CommitmentPok: CommitmentPok,
 	}
 
 	var result = ""
@@ -61,6 +62,8 @@ func (pubs *ZKSDKAggPubInputs) GenerateBatchProofAndPublicInputs(proof groth16.P
 	result += proofData.C[1] + ","
 	result += proofData.Commitment[0] + ","
 	result += proofData.Commitment[1] + ","
+	result += proofData.CommitmentPok[0] + ","
+	result += proofData.CommitmentPok[1] + ","
 	result += pubs.QueryId + ","
 	result += pubs.SMTRoot[0] + ","
 	result += pubs.SMTRoot[1] + ","
@@ -68,7 +71,6 @@ func (pubs *ZKSDKAggPubInputs) GenerateBatchProofAndPublicInputs(proof groth16.P
 	result += pubs.OutputCommit[0] + ","
 	result += pubs.OutputCommit[1] + ","
 	result += pubs.AppVkHash + ","
-	result += cPub + ","
 
 	return result
 }
