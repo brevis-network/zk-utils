@@ -89,4 +89,4 @@ require (
 	rsc.io/tmplfunc v0.0.3 // indirect
 )
 
-replace github.com/consensys/gnark => github.com/celer-network/gnark v0.0.2-0.20240317132835-69698bd58166
+replace github.com/consensys/gnark => github.com/celer-network/gnark v0.0.2

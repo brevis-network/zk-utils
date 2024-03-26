@@ -123,8 +123,8 @@ github.com/btcsuite/btcd/chaincfg/chainhash v1.0.1/go.mod h1:7SFka0XMvUgj3hfZtyd
 github.com/c-bata/go-prompt v0.2.2/go.mod h1:VzqtzE2ksDBcdln8G7mk2RX9QyGjH+OVqOCSiVIqS34=
 github.com/cbergoon/merkletree v0.2.0 h1:Bttqr3OuoiZEo4ed1L7fTasHka9II+BF9fhBfbNEEoQ=
 github.com/cbergoon/merkletree v0.2.0/go.mod h1:5c15eckUgiucMGDOCanvalj/yJnD+KAZj1qyJtRW5aM=
-github.com/celer-network/gnark v0.0.2-0.20240317132835-69698bd58166 h1:2SrIGnKxjIwkiDLsPOZgMkSQzEwgsoOec2V0tAZK574=
-github.com/celer-network/gnark v0.0.2-0.20240317132835-69698bd58166/go.mod h1:YYboGlcHY8SU8ffwaOgmbmoivzJgPUTyzjc+OY/NUP4=
+github.com/celer-network/gnark v0.0.2 h1:xeMf+e+pOEOdccvPWDafzab5x2MAjBtkiCWCoTGh2GY=
+github.com/celer-network/gnark v0.0.2/go.mod h1:YYboGlcHY8SU8ffwaOgmbmoivzJgPUTyzjc+OY/NUP4=
 github.com/celer-network/goutils v0.1.60 h1:/FfVaK4j1zzRXGUHlH0QGnBRDzxwYhOaUFnoZQphkAU=
 github.com/celer-network/goutils v0.1.60/go.mod h1:jk1BUuNQLr7hByLX5hdFMcovAta5UEGQ0BlI6NCXDwQ=
 github.com/census-instrumentation/opencensus-proto v0.2.1/go.mod h1:f6KPmirojxKA12rnyqOA5BBL4O983OfeGPqjHWSTneU=
