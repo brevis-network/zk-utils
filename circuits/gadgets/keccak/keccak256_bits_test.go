@@ -83,34 +83,48 @@ func (c *Keccak256BitsCircuit) Define(api frontend.API) error {
 }
 
 type Keccak256BitsInCircuit struct {
-	Data frontend.Variable
+	Preimage frontend.Variable
+	ImageBE  [2]frontend.Variable
 }
 
 func (c *Keccak256BitsInCircuit) Define(api frontend.API) error {
-	bitsData := api.ToBinary(c.Data, 64)
-	padData := PadBits101(api, bitsData, 1)
-	out := Keccak256Bits(api, 1, 0, padData)
-	log.Infof("out: %v", out)
+	preimageBitsLE := api.ToBinary(c.Preimage, 64)             // pure LE: aka bytes are LE, bits in bytes are LE
+	preimageBitsMixed := utils.FlipByGroups(preimageBitsLE, 8) // mixed endianness: bytes are BE, bits in bytes are LE
+
+	padded := PadBits101(api, preimageBitsMixed, 1)
+
+	out := Keccak256Bits(api, 1, 0, padded)      // mixed endianness
+	imageBitsLE := utils.FlipByGroups(out[:], 8) // pure LE
+
+	// recompose to two limbs with the pure LE bits
+	lo := api.FromBinary(imageBitsLE[:128]...)
+	hi := api.FromBinary(imageBitsLE[128:]...)
+
+	api.AssertIsEqual(c.ImageBE[0], hi)
+	api.AssertIsEqual(c.ImageBE[1], lo)
+
+	log.Infof("image %x%x\n", hi, lo)
 	return nil
 }
 
 func TestKeccakBitsInCircuit(t *testing.T) {
-	// hash out circuit first
-	rawData := utils.Hex2Bytes("0x74133B7E75160A80")
+	in, ok := new(big.Int).SetString("74133B7E75160A80", 16)
+	if !ok {
+		panic("failed to parse string")
+	}
+
 	hash := sha3.NewLegacyKeccak256()
-	hash.Write(rawData)
-	out := hash.Sum(nil)
-	log.Infof("out: %x", out)
-	bits := Bytes2Bits(rawData)
-	log.Infof("bits data: %v", bits)
-	log.Infof("decimal data: %s", new(big.Int).SetBytes(rawData).String())
+	hash.Write(in.Bytes())
+	expectedOut := new(big.Int).SetBytes(hash.Sum(nil))
+
+	// decompose the expected output hash into two limbs
+	one := big.NewInt(1)
+	hi, lo := new(big.Int).DivMod(expectedOut, new(big.Int).Lsh(one, 128), new(big.Int))
 
 	w := &Keccak256BitsInCircuit{
-		Data: 8364094347273439872,
+		Preimage: in,
+		ImageBE:  [2]frontend.Variable{hi, lo},
 	}
-	circuit := &Keccak256BitsInCircuit{
-		Data: 8364094347273439872,
-	}
-	err := test.IsSolved(circuit, w, ecc.BN254.ScalarField())
+	err := test.IsSolved(&Keccak256BitsInCircuit{}, w, ecc.BN254.ScalarField())
 	check(err)
 }
