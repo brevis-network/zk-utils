@@ -2,6 +2,9 @@ package keccak
 
 import (
 	"fmt"
+	"github.com/brevis-network/zk-utils/common/utils"
+	"github.com/celer-network/goutils/log"
+	"golang.org/x/crypto/sha3"
 	"testing"
 
 	"github.com/consensys/gnark-crypto/ecc"
@@ -76,4 +79,39 @@ func (c *Keccak256BitsCircuit) Define(api frontend.API) error {
 		api.AssertIsEqual(out[i], c.Out[i])
 	}
 	return nil
+}
+
+type Keccak256BitsInCircuit struct {
+	Data []frontend.Variable
+}
+
+func (c *Keccak256BitsInCircuit) Define(api frontend.API) error {
+	padData := PadBits101(api, c.Data, 1)
+	out := Keccak256Bits(api, 1, 0, padData)
+	log.Infof("out: %v", out)
+	return nil
+}
+
+func TestKeccakBitsInCircuit(t *testing.T) {
+	rawData := utils.Hex2Bytes("0x74133B7E75160A80")
+	hash := sha3.NewLegacyKeccak256()
+
+	hash.Write(rawData)
+	out := hash.Sum(nil)
+	log.Infof("out: %x", out)
+	bits := Bytes2Bits(rawData)
+
+	var bitsVariables []frontend.Variable
+	for _, b := range bits {
+		bitsVariables = append(bitsVariables, b)
+	}
+
+	w := &Keccak256BitsInCircuit{
+		Data: bitsVariables,
+	}
+	circuit := &Keccak256BitsInCircuit{
+		Data: bitsVariables,
+	}
+	err := test.IsSolved(circuit, w, ecc.BN254.ScalarField())
+	check(err)
 }
