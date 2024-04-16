@@ -2,6 +2,10 @@ package keccak
 
 import (
 	"fmt"
+	"github.com/brevis-network/zk-utils/common/utils"
+	"github.com/celer-network/goutils/log"
+	"golang.org/x/crypto/sha3"
+	"math/big"
 	"testing"
 
 	"github.com/consensys/gnark-crypto/ecc"
@@ -76,4 +80,51 @@ func (c *Keccak256BitsCircuit) Define(api frontend.API) error {
 		api.AssertIsEqual(out[i], c.Out[i])
 	}
 	return nil
+}
+
+type Keccak256BitsInCircuit struct {
+	Preimage frontend.Variable
+	ImageBE  [2]frontend.Variable
+}
+
+func (c *Keccak256BitsInCircuit) Define(api frontend.API) error {
+	preimageBitsLE := api.ToBinary(c.Preimage, 64)             // pure LE: aka bytes are LE, bits in bytes are LE
+	preimageBitsMixed := utils.FlipByGroups(preimageBitsLE, 8) // mixed endianness: bytes are BE, bits in bytes are LE
+
+	padded := PadBits101(api, preimageBitsMixed, 1)
+
+	out := Keccak256Bits(api, 1, 0, padded)      // mixed endianness
+	imageBitsLE := utils.FlipByGroups(out[:], 8) // pure LE
+
+	// recompose to two limbs with the pure LE bits
+	lo := api.FromBinary(imageBitsLE[:128]...)
+	hi := api.FromBinary(imageBitsLE[128:]...)
+
+	api.AssertIsEqual(c.ImageBE[0], hi)
+	api.AssertIsEqual(c.ImageBE[1], lo)
+
+	log.Infof("image %x%x\n", hi, lo)
+	return nil
+}
+
+func TestKeccakBitsInCircuit(t *testing.T) {
+	in, ok := new(big.Int).SetString("74133B7E75160A80", 16)
+	if !ok {
+		panic("failed to parse string")
+	}
+
+	hash := sha3.NewLegacyKeccak256()
+	hash.Write(in.Bytes())
+	expectedOut := new(big.Int).SetBytes(hash.Sum(nil))
+
+	// decompose the expected output hash into two limbs
+	one := big.NewInt(1)
+	hi, lo := new(big.Int).DivMod(expectedOut, new(big.Int).Lsh(one, 128), new(big.Int))
+
+	w := &Keccak256BitsInCircuit{
+		Preimage: in,
+		ImageBE:  [2]frontend.Variable{hi, lo},
+	}
+	err := test.IsSolved(&Keccak256BitsInCircuit{}, w, ecc.BN254.ScalarField())
+	check(err)
 }
