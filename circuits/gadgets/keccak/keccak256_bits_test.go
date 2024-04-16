@@ -93,8 +93,13 @@ func (c *Keccak256BitsInCircuit) Define(api frontend.API) error {
 
 	padded := PadBits101(api, preimageBitsMixed, 1)
 
-	out := Keccak256Bits(api, 1, 0, padded)      // mixed endianness
+	out := Keccak256Bits(api, 1, 0, padded) // mixed endianness
+
+	log.Infof("out %v\n", out)
+
 	imageBitsLE := utils.FlipByGroups(out[:], 8) // pure LE
+
+	log.Infof("imageBitsLE %v\n", imageBitsLE)
 
 	// recompose to two limbs with the pure LE bits
 	lo := api.FromBinary(imageBitsLE[:128]...)
@@ -127,4 +132,65 @@ func TestKeccakBitsInCircuit(t *testing.T) {
 	}
 	err := test.IsSolved(&Keccak256BitsInCircuit{}, w, ecc.BN254.ScalarField())
 	check(err)
+}
+
+func TestKeccakDataToBits(t *testing.T) {
+	var preImage []byte
+
+	commitHash, _ := new(big.Int).SetString("7795200621999662189852814330328936933940510395169064688855078457275430865536", 10)
+	commitHashData := commitHash.Bytes()
+
+	commitHashDataBits := Bytes2Bits(commitHashData)
+	log.Infof("commitHashDataBits: %v", commitHashDataBits)
+
+	smtRootHashLow, _ := new(big.Int).SetString("11155093688976174822040057528260120948", 10)
+	smtRootHashHigh, _ := new(big.Int).SetString("329539146165407045974028230817913652264", 10)
+
+	var smtRootHashBytes []byte
+	var smtRootHashLowBytes, smtRootHashHighBytes [16]byte
+	smtRootHashLow.FillBytes(smtRootHashLowBytes[:])
+	smtRootHashHigh.FillBytes(smtRootHashHighBytes[:])
+	smtRootHashLowBits := Bytes2Bits(smtRootHashLowBytes[:])
+	smtRootHashHighBits := Bytes2Bits(smtRootHashHighBytes[:])
+	smtRootHashBytes = append(smtRootHashBytes, smtRootHashLowBits...)
+	smtRootHashBytes = append(smtRootHashBytes, smtRootHashHighBits...)
+
+	log.Infof("smtRootHashBytes: %v", smtRootHashBytes)
+
+	batchVkHash, _ := new(big.Int).SetString("14381417555244883657101671084068185105029298417680382455115494774068341764508", 10)
+	batchVkHashData := batchVkHash.Bytes()
+	batchVkHashDataBits := Bytes2Bits(batchVkHashData)
+	log.Infof("batchVkHashDataBits: %v", batchVkHashDataBits)
+
+	outCommitmentLow, _ := new(big.Int).SetString("1", 10)
+	outCommitmentHigh, _ := new(big.Int).SetString("1", 10)
+	var outCommitmentBytes []byte
+	var outCommitmentLowBytes, outCommitmentHighBytes [16]byte
+	outCommitmentLow.FillBytes(outCommitmentLowBytes[:])
+	outCommitmentHigh.FillBytes(outCommitmentHighBytes[:])
+	outCommitmentLowBits := Bytes2Bits(outCommitmentLowBytes[:])
+	outCommitmentHighBits := Bytes2Bits(outCommitmentHighBytes[:])
+	outCommitmentBytes = append(outCommitmentBytes, outCommitmentLowBits...)
+	outCommitmentBytes = append(outCommitmentBytes, outCommitmentHighBits...)
+
+	log.Infof("smtRootHashBytes: %v", smtRootHashBytes)
+
+	appVkHash, _ := new(big.Int).SetString("19031431134338228981490166521906540887274912494041140009132630870835718214378", 10)
+	appVkHashData := appVkHash.Bytes()
+	appVkHashDataBits := Bytes2Bits(appVkHashData)
+	log.Infof("appVkHashDataBits: %v", appVkHashDataBits)
+
+	preImage = append(preImage, commitHashData...)
+	preImage = append(preImage, smtRootHashLowBytes[:]...)
+	preImage = append(preImage, smtRootHashHighBytes[:]...)
+	preImage = append(preImage, batchVkHashData[:]...)
+	preImage = append(preImage, outCommitmentLowBytes[:]...)
+	preImage = append(preImage, outCommitmentHighBytes[:]...)
+	preImage = append(preImage, appVkHashData[:]...)
+
+	hash := sha3.NewLegacyKeccak256()
+	hash.Write(preImage)
+	expectedOut := new(big.Int).SetBytes(hash.Sum(nil))
+
+	log.Infof("expectedOut: %x", expectedOut)
 }
