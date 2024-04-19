@@ -66,6 +66,11 @@ type UniswapSumProvingInfo struct {
 	ChainId  uint64   `json:"chain_id"`
 }
 
+type AggregateProvingInfo struct {
+	Proofs       []string `json:"proofs"`
+	PublicInputs []string `json:"public_inputs"`
+}
+
 func (queries *SDKQueryProvingInfo) GetSubProofS3Path() []string {
 	var ids []string
 	for _, receiptInfo := range queries.ReceiptInfos {
