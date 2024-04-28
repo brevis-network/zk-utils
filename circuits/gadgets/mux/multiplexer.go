@@ -1,6 +1,7 @@
 package mux
 
 import (
+	"fmt"
 	"github.com/consensys/gnark/frontend"
 )
 
@@ -35,7 +36,7 @@ func decode(api frontend.API, width int, input frontend.Variable) (output []fron
 
 func dotProduct(api frontend.API, width int, inputA []frontend.Variable, inputB []frontend.Variable) (output frontend.Variable) {
 	if len(inputA) != len(inputB) {
-		panic("len(inputA) != len(inputB)")
+		panic(fmt.Errorf("len(inputA) %d != len(inputB) %d", len(inputA), len(inputB)))
 	}
 	output = 0
 	for i := 0; i < width; i++ {
