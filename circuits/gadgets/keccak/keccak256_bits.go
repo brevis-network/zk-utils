@@ -17,19 +17,17 @@ func Keccak256Bits(api frontend.API, maxRounds int, roundIndex frontend.Variable
 		panic(fmt.Sprintf("invalid data length %d", len(data)))
 	}
 	var states [][1600]frontend.Variable
-	var statesShort [][256]frontend.Variable
 	// initial state
 	states = append(states, newEmptyState())
 	for i := 0; i < maxRounds; i++ {
 		r := getRoundBits(data, i)
 		s := absorbBits(api, states[i], r)
 		states = append(states, s)
-		statesShort = append(statesShort, [256]frontend.Variable{})
-		copy(statesShort[len(statesShort)-1][:], s[:256])
 	}
 
 	if maxRounds == 1 {
-		return statesShort[1]
+		copy(out[:], states[1][:256])
+		return
 	}
 	selected := mux.Multiplex(api, roundIndex, 256, maxRounds, transpose2(states[1:]))
 	copy(out[:], selected[:256])
