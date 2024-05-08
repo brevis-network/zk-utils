@@ -327,6 +327,7 @@ type SDKQueryLogExtractInfo struct {
 	ValueFromTopic  bool   `json:"value_from_topic,omitempty"`
 	ValueIndex      uint64 `json:"value_index,omitempty"`
 	Value           string `json:"value,omitempty"`
+	FieldNumInTopic uint64 `json:"field_num_in_topics,omitempty"`
 }
 
 type SDKQueryProvingInfoForStorageSlot struct {
