@@ -628,6 +628,7 @@ func (a *ArrayCheck) RlpArrayCheck(api frontend.API, in []frontend.Variable, num
 		}
 
 		fieldHexLenMultiSelc := api.Mul(fieldPrefixIsBig, api.Sub(fieldRlpPrefix1HexLen, 1))
+		fieldHexLenMultiSelc = api.Mul(fieldIsValid, fieldHexLenMultiSelc)
 
 		var fieldHexLenMultiIn [][]frontend.Variable
 
@@ -637,6 +638,7 @@ func (a *ArrayCheck) RlpArrayCheck(api frontend.API, in []frontend.Variable, num
 			tmp = api.Add(api.Mul(16, tmp), shiftToFieldRlpsOuts[idx][2+j])
 			fieldHexLenMultiIn[0][j] = tmp
 		}
+
 		fieldHexLenMultiOut := Multiplexer(api, fieldHexLenMultiSelc, 1, lenPrefixMaxHexs, fieldHexLenMultiIn)
 
 		temp2 := api.Sub(api.Mul(fieldHexLenMultiOut[0], 2), fieldPrefixPrefixOrTotalHexLen)
