@@ -299,6 +299,7 @@ type SDKQueryProvingInfo struct {
 
 type SDKQueryProvingInfoForReceipt struct {
 	TransactionHash         string                    `json:"transaction_hash"`
+	ChainId                 uint64                    `json:"chain_id"`
 	LogExtractInfos         []*SDKQueryLogExtractInfo `json:"log_extract_infos"`
 	BlkNum                  uint64                    `json:"blk_num"`
 	ReceiptIndex            uint64                    `json:"receipt_index"`
@@ -332,6 +333,7 @@ type SDKQueryLogExtractInfo struct {
 
 type SDKQueryProvingInfoForStorageSlot struct {
 	AccountAddress          string   `json:"account_address"`
+	ChainId                 uint64   `json:"chain_id"`
 	Slot                    string   `json:"slot"`
 	SlotValue               string   `json:"slot_value"`
 	AccountProofs           []string `json:"account_proofs"`
@@ -354,6 +356,7 @@ type SDKQueryProvingInfoForStorageSlot struct {
 
 type SDKQueryProvingInfoForTransaction struct {
 	TransactionHash         string               `json:"transaction_hash"`
+	ChainId                 uint64               `json:"chain_id"`
 	SMTRoot                 string               `json:"smt_root"`
 	LeafHash                string               `json:"leaf_hash"`
 	BlockHash               string               `json:"block_hash"`
