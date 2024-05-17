@@ -301,7 +301,7 @@ type SDKQueryProvingInfoForReceipt struct {
 	TransactionHash         string                    `json:"transaction_hash"`
 	ChainId                 uint64                    `json:"chain_id"`
 	LogExtractInfos         []*SDKQueryLogExtractInfo `json:"log_extract_infos"`
-	BlkNum                  uint64                    `json:"blk_num"`
+	BlockNumber             uint64                    `json:"blk_num"`
 	ReceiptIndex            uint64                    `json:"receipt_index"`
 	ReceiptRlp              string                    `json:"receipt_rlp"`
 	BlockHash               string                    `json:"block_hash"`
@@ -312,10 +312,10 @@ type SDKQueryProvingInfoForReceipt struct {
 	BlockFieldsNum          int                       `json:"block_fields_num"`
 	SMTRoot                 string                    `json:"smt_root"`
 	ChunkProofs             []string                  `json:"chunk_proofs"`
-	SmtStartBlockNumber     uint64                    `json:"smt_start_block_number"`
-	SmtStartBlockParentHash string                    `json:"smt_start_block_parent_hash"`
+	SMTStartBlockNumber     uint64                    `json:"smt_start_block_number"`
+	SMTStartBlockParentHash string                    `json:"smt_start_block_parent_hash"`
 	SMTInitialBlockNum      uint64                    `json:"smt_initial_block_number"`
-	SmtProofs               []string                  `json:"smt_proofs"`
+	SMTProofs               []string                  `json:"smt_proofs"`
 	CommitHash              string                    `json:"commit_hash"`
 	TransactionType         uint8                     `json:"transaction_type"`
 	QueryRaw                []string                  `json:"query_raw"`
@@ -346,10 +346,10 @@ type SDKQueryProvingInfoForStorageSlot struct {
 	BlockFieldsNum          int      `json:"block_fields_num"`
 	SMTRoot                 string   `json:"smt_root"`
 	ChunkProofs             []string `json:"chunk_proofs"`
-	SmtStartBlockNumber     uint64   `json:"smt_start_block_number"`
-	SmtStartBlockParentHash string   `json:"smt_start_block_parent_hash"`
+	SMTStartBlockNumber     uint64   `json:"smt_start_block_number"`
+	SMTStartBlockParentHash string   `json:"smt_start_block_parent_hash"`
 	SMTInitialBlockNum      uint64   `json:"smt_initial_block_number"`
-	SmtProofs               []string `json:"smt_proofs"`
+	SMTProofs               []string `json:"smt_proofs"`
 	CommitHash              string   `json:"commit_hash"`
 	QueryRaw                []string `json:"query_raw"`
 }

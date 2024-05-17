@@ -15,7 +15,7 @@ func MiMCHashReceiptCustomInputs(
 	hasher := mimc.NewMiMC()
 
 	var bits []uint
-	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(receiptInfo.BlkNum), 8*4)...)
+	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(receiptInfo.BlockNumber), 8*4)...)
 	for _, field := range receiptInfo.LogExtractInfos {
 		contractAddress, err := hexutil.Decode(field.ContractAddress)
 		if err != nil {
