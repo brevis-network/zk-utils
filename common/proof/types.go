@@ -69,6 +69,7 @@ type UniswapSumProvingInfo struct {
 }
 
 type AggregateProvingInfo struct {
+	RequestId    string   `json:"request_id"`
 	Proofs       []string `json:"proofs"`
 	PublicInputs []string `json:"public_inputs"`
 }
