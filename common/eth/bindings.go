@@ -44,35 +44,6 @@ type BeaconBlockHeader struct {
 	BodyRoot      [32]byte
 }
 
-// BrevisExtractInfos is an auto generated low-level Go binding around an user-defined struct.
-type BrevisExtractInfos struct {
-	SmtRoot  [32]byte
-	Receipts []BrevisReceiptInfo
-	Stores   []BrevisStorageInfo
-	Txs      []BrevisTransactionInfo
-}
-
-// BrevisLogExtraInfo is an auto generated low-level Go binding around an user-defined struct.
-type BrevisLogExtraInfo struct {
-	ValueFromTopic  uint8
-	ValueIndex      uint64
-	ContractAddress common.Address
-	LogTopic0       [32]byte
-}
-
-// BrevisLogInfo is an auto generated low-level Go binding around an user-defined struct.
-type BrevisLogInfo struct {
-	LogExtraInfo BrevisLogExtraInfo
-	LogIndex     uint64
-	Value        [32]byte
-}
-
-// BrevisProofChainZKVerifier is an auto generated low-level Go binding around an user-defined struct.
-type BrevisProofChainZKVerifier struct {
-	ContractAppZkVerifier common.Address
-	CircuitAppZkVerifier  common.Address
-}
-
 // BrevisProofData is an auto generated low-level Go binding around an user-defined struct.
 type BrevisProofData struct {
 	CommitHash    [32]byte
@@ -80,31 +51,6 @@ type BrevisProofData struct {
 	AppCommitHash [32]byte
 	AppVkHash     [32]byte
 	SmtRoot       [32]byte
-}
-
-// BrevisReceiptInfo is an auto generated low-level Go binding around an user-defined struct.
-type BrevisReceiptInfo struct {
-	BlkNum       uint64
-	ReceiptIndex uint64
-	Logs         [5]BrevisLogInfo
-}
-
-// BrevisStorageInfo is an auto generated low-level Go binding around an user-defined struct.
-type BrevisStorageInfo struct {
-	BlockHash   [32]byte
-	Account     common.Address
-	Slot        [32]byte
-	SlotValue   [32]byte
-	BlockNumber uint64
-}
-
-// BrevisTransactionInfo is an auto generated low-level Go binding around an user-defined struct.
-type BrevisTransactionInfo struct {
-	LeafHash      [32]byte
-	BlockHash     [32]byte
-	BlockNumber   uint64
-	BlockTime     uint64
-	LeafRlpPrefix []byte
 }
 
 // ExecutionPayload is an auto generated low-level Go binding around an user-defined struct.
@@ -460,241 +406,6 @@ func (_Address *AddressTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.
 // Transact invokes the (paid) contract method with params as input values.
 func (_Address *AddressTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
 	return _Address.Contract.contract.Transact(opts, method, params...)
-}
-
-// AggregationVerifierMetaData contains all meta data concerning the AggregationVerifier contract.
-var AggregationVerifierMetaData = &bind.MetaData{
-	ABI: "[{\"inputs\":[],\"name\":\"ProofInvalid\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"PublicInputNotInField\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"uint256[8]\",\"name\":\"proof\",\"type\":\"uint256[8]\"},{\"internalType\":\"uint256[2]\",\"name\":\"commitment\",\"type\":\"uint256[2]\"},{\"internalType\":\"uint256[2]\",\"name\":\"commitmentPOK\",\"type\":\"uint256[2]\"},{\"internalType\":\"uint256[7]\",\"name\":\"input\",\"type\":\"uint256[7]\"}],\"name\":\"verifyProof\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"proofData\",\"type\":\"bytes\"}],\"name\":\"verifyRaw\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
-	Bin: "0x6080806040523461001657610d52908161001b8239f35b5f80fdfe608060408181526004361015610013575f80fd5b5f91823560e01c908163457726e61461016e575063e6cc9bc914610035575f80fd5b3461016a5761026036600319011261016a57366023121561016a5780519061005c8261036f565b816101049236841161013e576004905b84821061015a57505036610123121561015657815161008a816103a0565b806101449436861161015257905b85821061014257505036610163121561013e578251906100b7826103a0565b816101849536871161013a57905b86821061012a575050366101a31215610126578351926100e4846103bc565b83610264963688116101225760209850905b87821061011357505061010a9495506103d8565b90519015158152f35b813581529088019088016100f6565b8880fd5b8580fd5b81358152602091820191016100c5565b8780fd5b8480fd5b8135815260209182019101610098565b8680fd5b8380fd5b813581526020918201910161006c565b5080fd5b9190503461036b5760209182600319360112610156576004359367ffffffffffffffff908186116103685736602387011215610368578560040135918211610368573660248388010111610368576101c58361036f565b610100928336823782861161016a576024870135815282851161016a576044870135868201528260601161016a5760648701358582015260809383851161036b57608488013560608301528360a01161036b5760a4880135858301528360c01161036b5760c488013560a08301528360e01161036b57839060e489013560c08401521161016a5761010487013560e0820152845191610263836103a0565b85368437836101201161036857610124880135835283610140116103685761014488013587840152855193610297856103a0565b86368637806101601161016a576101648901358552806101801161016a57610184890135888601528651956102cb876103bc565b60e0368837816101a01161036b576101a48a01358752816101b01161036b576101c48a0135811c89880152816101c01161036b576101d48a0135811c88880152816101e01161036b576101e48a01356060880152816101f01161036b576102048a0135811c81880152816102001161036b576102148a0135901c60a087015261022011610368575061022461010a959697013560c08501526103d8565b80fd5b8280fd5b610100810190811067ffffffffffffffff82111761038c57604052565b634e487b7160e01b5f52604160045260245ffd5b6040810190811067ffffffffffffffff82111761038c57604052565b60e0810190811067ffffffffffffffff82111761038c57604052565b92919091825190602084015160405192602084015260408301526040825281606081011067ffffffffffffffff60608401111761038c57606082016040525f80516020610cfd8339815191528251602084012006907f0d485a2c411e3b6bb6c096150d669a63f7e514f57ae248d250f38765419274dc60608401527f15422c696a92225b9cd85cc5c5368d36218c0193b00bfe31182da1629644bc9860808401527f17a64e9a8aaf08496ba701df93c5c93cc9509dda35ce55e28000f03cb229c0fa60a08401527f1f8fff2593ed9520952c0f13b66936b7d3566245d161f298b1cdbebdb37700d760c084015260e0815180828601525f80516020610cfd833981519152604060a08701606060a0890160075afa91101660406060860160808160065afa167f0f88d1c277003a0457e0da17b7b4cfeacc0a48c0c83b820b9853c5b4fe49ee0060a08601527f2220d18a42b404f6ab5039342e24cbf054173d5eb31f82e1d5393ec8262e0b2660c08601526020830151908183870152604060a08701606060a0890160075afa905f80516020610cfd83398151915260406060890160808160065afa93101616167f298a5174e465386a502909f2358f36e4fde5e766f3d20a1d367a152ff0c3cb5c60a08601527f1bf4cee17ce3029838b4cf3e8f55ffd9d65d9835852d28230d1efd8ebd7d57b760c08601526040830151908183870152604060a08701606060a0890160075afa905f80516020610cfd83398151915260406060890160808160065afa93101616167f05337b34483cf0fe3a0c55bb466115012ea8a22df2cc83dce36d1b47bbc9044560a08601527f1e473da5a598fa97d93774e9413940fd35da1faa3f2bb57aeedbe069779c329960c08601526060830151908183870152604060a08701606060a0890160075afa905f80516020610cfd83398151915260406060890160808160065afa93101616167f2cde897c938799d6552e07e2b62f6f4d9ef7b6c548b0b83b9a8aba123335ec1960a08601527f2d8aae590dceb54ba354f7d5375fb8f265ea13879b0eb07d2994cef4cfbfde4860c086015260808301519081838701526001604060a08801606060a08a0160075afa915f80516020610cfd833981519152604060608a0160808160065afa9410161616167f041499c9e99d496bd82047a9be63fb7a6b236c654b99ce9f7c0cb4c272cc5a0c60a08601527f1b70456469b99083bda6fbc8bcb3063fc09a536c0480c7e1ae9157c03c22291b60c086015260a0830151908183870152604060a08701606060a0890160075afa905f80516020610cfd83398151915260406060890160808160065afa93101616167f23ceb8fa19f816f93acc2cd23aa16508bf90cf08f232a5a0c85cd0d2d3b8a20860a08601527f16f3f9dca2756c97e44ba1b628b3ed9c8a401d3fa5edba9655d0932b45b4483360c086015260c0830151908183870152604060a08701606060a0890160075afa905f80516020610cfd83398151915260406060890160808160065afa9310161616917f2df929641436cf7552406c061bc2e86c449cee84f263408723b4cd2b13c6a43660a08601527f14cdd3ee6a4800542796cbf4694991d53db9bc9beea6301f840cc6bb03bdd4b160c086015201519160e0840152604060a08401606060a0860160075afa905f80516020610cfd83398151915260406060860160808160065afa875160a0870152602088015160c0870152931016161660406060830160808160065afa1692608060608301519201519315610cea57602093849286519684810151906040810151606082015160808301519060a08401519260e060c0860151950151958a6040519e8f908152015260408d015260608c015260808b015260a08a015260c089015260e08801527f273bb2c871e4a0c412546f2a6de79627aedb501d124604ed44eaad6c49c97dd26101008801527f1a76435f97fc68ece92f5f562efcab67ea1366513b7d4e640edbae8c2461539f6101208801527f1841acdb1c8b46707775be157392cb6f400570781883c9d540a2db3f1b9280466101408801527f200af650df379beabde5449ab2e8559f69c655c55c76ee188de9383e5e2965c56101608801527f1c0cb733aea8a2fcb607075d567945ae30171154564d2f99df7da735108919d76101808801527f16acbebb405cffb5fb2e9b672284450f00829b9a5ef64317a8a922b02e44cf2a6101a08801527f271e43e609b4dfccbaaa3ca48e7263071168f9ed55a94e0220c7914e84b394936101c08801527f20357111ba8f0a92882163aa64c462331c071d6d07a069937b62272f501e21566101e08801527f0a65953b15fac4bcad69adc147310db4b9513dc425cfa56fc3f8da4ffa98cb5f6102008801527ed8def82e963005d5f2a0d5a52555566162ff34a086aea72adbe1cf850715696102208801526102408701526102608601527f12c5208c343eb5bcec5f52e2e6085f27b13c29e207447b9ab05214ee68ea862a6102808601527f20c105a1ff34bc09e8bfd5220a8bfb09bce868fc155a73443599a626826f4c7a6102a08601527f15708d55e8d4be0003da599442ab6033506b56c2a1914995b3e2c9c46ee880f76102c08601527f0e215b4c4f2cadf952c59cf4cc680f2265f81df0d26b312e3b8304e4a6802a656102e0860152805161030086015201516103208401527f03fd1e88dc25adcdcc8e35ae1343e8d287842f3badc8b3009302bf3b5c40307f6103408401527f1f14264f206c9c3d2a525ae0cc6771eee2430fc043811c7e451d02dfbb52c9696103608401527f01d894a22866035193bf405ba37fe3ea5460c6f040cde36e5d01bfa167ce96006103808401527f1a03d7c237ef960697827c5d87428d6dd5ebffa2946a05d3761b0c1a0ec4fa0b6103a084015280516103c084015201516103e08201527f27e76efe883c9cf5b60950147bb5b02cce53cd1a3f03799fc2b31ad6fe80ee806104008201527f04dd7cad354bcb8395f2a8c9d9b67e14361f25acc47f1faa5d521cbb2d422af26104208201527f101b00d59c417ce3b9a88052c44359b27c01b835ffaf2833d31c508b1759765f6104408201527e4b73ddc56556a07666d5c97261ed340a2f7c58dcf7e699ccc711385d269ed46104608201526020816104808160085afa9051168015610cd85790565b604051631ff3747d60e21b8152600490fd5b60405163a54f8e2760e01b8152600490fdfe30644e72e131a029b85045b68181585d2833e84879b9709143e1f593f0000001a2646970667358221220ecd49062b128778d79993a94479d3d63b4f0efcd1649a6228154a52ed9467a4464736f6c63430008140033",
-}
-
-// AggregationVerifierABI is the input ABI used to generate the binding from.
-// Deprecated: Use AggregationVerifierMetaData.ABI instead.
-var AggregationVerifierABI = AggregationVerifierMetaData.ABI
-
-// AggregationVerifierBin is the compiled bytecode used for deploying new contracts.
-// Deprecated: Use AggregationVerifierMetaData.Bin instead.
-var AggregationVerifierBin = AggregationVerifierMetaData.Bin
-
-// DeployAggregationVerifier deploys a new Ethereum contract, binding an instance of AggregationVerifier to it.
-func DeployAggregationVerifier(auth *bind.TransactOpts, backend bind.ContractBackend) (common.Address, *types.Transaction, *AggregationVerifier, error) {
-	parsed, err := AggregationVerifierMetaData.GetAbi()
-	if err != nil {
-		return common.Address{}, nil, nil, err
-	}
-	if parsed == nil {
-		return common.Address{}, nil, nil, errors.New("GetABI returned nil")
-	}
-
-	address, tx, contract, err := bind.DeployContract(auth, *parsed, common.FromHex(AggregationVerifierBin), backend)
-	if err != nil {
-		return common.Address{}, nil, nil, err
-	}
-	return address, tx, &AggregationVerifier{AggregationVerifierCaller: AggregationVerifierCaller{contract: contract}, AggregationVerifierTransactor: AggregationVerifierTransactor{contract: contract}, AggregationVerifierFilterer: AggregationVerifierFilterer{contract: contract}}, nil
-}
-
-// AggregationVerifier is an auto generated Go binding around an Ethereum contract.
-type AggregationVerifier struct {
-	AggregationVerifierCaller     // Read-only binding to the contract
-	AggregationVerifierTransactor // Write-only binding to the contract
-	AggregationVerifierFilterer   // Log filterer for contract events
-}
-
-// AggregationVerifierCaller is an auto generated read-only Go binding around an Ethereum contract.
-type AggregationVerifierCaller struct {
-	contract *bind.BoundContract // Generic contract wrapper for the low level calls
-}
-
-// AggregationVerifierTransactor is an auto generated write-only Go binding around an Ethereum contract.
-type AggregationVerifierTransactor struct {
-	contract *bind.BoundContract // Generic contract wrapper for the low level calls
-}
-
-// AggregationVerifierFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
-type AggregationVerifierFilterer struct {
-	contract *bind.BoundContract // Generic contract wrapper for the low level calls
-}
-
-// AggregationVerifierSession is an auto generated Go binding around an Ethereum contract,
-// with pre-set call and transact options.
-type AggregationVerifierSession struct {
-	Contract     *AggregationVerifier // Generic contract binding to set the session for
-	CallOpts     bind.CallOpts        // Call options to use throughout this session
-	TransactOpts bind.TransactOpts    // Transaction auth options to use throughout this session
-}
-
-// AggregationVerifierCallerSession is an auto generated read-only Go binding around an Ethereum contract,
-// with pre-set call options.
-type AggregationVerifierCallerSession struct {
-	Contract *AggregationVerifierCaller // Generic contract caller binding to set the session for
-	CallOpts bind.CallOpts              // Call options to use throughout this session
-}
-
-// AggregationVerifierTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
-// with pre-set transact options.
-type AggregationVerifierTransactorSession struct {
-	Contract     *AggregationVerifierTransactor // Generic contract transactor binding to set the session for
-	TransactOpts bind.TransactOpts              // Transaction auth options to use throughout this session
-}
-
-// AggregationVerifierRaw is an auto generated low-level Go binding around an Ethereum contract.
-type AggregationVerifierRaw struct {
-	Contract *AggregationVerifier // Generic contract binding to access the raw methods on
-}
-
-// AggregationVerifierCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
-type AggregationVerifierCallerRaw struct {
-	Contract *AggregationVerifierCaller // Generic read-only contract binding to access the raw methods on
-}
-
-// AggregationVerifierTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
-type AggregationVerifierTransactorRaw struct {
-	Contract *AggregationVerifierTransactor // Generic write-only contract binding to access the raw methods on
-}
-
-// NewAggregationVerifier creates a new instance of AggregationVerifier, bound to a specific deployed contract.
-func NewAggregationVerifier(address common.Address, backend bind.ContractBackend) (*AggregationVerifier, error) {
-	contract, err := bindAggregationVerifier(address, backend, backend, backend)
-	if err != nil {
-		return nil, err
-	}
-	return &AggregationVerifier{AggregationVerifierCaller: AggregationVerifierCaller{contract: contract}, AggregationVerifierTransactor: AggregationVerifierTransactor{contract: contract}, AggregationVerifierFilterer: AggregationVerifierFilterer{contract: contract}}, nil
-}
-
-// NewAggregationVerifierCaller creates a new read-only instance of AggregationVerifier, bound to a specific deployed contract.
-func NewAggregationVerifierCaller(address common.Address, caller bind.ContractCaller) (*AggregationVerifierCaller, error) {
-	contract, err := bindAggregationVerifier(address, caller, nil, nil)
-	if err != nil {
-		return nil, err
-	}
-	return &AggregationVerifierCaller{contract: contract}, nil
-}
-
-// NewAggregationVerifierTransactor creates a new write-only instance of AggregationVerifier, bound to a specific deployed contract.
-func NewAggregationVerifierTransactor(address common.Address, transactor bind.ContractTransactor) (*AggregationVerifierTransactor, error) {
-	contract, err := bindAggregationVerifier(address, nil, transactor, nil)
-	if err != nil {
-		return nil, err
-	}
-	return &AggregationVerifierTransactor{contract: contract}, nil
-}
-
-// NewAggregationVerifierFilterer creates a new log filterer instance of AggregationVerifier, bound to a specific deployed contract.
-func NewAggregationVerifierFilterer(address common.Address, filterer bind.ContractFilterer) (*AggregationVerifierFilterer, error) {
-	contract, err := bindAggregationVerifier(address, nil, nil, filterer)
-	if err != nil {
-		return nil, err
-	}
-	return &AggregationVerifierFilterer{contract: contract}, nil
-}
-
-// bindAggregationVerifier binds a generic wrapper to an already deployed contract.
-func bindAggregationVerifier(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
-	parsed, err := AggregationVerifierMetaData.GetAbi()
-	if err != nil {
-		return nil, err
-	}
-	return bind.NewBoundContract(address, *parsed, caller, transactor, filterer), nil
-}
-
-// Call invokes the (constant) contract method with params as input values and
-// sets the output to result. The result type might be a single field for simple
-// returns, a slice of interfaces for anonymous returns and a struct for named
-// returns.
-func (_AggregationVerifier *AggregationVerifierRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
-	return _AggregationVerifier.Contract.AggregationVerifierCaller.contract.Call(opts, result, method, params...)
-}
-
-// Transfer initiates a plain transaction to move funds to the contract, calling
-// its default method if one is available.
-func (_AggregationVerifier *AggregationVerifierRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _AggregationVerifier.Contract.AggregationVerifierTransactor.contract.Transfer(opts)
-}
-
-// Transact invokes the (paid) contract method with params as input values.
-func (_AggregationVerifier *AggregationVerifierRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
-	return _AggregationVerifier.Contract.AggregationVerifierTransactor.contract.Transact(opts, method, params...)
-}
-
-// Call invokes the (constant) contract method with params as input values and
-// sets the output to result. The result type might be a single field for simple
-// returns, a slice of interfaces for anonymous returns and a struct for named
-// returns.
-func (_AggregationVerifier *AggregationVerifierCallerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
-	return _AggregationVerifier.Contract.contract.Call(opts, result, method, params...)
-}
-
-// Transfer initiates a plain transaction to move funds to the contract, calling
-// its default method if one is available.
-func (_AggregationVerifier *AggregationVerifierTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _AggregationVerifier.Contract.contract.Transfer(opts)
-}
-
-// Transact invokes the (paid) contract method with params as input values.
-func (_AggregationVerifier *AggregationVerifierTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
-	return _AggregationVerifier.Contract.contract.Transact(opts, method, params...)
-}
-
-// VerifyProof is a free data retrieval call binding the contract method 0xe6cc9bc9.
-//
-// Solidity: function verifyProof(uint256[8] proof, uint256[2] commitment, uint256[2] commitmentPOK, uint256[7] input) view returns(bool)
-func (_AggregationVerifier *AggregationVerifierCaller) VerifyProof(opts *bind.CallOpts, proof [8]*big.Int, commitment [2]*big.Int, commitmentPOK [2]*big.Int, input [7]*big.Int) (bool, error) {
-	var out []interface{}
-	err := _AggregationVerifier.contract.Call(opts, &out, "verifyProof", proof, commitment, commitmentPOK, input)
-
-	if err != nil {
-		return *new(bool), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
-
-	return out0, err
-
-}
-
-// VerifyProof is a free data retrieval call binding the contract method 0xe6cc9bc9.
-//
-// Solidity: function verifyProof(uint256[8] proof, uint256[2] commitment, uint256[2] commitmentPOK, uint256[7] input) view returns(bool)
-func (_AggregationVerifier *AggregationVerifierSession) VerifyProof(proof [8]*big.Int, commitment [2]*big.Int, commitmentPOK [2]*big.Int, input [7]*big.Int) (bool, error) {
-	return _AggregationVerifier.Contract.VerifyProof(&_AggregationVerifier.CallOpts, proof, commitment, commitmentPOK, input)
-}
-
-// VerifyProof is a free data retrieval call binding the contract method 0xe6cc9bc9.
-//
-// Solidity: function verifyProof(uint256[8] proof, uint256[2] commitment, uint256[2] commitmentPOK, uint256[7] input) view returns(bool)
-func (_AggregationVerifier *AggregationVerifierCallerSession) VerifyProof(proof [8]*big.Int, commitment [2]*big.Int, commitmentPOK [2]*big.Int, input [7]*big.Int) (bool, error) {
-	return _AggregationVerifier.Contract.VerifyProof(&_AggregationVerifier.CallOpts, proof, commitment, commitmentPOK, input)
-}
-
-// VerifyRaw is a free data retrieval call binding the contract method 0x457726e6.
-//
-// Solidity: function verifyRaw(bytes proofData) view returns(bool)
-func (_AggregationVerifier *AggregationVerifierCaller) VerifyRaw(opts *bind.CallOpts, proofData []byte) (bool, error) {
-	var out []interface{}
-	err := _AggregationVerifier.contract.Call(opts, &out, "verifyRaw", proofData)
-
-	if err != nil {
-		return *new(bool), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
-
-	return out0, err
-
-}
-
-// VerifyRaw is a free data retrieval call binding the contract method 0x457726e6.
-//
-// Solidity: function verifyRaw(bytes proofData) view returns(bool)
-func (_AggregationVerifier *AggregationVerifierSession) VerifyRaw(proofData []byte) (bool, error) {
-	return _AggregationVerifier.Contract.VerifyRaw(&_AggregationVerifier.CallOpts, proofData)
-}
-
-// VerifyRaw is a free data retrieval call binding the contract method 0x457726e6.
-//
-// Solidity: function verifyRaw(bytes proofData) view returns(bool)
-func (_AggregationVerifier *AggregationVerifierCallerSession) VerifyRaw(proofData []byte) (bool, error) {
-	return _AggregationVerifier.Contract.VerifyRaw(&_AggregationVerifier.CallOpts, proofData)
 }
 
 // AnchorBlocksMetaData contains all meta data concerning the AnchorBlocks contract.
@@ -2495,241 +2206,6 @@ func (_BaseHook *BaseHookFilterer) ParseOwnershipTransferred(log types.Log) (*Ba
 	return event, nil
 }
 
-// BatchZkProofVerifierMetaData contains all meta data concerning the BatchZkProofVerifier contract.
-var BatchZkProofVerifierMetaData = &bind.MetaData{
-	ABI: "[{\"inputs\":[{\"internalType\":\"uint256[2]\",\"name\":\"a\",\"type\":\"uint256[2]\"},{\"internalType\":\"uint256[2][2]\",\"name\":\"b\",\"type\":\"uint256[2][2]\"},{\"internalType\":\"uint256[2]\",\"name\":\"c\",\"type\":\"uint256[2]\"},{\"internalType\":\"uint256[2]\",\"name\":\"commit\",\"type\":\"uint256[2]\"},{\"internalType\":\"uint256[14]\",\"name\":\"input\",\"type\":\"uint256[14]\"}],\"name\":\"verifyProof\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"r\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"proofData\",\"type\":\"bytes\"}],\"name\":\"verifyRaw\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
-	Bin: "0x6080806040523461001657611930908161001b8239f35b5f80fdfe60806040526004361015610011575f80fd5b5f803560e01c908163457726e6146100375750636d628e8b14610032575f80fd5b610261565b346100a55760203660031901126100a55760043567ffffffffffffffff918282116100a557366023830112156100a55781600401359283116100a55736602484840101116100a5576100a161008f84602485016116f6565b60405190151581529081906020820190565b0390f35b80fd5b634e487b7160e01b5f52604160045260245ffd5b604051906040820182811067ffffffffffffffff8211176100dc57604052565b6100a8565b604051906080820182811067ffffffffffffffff8211176100dc57604052565b604051906101c0820182811067ffffffffffffffff8211176100dc57604052565b806023121561015f576101336100bc565b9081604491821161015f576004905b82821061014f5750505090565b8135815260209182019101610142565b5f80fd5b8060e3121561015f576101746100bc565b908161010491821161015f5760c4905b8282106101915750505090565b8135815260209182019101610184565b80610123121561015f576101b36100bc565b908161014491821161015f57610104905b8282106101d15750505090565b81358152602091820191016101c4565b9080601f8301121561015f576101f56100bc565b80926040810192831161015f57905b8282106102115750505090565b8135815260209182019101610204565b80610163121561015f57610233610101565b908161030491821161015f57610144905b8282106102515750505090565b8135815260209182019101610244565b3461015f5761030036600319011261015f5761027c36610122565b366063121561015f5761028d6100bc565b60c48136821161015f576044905b8282106102cc576100a161008f86866102b336610163565b6102bc366101a1565b916102c636610221565b936106e3565b60206040916102db36856101e1565b81520191019061029b565b6102ee6100e1565b906080368337565b604051906060820182811067ffffffffffffffff8211176100dc576040526060368337565b604051906020820182811067ffffffffffffffff8211176100dc576040526020368337565b6103486100bc565b906040368337565b610358610101565b906101c0368337565b6103696100bc565b906103726100bc565b604036823782526103816100bc565b60403682376020830152565b6103956100e1565b9061039e6100bc565b5f9081815281602082015283526103b3610361565b60208401526103c06100bc565b81815281602082015260408401526103d66100bc565b9080825260208201526060830152565b634e487b7160e01b5f52603260045260245ffd5b1561040157565b60405162461bcd60e51b815260206004820152601760248201527f76657269666965722d61582d6774652d7072696d652d710000000000000000006044820152606490fd5b1561044d57565b60405162461bcd60e51b815260206004820152601760248201527f76657269666965722d61592d6774652d7072696d652d710000000000000000006044820152606490fd5b1561049957565b60405162461bcd60e51b815260206004820152601860248201527f76657269666965722d6258302d6774652d7072696d652d7100000000000000006044820152606490fd5b156104e557565b60405162461bcd60e51b815260206004820152601860248201527f76657269666965722d6259302d6774652d7072696d652d7100000000000000006044820152606490fd5b1561053157565b60405162461bcd60e51b815260206004820152601860248201527f76657269666965722d6258312d6774652d7072696d652d7100000000000000006044820152606490fd5b1561057d57565b60405162461bcd60e51b815260206004820152601860248201527f76657269666965722d6259312d6774652d7072696d652d7100000000000000006044820152606490fd5b156105c957565b60405162461bcd60e51b815260206004820152601760248201527f76657269666965722d63582d6774652d7072696d652d710000000000000000006044820152606490fd5b1561061557565b60405162461bcd60e51b815260206004820152601760248201527f76657269666965722d63592d6774652d7072696d652d710000000000000000006044820152606490fd5b634e487b7160e01b5f52601160045260245ffd5b5f19811461067c5760010190565b61065a565b90600e8110156106925760051b0190565b6103e6565b1561069e57565b60405162461bcd60e51b815260206004820152601f60248201527f76657269666965722d6774652d736e61726b2d7363616c61722d6669656c64006044820152606490fd5b949394929190926106f261038d565b81516020809301516107026100bc565b9182528382015281526107136100bc565b948051518652610724815160200190565b5183870152610743836107356100bc565b920180515183525160200190565b51838201526107506100bc565b9586528286015281810194855281835193015161076b6100bc565b938452828401526040810192835283519382810194855161078a6100bc565b918252848201526060830190815261083e7f30644e72e131a029b85045b68181585d97816a916871ca8d3c208c16d87cfd476107c981865151106103fa565b6107d881878751015110610446565b6107e6818a51515110610492565b6107f681878b51015151106104de565b61080d816108068b515160200190565b511061052a565b6108268161081f888c51015160200190565b5110610576565b61083381885151106105c2565b85875101511061060e565b5f5b600e8110610e1c575090610df5979893929161085a611230565b966108636100bc565b925f8452610dbc84878101985f8a52819961087c6102e6565b918a6101a06108896102f6565b927f26397f57fad9e8b4fa680bc442bd89a8e44034a105aa7726696c448fac6204a36108b36100bc565b955f87525f858801527f08ed08d92275175bbd48d00c2ab3cddcf8344d46d333259f7079f355ecd88e068952527f1630cb8e742d0060f0592f12a451c439f2e16195ad87d6d7bbd7a2897b3375d384527f1f6afac52155b5c823e2bad0f65dc375d4b86e1a8aa444c41ece23d5a218cb898385017f21df1685ab713193576cbfdaf0ef7954d91b337e52dd59bca9db0a2631871ab48152825194604087019586526109608a8a8a8a6114ac565b7f15e140c3dfb8139ae95c8aee5f6bd010b436ea7c6ece17f49e75e980e872e24a87527f0b6ae56a700395cae0ec899fbc62fa989f23563c5cab6deaf813de1a6ddba5db825283015185526109b7898989896114ac565b7f22b909b919d744a3cc67c7f8281fe48dc9d5842107bbfe555181e54201ba789386527f0c81ed50b5c22e969f85fa18637397d8557604045c312f4c63c5c347a0d378d7815260408301518552610a10898989896114ac565b7f12c613830a0ac91f131cec36f4ef6a3cf1eb53e9d032b9df46d9e8500a72ca2686527f2fe626502de0ba7ac991925b30242a0f9da9aa89db62f9642420ed3fe45ebefa815260608301518552610a69898989896114ac565b7f247380ed916a2ec02f650a56f2bcf987f419ef30e2a694fc2768fe8912ad968c86527f0bec144a20e6d5ba80d6cc0d9f459e7d73a6f13024b3811d18f945449e26e223815260808301518552610ac2898989896114ac565b7f0cbc7741b9757b3d04e825afc0f29c77d51ed7d8c0ff00b4e4992581cbf3a76586527f2d759b11389582742ef84bb643434b7304b8231f82350b175cef1ebcafd88f22815260a08301518552610b1b898989896114ac565b7f13c334e05955f796e721c973c43333a242d6d24267a717cf8c89905b2e8920fd86527f2e9e0c2f6092e20b475365669f7fbb7a9bb854b7d76352a8afa919a05ede98d0815260c08301518552610b74898989896114ac565b7f1ac9fcbac63db5e783e9470e599502e9e87e7d810920e9faf6a64b7e488a263e86527f0e82decad5e253988c51805b1bd18584028860ce9c9836e531ce526923431a5c815260e08301518552610bcd898989896114ac565b7f0425d166e521708f6e28b0bfd17c57b4934175b0925b3b52326b8170ba1f042886527f262587e7f5c2646581c3ff1b497b9ea675334201698e6673c6e2bae5c9edc88681526101008301518552610c27898989896114ac565b7f03c32ddcb44853f29f935743a9ac7b845caa6cecc1f1f1a430e45c6c41b8f4e086527f15e7d2876f8195e009aac2fe5d0aadb00c525ee34104209019565a8672d6686081526101208301518552610c81898989896114ac565b7f24ae5e024356e42be7660642b0811596c5b0f28f4d604fdfa357fd6ea65fc1ac86527f1214c766e80dbb08f2eb66a8b288b944eb353db1285cbb8f616cacc88de689fc81526101408301518552610cdb898989896114ac565b7f2081aebc8a68e744cabf26c5d227cd05682762aef54f54f22eb4413ea86a96a686527f0a72c5c013ac14d07beef912139319d636e4204c4aa97f8b9aa48095500ae88e81526101608301518552610d35898989896114ac565b7f2a0bf25d17479c1037a2b18257261f71c3c9b03f8a8cea9be6aac258ae13608786527f2eb9fb49e73a033ea1755cbb15b0506c30bccfd32a9a31e19a42be2dec3c6a8981526101808301518552610d8f898989896114ac565b7f1e286e8f9f0f6ca774f2fd49121dc4bb9ce1538798476fa816001f7d64da77a5865252015190526114ac565b511590811591610e11575b50610df8575b5050610dd99051610e5f565b945190845190850151916060604087015195519601519661108d565b90565b51919350610dd991610e0991610f43565b92905f610dcd565b90505115155f610dc7565b80610e557f30644e72e131a029b85045b68181585d2833e84879b9709143e1f593f0000001610e4e610e5a948e610681565b5110610697565b61066e565b610840565b5f6020610e6a6100bc565b8281520152805190811580610eda575b15610e95575050610e896100bc565b5f81525f602082015290565b602001517f30644e72e131a029b85045b68181585d97816a916871ca8d3c208c16d87cfd4790819006810390811161067c57610ecf6100bc565b918252602082015290565b50602081015115610e7a565b9060048110156106925760051b0190565b15610efe57565b60405162461bcd60e51b815260206004820152601260248201527f70616972696e672d6164642d6661696c656400000000000000000000000000006044820152606490fd5b60609092919260c0610f536100bc565b915f83525f60208401526020839681610f6a6100e1565b936080368637805185520151828401528051604084015201518482015260066107cf195a01fa8015610fa157610f9f90610ef7565b565bfe5b60405190610320820182811067ffffffffffffffff8211176100dc5760405260188252610300366020840137565b9060068202918083046006149015171561067c57565b906001820180921161067c57565b906002820180921161067c57565b906003820180921161067c57565b906004820180921161067c57565b906005820180921161067c57565b80518210156106925760209160051b010190565b1561104857565b60405162461bcd60e51b815260206004820152601560248201527f70616972696e672d6f70636f64652d6661696c656400000000000000000000006044820152606490fd5b949195969290939661109d6100e1565b958652602097889788880152604087015260608601526110bb6100e1565b93845285840152604083015260608201526110d4610fa3565b915f5b6004811061110f575050506103006110ed61031b565b9384920160086107cf195a01fa8015610fa15761110990611041565b51151590565b6111e1919293945061112081610fd1565b61112a8285610ee6565b5151611136828861102d565b52866111428386610ee6565b51015161115761115183610fe7565b8861102d565b526111628286610ee6565b51515161117161115183610ff5565b5261118761117f8387610ee6565b515160200190565b5161119461115183611003565b52866111a08387610ee6565b510151516111b061115183611011565b526111db6111d56111ce896111c5868a610ee6565b51015160200190565b519261101f565b8761102d565b5261066e565b90849392916110d7565b6111f36100e1565b906111fc6100bc565b5f81525f6020820152825261120f610361565b602083015261121c610361565b6040830152611229610361565b6060830152565b6112386111eb565b906112416100bc565b7f21b093b7c44ad55b2429abd789642f2bd1fd7c946a60f613a8bb815759af1d7d81526020907f169843dfedb6f08750cb2526d76f7ac1771d8cfe75414bed8f8c10507ef0a66d8282015283526112966100bc565b7f24f9e952269d2e2e6af0405643852767182633132e38b186910588074232bbce81527f0cc67bfa5f8ebdef1388c5cf501c98a6d1a69affd505c620b4a142ad0390fb1d828201526112e66100bc565b7f1f14d13690823b09edc6030d404b4fc32d8bfff2816c0581dd1df206f9a1032b81527f1f31a0dd9075800981232aac334f243b55d1cb0d463bb56afdd1a9ce7776b739838201526113366100bc565b91825282820152818401526113496100bc565b7f0ab8a613f2eddd790add2ee2e833bf80487394c2b4d6b13e0637a8053fc5a42a81527f2a723faaf06672598738e5a5e2f674b27a037746cc4096cf066f8db47e3542b9828201526113996100bc565b7f0379f73699538a2c6307bcfd22e353d8357e93981308a469aa26990ef9ae18fb81527f2a537e7fc94c7fbcdd16596f00cb5377ebf78cf7413424d149531bcf933ff6ce838201526113e96100bc565b9182528282015260408401526113fd6100bc565b907f132e0739f47f7497146491c4bac08005b578731a48f2f524f2052a23db872edf82527f2f2aab893fb15e1d5c030f7f747454f74b62db720c2174b31628504f50ee60118183015261144e6100bc565b907f2e00163ef58cf131d8f8721c6c062b830364d70b6867cb8a2c8e339bb522e09482527f2ab72edd191bd7559c6de275a781f60abc273f0cf3bcea73b4b1a2aeb2bb16118183015261149f6100bc565b9283528201526060830152565b90929160608460806107cf19946007865a01fa15610fa157600660c0926020606096865185528187015182860152805160408601520151868401525a01fa8015610fa157610f9f90610ef7565b9060201161015f5790602090565b9060401161015f5760200190602090565b9060601161015f5760400190602090565b9060801161015f5760600190602090565b9060a01161015f5760800190602090565b9060c01161015f5760a00190602090565b9060e01161015f5760c00190602090565b906101001161015f5760e00190602090565b906101201161015f576101000190602090565b906101401161015f576101200190602090565b906101601161015f576101400190602090565b906101801161015f576101780190600890565b906101781161015f576101700190600890565b906101701161015f576101680190600890565b906101681161015f576101600190600890565b906101a01161015f576101980190600890565b906101981161015f576101900190600890565b906101901161015f576101880190600890565b906101881161015f576101800190600890565b906101c01161015f576101a00190602090565b359060208110611671575090565b5f199060200360031b1b1690565b6116876100bc565b905f5b604090818110156116ae576020916116a06100bc565b90368237818501520161168a565b5050565b7fffffffffffffffff00000000000000000000000000000000000000000000000090358181169392600881106116e757505050565b60080360031b82901b16169150565b610df591611702610340565b61171561170f83856114f9565b90611663565b815261172461170f8385611507565b602082015261173161167f565b61173e61170f8486611518565b81515261174e61170f8486611529565b81516020015261176161170f848661153a565b602082019081515261178161177961170f868861154b565b915160200190565b5261178a610340565b9161179861170f858761155c565b83526117a761170f858761156d565b60208401526118ef61170f6117ba610340565b956117c861170f828a61157f565b87526117d761170f828a611592565b60208801526117e4610350565b976117f261170f83836115a5565b6101a08a015261182461181761181161180b85856115b8565b906116b2565b60c01c90565b67ffffffffffffffff1690565b895261183961181761181161180b85856115cb565b60208a015261185161181761181161180b85856115de565b60408a015261186961181761181161180b85856115f1565b60608a01525f60808a01525f60a08a015261188d61181761181161180b8585611604565b60c08a01526118a561181761181161180b8585611617565b60e08a01526118bd61181761181161180b858561162a565b6101008a01526118d661181761181161180b858561163d565b6101208a01525f6101408a01525f6101608a0152611650565b6101808601526106e356fea26469706673582212203b168e829a150a192b07b48a2edc52b88e445c23fe40c2a54f0257f54d0e70a264736f6c63430008140033",
-}
-
-// BatchZkProofVerifierABI is the input ABI used to generate the binding from.
-// Deprecated: Use BatchZkProofVerifierMetaData.ABI instead.
-var BatchZkProofVerifierABI = BatchZkProofVerifierMetaData.ABI
-
-// BatchZkProofVerifierBin is the compiled bytecode used for deploying new contracts.
-// Deprecated: Use BatchZkProofVerifierMetaData.Bin instead.
-var BatchZkProofVerifierBin = BatchZkProofVerifierMetaData.Bin
-
-// DeployBatchZkProofVerifier deploys a new Ethereum contract, binding an instance of BatchZkProofVerifier to it.
-func DeployBatchZkProofVerifier(auth *bind.TransactOpts, backend bind.ContractBackend) (common.Address, *types.Transaction, *BatchZkProofVerifier, error) {
-	parsed, err := BatchZkProofVerifierMetaData.GetAbi()
-	if err != nil {
-		return common.Address{}, nil, nil, err
-	}
-	if parsed == nil {
-		return common.Address{}, nil, nil, errors.New("GetABI returned nil")
-	}
-
-	address, tx, contract, err := bind.DeployContract(auth, *parsed, common.FromHex(BatchZkProofVerifierBin), backend)
-	if err != nil {
-		return common.Address{}, nil, nil, err
-	}
-	return address, tx, &BatchZkProofVerifier{BatchZkProofVerifierCaller: BatchZkProofVerifierCaller{contract: contract}, BatchZkProofVerifierTransactor: BatchZkProofVerifierTransactor{contract: contract}, BatchZkProofVerifierFilterer: BatchZkProofVerifierFilterer{contract: contract}}, nil
-}
-
-// BatchZkProofVerifier is an auto generated Go binding around an Ethereum contract.
-type BatchZkProofVerifier struct {
-	BatchZkProofVerifierCaller     // Read-only binding to the contract
-	BatchZkProofVerifierTransactor // Write-only binding to the contract
-	BatchZkProofVerifierFilterer   // Log filterer for contract events
-}
-
-// BatchZkProofVerifierCaller is an auto generated read-only Go binding around an Ethereum contract.
-type BatchZkProofVerifierCaller struct {
-	contract *bind.BoundContract // Generic contract wrapper for the low level calls
-}
-
-// BatchZkProofVerifierTransactor is an auto generated write-only Go binding around an Ethereum contract.
-type BatchZkProofVerifierTransactor struct {
-	contract *bind.BoundContract // Generic contract wrapper for the low level calls
-}
-
-// BatchZkProofVerifierFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
-type BatchZkProofVerifierFilterer struct {
-	contract *bind.BoundContract // Generic contract wrapper for the low level calls
-}
-
-// BatchZkProofVerifierSession is an auto generated Go binding around an Ethereum contract,
-// with pre-set call and transact options.
-type BatchZkProofVerifierSession struct {
-	Contract     *BatchZkProofVerifier // Generic contract binding to set the session for
-	CallOpts     bind.CallOpts         // Call options to use throughout this session
-	TransactOpts bind.TransactOpts     // Transaction auth options to use throughout this session
-}
-
-// BatchZkProofVerifierCallerSession is an auto generated read-only Go binding around an Ethereum contract,
-// with pre-set call options.
-type BatchZkProofVerifierCallerSession struct {
-	Contract *BatchZkProofVerifierCaller // Generic contract caller binding to set the session for
-	CallOpts bind.CallOpts               // Call options to use throughout this session
-}
-
-// BatchZkProofVerifierTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
-// with pre-set transact options.
-type BatchZkProofVerifierTransactorSession struct {
-	Contract     *BatchZkProofVerifierTransactor // Generic contract transactor binding to set the session for
-	TransactOpts bind.TransactOpts               // Transaction auth options to use throughout this session
-}
-
-// BatchZkProofVerifierRaw is an auto generated low-level Go binding around an Ethereum contract.
-type BatchZkProofVerifierRaw struct {
-	Contract *BatchZkProofVerifier // Generic contract binding to access the raw methods on
-}
-
-// BatchZkProofVerifierCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
-type BatchZkProofVerifierCallerRaw struct {
-	Contract *BatchZkProofVerifierCaller // Generic read-only contract binding to access the raw methods on
-}
-
-// BatchZkProofVerifierTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
-type BatchZkProofVerifierTransactorRaw struct {
-	Contract *BatchZkProofVerifierTransactor // Generic write-only contract binding to access the raw methods on
-}
-
-// NewBatchZkProofVerifier creates a new instance of BatchZkProofVerifier, bound to a specific deployed contract.
-func NewBatchZkProofVerifier(address common.Address, backend bind.ContractBackend) (*BatchZkProofVerifier, error) {
-	contract, err := bindBatchZkProofVerifier(address, backend, backend, backend)
-	if err != nil {
-		return nil, err
-	}
-	return &BatchZkProofVerifier{BatchZkProofVerifierCaller: BatchZkProofVerifierCaller{contract: contract}, BatchZkProofVerifierTransactor: BatchZkProofVerifierTransactor{contract: contract}, BatchZkProofVerifierFilterer: BatchZkProofVerifierFilterer{contract: contract}}, nil
-}
-
-// NewBatchZkProofVerifierCaller creates a new read-only instance of BatchZkProofVerifier, bound to a specific deployed contract.
-func NewBatchZkProofVerifierCaller(address common.Address, caller bind.ContractCaller) (*BatchZkProofVerifierCaller, error) {
-	contract, err := bindBatchZkProofVerifier(address, caller, nil, nil)
-	if err != nil {
-		return nil, err
-	}
-	return &BatchZkProofVerifierCaller{contract: contract}, nil
-}
-
-// NewBatchZkProofVerifierTransactor creates a new write-only instance of BatchZkProofVerifier, bound to a specific deployed contract.
-func NewBatchZkProofVerifierTransactor(address common.Address, transactor bind.ContractTransactor) (*BatchZkProofVerifierTransactor, error) {
-	contract, err := bindBatchZkProofVerifier(address, nil, transactor, nil)
-	if err != nil {
-		return nil, err
-	}
-	return &BatchZkProofVerifierTransactor{contract: contract}, nil
-}
-
-// NewBatchZkProofVerifierFilterer creates a new log filterer instance of BatchZkProofVerifier, bound to a specific deployed contract.
-func NewBatchZkProofVerifierFilterer(address common.Address, filterer bind.ContractFilterer) (*BatchZkProofVerifierFilterer, error) {
-	contract, err := bindBatchZkProofVerifier(address, nil, nil, filterer)
-	if err != nil {
-		return nil, err
-	}
-	return &BatchZkProofVerifierFilterer{contract: contract}, nil
-}
-
-// bindBatchZkProofVerifier binds a generic wrapper to an already deployed contract.
-func bindBatchZkProofVerifier(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
-	parsed, err := BatchZkProofVerifierMetaData.GetAbi()
-	if err != nil {
-		return nil, err
-	}
-	return bind.NewBoundContract(address, *parsed, caller, transactor, filterer), nil
-}
-
-// Call invokes the (constant) contract method with params as input values and
-// sets the output to result. The result type might be a single field for simple
-// returns, a slice of interfaces for anonymous returns and a struct for named
-// returns.
-func (_BatchZkProofVerifier *BatchZkProofVerifierRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
-	return _BatchZkProofVerifier.Contract.BatchZkProofVerifierCaller.contract.Call(opts, result, method, params...)
-}
-
-// Transfer initiates a plain transaction to move funds to the contract, calling
-// its default method if one is available.
-func (_BatchZkProofVerifier *BatchZkProofVerifierRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _BatchZkProofVerifier.Contract.BatchZkProofVerifierTransactor.contract.Transfer(opts)
-}
-
-// Transact invokes the (paid) contract method with params as input values.
-func (_BatchZkProofVerifier *BatchZkProofVerifierRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
-	return _BatchZkProofVerifier.Contract.BatchZkProofVerifierTransactor.contract.Transact(opts, method, params...)
-}
-
-// Call invokes the (constant) contract method with params as input values and
-// sets the output to result. The result type might be a single field for simple
-// returns, a slice of interfaces for anonymous returns and a struct for named
-// returns.
-func (_BatchZkProofVerifier *BatchZkProofVerifierCallerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
-	return _BatchZkProofVerifier.Contract.contract.Call(opts, result, method, params...)
-}
-
-// Transfer initiates a plain transaction to move funds to the contract, calling
-// its default method if one is available.
-func (_BatchZkProofVerifier *BatchZkProofVerifierTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _BatchZkProofVerifier.Contract.contract.Transfer(opts)
-}
-
-// Transact invokes the (paid) contract method with params as input values.
-func (_BatchZkProofVerifier *BatchZkProofVerifierTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
-	return _BatchZkProofVerifier.Contract.contract.Transact(opts, method, params...)
-}
-
-// VerifyProof is a free data retrieval call binding the contract method 0x6d628e8b.
-//
-// Solidity: function verifyProof(uint256[2] a, uint256[2][2] b, uint256[2] c, uint256[2] commit, uint256[14] input) view returns(bool r)
-func (_BatchZkProofVerifier *BatchZkProofVerifierCaller) VerifyProof(opts *bind.CallOpts, a [2]*big.Int, b [2][2]*big.Int, c [2]*big.Int, commit [2]*big.Int, input [14]*big.Int) (bool, error) {
-	var out []interface{}
-	err := _BatchZkProofVerifier.contract.Call(opts, &out, "verifyProof", a, b, c, commit, input)
-
-	if err != nil {
-		return *new(bool), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
-
-	return out0, err
-
-}
-
-// VerifyProof is a free data retrieval call binding the contract method 0x6d628e8b.
-//
-// Solidity: function verifyProof(uint256[2] a, uint256[2][2] b, uint256[2] c, uint256[2] commit, uint256[14] input) view returns(bool r)
-func (_BatchZkProofVerifier *BatchZkProofVerifierSession) VerifyProof(a [2]*big.Int, b [2][2]*big.Int, c [2]*big.Int, commit [2]*big.Int, input [14]*big.Int) (bool, error) {
-	return _BatchZkProofVerifier.Contract.VerifyProof(&_BatchZkProofVerifier.CallOpts, a, b, c, commit, input)
-}
-
-// VerifyProof is a free data retrieval call binding the contract method 0x6d628e8b.
-//
-// Solidity: function verifyProof(uint256[2] a, uint256[2][2] b, uint256[2] c, uint256[2] commit, uint256[14] input) view returns(bool r)
-func (_BatchZkProofVerifier *BatchZkProofVerifierCallerSession) VerifyProof(a [2]*big.Int, b [2][2]*big.Int, c [2]*big.Int, commit [2]*big.Int, input [14]*big.Int) (bool, error) {
-	return _BatchZkProofVerifier.Contract.VerifyProof(&_BatchZkProofVerifier.CallOpts, a, b, c, commit, input)
-}
-
-// VerifyRaw is a free data retrieval call binding the contract method 0x457726e6.
-//
-// Solidity: function verifyRaw(bytes proofData) view returns(bool)
-func (_BatchZkProofVerifier *BatchZkProofVerifierCaller) VerifyRaw(opts *bind.CallOpts, proofData []byte) (bool, error) {
-	var out []interface{}
-	err := _BatchZkProofVerifier.contract.Call(opts, &out, "verifyRaw", proofData)
-
-	if err != nil {
-		return *new(bool), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
-
-	return out0, err
-
-}
-
-// VerifyRaw is a free data retrieval call binding the contract method 0x457726e6.
-//
-// Solidity: function verifyRaw(bytes proofData) view returns(bool)
-func (_BatchZkProofVerifier *BatchZkProofVerifierSession) VerifyRaw(proofData []byte) (bool, error) {
-	return _BatchZkProofVerifier.Contract.VerifyRaw(&_BatchZkProofVerifier.CallOpts, proofData)
-}
-
-// VerifyRaw is a free data retrieval call binding the contract method 0x457726e6.
-//
-// Solidity: function verifyRaw(bytes proofData) view returns(bool)
-func (_BatchZkProofVerifier *BatchZkProofVerifierCallerSession) VerifyRaw(proofData []byte) (bool, error) {
-	return _BatchZkProofVerifier.Contract.VerifyRaw(&_BatchZkProofVerifier.CallOpts, proofData)
-}
-
 // BeaconVerifierMetaData contains all meta data concerning the BeaconVerifier contract.
 var BeaconVerifierMetaData = &bind.MetaData{
 	ABI: "[{\"inputs\":[{\"internalType\":\"uint256[2]\",\"name\":\"a\",\"type\":\"uint256[2]\"},{\"internalType\":\"uint256[2][2]\",\"name\":\"b\",\"type\":\"uint256[2][2]\"},{\"internalType\":\"uint256[2]\",\"name\":\"c\",\"type\":\"uint256[2]\"},{\"internalType\":\"uint256[2]\",\"name\":\"commit\",\"type\":\"uint256[2]\"},{\"internalType\":\"uint256[35]\",\"name\":\"input\",\"type\":\"uint256[35]\"}],\"name\":\"verifyBlsSigProof\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"r\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256[2]\",\"name\":\"a\",\"type\":\"uint256[2]\"},{\"internalType\":\"uint256[2][2]\",\"name\":\"b\",\"type\":\"uint256[2][2]\"},{\"internalType\":\"uint256[2]\",\"name\":\"c\",\"type\":\"uint256[2]\"},{\"internalType\":\"uint256[33]\",\"name\":\"input\",\"type\":\"uint256[33]\"}],\"name\":\"verifyCommitteeRootMappingProof\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"r\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"signingRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"syncCommitteePoseidonRoot\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"participation\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"commitment\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"uint256[2]\",\"name\":\"a\",\"type\":\"uint256[2]\"},{\"internalType\":\"uint256[2][2]\",\"name\":\"b\",\"type\":\"uint256[2][2]\"},{\"internalType\":\"uint256[2]\",\"name\":\"c\",\"type\":\"uint256[2]\"},{\"internalType\":\"uint256[2]\",\"name\":\"commitment\",\"type\":\"uint256[2]\"}],\"internalType\":\"structIBeaconVerifier.Proof\",\"name\":\"p\",\"type\":\"tuple\"}],\"name\":\"verifySignatureProof\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"sszRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"poseidonRoot\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"uint256[2]\",\"name\":\"a\",\"type\":\"uint256[2]\"},{\"internalType\":\"uint256[2][2]\",\"name\":\"b\",\"type\":\"uint256[2][2]\"},{\"internalType\":\"uint256[2]\",\"name\":\"c\",\"type\":\"uint256[2]\"},{\"internalType\":\"uint256[2]\",\"name\":\"commitment\",\"type\":\"uint256[2]\"}],\"internalType\":\"structIBeaconVerifier.Proof\",\"name\":\"p\",\"type\":\"tuple\"}],\"name\":\"verifySyncCommitteeRootMappingProof\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
@@ -4422,7 +3898,7 @@ func (_BlsSigVerifier *BlsSigVerifierCallerSession) VerifyBlsSigProof(a [2]*big.
 // BrevisMetaData contains all meta data concerning the Brevis contract.
 var BrevisMetaData = &bind.MetaData{
 	ABI: "[]",
-	Bin: "0x6080806040523460175760399081601c823930815050f35b5f80fdfe5f80fdfea264697066735822122004f5fdc20bc2b90a9919d3b83c10e7e2184fa41334d8a73adfc0138eb47fa0ac64736f6c63430008140033",
+	Bin: "0x6080806040523460175760399081601c823930815050f35b5f80fdfe5f80fdfea26469706673582212205972179e1315cb4192e05c23c47b03870960474df77a3ad2bf511c1db64cfd9964736f6c63430008140033",
 }
 
 // BrevisABI is the input ABI used to generate the binding from.
@@ -4594,8 +4070,8 @@ func (_Brevis *BrevisTransactorRaw) Transact(opts *bind.TransactOpts, method str
 
 // BrevisAggProofMetaData contains all meta data concerning the BrevisAggProof contract.
 var BrevisAggProofMetaData = &bind.MetaData{
-	ABI: "[{\"inputs\":[{\"internalType\":\"contractISMT\",\"name\":\"_smtContract\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint64[]\",\"name\":\"chainIds\",\"type\":\"uint64[]\"},{\"indexed\":false,\"internalType\":\"contractIZkpVerifier[]\",\"name\":\"newAddresses\",\"type\":\"address[]\"}],\"name\":\"AggProofVerifierAddressesUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"contractISMT\",\"name\":\"smtContract\",\"type\":\"address\"}],\"name\":\"SmtContractUpdated\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"name\":\"aggProofVerifierAddress\",\"outputs\":[{\"internalType\":\"contractIZkpVerifier\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"}],\"name\":\"inAgg\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"merkleRoots\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"internalType\":\"bytes32[]\",\"name\":\"_requestIds\",\"type\":\"bytes32[]\"},{\"internalType\":\"bytes\",\"name\":\"_proofWithPubInputs\",\"type\":\"bytes\"}],\"name\":\"mustSubmitAggProof\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"commitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"vkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appCommitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appVkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"smtRoot\",\"type\":\"bytes32\"}],\"internalType\":\"structBrevis.ProofData\",\"name\":\"_proofData\",\"type\":\"tuple\"},{\"internalType\":\"bytes32\",\"name\":\"_merkleRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32[]\",\"name\":\"_merkleProof\",\"type\":\"bytes32[]\"},{\"internalType\":\"bool\",\"name\":\"_isLeftSide\",\"type\":\"bool\"}],\"name\":\"mustValidateRequest\",\"outputs\":[],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"commitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"vkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appCommitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appVkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"smtRoot\",\"type\":\"bytes32\"}],\"internalType\":\"structBrevis.ProofData[]\",\"name\":\"_proofDataArray\",\"type\":\"tuple[]\"}],\"name\":\"mustValidateRequests\",\"outputs\":[],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"requestIds\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"smtContract\",\"outputs\":[{\"internalType\":\"contractISMT\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64[]\",\"name\":\"_chainIds\",\"type\":\"uint64[]\"},{\"internalType\":\"contractIZkpVerifier[]\",\"name\":\"_verifierAddresses\",\"type\":\"address[]\"}],\"name\":\"updateAggProofVerifierAddresses\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contractISMT\",\"name\":\"_smtContract\",\"type\":\"address\"}],\"name\":\"updateSmtContract\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
-	Bin: "0x6080346100a457601f61106938819003918201601f19168301916001600160401b038311848410176100a8578084926020946040528339810103126100a457516001600160a01b0390818116908190036100a4575f5460018060a01b03199033828216175f55604051933391167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e05f80a36001541617600155610fac90816100bd8239f35b5f80fd5b634e487b7160e01b5f52604160045260245ffdfe60406080815260049081361015610014575f80fd5b5f91823560e01c80631396511e14610cf75780633221aec614610ccf578063715018a614610c6f5780637dbafb1114610a9a5780638645f7a8146108015780638da5cb5b14610a74578063a09222591461082d578063bba210bf14610801578063ceae3390146107c2578063cf7ac5a914610462578063ead635bc146101c0578063f2fde38b146100dc5763fe5a5377146100ad575f80fd5b346100d85760203660031901126100d8578160209360ff923581526002855220541690519015158152f35b8280fd5b5090346100d85760203660031901126100d8578135916001600160a01b03908184168094036101bc57845491821692610116338514610f2b565b84156101535750506001600160a01b031916821783557f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e08380a380f35b906020608492519162461bcd60e51b8352820152602660248201527f4f776e61626c653a206e6577206f776e657220697320746865207a65726f206160448201527f64647265737300000000000000000000000000000000000000000000000000006064820152fd5b8480fd5b50346100d85760603660031901126100d8576101da610d9e565b90602492833567ffffffffffffffff9081811161045e576101fe9036908501610d69565b9390956044908135938085116103a357366023860112156103a357848401359781891161039b5736838a8801011161039b571689526020968388526001600160a01b03868b205416801561041f5788875180926322bb937360e11b82528288830152848683015284868a01888401378d878684010152818781601f19601f89011681010301915afa908115610415578b916103e8575b50156103a757806101a0116103a3576101c01161039f5784518781017f07ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff881161039b576102f289838c8b60051b809186378101038085520183610e31565b6101c4860135915190200361035a575050506101a401358552600283528085209260019260ff19948486825416179055865b81811061032f578780f35b8061033e61035592848a610eb7565b358952600384528489208688825416179055610edb565b610324565b845162461bcd60e51b81529283018790526014908301527f72657175657374496473206e6f7420726967687400000000000000000000000090820152606490fd5b8a80fd5b8880fd5b8980fd5b855162461bcd60e51b8152808501899052600f818401527f70726f6f66206e6f742076616c6964000000000000000000000000000000000081850152606490fd5b6104089150893d8b1161040e575b6104008183610e31565b810190610e53565b5f610294565b503d6103f6565b87513d8d823e3d90fd5b6064857f636861696e206167672070726f6f66207665726966696572206e6f7420736574868c87818d519562461bcd60e51b8752860152840152820152fd5b8680fd5b509190346107be57806003193601126107be5761047d610d9e565b92602490813567ffffffffffffffff928382116107ba57366023830112156107ba578183013584811161045e578183019282369160a0840201011161045e57602097888211610778578651956107e0908188019081118882101761076657885236873787916001946001600160a01b03865416935b82811061063457505050505085908791825b610527578761052460ff8960028d6107c08c015186525283205416610db5565b80f35b87845b610544575b508261053a91610f1e565b91831c9182610504565b989297939690959194925f198901898111610622578a10156106135761057361056d8b89610f1e565b84610f0d565b5161057e8b89610f1e565b898101809111610601576105929085610f0d565b51835190838201928352848201528381526105ac81610e01565b5190206105ce6105c86105bf8c8b610f1e565b8d8c1c90610f1e565b85610f0d565b5260028a01809a116105ee5798939790969195929491939092908461052a565b5050634e487b7160e01b83525060119052fd5b634e487b7160e01b8752601186528787fd5b9897929491959096939761052f565b634e487b7160e01b8652601185528686fd5b60808a8d868b61067a85610649888b8b610efd565b01359451948593849363080cdb0b60e11b855284016020909392919367ffffffffffffffff60408201951681520152565b03818a5afa90811561075c576107278f8f8f939461073a9796956106a4929161073f575b50610e6b565b6107196106b2868a8a610efd565b35946106bf878b8b610efd565b013593888a60606106ed8a876106d6828688610efd565b013593866106e5838389610efd565b013595610efd565b0135925196879586019889939160a0959391855260208501526040840152606083015260808201520190565b03601f198101835282610e31565b519020610734828c610f0d565b52610edb565b6104f2565b6107569150833d851161040e576104008183610e31565b5f61069e565b8c513d8f823e3d90fd5b634e487b7160e01b8a5260418752848afd5b865162461bcd60e51b81528086018a9052600c818501527f73697a65206578636565647300000000000000000000000000000000000000006044820152606490fd5b8580fd5b5080fd5b50346100d85760203660031901126100d857816020936001600160a01b039267ffffffffffffffff6107f2610d9e565b16825285522054169051908152f35b50346100d85760203660031901126100d8578160209360ff923581526003855220541690519015158152f35b5090346100d8576101203660031901126100d857610849610d9e565b9060a0366023190112610a705760c4359060e43567ffffffffffffffff81116107ba576108799036908601610d69565b909261010435918215158303610a6c578188526020946002865260ff906108a482878c205416610db5565b60018054875163080cdb0b60e11b815267ffffffffffffffff909a168a8c0190815260a435602082018190529a929592918a9183916001600160a01b0316908290819060400103915afa908c8215610a61578694939261090d9290610a44575b50949394610e6b565b8751602480358b8301908152602081019c909c5260443560408d015260643560608d015260843560808d01529a906109488160a08401610719565b519020968c955b6109a2575b50505050505003610963578480f35b5162461bcd60e51b815292830152600c908201527f696e76616c6964206461746100000000000000000000000000000000000000006044820152606490fd5b9091929394968488166005811015610a3d578591908315610a0e576109c8908587610eb7565b358a51908c82019283528b8201528a81526109e281610e01565b519020975b168481146109fc57850194939291908461094f565b634e487b7160e01b8d5260118c528a8dfd5b610a19908587610eb7565b35908a51908c82019283528b8201528a8152610a3481610e01565b519020976109e7565b5096610954565b610a5b91508b3d8d1161040e576104008183610e31565b5f610904565b8951903d90823e3d90fd5b8780fd5b8380fd5b5050346107be57816003193601126107be576001600160a01b0360209254169051908152f35b509190346107be57806003193601126107be5767ffffffffffffffff928035848111610a7057610acd9036908301610d69565b916024358681116107ba57610ae59036908301610d69565b9390966001600160a01b0392610aff848954163314610f2b565b858303610c2c5787959493959291925b828110610bc9575050808651968088019088525260608601929187905b828210610ba05750505050602081858293038287015283815201959285905b838210610b7c57867f4a5f8b4623084de3ef4b23e6c713416b50a966a1914aaf21175d206015e59d4e878a0388a180f35b90919293968735828116809103610a6c578152830196830193929160010190610b4b565b90919294959385358281168091036103a357815293959460209485019401929160010190610b2c565b610bdb81878c99979899969596610eb7565b358581168091036103a357610bf1828689610eb7565b3584811680910361039b5790610c2092918b5283602052898b20906001600160a01b0319825416179055610edb565b95949395929192610b0f565b606490602088519162461bcd60e51b8352820152601060248201527f6c656e677468206e6f74206d61746368000000000000000000000000000000006044820152fd5b8334610ccc5780600319360112610ccc578080546001600160a01b03196001600160a01b03821691610ca2338414610f2b565b1682557f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e08280a380f35b80fd5b5050346107be57816003193601126107be576020906001600160a01b03600154169051908152f35b50346100d85760203660031901126100d857356001600160a01b0390818116809103610a70577f674c535cde998bcb47d0688f644df545597c7d6edb95643cb21c82c2d490ff7f92610d4f6020938654163314610f2b565b816001600160a01b0319600154161760015551908152a180f35b9181601f84011215610d9a5782359167ffffffffffffffff8311610d9a576020808501948460051b010111610d9a57565b5f80fd5b6004359067ffffffffffffffff82168203610d9a57565b15610dbc57565b60405162461bcd60e51b815260206004820152601660248201527f6d65726b6c6520726f6f74206e6f7420657869737473000000000000000000006044820152606490fd5b6060810190811067ffffffffffffffff821117610e1d57604052565b634e487b7160e01b5f52604160045260245ffd5b90601f8019910116810190811067ffffffffffffffff821117610e1d57604052565b90816020910312610d9a57518015158103610d9a5790565b15610e7257565b60405162461bcd60e51b815260206004820152601060248201527f696e76616c696420736d7420726f6f74000000000000000000000000000000006044820152606490fd5b9190811015610ec75760051b0190565b634e487b7160e01b5f52603260045260245ffd5b5f198114610ee95760010190565b634e487b7160e01b5f52601160045260245ffd5b9190811015610ec75760a0020190565b90603f811015610ec75760051b0190565b91908201809211610ee957565b15610f3257565b606460405162461bcd60e51b815260206004820152602060248201527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e65726044820152fdfea2646970667358221220b6a1519a2af577bc937fa3da5c65a011b73a549c5155d043a74b39a4482acc5c64736f6c63430008140033",
+	ABI: "[{\"inputs\":[{\"internalType\":\"contractISMT\",\"name\":\"_smtContract\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint64[]\",\"name\":\"chainIds\",\"type\":\"uint64[]\"},{\"indexed\":false,\"internalType\":\"contractIZkpVerifier[]\",\"name\":\"newAddresses\",\"type\":\"address[]\"}],\"name\":\"AggProofVerifierAddressesUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"contractISMT\",\"name\":\"smtContract\",\"type\":\"address\"}],\"name\":\"SmtContractUpdated\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"name\":\"aggProofVerifierAddress\",\"outputs\":[{\"internalType\":\"contractIZkpVerifier\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"}],\"name\":\"inAgg\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"merkleRoots\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"internalType\":\"bytes32[]\",\"name\":\"_requestIds\",\"type\":\"bytes32[]\"},{\"internalType\":\"bytes\",\"name\":\"_proofWithPubInputs\",\"type\":\"bytes\"}],\"name\":\"mustSubmitAggProof\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"commitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"vkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appCommitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appVkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"smtRoot\",\"type\":\"bytes32\"}],\"internalType\":\"structBrevis.ProofData\",\"name\":\"_proofData\",\"type\":\"tuple\"},{\"internalType\":\"bytes32\",\"name\":\"_merkleRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32[]\",\"name\":\"_merkleProof\",\"type\":\"bytes32[]\"},{\"internalType\":\"uint8\",\"name\":\"_nodeIndex\",\"type\":\"uint8\"}],\"name\":\"mustValidateRequest\",\"outputs\":[],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"commitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"vkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appCommitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appVkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"smtRoot\",\"type\":\"bytes32\"}],\"internalType\":\"structBrevis.ProofData[]\",\"name\":\"_proofDataArray\",\"type\":\"tuple[]\"}],\"name\":\"mustValidateRequests\",\"outputs\":[],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"requestIds\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"smtContract\",\"outputs\":[{\"internalType\":\"contractISMT\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64[]\",\"name\":\"_chainIds\",\"type\":\"uint64[]\"},{\"internalType\":\"contractIZkpVerifier[]\",\"name\":\"_verifierAddresses\",\"type\":\"address[]\"}],\"name\":\"updateAggProofVerifierAddresses\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contractISMT\",\"name\":\"_smtContract\",\"type\":\"address\"}],\"name\":\"updateSmtContract\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
+	Bin: "0x6080346100a457601f61119438819003918201601f19168301916001600160401b038311848410176100a8578084926020946040528339810103126100a457516001600160a01b0390818116908190036100a4575f5460018060a01b03199033828216175f55604051933391167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e05f80a360015416176001556110d790816100bd8239f35b5f80fd5b634e487b7160e01b5f52604160045260245ffdfe60406080815260049081361015610014575f80fd5b5f91823560e01c80631396511e14610e115780632247cd8f14610bd05780633221aec614610ba8578063715018a614610b485780637dbafb111461096b5780638645f7a8146109195780638da5cb5b14610945578063bba210bf14610919578063ceae3390146108da578063cf7ac5a914610532578063ead635bc146101c0578063f2fde38b146100dc5763fe5a5377146100ad575f80fd5b346100d85760203660031901126100d8578160209360ff923581526002855220541690519015158152f35b8280fd5b5090346100d85760203660031901126100d8578135916001600160a01b03908184168094036101bc57845491821692610116338514611056565b84156101535750506001600160a01b031916821783557f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e08380a380f35b906020608492519162461bcd60e51b8352820152602660248201527f4f776e61626c653a206e6577206f776e657220697320746865207a65726f206160448201527f64647265737300000000000000000000000000000000000000000000000000006064820152fd5b8480fd5b5091903461052e57606036600319011261052e576101dc610e83565b60249167ffffffffffffffff91833583811161052a576101ff9036908801610e9e565b93909660449586359383851161046c573660238601121561046c578483013590848211610526573683838801011161052657841689526020978389526001600160a01b03878b20541680156104e75789885180926322bb937360e11b82528288830152858783015285878b01868401378d858784010152818581601f19601f8a011681010301915afa9081156104dd578b916104b0575b50156104705750806101a01161046c576101c01161046857845190610200928383018381108682111761045657879b9a9b52833684378a5b88811061043257506010938489106103e2575b8751948a8601948d90865b8d8484106103ce5750505050508452610220840194848610908611176103bd5750508285526101c48401359082519020036103795750506101a401358552600283528085209260019260ff19948486825416179055865b81811061034e578780f35b8061035d61037492848a610fd1565b358952600384528489208688825416179055610ff5565b610343565b907f72657175657374496473206e6f742072696768740000000000000000000000006102646064938862461bcd60e51b855261022482015260146102448201520152fd5b634e487b7160e01b8b526041905289fd5b8060019284518152019201920191906102ec565b885b8581106103f157506102e1565b5f198a018a8111610420579061040a61041b9287611045565b516104158288611045565b52610ff5565b6103e4565b634e487b7160e01b8e5260118452848efd5b8061044361044e928b8e9f9e610fd1565b356104158287611045565b9a999a6102ce565b50634e487b7160e01b8a526041905288fd5b8780fd5b8880fd5b837f70726f6f66206e6f742076616c69640000000000000000000000000000000000606492600f868d8c519562461bcd60e51b8752860152840152820152fd5b6104d091508a3d8c116104d6575b6104c88183610f4b565b810190610f6d565b5f610296565b503d6104be565b88513d8d823e3d90fd5b6064857f636861696e206167672070726f6f66207665726966696572206e6f7420736574848d88818e519562461bcd60e51b8752860152840152820152fd5b8980fd5b8580fd5b5080fd5b50346100d857816003193601126100d85761054b610e83565b90602491823567ffffffffffffffff938482116108d657366023830112156108d65781840135858111610468578183019282369160a0840201011161046857601092838211610894578751966103e09081890190811189821017610882578952368837886001958a6001600160a01b03885416925b858110610756575050505050828110610709575b5086825b6105fc57876105f960ff896103c08a01518452600260205283205416610ecf565b80f35b87845b610619575b508261060f91611038565b91831c91826105d8565b9792969395909491935f1988018881116106f6578910156106e8576106476106418a88611038565b83611027565b516106528a88611038565b8881018091116106d6576106669084611027565b51825190602082019283528382015282815261068181610f1b565b5190206106a361069d6106948b8a611038565b8c8b1c90611038565b84611027565b52600289018099116106c457929792969095919491939092909190846105ff565b5050634e487b7160e01b825260119052fd5b634e487b7160e01b8652601185528686fd5b969297959391949095610604565b5050634e487b7160e01b83525060119052fd5b5f19810190808211905b8481106107215750506105d4565b816107445761073f90610734848a611027565b51610415828b611027565b610713565b634e487b7160e01b8a5260118752838afd5b60808c61079f858d8461076a878d8d611017565b013584518094819263080cdb0b60e11b8352602095869584016020909392919367ffffffffffffffff60408201951681520152565b03818b5afa9586156108775761085396610846936107c3929161085a575b50610f85565b6108386107d1868c8c611017565b35946107de878d8d611017565b0135938a8c606061080c8a876107f5828688611017565b01359386610804838389611017565b013595611017565b0135925196879586019889939160a0959391855260208501526040840152606083015260808201520190565b03601f198101835282610f4b565b519020610415828d611027565b8b906105c0565b6108719150833d85116104d6576104c88183610f4b565b5f6107bd565b8351903d90823e3d90fd5b634e487b7160e01b8b5260418852848bfd5b875162461bcd60e51b8152602081880152600c818501527f73697a65206578636565647300000000000000000000000000000000000000006044820152606490fd5b8680fd5b50346100d85760203660031901126100d857816020936001600160a01b039267ffffffffffffffff61090a610e83565b16825285522054169051908152f35b50346100d85760203660031901126100d8578160209360ff923581526003855220541690519015158152f35b50503461052e578160031936011261052e576001600160a01b0360209254169051908152f35b5091903461052e578060031936011261052e5767ffffffffffffffff928035848111610b445761099e9036908301610e9e565b9160243586811161052a576109b69036908301610e9e565b9390966001600160a01b03926109d0848954163314611056565b858303610b015787959493959291925b828110610a9a575050808651968088019088525260608601929187905b828210610a715750505050602081858293038287015283815201959285905b838210610a4d57867f4a5f8b4623084de3ef4b23e6c713416b50a966a1914aaf21175d206015e59d4e878a0388a180f35b90919293968735828116809103610468578152830196830193929160010190610a1c565b9091929495938535828116809103610526578152939594602094850194019291600101906109fd565b610aac81878c99979899969596610fd1565b3585811680910361052657610ac2828689610fd1565b35848116809103610afd5790610af192918b5283602052898b20906001600160a01b0319825416179055610ff5565b959493959291926109e0565b8a80fd5b606490602088519162461bcd60e51b8352820152601060248201527f6c656e677468206e6f74206d61746368000000000000000000000000000000006044820152fd5b8380fd5b8334610ba55780600319360112610ba5578080546001600160a01b03196001600160a01b03821691610b7b338414611056565b1682557f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e08280a380f35b80fd5b50503461052e578160031936011261052e576020906001600160a01b03600154169051908152f35b5090346100d8576101203660031901126100d857610bec610e83565b9060a0366023190112610b445760c4359060e43567ffffffffffffffff811161052a57610c1c9036908601610e9e565b9092610104359160ff80841680940361046c5782895260209560028752610c4782878c205416610ecf565b60018054875163080cdb0b60e11b815267ffffffffffffffff909a168a8c0190815260a435602082018190529a929592918a9183916001600160a01b0316908290819060400103915afa908c8215610e065786949392610cb09290610de9575b50949394610f85565b8751602480358b8301908152602081019c909c5260443560408d015260643560608d015260843560808d01529a90610ceb8160a08401610838565b519020968c955b610d45575b50505050505003610d06578480f35b5162461bcd60e51b815292830152600c908201527f696e76616c6964206461746100000000000000000000000000000000000000006044820152606490fd5b9091929394968488168c811015610de25785919083811c8816610db357610d6d908587610fd1565b358a51908c82019283528b8201528a8152610d8781610f1b565b519020975b16848114610da1578501949392919084610cf2565b634e487b7160e01b8d5260118c528a8dfd5b610dbe908587610fd1565b35908a51908c82019283528b8201528a8152610dd981610f1b565b51902097610d8c565b5096610cf7565b610e0091508b3d8d116104d6576104c88183610f4b565b5f610ca7565b8951903d90823e3d90fd5b50346100d85760203660031901126100d857356001600160a01b0390818116809103610b44577f674c535cde998bcb47d0688f644df545597c7d6edb95643cb21c82c2d490ff7f92610e696020938654163314611056565b816001600160a01b0319600154161760015551908152a180f35b6004359067ffffffffffffffff82168203610e9a57565b5f80fd5b9181601f84011215610e9a5782359167ffffffffffffffff8311610e9a576020808501948460051b010111610e9a57565b15610ed657565b60405162461bcd60e51b815260206004820152601660248201527f6d65726b6c6520726f6f74206e6f7420657869737473000000000000000000006044820152606490fd5b6060810190811067ffffffffffffffff821117610f3757604052565b634e487b7160e01b5f52604160045260245ffd5b90601f8019910116810190811067ffffffffffffffff821117610f3757604052565b90816020910312610e9a57518015158103610e9a5790565b15610f8c57565b60405162461bcd60e51b815260206004820152601060248201527f696e76616c696420736d7420726f6f74000000000000000000000000000000006044820152606490fd5b9190811015610fe15760051b0190565b634e487b7160e01b5f52603260045260245ffd5b5f1981146110035760010190565b634e487b7160e01b5f52601160045260245ffd5b9190811015610fe15760a0020190565b90601f811015610fe15760051b0190565b9190820180921161100357565b906010811015610fe15760051b0190565b1561105d57565b606460405162461bcd60e51b815260206004820152602060248201527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e65726044820152fdfea2646970667358221220d4d418b4dbd5ebf71f554147d9a6b20ac79e5c22cedb4ac194d12d94132cfd3164736f6c63430008140033",
 }
 
 // BrevisAggProofABI is the input ABI used to generate the binding from.
@@ -4858,12 +4334,12 @@ func (_BrevisAggProof *BrevisAggProofCallerSession) MerkleRoots(arg0 [32]byte) (
 	return _BrevisAggProof.Contract.MerkleRoots(&_BrevisAggProof.CallOpts, arg0)
 }
 
-// MustValidateRequest is a free data retrieval call binding the contract method 0xa0922259.
+// MustValidateRequest is a free data retrieval call binding the contract method 0x2247cd8f.
 //
-// Solidity: function mustValidateRequest(uint64 _chainId, (bytes32,bytes32,bytes32,bytes32,bytes32) _proofData, bytes32 _merkleRoot, bytes32[] _merkleProof, bool _isLeftSide) view returns()
-func (_BrevisAggProof *BrevisAggProofCaller) MustValidateRequest(opts *bind.CallOpts, _chainId uint64, _proofData BrevisProofData, _merkleRoot [32]byte, _merkleProof [][32]byte, _isLeftSide bool) error {
+// Solidity: function mustValidateRequest(uint64 _chainId, (bytes32,bytes32,bytes32,bytes32,bytes32) _proofData, bytes32 _merkleRoot, bytes32[] _merkleProof, uint8 _nodeIndex) view returns()
+func (_BrevisAggProof *BrevisAggProofCaller) MustValidateRequest(opts *bind.CallOpts, _chainId uint64, _proofData BrevisProofData, _merkleRoot [32]byte, _merkleProof [][32]byte, _nodeIndex uint8) error {
 	var out []interface{}
-	err := _BrevisAggProof.contract.Call(opts, &out, "mustValidateRequest", _chainId, _proofData, _merkleRoot, _merkleProof, _isLeftSide)
+	err := _BrevisAggProof.contract.Call(opts, &out, "mustValidateRequest", _chainId, _proofData, _merkleRoot, _merkleProof, _nodeIndex)
 
 	if err != nil {
 		return err
@@ -4873,18 +4349,18 @@ func (_BrevisAggProof *BrevisAggProofCaller) MustValidateRequest(opts *bind.Call
 
 }
 
-// MustValidateRequest is a free data retrieval call binding the contract method 0xa0922259.
+// MustValidateRequest is a free data retrieval call binding the contract method 0x2247cd8f.
 //
-// Solidity: function mustValidateRequest(uint64 _chainId, (bytes32,bytes32,bytes32,bytes32,bytes32) _proofData, bytes32 _merkleRoot, bytes32[] _merkleProof, bool _isLeftSide) view returns()
-func (_BrevisAggProof *BrevisAggProofSession) MustValidateRequest(_chainId uint64, _proofData BrevisProofData, _merkleRoot [32]byte, _merkleProof [][32]byte, _isLeftSide bool) error {
-	return _BrevisAggProof.Contract.MustValidateRequest(&_BrevisAggProof.CallOpts, _chainId, _proofData, _merkleRoot, _merkleProof, _isLeftSide)
+// Solidity: function mustValidateRequest(uint64 _chainId, (bytes32,bytes32,bytes32,bytes32,bytes32) _proofData, bytes32 _merkleRoot, bytes32[] _merkleProof, uint8 _nodeIndex) view returns()
+func (_BrevisAggProof *BrevisAggProofSession) MustValidateRequest(_chainId uint64, _proofData BrevisProofData, _merkleRoot [32]byte, _merkleProof [][32]byte, _nodeIndex uint8) error {
+	return _BrevisAggProof.Contract.MustValidateRequest(&_BrevisAggProof.CallOpts, _chainId, _proofData, _merkleRoot, _merkleProof, _nodeIndex)
 }
 
-// MustValidateRequest is a free data retrieval call binding the contract method 0xa0922259.
+// MustValidateRequest is a free data retrieval call binding the contract method 0x2247cd8f.
 //
-// Solidity: function mustValidateRequest(uint64 _chainId, (bytes32,bytes32,bytes32,bytes32,bytes32) _proofData, bytes32 _merkleRoot, bytes32[] _merkleProof, bool _isLeftSide) view returns()
-func (_BrevisAggProof *BrevisAggProofCallerSession) MustValidateRequest(_chainId uint64, _proofData BrevisProofData, _merkleRoot [32]byte, _merkleProof [][32]byte, _isLeftSide bool) error {
-	return _BrevisAggProof.Contract.MustValidateRequest(&_BrevisAggProof.CallOpts, _chainId, _proofData, _merkleRoot, _merkleProof, _isLeftSide)
+// Solidity: function mustValidateRequest(uint64 _chainId, (bytes32,bytes32,bytes32,bytes32,bytes32) _proofData, bytes32 _merkleRoot, bytes32[] _merkleProof, uint8 _nodeIndex) view returns()
+func (_BrevisAggProof *BrevisAggProofCallerSession) MustValidateRequest(_chainId uint64, _proofData BrevisProofData, _merkleRoot [32]byte, _merkleProof [][32]byte, _nodeIndex uint8) error {
+	return _BrevisAggProof.Contract.MustValidateRequest(&_BrevisAggProof.CallOpts, _chainId, _proofData, _merkleRoot, _merkleProof, _nodeIndex)
 }
 
 // MustValidateRequests is a free data retrieval call binding the contract method 0xcf7ac5a9.
@@ -5538,8 +5014,8 @@ func (_BrevisAggProof *BrevisAggProofFilterer) ParseSmtContractUpdated(log types
 
 // BrevisProofMetaData contains all meta data concerning the BrevisProof contract.
 var BrevisProofMetaData = &bind.MetaData{
-	ABI: "[{\"inputs\":[{\"internalType\":\"contractISMT\",\"name\":\"_smtContract\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint64[]\",\"name\":\"chainIds\",\"type\":\"uint64[]\"},{\"indexed\":false,\"internalType\":\"contractIZkpVerifier[]\",\"name\":\"newAddresses\",\"type\":\"address[]\"}],\"name\":\"AggProofVerifierAddressesUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32[]\",\"name\":\"vkHashes\",\"type\":\"bytes32[]\"},{\"indexed\":false,\"internalType\":\"uint256[]\",\"name\":\"sizes\",\"type\":\"uint256[]\"}],\"name\":\"BatchTierVkHashesUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"contractISMT\",\"name\":\"smtContract\",\"type\":\"address\"}],\"name\":\"SmtContractUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint64[]\",\"name\":\"chainIds\",\"type\":\"uint64[]\"},{\"components\":[{\"internalType\":\"contractIZkpVerifier\",\"name\":\"contractAppZkVerifier\",\"type\":\"address\"},{\"internalType\":\"contractIZkpVerifier\",\"name\":\"circuitAppZkVerifier\",\"type\":\"address\"}],\"indexed\":false,\"internalType\":\"structBrevisProof.ChainZKVerifier[]\",\"name\":\"newAddresses\",\"type\":\"tuple[]\"}],\"name\":\"VerifierAddressesUpdated\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"name\":\"aggProofVerifierAddress\",\"outputs\":[{\"internalType\":\"contractIZkpVerifier\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"}],\"name\":\"getProofAppData\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"}],\"name\":\"getProofData\",\"outputs\":[{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"commitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"vkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appCommitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appVkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"smtRoot\",\"type\":\"bytes32\"}],\"internalType\":\"structBrevis.ProofData\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"}],\"name\":\"hasProof\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"}],\"name\":\"inAgg\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"merkleRoots\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"internalType\":\"bytes32[]\",\"name\":\"_requestIds\",\"type\":\"bytes32[]\"},{\"internalType\":\"bytes\",\"name\":\"_proofWithPubInputs\",\"type\":\"bytes\"}],\"name\":\"mustSubmitAggProof\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"commitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"vkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appCommitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appVkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"smtRoot\",\"type\":\"bytes32\"}],\"internalType\":\"structBrevis.ProofData\",\"name\":\"_proofData\",\"type\":\"tuple\"},{\"internalType\":\"bytes32\",\"name\":\"_merkleRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32[]\",\"name\":\"_merkleProof\",\"type\":\"bytes32[]\"},{\"internalType\":\"bool\",\"name\":\"_isLeftSide\",\"type\":\"bool\"}],\"name\":\"mustValidateRequest\",\"outputs\":[],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"commitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"vkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appCommitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appVkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"smtRoot\",\"type\":\"bytes32\"}],\"internalType\":\"structBrevis.ProofData[]\",\"name\":\"_proofDataArray\",\"type\":\"tuple[]\"}],\"name\":\"mustValidateRequests\",\"outputs\":[],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"proofs\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"commitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"vkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appCommitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appVkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"smtRoot\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"requestIds\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32[]\",\"name\":\"_vkHashes\",\"type\":\"bytes32[]\"},{\"internalType\":\"uint256[]\",\"name\":\"_sizes\",\"type\":\"uint256[]\"}],\"name\":\"setBatchTierVkHashes\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"smtContract\",\"outputs\":[{\"internalType\":\"contractISMT\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"internalType\":\"bytes\",\"name\":\"_proofWithPubInputs\",\"type\":\"bytes\"},{\"internalType\":\"bool\",\"name\":\"_withAppProof\",\"type\":\"bool\"}],\"name\":\"submitProof\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64[]\",\"name\":\"_chainIds\",\"type\":\"uint64[]\"},{\"internalType\":\"contractIZkpVerifier[]\",\"name\":\"_verifierAddresses\",\"type\":\"address[]\"}],\"name\":\"updateAggProofVerifierAddresses\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contractISMT\",\"name\":\"_smtContract\",\"type\":\"address\"}],\"name\":\"updateSmtContract\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64[]\",\"name\":\"_chainIds\",\"type\":\"uint64[]\"},{\"components\":[{\"internalType\":\"contractIZkpVerifier\",\"name\":\"contractAppZkVerifier\",\"type\":\"address\"},{\"internalType\":\"contractIZkpVerifier\",\"name\":\"circuitAppZkVerifier\",\"type\":\"address\"}],\"internalType\":\"structBrevisProof.ChainZKVerifier[]\",\"name\":\"_verifierAddresses\",\"type\":\"tuple[]\"}],\"name\":\"updateVerifierAddress\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"},{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"smtRoot\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"uint64\",\"name\":\"blkNum\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"receiptIndex\",\"type\":\"uint64\"},{\"components\":[{\"components\":[{\"internalType\":\"uint8\",\"name\":\"valueFromTopic\",\"type\":\"uint8\"},{\"internalType\":\"uint64\",\"name\":\"valueIndex\",\"type\":\"uint64\"},{\"internalType\":\"address\",\"name\":\"contractAddress\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"logTopic0\",\"type\":\"bytes32\"}],\"internalType\":\"structBrevis.LogExtraInfo\",\"name\":\"logExtraInfo\",\"type\":\"tuple\"},{\"internalType\":\"uint64\",\"name\":\"logIndex\",\"type\":\"uint64\"},{\"internalType\":\"bytes32\",\"name\":\"value\",\"type\":\"bytes32\"}],\"internalType\":\"structBrevis.LogInfo[5]\",\"name\":\"logs\",\"type\":\"tuple[5]\"}],\"internalType\":\"structBrevis.ReceiptInfo[]\",\"name\":\"receipts\",\"type\":\"tuple[]\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"blockHash\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"slot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"slotValue\",\"type\":\"bytes32\"},{\"internalType\":\"uint64\",\"name\":\"blockNumber\",\"type\":\"uint64\"}],\"internalType\":\"structBrevis.StorageInfo[]\",\"name\":\"stores\",\"type\":\"tuple[]\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"leafHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"blockHash\",\"type\":\"bytes32\"},{\"internalType\":\"uint64\",\"name\":\"blockNumber\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"blockTime\",\"type\":\"uint64\"},{\"internalType\":\"bytes\",\"name\":\"leafRlpPrefix\",\"type\":\"bytes\"}],\"internalType\":\"structBrevis.TransactionInfo[]\",\"name\":\"txs\",\"type\":\"tuple[]\"}],\"internalType\":\"structBrevis.ExtractInfos\",\"name\":\"_extractInfos\",\"type\":\"tuple\"}],\"name\":\"validateRequest\",\"outputs\":[],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"name\":\"verifierAddresses\",\"outputs\":[{\"internalType\":\"contractIZkpVerifier\",\"name\":\"contractAppZkVerifier\",\"type\":\"address\"},{\"internalType\":\"contractIZkpVerifier\",\"name\":\"circuitAppZkVerifier\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"vkHashesToBatchSize\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
-	Bin: "0x6080346100a457601f6122b438819003918201601f19168301916001600160401b038311848410176100a8578084926020946040528339810103126100a457516001600160a01b0390818116908190036100a4575f5460018060a01b03199033828216175f55604051933391167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e05f80a360015416176001556121f790816100bd8239f35b5f80fd5b634e487b7160e01b5f52604160045260245ffdfe60806040526004361015610011575f80fd5b5f3560e01c80631396511e14611b7d5780631be746b114611b535780631e4971bb14611a9557806325e49034146117765780633221aec614611750578063444d95b0146116fa5780635984fb92146116c4578063715018a6146116695780637c08aa7414610e695780637dbafb1114610d545780638645f7a8146108735780638da5cb5b14610d2f5780639546bf0014610ca2578063a092225914610a59578063b201326e146108a2578063bba210bf14610873578063ceae339014610831578063cf7ac5a9146104ed578063e3d1e6d61461048c578063ead635bc14610273578063f2fde38b14610196578063f5cec6af146101495763fe5a537714610116575f80fd5b34610145576020366003190112610145576004355f526002602052602060ff60405f2054166040519015158152f35b5f80fd5b346101455760203660031901126101455767ffffffffffffffff61016b611c6c565b165f5260056020526040805f206001600160a01b036001818354169201541682519182526020820152f35b34610145576020366003190112610145576004356001600160a01b03808216809203610145575f54908116906101cd338314611ef7565b8215610208576001600160a01b0319839116175f557f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e05f80a3005b60405162461bcd60e51b815260206004820152602660248201527f4f776e61626c653a206e6577206f776e657220697320746865207a65726f206160448201527f64647265737300000000000000000000000000000000000000000000000000006064820152608490fd5b346101455760603660031901126101455761028c611c6c565b67ffffffffffffffff602435818111610145576102ad903690600401611bf0565b92604435838111610145576102c6903690600401611c83565b939091165f52602092600484526001600160a01b0360405f205416908115610449578460405180936322bb937360e11b82528180610308868960048401611e2f565b03915afa90811561043e5761032b61033892610344945f91610411575b50611e56565b61033e6103388286611ea2565b90611edb565b93611ec8565b604051848101906001600160fb1b0387116101455761037386828960051b808987378101038084520182611d35565b519020036103cc575f526002825260405f209060019060ff199282848254161790555f5b8581106103a057005b806103af6103c7928885611dbb565b355f526003865260405f208486825416179055611ddf565b610397565b60405162461bcd60e51b815260048101849052601460248201527f72657175657374496473206e6f742072696768740000000000000000000000006044820152606490fd5b6104319150883d8a11610437575b6104298183611d35565b810190611d57565b89610325565b503d61041f565b6040513d5f823e3d90fd5b6064856040519062461bcd60e51b825280600483015260248201527f636861696e206167672070726f6f66207665726966696572206e6f74207365746044820152fd5b34610145576020366003190112610145576004355f52600660205260405f20805415908115916104df575b5080156104cc575b6020906040519015158152f35b50600360205260405f205460ff166104bf565b6002915001541515816104b7565b3461014557604036600319011261014557610506611c6c565b67ffffffffffffffff9060248035838111610145573660238201121561014557806004013592848411610145578282019183369160a08702010111610145576020938481116107ed57604051956107e090818801908111888210176107da576040523687375f6001936001600160a01b03855416915b8381106106b75750505050505f8390815b6105af576002856107c08801515f52526105ad60ff60405f205416611cb1565b005b5f835b6105cc575b50816105c291611e22565b90821c908161058d565b91959294909392915f1987018781116106a457811015610697576105f96105f38287611e22565b84611e11565b516106048287611e22565b878101809111610684576106189085611e11565b516040519084820192835260408201526040815261063581611d19565b5190206106576106516106488a89611e22565b848a1c90611e22565b85611e11565b5260028101809111610671579195909492939091836105b2565b83634e487b7160e01b5f5260116004525ffd5b85634e487b7160e01b5f5260116004525ffd5b95919594929390946105b7565b84634e487b7160e01b5f5260116004525ffd5b6106fb90608089816106ca848988611e01565b60405163080cdb0b60e11b815267ffffffffffffffff8b166004820152910135602482015293849081906044820190565b0381885afa92831561043e576107b89361071c915f916107bd575b50611d6f565b610727828786611e01565b3590610734838887611e01565b01356107a58b610797878a606061076989604061076082868a61075883838c611e01565b013598611e01565b0135938d611e01565b01359160405196879586019889939160a0959391855260208501526040840152606083015260808201520190565b03601f198101835282611d35565b5190206107b2828c611e11565b52611ddf565b61057c565b6107d491508c8d3d10610437576104298183611d35565b8d610716565b85634e487b7160e01b5f5260416004525ffd5b60405162461bcd60e51b815260048101869052600c818601527f73697a65206578636565647300000000000000000000000000000000000000006044820152606490fd5b346101455760203660031901126101455767ffffffffffffffff610853611c6c565b165f52600460205260206001600160a01b0360405f205416604051908152f35b34610145576020366003190112610145576004355f526003602052602060ff60405f2054166040519015158152f35b346101455760403660031901126101455767ffffffffffffffff600435818111610145576108d4903690600401611bf0565b90602492833593818511610145573660238601121561014557846004013592828411610145576006368386831b89010111610145576001600160a01b039493929492610924845f54163314611ef7565b61092f858814611f42565b5f5b8781106109cc575050506109519060405195604087526040870191611fb7565b926020848682960382880152848152019501925f915b838310610996577fc343b5bb763b4b0cdbd72c4b7a9627ce33d7eaff0cecca036b0af41ce9ca55a886880387a1005b9091929395604080600192846109ab8b612005565b168152846109ba878c01612005565b16818701520197019493019190610967565b8581979596971015610a465780610a3d91841b8a01836109f56109f0848d8a611dbb565b611fa2565b165f52600560205260405f2088610a306044600183610a158d8801611f8e565b16946001600160a01b03199586825416178155019401611f8e565b1690825416179055611ddf565b95949395610931565b84634e487b7160e01b5f5260326004525ffd5b346101455761012036600319011261014557610a73611c6c565b60a03660231901126101455760c43560e43567ffffffffffffffff811161014557610aa2903690600401611bf0565b909161010435801515810361014557815f5260209360028552610b1960ff91610ad08360405f205416611cb1565b600193876001600160a01b038654169960a4359a8b9160405180978194829363080cdb0b60e11b8452600484016020909392919367ffffffffffffffff60408201951681520152565b03915afa92831561043e578593610b3e915f91610c85575b5097929197949394611d6f565b60405188810190610b7f816107976024809e6084359160643591604435913589939160a0959391855260208501526040840152606083015260808201520190565b519020965f955b610bda575b50505050505003610b9857005b600c6064926040519262461bcd60e51b845260048401528201527f696e76616c6964206461746100000000000000000000000000000000000000006044820152fd5b9091929394968488166005811015610c7e578591908315610c4c57610c00908686611dbb565b35604051908b8201928352604082015260408152610c1d81611d19565b519020975b1692848414610c3957928501949392919084610b86565b89634e487b7160e01b5f5260116004525ffd5b610c57908686611dbb565b3590604051908b8201928352604082015260408152610c7581611d19565b51902097610c22565b5096610b8b565b610c9c91508a3d8c11610437576104298183611d35565b8b610b31565b3461014557602036600319011261014557610cbb612173565b506004355f52600660205260a060405f20604051610cd881611cfd565b81549182825260018101546020830190815260028201549060408401918252608060046003850154946060870195865201549401938452604051948552516020850152516040840152516060830152516080820152f35b34610145575f3660031901126101455760206001600160a01b035f5416604051908152f35b3461014557610d6236611c21565b6001600160a01b0393919391610d7c835f54163314611ef7565b610d87828514611f42565b5f5b848110610e0e5750610da79060405194604086526040860191611fb7565b9060208285829403828701528281520194915f5b828110610dea577f4a5f8b4623084de3ef4b23e6c713416b50a966a1914aaf21175d206015e59d4e86880387a1005b9091929395828060019289610dfe89612005565b1681520197950193929101610dbb565b80610e27610e22610e6193868a989a611dbb565b611f8e565b67ffffffffffffffff610e3e6109f0848a88611dbb565b165f5260046020528760405f2091166001600160a01b0319825416179055611ddf565b949294610d89565b3461014557600319606036820112610145576024359067ffffffffffffffff821682036101455767ffffffffffffffff604435116101455760809060443536030112610145576004355f52600660205260405f209060405191610ecb83611cfd565b60048154918285526001810154602086015260028101546040860152600381015460608601520154608084015215611624576020610f49916001600160a01b0360015416604051808095819463080cdb0b60e11b83526044356004013590600484016020909392919367ffffffffffffffff60408201951681520152565b03915afa801561043e57610f64915f91611605575b50612019565b610faf610f9b610f7e602460443501604435600401612065565b9050610f93604480350160443560040161209b565b919050611e22565b610f936064604435016044356004016120d1565b9081156115c05760208101515f52600760205260405f205480831161157b575f9260605b610fe7602460443501604435600401612065565b905085101561122a578460605f5b600581106110bc575060206110b693836110b0936110906110528561104c6110376109f06110a29b611031602460443501604435600401612065565b90612107565b95611031602460443501604435600401612065565b01611fa2565b92610797604051938492888401966044356004013588526001600160c01b0319918260c091821b1660408701521b1660488401526050830190612128565b51902060405194859284840190612128565b908152038084520182611d35565b94611ddf565b93610fd3565b918260406110db6110e193611031602460443501604435600401612065565b01612117565b359060ff821682036101455761121c6065611222936111c19361111e608061104c898f6110db604091611031602460443501604435600401612065565b918c611143602061104c8b60406110db86611031602460443501604435600401612065565b9361116c60406111668c826110db87611031602460443501604435600401612065565b01611f8e565b9060a06111ae8c60406110db606061119784846110db8c611031602460443501604435600401612065565b013597611031602460443501604435600401612065565b013595604051998a966020880190612128565b9460ff60f81b9060f81b1685526001600160c01b0319918260c091821b1660018701521b1660098401526bffffffffffffffffffffffff199060601b1660118301526025820152604592838201520390810184520182611d35565b91611ddf565b908691610ff5565b925f935b611241604480350160443560040161209b565b90508510156113d55761126785611261604480350160443560040161209b565b90611e01565b3590611285602061116688611261604480350160443560040161209b565b604051906bffffffffffffffffffffffff199060601b1660208201526014815280604081011067ffffffffffffffff6040830111176113c157604081016040526020815191012060406112e588611261604480350160443560040161209b565b0135606061130089611261604480350160443560040161209b565b01359061131f608061104c8b611261604480350160443560040161209b565b926040519560443560040135602088015260408701526060860152608085015260a08401526001600160c01b031960c091821b169083015260a882528160e081011067ffffffffffffffff60e0840111176113c157816113b48160e093846113bb960160405261139b8251602084012091610100840190612128565b9081520360df1981018484015260bf1901838301611d35565b0194611ddf565b9361122e565b634e487b7160e01b5f52604160045260245ffd5b91925f925b6113ee6064604435016044356004016120d1565b90508410156114c8576110a26114bc60206114c2936114218861141b6064604435016044356004016120d1565b90612151565b358261143b8a61141b6064604435016044356004016120d1565b013561145a604061104c8c61141b6064604435016044356004016120d1565b611477606061104c8d61141b6064604435016044356004016120d1565b6040519286840194604435600401358652604085015260608401526001600160c01b0319918260c091821b1660808501521b1660888201526070815261109081611cfd565b93611ddf565b926113da565b9084818110611529575b5050602081519101209051036114e457005b60405162461bcd60e51b815260206004820152601d60248201527f636f6d6d69744861736820616e6420696e666f206e6f74206d617463680000006044820152606490fd5b905b808210156114d257909161155061156f60206115759360405193849183830190612128565b7001000000000000000000000000000000018152038084520182611d35565b92611ddf565b9061152b565b60405162461bcd60e51b815260206004820152601e60248201527f6974656d206c656e67746820657863656564732062617463682073697a6500006044820152606490fd5b60405162461bcd60e51b815260206004820152600b60248201527f656d707479206974656d730000000000000000000000000000000000000000006044820152606490fd5b61161e915060203d602011610437576104298183611d35565b83610f5e565b60405162461bcd60e51b815260206004820152601060248201527f70726f6f66206e6f7420657869737473000000000000000000000000000000006044820152606490fd5b34610145575f366003190112610145575f80546001600160a01b03196001600160a01b0382169161169b338414611ef7565b1682557f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e08280a3005b34610145576020366003190112610145576004355f5260066020526040805f206003600282015491015482519182526020820152f35b34610145576020366003190112610145576004355f52600660205260a060405f20805490600181015490600281015460046003830154920154926040519485526020850152604084015260608301526080820152f35b34610145575f3660031901126101455760206001600160a01b0360015416604051908152f35b346101455760603660031901126101455761178f611c6c565b67ffffffffffffffff602435818111610145576117b0903690600401611c83565b92604435928315801585036101455715611a755781165f5260056020526001600160a01b0360405f205416905b6001600160a01b03809216948515611a30576040516322bb937360e11b8152602096879082908180611813878b60048401611e2f565b03915afa801561043e5761182d915f91611a135750611e56565b611835612173565b9385156119ee576118496103388383611ea2565b85526118586103388383611ec8565b608086015261186a6103388383611eb5565b8786015261020091808311610145576101e082013560408701526102201161014557013560608401525b8483018051156119a957515f526007855260405f2054156119645784908351945f1461194e57600154608085015160405163080cdb0b60e11b815267ffffffffffffffff9390931660048401526024830152909283916044918391165afa801561043e57611908915f916119315750612019565b60036060604083015192845f526006865260405f2093600285015501519101555b604051908152f35b6119489150853d8711610437576104298183611d35565b85610f5e565b50505050805f52600682528060405f2055611929565b60405162461bcd60e51b815260048101869052601060248201527f766b48617368206e6f742076616c6964000000000000000000000000000000006044820152606490fd5b60405162461bcd60e51b815260048101879052601e60248201527f766b486173682073686f756c64206265206c6172676572207468616e203000006044820152606490fd5b8181611a03610338611a0a9561033895611ea2565b8752611eb5565b85840152611894565b611a2a9150883d8a11610437576104298183611d35565b88610325565b60405162461bcd60e51b815260206004820152601660248201527f636861696e207665726966696572206e6f7420736574000000000000000000006044820152606490fd5b81165f5260056020526001600160a01b03600160405f20015416906117dd565b3461014557611aa336611c21565b611abc6001600160a01b035f9594939554163314611ef7565b611ac7818314611f42565b5f5b828110611b2157507f011d93b74200525baf6adf5cba27a9d8f45c6aec5f9862889711c9f1630879ac93611b1c91611b0e60405195869560408752604087019161219d565b91848303602086015261219d565b0390a1005b80611b30611b4e928488611dbb565b35611b3c828688611dbb565b355f52600760205260405f2055611ddf565b611ac9565b34610145576020366003190112610145576004355f526007602052602060405f2054604051908152f35b34610145576020366003190112610145576004356001600160a01b03808216809203610145577f674c535cde998bcb47d0688f644df545597c7d6edb95643cb21c82c2d490ff7f91611bd56020925f54163314611ef7565b806001600160a01b03196001541617600155604051908152a1005b9181601f840112156101455782359167ffffffffffffffff8311610145576020808501948460051b01011161014557565b60406003198201126101455767ffffffffffffffff916004358381116101455782611c4e91600401611bf0565b9390939260243591821161014557611c6891600401611bf0565b9091565b6004359067ffffffffffffffff8216820361014557565b9181601f840112156101455782359167ffffffffffffffff8311610145576020838186019501011161014557565b15611cb857565b60405162461bcd60e51b815260206004820152601660248201527f6d65726b6c6520726f6f74206e6f7420657869737473000000000000000000006044820152606490fd5b60a0810190811067ffffffffffffffff8211176113c157604052565b6060810190811067ffffffffffffffff8211176113c157604052565b90601f8019910116810190811067ffffffffffffffff8211176113c157604052565b90816020910312610145575180151581036101455790565b15611d7657565b60405162461bcd60e51b815260206004820152601060248201527f696e76616c696420736d7420726f6f74000000000000000000000000000000006044820152606490fd5b9190811015611dcb5760051b0190565b634e487b7160e01b5f52603260045260245ffd5b5f198114611ded5760010190565b634e487b7160e01b5f52601160045260245ffd5b9190811015611dcb5760a0020190565b90603f811015611dcb5760051b0190565b91908201809211611ded57565b90918060409360208452816020850152848401375f828201840152601f01601f1916010190565b15611e5d57565b60405162461bcd60e51b815260206004820152600f60248201527f70726f6f66206e6f742076616c696400000000000000000000000000000000006044820152606490fd5b906101a011610145576101800190602090565b906101e011610145576101c00190602090565b906101c011610145576101a00190602090565b359060208110611ee9575090565b5f199060200360031b1b1690565b15611efe57565b606460405162461bcd60e51b815260206004820152602060248201527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e65726044820152fd5b15611f4957565b60405162461bcd60e51b815260206004820152601060248201527f6c656e677468206e6f74206d61746368000000000000000000000000000000006044820152606490fd5b356001600160a01b03811681036101455790565b3567ffffffffffffffff811681036101455790565b9190808252602080920192915f805b838210611fd557505050505090565b9091929394853567ffffffffffffffff8116809103612001578152830194830193929160010190611fc6565b8280fd5b35906001600160a01b038216820361014557565b1561202057565b60405162461bcd60e51b815260206004820152601260248201527f736d7420726f6f74206e6f742076616c696400000000000000000000000000006044820152606490fd5b903590601e1981360301821215610145570180359067ffffffffffffffff8211610145576020019181600a1b3603831361014557565b903590601e1981360301821215610145570180359067ffffffffffffffff8211610145576020019160a082023603831361014557565b903590601e1981360301821215610145570180359067ffffffffffffffff821161014557602001918160051b3603831361014557565b9190811015611dcb57600a1b0190565b906005811015611dcb5760c0020190565b908151915f5b83811061213e575050015f815290565b806020809284010151818501520161212e565b9190811015611dcb5760051b81013590609e1981360301821215610145570190565b6040519061218082611cfd565b5f6080838281528260208201528260408201528260608201520152565b90918281526001600160fb1b0383116101455760209260051b80928483013701019056fea2646970667358221220eed680ed8f65ffa06a7a2eb88b71764372b562ceaf706fb21d613181a26b016a64736f6c63430008140033",
+	ABI: "[{\"inputs\":[{\"internalType\":\"contractISMT\",\"name\":\"_smtContract\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint64[]\",\"name\":\"chainIds\",\"type\":\"uint64[]\"},{\"indexed\":false,\"internalType\":\"contractIZkpVerifier[]\",\"name\":\"newAddresses\",\"type\":\"address[]\"}],\"name\":\"AggProofVerifierAddressesUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"brevisRequest\",\"type\":\"address\"}],\"name\":\"BrevisRequestUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"contractISMT\",\"name\":\"smtContract\",\"type\":\"address\"}],\"name\":\"SmtContractUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint64[]\",\"name\":\"chainIds\",\"type\":\"uint64[]\"},{\"indexed\":false,\"internalType\":\"contractIZkpVerifier[]\",\"name\":\"newAddresses\",\"type\":\"address[]\"}],\"name\":\"VerifierAddressesUpdated\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"name\":\"aggProofVerifierAddress\",\"outputs\":[{\"internalType\":\"contractIZkpVerifier\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"brevisRequest\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"}],\"name\":\"getProofAppData\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"}],\"name\":\"hasProof\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"}],\"name\":\"inAgg\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"merkleRoots\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"internalType\":\"bytes32[]\",\"name\":\"_requestIds\",\"type\":\"bytes32[]\"},{\"internalType\":\"bytes\",\"name\":\"_proofWithPubInputs\",\"type\":\"bytes\"}],\"name\":\"mustSubmitAggProof\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"commitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"vkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appCommitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appVkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"smtRoot\",\"type\":\"bytes32\"}],\"internalType\":\"structBrevis.ProofData\",\"name\":\"_proofData\",\"type\":\"tuple\"},{\"internalType\":\"bytes32\",\"name\":\"_merkleRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32[]\",\"name\":\"_merkleProof\",\"type\":\"bytes32[]\"},{\"internalType\":\"uint8\",\"name\":\"_nodeIndex\",\"type\":\"uint8\"}],\"name\":\"mustValidateRequest\",\"outputs\":[],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"commitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"vkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appCommitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appVkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"smtRoot\",\"type\":\"bytes32\"}],\"internalType\":\"structBrevis.ProofData[]\",\"name\":\"_proofDataArray\",\"type\":\"tuple[]\"}],\"name\":\"mustValidateRequests\",\"outputs\":[],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"proofs\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"commitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"vkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appCommitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appVkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"smtRoot\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"requestIds\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"smtContract\",\"outputs\":[{\"internalType\":\"contractISMT\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"}],\"name\":\"submitOpResult\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"internalType\":\"bytes\",\"name\":\"_proofWithPubInputs\",\"type\":\"bytes\"}],\"name\":\"submitProof\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64[]\",\"name\":\"_chainIds\",\"type\":\"uint64[]\"},{\"internalType\":\"contractIZkpVerifier[]\",\"name\":\"_verifierAddresses\",\"type\":\"address[]\"}],\"name\":\"updateAggProofVerifierAddresses\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_brevisRequest\",\"type\":\"address\"}],\"name\":\"updateBrevisRequest\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contractISMT\",\"name\":\"_smtContract\",\"type\":\"address\"}],\"name\":\"updateSmtContract\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64[]\",\"name\":\"_chainIds\",\"type\":\"uint64[]\"},{\"internalType\":\"contractIZkpVerifier[]\",\"name\":\"_verifierAddresses\",\"type\":\"address[]\"}],\"name\":\"updateVerifierAddress\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"name\":\"verifierAddresses\",\"outputs\":[{\"internalType\":\"contractIZkpVerifier\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
+	Bin: "0x6080346100a457601f61183e38819003918201601f19168301916001600160401b038311848410176100a8578084926020946040528339810103126100a457516001600160a01b0390818116908190036100a4575f5460018060a01b03199033828216175f55604051933391167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e05f80a3600154161760015561178190816100bd8239f35b5f80fd5b634e487b7160e01b5f52604160045260245ffdfe60406080815260049081361015610014575f80fd5b5f91823560e01c80631396511e1461127d5780631acf1e1f1461120b5780632247cd8f14610fc65780633221aec614610f9e57806338931a3114610f76578063444d95b014610f2457806350d4106314610e645780635984fb9214610e30578063715018a614610dd05780637dbafb1114610cfe5780638645f7a814610cac5780638da5cb5b14610cd8578063bba210bf14610cac578063ceae339014610c6d578063cf7ac5a9146108c5578063e044095314610648578063e26d07d3146105cf578063e3d1e6d61461056f578063ead635bc14610268578063f2fde38b14610184578063f5cec6af1461013f5763fe5a537714610110575f80fd5b3461013b57602036600319011261013b578160209360ff923581526002855220541690519015158152f35b8280fd5b505034610180576020366003190112610180576001600160a01b038160209367ffffffffffffffff61016f6112ef565b168152600585522054169051908152f35b5080fd5b50903461013b57602036600319011261013b578135916001600160a01b0390818416809403610264578454918216926101be3385146115f0565b84156101fb5750506001600160a01b031916821783557f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e08380a380f35b906020608492519162461bcd60e51b8352820152602660248201527f4f776e61626c653a206e6577206f776e657220697320746865207a65726f206160448201527f64647265737300000000000000000000000000000000000000000000000000006064820152fd5b8480fd5b50829034610180576060366003190112610180576102846112ef565b60249367ffffffffffffffff9291853584811161056b576102a8903690850161130a565b93909660443586811161056757906102c587939236908401611386565b9790941688526020968288526001600160a01b03868a20541680156105275788875180926322bb937360e11b82528180610302878c8b840161152a565b03915afa90811561051d57916103266103339261033f948d916104f0575b50611551565b61033961033382896115ae565b906115d4565b966115c1565b9085519061020093848301838110878211176104de57889c9b9c52843684378b5b8981106104b95750601094858a10610469575b885195868c01948e90868e5b84841061045457505050505085526102208501958587109087111761044357505083865282519020036103ff5750508552600283528085209260019260ff19948486825416179055865b8181106103d4578780f35b806103e36103fa92848a6114b6565b3589526003845284892086888254161790556114da565b6103c9565b907f72657175657374496473206e6f742072696768740000000000000000000000006102646064938862461bcd60e51b855261022482015260146102448201520152fd5b634e487b7160e01b8c52604190528afd5b8060019284518152019201920191908e61037f565b895b8681106104785750610373565b5f198b018b81116104a757906104916104a2928761159d565b5161049c828861159d565b526114da565b61046b565b634e487b7160e01b8f5260118452848ffd5b806104cb6104d6928e9f9e8d906114b6565b3561049c828761159d565b9b9a9b610360565b50634e487b7160e01b8b526041905289fd5b61051091508c8d3d10610516575b6105088183611430565b810190611452565b8e610320565b503d6104fe565b87513d8c823e3d90fd5b6064848a85818b519362461bcd60e51b85528401528201527f636861696e206167672070726f6f66207665726966696572206e6f74207365746044820152fd5b8780fd5b8580fd5b50919034610180576020366003190112610180576020923582526006835280822091825415928315936105c1575b5082156105ae575b50519015158152f35b600384528190205460ff1691505f6105a5565b60020154151592505f61059d565b50903461013b57602036600319011261013b578135916001600160a01b036007541633036106065750818352600660205282205580f35b6020606492519162461bcd60e51b8352820152601160248201527f6e6f7420627265766973526571756573740000000000000000000000000000006044820152fd5b50903461013b578060031936011261013b576106626112ef565b9267ffffffffffffffff9260243584811161013b576106849036908301611386565b9590918582168452602096600588526001600160a01b039283878720541680156108825789885180926322bb937360e11b825281806106c6888c8b840161152a565b03915afa90811561087857906106e291889161085b5750611551565b86519760a0890190811189821017610848578752858852888801938685528789019487865260608a019688885260808b019489865261072461033382846115ae565b809c5261073461033382846115c1565b8096526101e092818411610844576101c0830135905261020092818411610844578201358852610220116108405701358652600154885163080cdb0b60e11b815267ffffffffffffffff909316858401908152602081019490945291928a92849216908290819060400103915afa908115610836578591610819575b50156107d657509083600392519386815260068852209260028401555191015551908152f35b845162461bcd60e51b8152908101879052601260248201527f736d7420726f6f74206e6f742076616c696400000000000000000000000000006044820152606490fd5b6108309150883d8a11610516576105088183611430565b5f6107b0565b86513d87823e3d90fd5b8880fd5b8a80fd5b634e487b7160e01b875260418452602487fd5b61087291508b3d8d11610516576105088183611430565b5f610320565b88513d89823e3d90fd5b875162461bcd60e51b81528085018b9052601660248201527f636861696e207665726966696572206e6f7420736574000000000000000000006044820152606490fd5b503461013b578160031936011261013b576108de6112ef565b90602491823567ffffffffffffffff93848211610c695736602383011215610c695781840135858111610567578183019282369160a0840201011161056757601092838211610c27578751966103e09081890190811189821017610c15578952368837886001958a6001600160a01b03885416925b858110610ae9575050505050828110610a9c575b5086825b61098f578761098c60ff896103c08a015184526002602052832054166113b4565b80f35b87845b6109ac575b50826109a29161151d565b91831c918261096b565b9792969395909491935f198801888111610a8957891015610a7b576109da6109d48a8861151d565b8361150c565b516109e58a8861151d565b888101809111610a69576109f9908461150c565b518251906020820192835283820152828152610a1481611400565b519020610a36610a30610a278b8a61151d565b8c8b1c9061151d565b8461150c565b5260028901809911610a575792979296909591949193909290919084610992565b5050634e487b7160e01b825260119052fd5b634e487b7160e01b8652601185528686fd5b969297959391949095610997565b5050634e487b7160e01b83525060119052fd5b5f19810190808211905b848110610ab4575050610967565b81610ad757610ad290610ac7848a61150c565b5161049c828b61150c565b610aa6565b634e487b7160e01b8a5260118752838afd5b60808c610b32858d84610afd878d8d6114fc565b013584518094819263080cdb0b60e11b8352602095869584016020909392919367ffffffffffffffff60408201951681520152565b03818b5afa958615610c0a57610be696610bd993610b569291610bed575b5061146a565b610bcb610b64868c8c6114fc565b3594610b71878d8d6114fc565b0135938a8c6060610b9f8a87610b888286886114fc565b01359386610b978383896114fc565b0135956114fc565b0135925196879586019889939160a0959391855260208501526040840152606083015260808201520190565b03601f198101835282611430565b51902061049c828d61150c565b8b90610953565b610c049150833d8511610516576105088183611430565b5f610b50565b8351903d90823e3d90fd5b634e487b7160e01b8b5260418852848bfd5b875162461bcd60e51b8152602081880152600c818501527f73697a65206578636565647300000000000000000000000000000000000000006044820152606490fd5b8680fd5b503461013b57602036600319011261013b57816020936001600160a01b039267ffffffffffffffff610c9d6112ef565b16825285522054169051908152f35b503461013b57602036600319011261013b578160209360ff923581526003855220541690519015158152f35b5050346101805781600319360112610180576001600160a01b0360209254169051908152f35b50903461013b57610d0e3661133b565b92939091946001600160a01b03610d298189541633146115f0565b610d3485881461163b565b875b878110610d7757887f4a5f8b4623084de3ef4b23e6c713416b50a966a1914aaf21175d206015e59d4e8989610d718a8a8a51948594856116b0565b0390a180f35b80610d8e610d89610dcb9389896114b6565b611687565b67ffffffffffffffff610daa610da5848d8d6114b6565b61169b565b168b528460205283868c2091166001600160a01b03198254161790556114da565b610d36565b8334610e2d5780600319360112610e2d578080546001600160a01b03196001600160a01b03821691610e033384146115f0565b1682557f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e08280a380f35b80fd5b503461013b57602036600319011261013b579181923581526006602052206003600282015491015482519182526020820152f35b50503461018057610e743661133b565b91936001600160a01b03610e8c8188541633146115f0565b610e9784871461163b565b865b868110610ed457877f10ec8ad6a03997446c98d9aabf3ad339cc9621ec7cd4b47b04fe1ba8f75b42238888610d7189898951948594856116b0565b80610ee6610d89610f1f9388886114b6565b67ffffffffffffffff610efd610da5848c8c6114b6565b168a52600560205283858b2091166001600160a01b03198254161790556114da565b610e99565b50903461013b57602036600319011261013b578060a093833581526006602052208054926001820154926002830154916003840154930154938151958652602086015284015260608301526080820152f35b5050346101805781600319360112610180576020906001600160a01b03600754169051908152f35b5050346101805781600319360112610180576020906001600160a01b03600154169051908152f35b50903461013b5761012036600319011261013b57610fe26112ef565b9060a03660231901126112075760c4359060e43567ffffffffffffffff811161056b57611012903690860161130a565b9092610104359160ff808416809403610840578289526020956002875261103d82878c2054166113b4565b60018054875163080cdb0b60e11b815267ffffffffffffffff909a168a8c0190815260a435602082018190529a929592918a9183916001600160a01b0316908290819060400103915afa908c82156111fc57869493926110a692906111df575b5094939461146a565b8751602480358b8301908152602081019c909c5260443560408d015260643560608d015260843560808d01529a906110e18160a08401610bcb565b519020968c955b61113b575b505050505050036110fc578480f35b5162461bcd60e51b815292830152600c908201527f696e76616c6964206461746100000000000000000000000000000000000000006044820152606490fd5b9091929394968488168c8110156111d85785919083811c88166111a9576111639085876114b6565b358a51908c82019283528b8201528a815261117d81611400565b519020975b168481146111975785019493929190846110e8565b634e487b7160e01b8d5260118c528a8dfd5b6111b49085876114b6565b35908a51908c82019283528b8201528a81526111cf81611400565b51902097611182565b50966110ed565b6111f691508b3d8d11610516576105088183611430565b5f61109d565b8951903d90823e3d90fd5b8380fd5b503461013b57602036600319011261013b57356001600160a01b0390818116809103611207577ff98c05ab8c0aff645cf82c365a53f4ee82f61b1d94c4a71e867e0571b2ca92049261126360209386541633146115f0565b816001600160a01b0319600754161760075551908152a180f35b503461013b57602036600319011261013b57356001600160a01b0390818116809103611207577f674c535cde998bcb47d0688f644df545597c7d6edb95643cb21c82c2d490ff7f926112d560209386541633146115f0565b816001600160a01b0319600154161760015551908152a180f35b6004359067ffffffffffffffff8216820361130657565b5f80fd5b9181601f840112156113065782359167ffffffffffffffff8311611306576020808501948460051b01011161130657565b60406003198201126113065767ffffffffffffffff9160043583811161130657826113689160040161130a565b93909392602435918211611306576113829160040161130a565b9091565b9181601f840112156113065782359167ffffffffffffffff8311611306576020838186019501011161130657565b156113bb57565b60405162461bcd60e51b815260206004820152601660248201527f6d65726b6c6520726f6f74206e6f7420657869737473000000000000000000006044820152606490fd5b6060810190811067ffffffffffffffff82111761141c57604052565b634e487b7160e01b5f52604160045260245ffd5b90601f8019910116810190811067ffffffffffffffff82111761141c57604052565b90816020910312611306575180151581036113065790565b1561147157565b60405162461bcd60e51b815260206004820152601060248201527f696e76616c696420736d7420726f6f74000000000000000000000000000000006044820152606490fd5b91908110156114c65760051b0190565b634e487b7160e01b5f52603260045260245ffd5b5f1981146114e85760010190565b634e487b7160e01b5f52601160045260245ffd5b91908110156114c65760a0020190565b90601f8110156114c65760051b0190565b919082018092116114e857565b90918060409360208452816020850152848401375f828201840152601f01601f1916010190565b1561155857565b60405162461bcd60e51b815260206004820152600f60248201527f70726f6f66206e6f742076616c696400000000000000000000000000000000006044820152606490fd5b9060108110156114c65760051b0190565b906101a011611306576101800190602090565b906101c011611306576101a00190602090565b3590602081106115e2575090565b5f199060200360031b1b1690565b156115f757565b606460405162461bcd60e51b815260206004820152602060248201527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e65726044820152fd5b1561164257565b60405162461bcd60e51b815260206004820152601060248201527f6c656e677468206e6f74206d61746368000000000000000000000000000000006044820152606490fd5b356001600160a01b03811681036113065790565b3567ffffffffffffffff811681036113065790565b90929391806040830160408452526060820193905f905b80821061171d5750505080830360209182015281835291820192915f5b8281106116f2575050505090565b909192938435906001600160a01b0382168092036113065790815282019382019291906001016116e4565b9091939484359067ffffffffffffffff821680920361130657908152602090810195940191600101906116c756fea2646970667358221220d010adf056013daaebb8c50b99e070b739243f8fad2634f8f6e53c05e6ee51ec64736f6c63430008140033",
 }
 
 // BrevisProofABI is the input ABI used to generate the binding from.
@@ -5740,6 +5216,37 @@ func (_BrevisProof *BrevisProofCallerSession) AggProofVerifierAddress(arg0 uint6
 	return _BrevisProof.Contract.AggProofVerifierAddress(&_BrevisProof.CallOpts, arg0)
 }
 
+// BrevisRequest is a free data retrieval call binding the contract method 0x38931a31.
+//
+// Solidity: function brevisRequest() view returns(address)
+func (_BrevisProof *BrevisProofCaller) BrevisRequest(opts *bind.CallOpts) (common.Address, error) {
+	var out []interface{}
+	err := _BrevisProof.contract.Call(opts, &out, "brevisRequest")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
+}
+
+// BrevisRequest is a free data retrieval call binding the contract method 0x38931a31.
+//
+// Solidity: function brevisRequest() view returns(address)
+func (_BrevisProof *BrevisProofSession) BrevisRequest() (common.Address, error) {
+	return _BrevisProof.Contract.BrevisRequest(&_BrevisProof.CallOpts)
+}
+
+// BrevisRequest is a free data retrieval call binding the contract method 0x38931a31.
+//
+// Solidity: function brevisRequest() view returns(address)
+func (_BrevisProof *BrevisProofCallerSession) BrevisRequest() (common.Address, error) {
+	return _BrevisProof.Contract.BrevisRequest(&_BrevisProof.CallOpts)
+}
+
 // GetProofAppData is a free data retrieval call binding the contract method 0x5984fb92.
 //
 // Solidity: function getProofAppData(bytes32 _requestId) view returns(bytes32, bytes32)
@@ -5770,37 +5277,6 @@ func (_BrevisProof *BrevisProofSession) GetProofAppData(_requestId [32]byte) ([3
 // Solidity: function getProofAppData(bytes32 _requestId) view returns(bytes32, bytes32)
 func (_BrevisProof *BrevisProofCallerSession) GetProofAppData(_requestId [32]byte) ([32]byte, [32]byte, error) {
 	return _BrevisProof.Contract.GetProofAppData(&_BrevisProof.CallOpts, _requestId)
-}
-
-// GetProofData is a free data retrieval call binding the contract method 0x9546bf00.
-//
-// Solidity: function getProofData(bytes32 _requestId) view returns((bytes32,bytes32,bytes32,bytes32,bytes32))
-func (_BrevisProof *BrevisProofCaller) GetProofData(opts *bind.CallOpts, _requestId [32]byte) (BrevisProofData, error) {
-	var out []interface{}
-	err := _BrevisProof.contract.Call(opts, &out, "getProofData", _requestId)
-
-	if err != nil {
-		return *new(BrevisProofData), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new(BrevisProofData)).(*BrevisProofData)
-
-	return out0, err
-
-}
-
-// GetProofData is a free data retrieval call binding the contract method 0x9546bf00.
-//
-// Solidity: function getProofData(bytes32 _requestId) view returns((bytes32,bytes32,bytes32,bytes32,bytes32))
-func (_BrevisProof *BrevisProofSession) GetProofData(_requestId [32]byte) (BrevisProofData, error) {
-	return _BrevisProof.Contract.GetProofData(&_BrevisProof.CallOpts, _requestId)
-}
-
-// GetProofData is a free data retrieval call binding the contract method 0x9546bf00.
-//
-// Solidity: function getProofData(bytes32 _requestId) view returns((bytes32,bytes32,bytes32,bytes32,bytes32))
-func (_BrevisProof *BrevisProofCallerSession) GetProofData(_requestId [32]byte) (BrevisProofData, error) {
-	return _BrevisProof.Contract.GetProofData(&_BrevisProof.CallOpts, _requestId)
 }
 
 // HasProof is a free data retrieval call binding the contract method 0xe3d1e6d6.
@@ -5896,12 +5372,12 @@ func (_BrevisProof *BrevisProofCallerSession) MerkleRoots(arg0 [32]byte) (bool, 
 	return _BrevisProof.Contract.MerkleRoots(&_BrevisProof.CallOpts, arg0)
 }
 
-// MustValidateRequest is a free data retrieval call binding the contract method 0xa0922259.
+// MustValidateRequest is a free data retrieval call binding the contract method 0x2247cd8f.
 //
-// Solidity: function mustValidateRequest(uint64 _chainId, (bytes32,bytes32,bytes32,bytes32,bytes32) _proofData, bytes32 _merkleRoot, bytes32[] _merkleProof, bool _isLeftSide) view returns()
-func (_BrevisProof *BrevisProofCaller) MustValidateRequest(opts *bind.CallOpts, _chainId uint64, _proofData BrevisProofData, _merkleRoot [32]byte, _merkleProof [][32]byte, _isLeftSide bool) error {
+// Solidity: function mustValidateRequest(uint64 _chainId, (bytes32,bytes32,bytes32,bytes32,bytes32) _proofData, bytes32 _merkleRoot, bytes32[] _merkleProof, uint8 _nodeIndex) view returns()
+func (_BrevisProof *BrevisProofCaller) MustValidateRequest(opts *bind.CallOpts, _chainId uint64, _proofData BrevisProofData, _merkleRoot [32]byte, _merkleProof [][32]byte, _nodeIndex uint8) error {
 	var out []interface{}
-	err := _BrevisProof.contract.Call(opts, &out, "mustValidateRequest", _chainId, _proofData, _merkleRoot, _merkleProof, _isLeftSide)
+	err := _BrevisProof.contract.Call(opts, &out, "mustValidateRequest", _chainId, _proofData, _merkleRoot, _merkleProof, _nodeIndex)
 
 	if err != nil {
 		return err
@@ -5911,18 +5387,18 @@ func (_BrevisProof *BrevisProofCaller) MustValidateRequest(opts *bind.CallOpts, 
 
 }
 
-// MustValidateRequest is a free data retrieval call binding the contract method 0xa0922259.
+// MustValidateRequest is a free data retrieval call binding the contract method 0x2247cd8f.
 //
-// Solidity: function mustValidateRequest(uint64 _chainId, (bytes32,bytes32,bytes32,bytes32,bytes32) _proofData, bytes32 _merkleRoot, bytes32[] _merkleProof, bool _isLeftSide) view returns()
-func (_BrevisProof *BrevisProofSession) MustValidateRequest(_chainId uint64, _proofData BrevisProofData, _merkleRoot [32]byte, _merkleProof [][32]byte, _isLeftSide bool) error {
-	return _BrevisProof.Contract.MustValidateRequest(&_BrevisProof.CallOpts, _chainId, _proofData, _merkleRoot, _merkleProof, _isLeftSide)
+// Solidity: function mustValidateRequest(uint64 _chainId, (bytes32,bytes32,bytes32,bytes32,bytes32) _proofData, bytes32 _merkleRoot, bytes32[] _merkleProof, uint8 _nodeIndex) view returns()
+func (_BrevisProof *BrevisProofSession) MustValidateRequest(_chainId uint64, _proofData BrevisProofData, _merkleRoot [32]byte, _merkleProof [][32]byte, _nodeIndex uint8) error {
+	return _BrevisProof.Contract.MustValidateRequest(&_BrevisProof.CallOpts, _chainId, _proofData, _merkleRoot, _merkleProof, _nodeIndex)
 }
 
-// MustValidateRequest is a free data retrieval call binding the contract method 0xa0922259.
+// MustValidateRequest is a free data retrieval call binding the contract method 0x2247cd8f.
 //
-// Solidity: function mustValidateRequest(uint64 _chainId, (bytes32,bytes32,bytes32,bytes32,bytes32) _proofData, bytes32 _merkleRoot, bytes32[] _merkleProof, bool _isLeftSide) view returns()
-func (_BrevisProof *BrevisProofCallerSession) MustValidateRequest(_chainId uint64, _proofData BrevisProofData, _merkleRoot [32]byte, _merkleProof [][32]byte, _isLeftSide bool) error {
-	return _BrevisProof.Contract.MustValidateRequest(&_BrevisProof.CallOpts, _chainId, _proofData, _merkleRoot, _merkleProof, _isLeftSide)
+// Solidity: function mustValidateRequest(uint64 _chainId, (bytes32,bytes32,bytes32,bytes32,bytes32) _proofData, bytes32 _merkleRoot, bytes32[] _merkleProof, uint8 _nodeIndex) view returns()
+func (_BrevisProof *BrevisProofCallerSession) MustValidateRequest(_chainId uint64, _proofData BrevisProofData, _merkleRoot [32]byte, _merkleProof [][32]byte, _nodeIndex uint8) error {
+	return _BrevisProof.Contract.MustValidateRequest(&_BrevisProof.CallOpts, _chainId, _proofData, _merkleRoot, _merkleProof, _nodeIndex)
 }
 
 // MustValidateRequests is a free data retrieval call binding the contract method 0xcf7ac5a9.
@@ -6107,109 +5583,35 @@ func (_BrevisProof *BrevisProofCallerSession) SmtContract() (common.Address, err
 	return _BrevisProof.Contract.SmtContract(&_BrevisProof.CallOpts)
 }
 
-// ValidateRequest is a free data retrieval call binding the contract method 0x7c08aa74.
-//
-// Solidity: function validateRequest(bytes32 _requestId, uint64 _chainId, (bytes32,(uint64,uint64,((uint8,uint64,address,bytes32),uint64,bytes32)[5])[],(bytes32,address,bytes32,bytes32,uint64)[],(bytes32,bytes32,uint64,uint64,bytes)[]) _extractInfos) view returns()
-func (_BrevisProof *BrevisProofCaller) ValidateRequest(opts *bind.CallOpts, _requestId [32]byte, _chainId uint64, _extractInfos BrevisExtractInfos) error {
-	var out []interface{}
-	err := _BrevisProof.contract.Call(opts, &out, "validateRequest", _requestId, _chainId, _extractInfos)
-
-	if err != nil {
-		return err
-	}
-
-	return err
-
-}
-
-// ValidateRequest is a free data retrieval call binding the contract method 0x7c08aa74.
-//
-// Solidity: function validateRequest(bytes32 _requestId, uint64 _chainId, (bytes32,(uint64,uint64,((uint8,uint64,address,bytes32),uint64,bytes32)[5])[],(bytes32,address,bytes32,bytes32,uint64)[],(bytes32,bytes32,uint64,uint64,bytes)[]) _extractInfos) view returns()
-func (_BrevisProof *BrevisProofSession) ValidateRequest(_requestId [32]byte, _chainId uint64, _extractInfos BrevisExtractInfos) error {
-	return _BrevisProof.Contract.ValidateRequest(&_BrevisProof.CallOpts, _requestId, _chainId, _extractInfos)
-}
-
-// ValidateRequest is a free data retrieval call binding the contract method 0x7c08aa74.
-//
-// Solidity: function validateRequest(bytes32 _requestId, uint64 _chainId, (bytes32,(uint64,uint64,((uint8,uint64,address,bytes32),uint64,bytes32)[5])[],(bytes32,address,bytes32,bytes32,uint64)[],(bytes32,bytes32,uint64,uint64,bytes)[]) _extractInfos) view returns()
-func (_BrevisProof *BrevisProofCallerSession) ValidateRequest(_requestId [32]byte, _chainId uint64, _extractInfos BrevisExtractInfos) error {
-	return _BrevisProof.Contract.ValidateRequest(&_BrevisProof.CallOpts, _requestId, _chainId, _extractInfos)
-}
-
 // VerifierAddresses is a free data retrieval call binding the contract method 0xf5cec6af.
 //
-// Solidity: function verifierAddresses(uint64 ) view returns(address contractAppZkVerifier, address circuitAppZkVerifier)
-func (_BrevisProof *BrevisProofCaller) VerifierAddresses(opts *bind.CallOpts, arg0 uint64) (struct {
-	ContractAppZkVerifier common.Address
-	CircuitAppZkVerifier  common.Address
-}, error) {
+// Solidity: function verifierAddresses(uint64 ) view returns(address)
+func (_BrevisProof *BrevisProofCaller) VerifierAddresses(opts *bind.CallOpts, arg0 uint64) (common.Address, error) {
 	var out []interface{}
 	err := _BrevisProof.contract.Call(opts, &out, "verifierAddresses", arg0)
 
-	outstruct := new(struct {
-		ContractAppZkVerifier common.Address
-		CircuitAppZkVerifier  common.Address
-	})
 	if err != nil {
-		return *outstruct, err
+		return *new(common.Address), err
 	}
 
-	outstruct.ContractAppZkVerifier = *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
-	outstruct.CircuitAppZkVerifier = *abi.ConvertType(out[1], new(common.Address)).(*common.Address)
-
-	return *outstruct, err
-
-}
-
-// VerifierAddresses is a free data retrieval call binding the contract method 0xf5cec6af.
-//
-// Solidity: function verifierAddresses(uint64 ) view returns(address contractAppZkVerifier, address circuitAppZkVerifier)
-func (_BrevisProof *BrevisProofSession) VerifierAddresses(arg0 uint64) (struct {
-	ContractAppZkVerifier common.Address
-	CircuitAppZkVerifier  common.Address
-}, error) {
-	return _BrevisProof.Contract.VerifierAddresses(&_BrevisProof.CallOpts, arg0)
-}
-
-// VerifierAddresses is a free data retrieval call binding the contract method 0xf5cec6af.
-//
-// Solidity: function verifierAddresses(uint64 ) view returns(address contractAppZkVerifier, address circuitAppZkVerifier)
-func (_BrevisProof *BrevisProofCallerSession) VerifierAddresses(arg0 uint64) (struct {
-	ContractAppZkVerifier common.Address
-	CircuitAppZkVerifier  common.Address
-}, error) {
-	return _BrevisProof.Contract.VerifierAddresses(&_BrevisProof.CallOpts, arg0)
-}
-
-// VkHashesToBatchSize is a free data retrieval call binding the contract method 0x1be746b1.
-//
-// Solidity: function vkHashesToBatchSize(bytes32 ) view returns(uint256)
-func (_BrevisProof *BrevisProofCaller) VkHashesToBatchSize(opts *bind.CallOpts, arg0 [32]byte) (*big.Int, error) {
-	var out []interface{}
-	err := _BrevisProof.contract.Call(opts, &out, "vkHashesToBatchSize", arg0)
-
-	if err != nil {
-		return *new(*big.Int), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
 
 	return out0, err
 
 }
 
-// VkHashesToBatchSize is a free data retrieval call binding the contract method 0x1be746b1.
+// VerifierAddresses is a free data retrieval call binding the contract method 0xf5cec6af.
 //
-// Solidity: function vkHashesToBatchSize(bytes32 ) view returns(uint256)
-func (_BrevisProof *BrevisProofSession) VkHashesToBatchSize(arg0 [32]byte) (*big.Int, error) {
-	return _BrevisProof.Contract.VkHashesToBatchSize(&_BrevisProof.CallOpts, arg0)
+// Solidity: function verifierAddresses(uint64 ) view returns(address)
+func (_BrevisProof *BrevisProofSession) VerifierAddresses(arg0 uint64) (common.Address, error) {
+	return _BrevisProof.Contract.VerifierAddresses(&_BrevisProof.CallOpts, arg0)
 }
 
-// VkHashesToBatchSize is a free data retrieval call binding the contract method 0x1be746b1.
+// VerifierAddresses is a free data retrieval call binding the contract method 0xf5cec6af.
 //
-// Solidity: function vkHashesToBatchSize(bytes32 ) view returns(uint256)
-func (_BrevisProof *BrevisProofCallerSession) VkHashesToBatchSize(arg0 [32]byte) (*big.Int, error) {
-	return _BrevisProof.Contract.VkHashesToBatchSize(&_BrevisProof.CallOpts, arg0)
+// Solidity: function verifierAddresses(uint64 ) view returns(address)
+func (_BrevisProof *BrevisProofCallerSession) VerifierAddresses(arg0 uint64) (common.Address, error) {
+	return _BrevisProof.Contract.VerifierAddresses(&_BrevisProof.CallOpts, arg0)
 }
 
 // MustSubmitAggProof is a paid mutator transaction binding the contract method 0xead635bc.
@@ -6254,46 +5656,46 @@ func (_BrevisProof *BrevisProofTransactorSession) RenounceOwnership() (*types.Tr
 	return _BrevisProof.Contract.RenounceOwnership(&_BrevisProof.TransactOpts)
 }
 
-// SetBatchTierVkHashes is a paid mutator transaction binding the contract method 0x1e4971bb.
+// SubmitOpResult is a paid mutator transaction binding the contract method 0xe26d07d3.
 //
-// Solidity: function setBatchTierVkHashes(bytes32[] _vkHashes, uint256[] _sizes) returns()
-func (_BrevisProof *BrevisProofTransactor) SetBatchTierVkHashes(opts *bind.TransactOpts, _vkHashes [][32]byte, _sizes []*big.Int) (*types.Transaction, error) {
-	return _BrevisProof.contract.Transact(opts, "setBatchTierVkHashes", _vkHashes, _sizes)
+// Solidity: function submitOpResult(bytes32 _requestId) returns()
+func (_BrevisProof *BrevisProofTransactor) SubmitOpResult(opts *bind.TransactOpts, _requestId [32]byte) (*types.Transaction, error) {
+	return _BrevisProof.contract.Transact(opts, "submitOpResult", _requestId)
 }
 
-// SetBatchTierVkHashes is a paid mutator transaction binding the contract method 0x1e4971bb.
+// SubmitOpResult is a paid mutator transaction binding the contract method 0xe26d07d3.
 //
-// Solidity: function setBatchTierVkHashes(bytes32[] _vkHashes, uint256[] _sizes) returns()
-func (_BrevisProof *BrevisProofSession) SetBatchTierVkHashes(_vkHashes [][32]byte, _sizes []*big.Int) (*types.Transaction, error) {
-	return _BrevisProof.Contract.SetBatchTierVkHashes(&_BrevisProof.TransactOpts, _vkHashes, _sizes)
+// Solidity: function submitOpResult(bytes32 _requestId) returns()
+func (_BrevisProof *BrevisProofSession) SubmitOpResult(_requestId [32]byte) (*types.Transaction, error) {
+	return _BrevisProof.Contract.SubmitOpResult(&_BrevisProof.TransactOpts, _requestId)
 }
 
-// SetBatchTierVkHashes is a paid mutator transaction binding the contract method 0x1e4971bb.
+// SubmitOpResult is a paid mutator transaction binding the contract method 0xe26d07d3.
 //
-// Solidity: function setBatchTierVkHashes(bytes32[] _vkHashes, uint256[] _sizes) returns()
-func (_BrevisProof *BrevisProofTransactorSession) SetBatchTierVkHashes(_vkHashes [][32]byte, _sizes []*big.Int) (*types.Transaction, error) {
-	return _BrevisProof.Contract.SetBatchTierVkHashes(&_BrevisProof.TransactOpts, _vkHashes, _sizes)
+// Solidity: function submitOpResult(bytes32 _requestId) returns()
+func (_BrevisProof *BrevisProofTransactorSession) SubmitOpResult(_requestId [32]byte) (*types.Transaction, error) {
+	return _BrevisProof.Contract.SubmitOpResult(&_BrevisProof.TransactOpts, _requestId)
 }
 
-// SubmitProof is a paid mutator transaction binding the contract method 0x25e49034.
+// SubmitProof is a paid mutator transaction binding the contract method 0xe0440953.
 //
-// Solidity: function submitProof(uint64 _chainId, bytes _proofWithPubInputs, bool _withAppProof) returns(bytes32 _requestId)
-func (_BrevisProof *BrevisProofTransactor) SubmitProof(opts *bind.TransactOpts, _chainId uint64, _proofWithPubInputs []byte, _withAppProof bool) (*types.Transaction, error) {
-	return _BrevisProof.contract.Transact(opts, "submitProof", _chainId, _proofWithPubInputs, _withAppProof)
+// Solidity: function submitProof(uint64 _chainId, bytes _proofWithPubInputs) returns(bytes32 _requestId)
+func (_BrevisProof *BrevisProofTransactor) SubmitProof(opts *bind.TransactOpts, _chainId uint64, _proofWithPubInputs []byte) (*types.Transaction, error) {
+	return _BrevisProof.contract.Transact(opts, "submitProof", _chainId, _proofWithPubInputs)
 }
 
-// SubmitProof is a paid mutator transaction binding the contract method 0x25e49034.
+// SubmitProof is a paid mutator transaction binding the contract method 0xe0440953.
 //
-// Solidity: function submitProof(uint64 _chainId, bytes _proofWithPubInputs, bool _withAppProof) returns(bytes32 _requestId)
-func (_BrevisProof *BrevisProofSession) SubmitProof(_chainId uint64, _proofWithPubInputs []byte, _withAppProof bool) (*types.Transaction, error) {
-	return _BrevisProof.Contract.SubmitProof(&_BrevisProof.TransactOpts, _chainId, _proofWithPubInputs, _withAppProof)
+// Solidity: function submitProof(uint64 _chainId, bytes _proofWithPubInputs) returns(bytes32 _requestId)
+func (_BrevisProof *BrevisProofSession) SubmitProof(_chainId uint64, _proofWithPubInputs []byte) (*types.Transaction, error) {
+	return _BrevisProof.Contract.SubmitProof(&_BrevisProof.TransactOpts, _chainId, _proofWithPubInputs)
 }
 
-// SubmitProof is a paid mutator transaction binding the contract method 0x25e49034.
+// SubmitProof is a paid mutator transaction binding the contract method 0xe0440953.
 //
-// Solidity: function submitProof(uint64 _chainId, bytes _proofWithPubInputs, bool _withAppProof) returns(bytes32 _requestId)
-func (_BrevisProof *BrevisProofTransactorSession) SubmitProof(_chainId uint64, _proofWithPubInputs []byte, _withAppProof bool) (*types.Transaction, error) {
-	return _BrevisProof.Contract.SubmitProof(&_BrevisProof.TransactOpts, _chainId, _proofWithPubInputs, _withAppProof)
+// Solidity: function submitProof(uint64 _chainId, bytes _proofWithPubInputs) returns(bytes32 _requestId)
+func (_BrevisProof *BrevisProofTransactorSession) SubmitProof(_chainId uint64, _proofWithPubInputs []byte) (*types.Transaction, error) {
+	return _BrevisProof.Contract.SubmitProof(&_BrevisProof.TransactOpts, _chainId, _proofWithPubInputs)
 }
 
 // TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
@@ -6338,6 +5740,27 @@ func (_BrevisProof *BrevisProofTransactorSession) UpdateAggProofVerifierAddresse
 	return _BrevisProof.Contract.UpdateAggProofVerifierAddresses(&_BrevisProof.TransactOpts, _chainIds, _verifierAddresses)
 }
 
+// UpdateBrevisRequest is a paid mutator transaction binding the contract method 0x1acf1e1f.
+//
+// Solidity: function updateBrevisRequest(address _brevisRequest) returns()
+func (_BrevisProof *BrevisProofTransactor) UpdateBrevisRequest(opts *bind.TransactOpts, _brevisRequest common.Address) (*types.Transaction, error) {
+	return _BrevisProof.contract.Transact(opts, "updateBrevisRequest", _brevisRequest)
+}
+
+// UpdateBrevisRequest is a paid mutator transaction binding the contract method 0x1acf1e1f.
+//
+// Solidity: function updateBrevisRequest(address _brevisRequest) returns()
+func (_BrevisProof *BrevisProofSession) UpdateBrevisRequest(_brevisRequest common.Address) (*types.Transaction, error) {
+	return _BrevisProof.Contract.UpdateBrevisRequest(&_BrevisProof.TransactOpts, _brevisRequest)
+}
+
+// UpdateBrevisRequest is a paid mutator transaction binding the contract method 0x1acf1e1f.
+//
+// Solidity: function updateBrevisRequest(address _brevisRequest) returns()
+func (_BrevisProof *BrevisProofTransactorSession) UpdateBrevisRequest(_brevisRequest common.Address) (*types.Transaction, error) {
+	return _BrevisProof.Contract.UpdateBrevisRequest(&_BrevisProof.TransactOpts, _brevisRequest)
+}
+
 // UpdateSmtContract is a paid mutator transaction binding the contract method 0x1396511e.
 //
 // Solidity: function updateSmtContract(address _smtContract) returns()
@@ -6359,24 +5782,24 @@ func (_BrevisProof *BrevisProofTransactorSession) UpdateSmtContract(_smtContract
 	return _BrevisProof.Contract.UpdateSmtContract(&_BrevisProof.TransactOpts, _smtContract)
 }
 
-// UpdateVerifierAddress is a paid mutator transaction binding the contract method 0xb201326e.
+// UpdateVerifierAddress is a paid mutator transaction binding the contract method 0x50d41063.
 //
-// Solidity: function updateVerifierAddress(uint64[] _chainIds, (address,address)[] _verifierAddresses) returns()
-func (_BrevisProof *BrevisProofTransactor) UpdateVerifierAddress(opts *bind.TransactOpts, _chainIds []uint64, _verifierAddresses []BrevisProofChainZKVerifier) (*types.Transaction, error) {
+// Solidity: function updateVerifierAddress(uint64[] _chainIds, address[] _verifierAddresses) returns()
+func (_BrevisProof *BrevisProofTransactor) UpdateVerifierAddress(opts *bind.TransactOpts, _chainIds []uint64, _verifierAddresses []common.Address) (*types.Transaction, error) {
 	return _BrevisProof.contract.Transact(opts, "updateVerifierAddress", _chainIds, _verifierAddresses)
 }
 
-// UpdateVerifierAddress is a paid mutator transaction binding the contract method 0xb201326e.
+// UpdateVerifierAddress is a paid mutator transaction binding the contract method 0x50d41063.
 //
-// Solidity: function updateVerifierAddress(uint64[] _chainIds, (address,address)[] _verifierAddresses) returns()
-func (_BrevisProof *BrevisProofSession) UpdateVerifierAddress(_chainIds []uint64, _verifierAddresses []BrevisProofChainZKVerifier) (*types.Transaction, error) {
+// Solidity: function updateVerifierAddress(uint64[] _chainIds, address[] _verifierAddresses) returns()
+func (_BrevisProof *BrevisProofSession) UpdateVerifierAddress(_chainIds []uint64, _verifierAddresses []common.Address) (*types.Transaction, error) {
 	return _BrevisProof.Contract.UpdateVerifierAddress(&_BrevisProof.TransactOpts, _chainIds, _verifierAddresses)
 }
 
-// UpdateVerifierAddress is a paid mutator transaction binding the contract method 0xb201326e.
+// UpdateVerifierAddress is a paid mutator transaction binding the contract method 0x50d41063.
 //
-// Solidity: function updateVerifierAddress(uint64[] _chainIds, (address,address)[] _verifierAddresses) returns()
-func (_BrevisProof *BrevisProofTransactorSession) UpdateVerifierAddress(_chainIds []uint64, _verifierAddresses []BrevisProofChainZKVerifier) (*types.Transaction, error) {
+// Solidity: function updateVerifierAddress(uint64[] _chainIds, address[] _verifierAddresses) returns()
+func (_BrevisProof *BrevisProofTransactorSession) UpdateVerifierAddress(_chainIds []uint64, _verifierAddresses []common.Address) (*types.Transaction, error) {
 	return _BrevisProof.Contract.UpdateVerifierAddress(&_BrevisProof.TransactOpts, _chainIds, _verifierAddresses)
 }
 
@@ -6515,9 +5938,9 @@ func (_BrevisProof *BrevisProofFilterer) ParseAggProofVerifierAddressesUpdated(l
 	return event, nil
 }
 
-// BrevisProofBatchTierVkHashesUpdatedIterator is returned from FilterBatchTierVkHashesUpdated and is used to iterate over the raw logs and unpacked data for BatchTierVkHashesUpdated events raised by the BrevisProof contract.
-type BrevisProofBatchTierVkHashesUpdatedIterator struct {
-	Event *BrevisProofBatchTierVkHashesUpdated // Event containing the contract specifics and raw log
+// BrevisProofBrevisRequestUpdatedIterator is returned from FilterBrevisRequestUpdated and is used to iterate over the raw logs and unpacked data for BrevisRequestUpdated events raised by the BrevisProof contract.
+type BrevisProofBrevisRequestUpdatedIterator struct {
+	Event *BrevisProofBrevisRequestUpdated // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -6531,7 +5954,7 @@ type BrevisProofBatchTierVkHashesUpdatedIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *BrevisProofBatchTierVkHashesUpdatedIterator) Next() bool {
+func (it *BrevisProofBrevisRequestUpdatedIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -6540,7 +5963,7 @@ func (it *BrevisProofBatchTierVkHashesUpdatedIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(BrevisProofBatchTierVkHashesUpdated)
+			it.Event = new(BrevisProofBrevisRequestUpdated)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -6555,7 +5978,7 @@ func (it *BrevisProofBatchTierVkHashesUpdatedIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(BrevisProofBatchTierVkHashesUpdated)
+		it.Event = new(BrevisProofBrevisRequestUpdated)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -6571,42 +5994,41 @@ func (it *BrevisProofBatchTierVkHashesUpdatedIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *BrevisProofBatchTierVkHashesUpdatedIterator) Error() error {
+func (it *BrevisProofBrevisRequestUpdatedIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *BrevisProofBatchTierVkHashesUpdatedIterator) Close() error {
+func (it *BrevisProofBrevisRequestUpdatedIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// BrevisProofBatchTierVkHashesUpdated represents a BatchTierVkHashesUpdated event raised by the BrevisProof contract.
-type BrevisProofBatchTierVkHashesUpdated struct {
-	VkHashes [][32]byte
-	Sizes    []*big.Int
-	Raw      types.Log // Blockchain specific contextual infos
+// BrevisProofBrevisRequestUpdated represents a BrevisRequestUpdated event raised by the BrevisProof contract.
+type BrevisProofBrevisRequestUpdated struct {
+	BrevisRequest common.Address
+	Raw           types.Log // Blockchain specific contextual infos
 }
 
-// FilterBatchTierVkHashesUpdated is a free log retrieval operation binding the contract event 0x011d93b74200525baf6adf5cba27a9d8f45c6aec5f9862889711c9f1630879ac.
+// FilterBrevisRequestUpdated is a free log retrieval operation binding the contract event 0xf98c05ab8c0aff645cf82c365a53f4ee82f61b1d94c4a71e867e0571b2ca9204.
 //
-// Solidity: event BatchTierVkHashesUpdated(bytes32[] vkHashes, uint256[] sizes)
-func (_BrevisProof *BrevisProofFilterer) FilterBatchTierVkHashesUpdated(opts *bind.FilterOpts) (*BrevisProofBatchTierVkHashesUpdatedIterator, error) {
+// Solidity: event BrevisRequestUpdated(address brevisRequest)
+func (_BrevisProof *BrevisProofFilterer) FilterBrevisRequestUpdated(opts *bind.FilterOpts) (*BrevisProofBrevisRequestUpdatedIterator, error) {
 
-	logs, sub, err := _BrevisProof.contract.FilterLogs(opts, "BatchTierVkHashesUpdated")
+	logs, sub, err := _BrevisProof.contract.FilterLogs(opts, "BrevisRequestUpdated")
 	if err != nil {
 		return nil, err
 	}
-	return &BrevisProofBatchTierVkHashesUpdatedIterator{contract: _BrevisProof.contract, event: "BatchTierVkHashesUpdated", logs: logs, sub: sub}, nil
+	return &BrevisProofBrevisRequestUpdatedIterator{contract: _BrevisProof.contract, event: "BrevisRequestUpdated", logs: logs, sub: sub}, nil
 }
 
-// WatchBatchTierVkHashesUpdated is a free log subscription operation binding the contract event 0x011d93b74200525baf6adf5cba27a9d8f45c6aec5f9862889711c9f1630879ac.
+// WatchBrevisRequestUpdated is a free log subscription operation binding the contract event 0xf98c05ab8c0aff645cf82c365a53f4ee82f61b1d94c4a71e867e0571b2ca9204.
 //
-// Solidity: event BatchTierVkHashesUpdated(bytes32[] vkHashes, uint256[] sizes)
-func (_BrevisProof *BrevisProofFilterer) WatchBatchTierVkHashesUpdated(opts *bind.WatchOpts, sink chan<- *BrevisProofBatchTierVkHashesUpdated) (event.Subscription, error) {
+// Solidity: event BrevisRequestUpdated(address brevisRequest)
+func (_BrevisProof *BrevisProofFilterer) WatchBrevisRequestUpdated(opts *bind.WatchOpts, sink chan<- *BrevisProofBrevisRequestUpdated) (event.Subscription, error) {
 
-	logs, sub, err := _BrevisProof.contract.WatchLogs(opts, "BatchTierVkHashesUpdated")
+	logs, sub, err := _BrevisProof.contract.WatchLogs(opts, "BrevisRequestUpdated")
 	if err != nil {
 		return nil, err
 	}
@@ -6616,8 +6038,8 @@ func (_BrevisProof *BrevisProofFilterer) WatchBatchTierVkHashesUpdated(opts *bin
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(BrevisProofBatchTierVkHashesUpdated)
-				if err := _BrevisProof.contract.UnpackLog(event, "BatchTierVkHashesUpdated", log); err != nil {
+				event := new(BrevisProofBrevisRequestUpdated)
+				if err := _BrevisProof.contract.UnpackLog(event, "BrevisRequestUpdated", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -6638,12 +6060,12 @@ func (_BrevisProof *BrevisProofFilterer) WatchBatchTierVkHashesUpdated(opts *bin
 	}), nil
 }
 
-// ParseBatchTierVkHashesUpdated is a log parse operation binding the contract event 0x011d93b74200525baf6adf5cba27a9d8f45c6aec5f9862889711c9f1630879ac.
+// ParseBrevisRequestUpdated is a log parse operation binding the contract event 0xf98c05ab8c0aff645cf82c365a53f4ee82f61b1d94c4a71e867e0571b2ca9204.
 //
-// Solidity: event BatchTierVkHashesUpdated(bytes32[] vkHashes, uint256[] sizes)
-func (_BrevisProof *BrevisProofFilterer) ParseBatchTierVkHashesUpdated(log types.Log) (*BrevisProofBatchTierVkHashesUpdated, error) {
-	event := new(BrevisProofBatchTierVkHashesUpdated)
-	if err := _BrevisProof.contract.UnpackLog(event, "BatchTierVkHashesUpdated", log); err != nil {
+// Solidity: event BrevisRequestUpdated(address brevisRequest)
+func (_BrevisProof *BrevisProofFilterer) ParseBrevisRequestUpdated(log types.Log) (*BrevisProofBrevisRequestUpdated, error) {
+	event := new(BrevisProofBrevisRequestUpdated)
+	if err := _BrevisProof.contract.UnpackLog(event, "BrevisRequestUpdated", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
@@ -7007,13 +6429,13 @@ func (it *BrevisProofVerifierAddressesUpdatedIterator) Close() error {
 // BrevisProofVerifierAddressesUpdated represents a VerifierAddressesUpdated event raised by the BrevisProof contract.
 type BrevisProofVerifierAddressesUpdated struct {
 	ChainIds     []uint64
-	NewAddresses []BrevisProofChainZKVerifier
+	NewAddresses []common.Address
 	Raw          types.Log // Blockchain specific contextual infos
 }
 
-// FilterVerifierAddressesUpdated is a free log retrieval operation binding the contract event 0xc343b5bb763b4b0cdbd72c4b7a9627ce33d7eaff0cecca036b0af41ce9ca55a8.
+// FilterVerifierAddressesUpdated is a free log retrieval operation binding the contract event 0x10ec8ad6a03997446c98d9aabf3ad339cc9621ec7cd4b47b04fe1ba8f75b4223.
 //
-// Solidity: event VerifierAddressesUpdated(uint64[] chainIds, (address,address)[] newAddresses)
+// Solidity: event VerifierAddressesUpdated(uint64[] chainIds, address[] newAddresses)
 func (_BrevisProof *BrevisProofFilterer) FilterVerifierAddressesUpdated(opts *bind.FilterOpts) (*BrevisProofVerifierAddressesUpdatedIterator, error) {
 
 	logs, sub, err := _BrevisProof.contract.FilterLogs(opts, "VerifierAddressesUpdated")
@@ -7023,9 +6445,9 @@ func (_BrevisProof *BrevisProofFilterer) FilterVerifierAddressesUpdated(opts *bi
 	return &BrevisProofVerifierAddressesUpdatedIterator{contract: _BrevisProof.contract, event: "VerifierAddressesUpdated", logs: logs, sub: sub}, nil
 }
 
-// WatchVerifierAddressesUpdated is a free log subscription operation binding the contract event 0xc343b5bb763b4b0cdbd72c4b7a9627ce33d7eaff0cecca036b0af41ce9ca55a8.
+// WatchVerifierAddressesUpdated is a free log subscription operation binding the contract event 0x10ec8ad6a03997446c98d9aabf3ad339cc9621ec7cd4b47b04fe1ba8f75b4223.
 //
-// Solidity: event VerifierAddressesUpdated(uint64[] chainIds, (address,address)[] newAddresses)
+// Solidity: event VerifierAddressesUpdated(uint64[] chainIds, address[] newAddresses)
 func (_BrevisProof *BrevisProofFilterer) WatchVerifierAddressesUpdated(opts *bind.WatchOpts, sink chan<- *BrevisProofVerifierAddressesUpdated) (event.Subscription, error) {
 
 	logs, sub, err := _BrevisProof.contract.WatchLogs(opts, "VerifierAddressesUpdated")
@@ -7060,9 +6482,9 @@ func (_BrevisProof *BrevisProofFilterer) WatchVerifierAddressesUpdated(opts *bin
 	}), nil
 }
 
-// ParseVerifierAddressesUpdated is a log parse operation binding the contract event 0xc343b5bb763b4b0cdbd72c4b7a9627ce33d7eaff0cecca036b0af41ce9ca55a8.
+// ParseVerifierAddressesUpdated is a log parse operation binding the contract event 0x10ec8ad6a03997446c98d9aabf3ad339cc9621ec7cd4b47b04fe1ba8f75b4223.
 //
-// Solidity: event VerifierAddressesUpdated(uint64[] chainIds, (address,address)[] newAddresses)
+// Solidity: event VerifierAddressesUpdated(uint64[] chainIds, address[] newAddresses)
 func (_BrevisProof *BrevisProofFilterer) ParseVerifierAddressesUpdated(log types.Log) (*BrevisProofVerifierAddressesUpdated, error) {
 	event := new(BrevisProofVerifierAddressesUpdated)
 	if err := _BrevisProof.contract.UnpackLog(event, "VerifierAddressesUpdated", log); err != nil {
@@ -7074,8 +6496,8 @@ func (_BrevisProof *BrevisProofFilterer) ParseVerifierAddressesUpdated(log types
 
 // BrevisRequestMetaData contains all meta data concerning the BrevisRequest contract.
 var BrevisRequestMetaData = &bind.MetaData{
-	ABI: "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_feeCollector\",\"type\":\"address\"},{\"internalType\":\"contractIBrevisProof\",\"name\":\"_brevisProof\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"}],\"name\":\"FeeCollectorUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"requestId\",\"type\":\"bytes32\"}],\"name\":\"RequestFulfilled\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"requestId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"fee\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"callback\",\"type\":\"address\"}],\"name\":\"RequestSent\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"from\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"to\",\"type\":\"uint256\"}],\"name\":\"RequestTimeoutUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32[]\",\"name\":\"requestId\",\"type\":\"bytes32[]\"}],\"name\":\"RequestsFulfilled\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"brevisProof\",\"outputs\":[{\"internalType\":\"contractIBrevisProof\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"_to\",\"type\":\"address\"}],\"name\":\"collectFee\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"feeCollector\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"internalType\":\"bytes32[]\",\"name\":\"_requestIds\",\"type\":\"bytes32[]\"},{\"internalType\":\"bytes\",\"name\":\"_proof\",\"type\":\"bytes\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"commitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"vkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appCommitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appVkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"smtRoot\",\"type\":\"bytes32\"}],\"internalType\":\"structBrevis.ProofData[]\",\"name\":\"_proofDataArray\",\"type\":\"tuple[]\"},{\"internalType\":\"bytes[]\",\"name\":\"_appCircuitOutputs\",\"type\":\"bytes[]\"},{\"internalType\":\"address\",\"name\":\"_callback\",\"type\":\"address\"}],\"name\":\"fulfillAggRequests\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"},{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"internalType\":\"bytes\",\"name\":\"_proof\",\"type\":\"bytes\"},{\"internalType\":\"bool\",\"name\":\"_withAppProof\",\"type\":\"bool\"},{\"internalType\":\"bytes\",\"name\":\"_appCircuitOutput\",\"type\":\"bytes\"}],\"name\":\"fulfillRequest\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"}],\"name\":\"queryRequestStatus\",\"outputs\":[{\"internalType\":\"enumBrevisRequest.RequestStatus\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"}],\"name\":\"refund\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"requestTimeout\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"requests\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"deadline\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"fee\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"refundee\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"callback\",\"type\":\"address\"},{\"internalType\":\"enumBrevisRequest.RequestStatus\",\"name\":\"status\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"_refundee\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_callback\",\"type\":\"address\"}],\"name\":\"sendRequest\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_feeCollector\",\"type\":\"address\"}],\"name\":\"setFeeCollector\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_timeout\",\"type\":\"uint256\"}],\"name\":\"setRequestTimeout\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}]",
-	Bin: "0x6080346100bd57601f6111c038819003918201601f19168301916001600160401b038311848410176100c15780849260409485528339810103126100bd5780516001600160a01b0391828216918290036100bd5760200151908282168092036100bd575f549060018060a01b03199133838216175f55604051943391167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e05f80a381600154161760015560035416176003556110ea90816100d68239f35b5f80fd5b634e487b7160e01b5f52604160045260245ffdfe608080604052600436101561001c575b50361561001a575f80fd5b005b5f90813560e01c9081633f20b4c914610e1b57508063622b6af414610db85780636a96173514610b4b578063715018a614610aee5780637249fbb6146109955780637ff7b0d2146109035780638da5cb5b146108dd5780639d86698514610873578063a42dce80146107fa578063b6979c3e146107c0578063c415b95c14610799578063c7f5aaa014610772578063da47dc3214610567578063ecdafd46146101a95763f2fde38b0361000f57346101a65760203660031901126101a6576100e2610e7f565b6001600160a01b0380916100fa828554163314611069565b1690811561013b575f54826001600160a01b03198216175f55167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e05f80a380f35b60405162461bcd60e51b815260206004820152602660248201527f4f776e61626c653a206e6577206f776e657220697320746865207a65726f206160448201527f64647265737300000000000000000000000000000000000000000000000000006064820152608490fd5b80fd5b50346101a65760c03660031901126101a65760043567ffffffffffffffff8116810361055b578160243567ffffffffffffffff811161055b576101f0903690600401610eb6565b919060443567ffffffffffffffff811161055757610212903690600401610e37565b939067ffffffffffffffff60643511610563573660236064350112156105635767ffffffffffffffff60643560040135116105635736602460a060643560040135026064350101116105635760843567ffffffffffffffff811161055f5761027e903690600401610eb6565b9490956001600160a01b0360a4351660a4350361055b576001600160a01b0360035416803b1561055757604051633ab58d6f60e21b815267ffffffffffffffff8a166004820152606060248201529384928391859183916102f9916102e7606485018c8e610fe0565b84810360031901604486015291610f81565b03925af1801561054c5761051c575b5060015b8160ff8216106104ca5750907fc9f9dbb4a40f26672580c28841452a59f824f5c0053e412183cfec77e76570ef91610351604051928392602084526020840191610fe0565b0390a16001600160a01b0360a43516610368578380f35b83916040519363ed1fe83b60e01b602086015267ffffffffffffffff60848601911660248601526060604486015260643560040135905260a4840191602460643501845b606435600401358110610489575050602319858403016064860152808352602083019060208160051b850101938386915b83831061041c57505050505050916103ff81839403601f198101835282610ee7565b6020815191018260a4355af150610414610fa1565b505f80808380f35b9193959092949650601f198282030186528635601e1984360301811215610485578301906020823592019167ffffffffffffffff81116104815780360383136104815761046f6020928392600195610f81565b980196019301909188969594926103dd565b8a80fd5b8980fd5b813585526020808301359086015260408083013590860152606080830135908601526080808301359086015287955060a094850194909101906001016103ac565b611fe08160051b168301358752600460205260036040882001600160a01b60ff60a01b1982541617905560ff8091169081146105085760010161030c565b634e487b7160e01b87526011600452602487fd5b67ffffffffffffffff819792971161053857604052945f610308565b634e487b7160e01b82526041600452602482fd5b6040513d89823e3d90fd5b8280fd5b5080fd5b8480fd5b8380fd5b5060603660031901126101a65760043561057f610e69565b604435906001600160a01b0380831680930361055f5783855260209160048352604086205461072d5781169081156106e857600254420190814211610508576040519160a0830183811067ffffffffffffffff8211176106d457604052825260038483019234845260408101948552606081019487865260808201948a8652898b526004885260408b209251835551600183015583600283019151166001600160a01b0319825416179055019251168254915160038110156106c0579160809593917fffffffffffffffffffffff00000000000000000000000000000000000000000074ff00000000000000000000000000000000000000007f4eede03ca33645529b4d82428b024149165298c901cf7453f68eb43bd3d3b65899979560a01b1692161717905560405192835233908301523460408301526060820152a180f35b634e487b7160e01b88526021600452602488fd5b634e487b7160e01b89526041600452602489fd5b60405162461bcd60e51b815260048101849052601560248201527f726566756e646565206e6f742070726f766964656400000000000000000000006044820152606490fd5b60405162461bcd60e51b815260048101849052601860248201527f7265717565737420616c726561647920696e20717565756500000000000000006044820152606490fd5b50346101a657806003193601126101a65760206001600160a01b0360035416604051908152f35b50346101a657806003193601126101a65760206001600160a01b0360015416604051908152f35b50346101a65760203660031901126101a65760ff6003604060209360043581526004855220015460a01c166107f86040518092610e95565bf35b50346101a65760203660031901126101a6577f5d16ad41baeb009cd23eb8f6c7cde5c2e0cd5acf4a33926ab488875c37c37f386040610837610e7f565b6001600160a01b0361084d818654163314611069565b80600154921690816001600160a01b03198416176001558351921682526020820152a180f35b50346101a65760203660031901126101a657604060a09160043581526004602052206107f88154916001810154906001600160a01b039060038260028301541691015492604051958652602086015260408501528116606084015260ff6080840191851c16610e95565b50346101a657806003193601126101a6576001600160a01b036020915416604051908152f35b50346101a65760403660031901126101a65761091d610e69565b6001600160a01b03600154163303610950578180808061094d946004359061c350f1610947610fa1565b5061101d565b80f35b60405162461bcd60e51b815260206004820152601160248201527f6e6f742066656520636f6c6c6563746f720000000000000000000000000000006044820152606490fd5b50346101a65760208060031936011261055b57600435808352600482526040832054421115610557576001600160a01b036024838260035416604051928380926371e8f36b60e11b82528760048301525afa8015610ae3576109ff918691610ab6575b5015610f35565b81845260048352604084205415610a715790610a428480808060049796868252888852600160408320918383556002830154169101549061c350f1610947610fa1565b835252600360408220017402000000000000000000000000000000000000000060ff60a01b1982541617905580f35b60405162461bcd60e51b815260048101849052601460248201527f72657175657374206e6f7420696e2071756575650000000000000000000000006044820152606490fd5b610ad69150853d8711610adc575b610ace8183610ee7565b810190610f1d565b5f6109f8565b503d610ac4565b6040513d87823e3d90fd5b50346101a657806003193601126101a6578080546001600160a01b03196001600160a01b03821691610b21338414611069565b1682557f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e08280a380f35b50346101a65760a03660031901126101a6576004359060243567ffffffffffffffff928382168092036105575760443584811161056357610b90903690600401610e37565b60649291923595861515809703610d8057608435908111610d8057610bb9903690600401610e37565b9390946001600160a01b0392836003541691604051996371e8f36b60e11b8b528660048c015260209a8b81602481885afa908115610dad5792610c37969492610c0d8d938f98968591610d96575015610f35565b60405197889687958694630979240d60e21b86526004860152606060248601526064850191610f81565b90604483015203925af1908115610d8b578691610d5a575b508203610d15579484958286526004825260036040872001600160a01b60ff60a01b198254161790557f85e1543bf2f84fe80c6badbce3648c8539ad1df4d2b3d822938ca0538be727e682604051858152a1828652600482526003604087200154169283610cbb578580f35b610cfd869592610cef8794604051948593840197633ceb5b5160e11b89526024850152604060448501526064840191610f81565b03601f198101835282610ee7565b51925af150610d0a610fa1565b50805f808080808580f35b60405162461bcd60e51b815260048101879052601d60248201527f72657175657374496420616e642070726f6f66206e6f74206d617463680000006044820152606490fd5b90508681813d8311610d84575b610d718183610ee7565b81010312610d8057515f610c4f565b8580fd5b503d610d67565b6040513d88823e3d90fd5b610ad69150893d8b11610adc57610ace8183610ee7565b6040513d8d823e3d90fd5b50346101a65760203660031901126101a6577f87a73c061f18ffd513249d1d727921e40e348948b01e2979efb36ef4f5204a636040600435610e056001600160a01b038554163314611069565b600254908060025582519182526020820152a180f35b90503461055b578160031936011261055b576020906002548152f35b9181601f84011215610e655782359167ffffffffffffffff8311610e655760208381860195010111610e6557565b5f80fd5b602435906001600160a01b0382168203610e6557565b600435906001600160a01b0382168203610e6557565b906003821015610ea25752565b634e487b7160e01b5f52602160045260245ffd5b9181601f84011215610e655782359167ffffffffffffffff8311610e65576020808501948460051b010111610e6557565b90601f8019910116810190811067ffffffffffffffff821117610f0957604052565b634e487b7160e01b5f52604160045260245ffd5b90816020910312610e6557518015158103610e655790565b15610f3c57565b60405162461bcd60e51b815260206004820152601760248201527f70726f6f6620616c72656164792067656e6572617465640000000000000000006044820152606490fd5b908060209392818452848401375f828201840152601f01601f1916010190565b3d15610fdb573d9067ffffffffffffffff8211610f095760405191610fd0601f8201601f191660200184610ee7565b82523d5f602084013e565b606090565b90918281527f07ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff8311610e655760209260051b809284830137010190565b1561102457565b60405162461bcd60e51b815260206004820152601260248201527f73656e64206e6174697665206661696c656400000000000000000000000000006044820152606490fd5b1561107057565b606460405162461bcd60e51b815260206004820152602060248201527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e65726044820152fdfea26469706673582212207b2c60fc1b90a27b51ed6f42e50550ba3f37d6e7a05e8d2f57dda2e52357d4bd64736f6c63430008140033",
+	ABI: "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_feeCollector\",\"type\":\"address\"},{\"internalType\":\"contractIBrevisProof\",\"name\":\"_brevisProof\",\"type\":\"address\"},{\"internalType\":\"contractISigsVerifier\",\"name\":\"_sigsVerifier\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"requestId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"enumIBrevisRequest.AskForType\",\"name\":\"askFor\",\"type\":\"uint8\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"}],\"name\":\"AskFor\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"from\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"to\",\"type\":\"uint256\"}],\"name\":\"ChallengeWindowUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"}],\"name\":\"FeeCollectorUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32[]\",\"name\":\"requestIds\",\"type\":\"bytes32[]\"},{\"indexed\":false,\"internalType\":\"bytes[]\",\"name\":\"queryURLs\",\"type\":\"bytes[]\"}],\"name\":\"OpRequestsFulfilled\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"requestId\",\"type\":\"bytes32\"}],\"name\":\"ProofPost\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"requestId\",\"type\":\"bytes32\"}],\"name\":\"QueryDataPost\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"requestId\",\"type\":\"bytes32\"}],\"name\":\"RequestCallbackFailed\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"requestId\",\"type\":\"bytes32\"}],\"name\":\"RequestFulfilled\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"requestId\",\"type\":\"bytes32\"}],\"name\":\"RequestRefunded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"requestId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"fee\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"callback\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"enumIBrevisRequest.Option\",\"name\":\"option\",\"type\":\"uint8\"}],\"name\":\"RequestSent\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"from\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"to\",\"type\":\"uint256\"}],\"name\":\"RequestTimeoutUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32[]\",\"name\":\"requestIds\",\"type\":\"bytes32[]\"}],\"name\":\"RequestsCallbackFailed\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32[]\",\"name\":\"requestId\",\"type\":\"bytes32[]\"}],\"name\":\"RequestsFulfilled\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"from\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"to\",\"type\":\"uint256\"}],\"name\":\"ResponseTimeoutUpdated\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"}],\"name\":\"askForProof\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"}],\"name\":\"askForQueryData\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"brevisProof\",\"outputs\":[{\"internalType\":\"contractIBrevisProof\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"_proof\",\"type\":\"bytes\"}],\"name\":\"challengeQueryData\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"challengeWindow\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"_to\",\"type\":\"address\"}],\"name\":\"collectFee\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"feeCollector\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"internalType\":\"bytes32[]\",\"name\":\"_requestIds\",\"type\":\"bytes32[]\"},{\"internalType\":\"bytes\",\"name\":\"_proof\",\"type\":\"bytes\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"commitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"vkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appCommitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appVkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"smtRoot\",\"type\":\"bytes32\"}],\"internalType\":\"structBrevis.ProofData[]\",\"name\":\"_proofDataArray\",\"type\":\"tuple[]\"},{\"internalType\":\"bytes[]\",\"name\":\"_appCircuitOutputs\",\"type\":\"bytes[]\"},{\"internalType\":\"address\",\"name\":\"_callback\",\"type\":\"address\"}],\"name\":\"fulfillAggRequests\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32[]\",\"name\":\"_requestIds\",\"type\":\"bytes32[]\"},{\"internalType\":\"bytes[]\",\"name\":\"_queryURLs\",\"type\":\"bytes[]\"},{\"internalType\":\"bytes[]\",\"name\":\"_sigs\",\"type\":\"bytes[]\"},{\"internalType\":\"address[]\",\"name\":\"_signers\",\"type\":\"address[]\"},{\"internalType\":\"uint256[]\",\"name\":\"_powers\",\"type\":\"uint256[]\"}],\"name\":\"fulfillOpRequests\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"},{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"internalType\":\"bytes\",\"name\":\"_proof\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"_appCircuitOutput\",\"type\":\"bytes\"}],\"name\":\"fulfillRequest\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"keccakToMimc\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"},{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"internalType\":\"bytes\",\"name\":\"_proof\",\"type\":\"bytes\"}],\"name\":\"postProof\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"_queryData\",\"type\":\"bytes\"}],\"name\":\"postQueryData\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"}],\"name\":\"queryRequestStatus\",\"outputs\":[{\"internalType\":\"enumIBrevisRequest.RequestStatus\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"}],\"name\":\"refund\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"requestExts\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"canChallengeBefore\",\"type\":\"uint256\"},{\"internalType\":\"enumIBrevisRequest.AskForType\",\"name\":\"askFor\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"shouldRespondBefore\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"requestTimeout\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"requests\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"deadline\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"fee\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"refundee\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"callback\",\"type\":\"address\"},{\"internalType\":\"enumIBrevisRequest.RequestStatus\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"enumIBrevisRequest.Option\",\"name\":\"option\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"responseTimeout\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"_refundee\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_callback\",\"type\":\"address\"},{\"internalType\":\"enumIBrevisRequest.Option\",\"name\":\"_option\",\"type\":\"uint8\"}],\"name\":\"sendRequest\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_challengeWindow\",\"type\":\"uint256\"}],\"name\":\"setChallengeWindow\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_feeCollector\",\"type\":\"address\"}],\"name\":\"setFeeCollector\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_timeout\",\"type\":\"uint256\"}],\"name\":\"setRequestTimeout\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_responseTimeout\",\"type\":\"uint256\"}],\"name\":\"setResponseTimeout\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"sigsVerifier\",\"outputs\":[{\"internalType\":\"contractISigsVerifier\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}]",
+	Bin: "0x60a0346100e757601f61209f38819003918201601f19168301916001600160401b038311848410176100eb578084926060946040528339810103126100e75780516001600160a01b0391828216918290036100e7576020810151908382168092036100e757604001519183831683036100e7575f549060018060a01b03199133838216175f55604051953391167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e05f80a38160015416176001556002541617600255608052611f9f90816101008239608051818181610a260152818161154101526116080152f35b5f80fd5b634e487b7160e01b5f52604160045260245ffdfe608080604052600436101561001c575b50361561001a575f80fd5b005b5f90813560e01c908162a731ed146119cc5750806301c1aa0d146119695780632763ce8a146118aa5780633f20b4c91461188c5780635685fd671461139957806361b9fd7314611287578063622b6af41461122457806369c228a1146110bf57806369dc19031461105c5780636db03b1d14610f71578063715018a614610f125780637249fbb614610db05780637ff7b0d214610d1e578063861a141214610d005780638da5cb5b14610cda57806395d3965614610cb05780639d86698514610c32578063a17ed96c14610c14578063a42dce8014610b9b578063a4514ff314610ac6578063b6979c3e14610a98578063c415b95c14610a71578063c7f5aaa014610a4a578063ccf2683b14610a06578063da03667a146107c4578063ecdafd4614610494578063f2a9c666146102375763f2fde38b0361000f573461023457602036600319011261023457610170611aa5565b6001600160a01b038091610188828554163314611e30565b169081156101c9575f54826001600160a01b03198216175f55167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e05f80a380f35b60405162461bcd60e51b815260206004820152602660248201527f4f776e61626c653a206e6577206f776e657220697320746865207a65726f206160448201527f64647265737300000000000000000000000000000000000000000000000000006064820152608490fd5b80fd5b5060803660031901126102345760043561024f611a8f565b6044356001600160a01b03918282168092036104905760643592600284101561048c5784865260209160068352604087205461044757811680156104025761029960035442611ae9565b916040519260c0840184811067ffffffffffffffff8211176103ee57604052835283830190348252604084019283526003606085019487865260808101948b865260a08201948a86528b8d526006895260408d209251835551600183015583600283019151166001600160a01b031982541617905501935116835492519160088310156103da575160028110156103da57926103d6959274ff000000000000000000000000000000000000000060a09996937fffffffffffffffffffff0000000000000000000000000000000000000000000075ff0000000000000000000000000000000000000000007f8351e4cc62a96a972da26714bfbb019926334976bb613c36e0dc72b69cf8f5649d9b9860a81b16941617918a1b1617179055604051948552339085015234604085015260608401526080830190611adc565ba180f35b634e487b7160e01b8a52602160045260248afd5b634e487b7160e01b5f52604160045260245ffd5b60405162461bcd60e51b815260048101849052601560248201527f726566756e646565206e6f742070726f766964656400000000000000000000006044820152606490fd5b60405162461bcd60e51b815260048101849052601860248201527f7265717565737420616c726561647920696e20717565756500000000000000006044820152606490fd5b8580fd5b5f80fd5b50346102345760c0366003190112610234576004359067ffffffffffffffff8083168303610490576024358181116107c0576104d4903690600401611a47565b90916044358181116107bc576104ee903690600401611a19565b9095826064351161048c5736602360643501121561048c5782606435600401351161048c5736602460a0606435600401350260643501011161048c576084358381116107a957610542903690600401611a47565b9190926001600160a01b03988960a4351660a4350361049057896002541691823b156107b8578892878b866105b482968d966105a26040519a8b998a988997633ab58d6f60e21b8952166004880152606060248801526064870191611c7f565b84810360031901604486015291611ba4565b03925af180156107ad57908891610795575b505060015b8560ff8216101561062c576105e460ff82168789611cbc565b358852600660205260036040892001600160a01b60ff60a01b1982541617905560ff809116908114610618576001016105cb565b634e487b7160e01b88526011600452602488fd5b50879594957fc9f9dbb4a40f26672580c28841452a59f824f5c0053e412183cfec77e76570ef6040516020815280610668602082018b8b611c7f565b0390a160a43516610677578680f35b908692916040519463ed1fe83b60e01b602087015260848601911660248601526060604486015260643560040135905260a4840191602460643501845b606435600401358110610754575050936106e081936106ee938697602319858403016064860152611ce0565b03601f198101835282611b1e565b6020815191018260a4355af1610702611c50565b5015610711575b808080808680f35b7fa27ac73d985dc053bec967c59a530feb90be0582343095d7b85ec7e7c3fef2089161074a604051928392602084526020840191611c7f565b0390a18180610709565b813585526020808301359086015260408083013590860152606080830135908601526080808301359086015289955060a094850194909101906001016106b4565b61079e90611b0a565b6107a957865f6105c6565b8680fd5b6040513d8a823e3d90fd5b8980fd5b8480fd5b8280fd5b5034610234576080366003190112610234576004356107e1611a78565b826044359167ffffffffffffffff928381116107c057610805903690600401611a19565b9093606435908111610a025761081f903690600401611a19565b9190926001600160a01b0391826002541690604051916371e8f36b60e11b83528960048401526020988984602481855afa80156109f75761088c9561086f8b928d9784916109ca575b5015611b58565b60405163e044095360e01b81529687958694859360048501611bc4565b03925af19081156109bf57859161098b575b506108aa908714611be8565b8584526006855260036040852001600160a01b60ff60a01b198254161790557f85e1543bf2f84fe80c6badbce3648c8539ad1df4d2b3d822938ca0538be727e685604051888152a185845260068552600360408520015416908161090c578380f35b836106e061094082956040519283918a830196633ceb5b5160e11b88528c6024850152604060448501526064840191611ba4565b51925af161094c611c50565b501561095b575b828180808380f35b7ff9e9ac125efc63eaa0638c58fd8a1ab11673bae30202f01909611e4ebdbe9b4e91604051908152a15f80610953565b809550868092503d83116109b8575b6109a48183611b1e565b81010312610490576108aa8794519061089e565b503d61099a565b6040513d87823e3d90fd5b6109ea9150883d8a116109f0575b6109e28183611b1e565b810190611b40565b5f610868565b503d6109d8565b6040513d8b823e3d90fd5b8380fd5b503461023457806003193601126102345760206040516001600160a01b037f0000000000000000000000000000000000000000000000000000000000000000168152f35b503461023457806003193601126102345760206001600160a01b0360025416604051908152f35b503461023457806003193601126102345760206001600160a01b0360015416604051908152f35b5034610234576020366003190112610234576020610ab7600435611e7b565b610ac46040518092611abb565bf35b50602080600319360112610b9757600435908183526006815260ff600360408520015460a01c166008811015610b83577fe77f1579b66737e0839e75b8ee1a189f5b6b5d2e504090f76337ffde5903da3a91610b26600260409314611de4565b83855260078152600182862001600160ff19825416179055610b4a60055442611ae9565b848652600782526002838720015560068152600382862001600160a21b60ff60a01b19825416179055815190600182523390820152a280f35b634e487b7160e01b84526021600452602484fd5b5080fd5b5034610234576020366003190112610234577f5d16ad41baeb009cd23eb8f6c7cde5c2e0cd5acf4a33926ab488875c37c37f386040610bd8611aa5565b6001600160a01b03610bee818654163314611e30565b80600154921690816001600160a01b03198416176001558351921682526020820152a180f35b50346102345780600319360112610234576020600554604051908152f35b503461023457602036600319011261023457604060c0916004358152600660205220610ac48154916001810154906001600160a01b0390600382600283015416910154926040519586526020860152604085015281166060840152610ca06080840160ff8360a01c16611abb565b60ff60a084019160a81c16611adc565b50346102345760203660031901126102345760406020916004358152600883522054604051908152f35b50346102345780600319360112610234576001600160a01b036020915416604051908152f35b50346102345780600319360112610234576020600454604051908152f35b503461023457604036600319011261023457610d38611a8f565b6001600160a01b03600154163303610d6b5781808080610d68946004359061c350f1610d62611c50565b50611d69565b80f35b60405162461bcd60e51b815260206004820152601160248201527f6e6f742066656520636f6c6c6563746f720000000000000000000000000000006044820152606490fd5b503461023457602080600319360112610b97576004358083526006825260408320544211156107c0576001600160a01b036024838260025416604051928380926371e8f36b60e11b82528760048301525afa80156109bf57610e19918691610efb575015611b58565b81845260068352604084205415610eb65790610e7c848080807ffea410cb461deba9fe807dde02d6641d82e1bf09ecc88ecfa0f2ffadf2a1fdfe979686825260068852600160408320918383556002830154169101549061c350f1610d62611c50565b80845260068252600360408520017407000000000000000000000000000000000000000060ff60a01b19825416179055604051908152a180f35b60405162461bcd60e51b815260048101849052601460248201527f72657175657374206e6f7420696e2071756575650000000000000000000000006044820152606490fd5b6109ea9150853d87116109f0576109e28183611b1e565b50346102345780600319360112610234575f6001600160a01b03610f3a818454163314611e30565b81546001600160a01b031981168355167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e08280a380f35b50602080600319360112610b9757600435908183526006815260ff600360408520015460a01c166008811015610b83576002148015611035575b7fe77f1579b66737e0839e75b8ee1a189f5b6b5d2e504090f76337ffde5903da3a91610fd8604092611de4565b83855260078152600182862001600260ff19825416179055610ffc60055442611ae9565b848652600782526002838720015560068152600382862001600160a21b60ff60a01b19825416179055815190600282523390820152a280f35b508183526006815260ff600360408520015460a01c166008811015610b8357600314610fab565b5034610234576020366003190112610234577f86fe7fc31f35681a1ed77325f0cf24935a5d25b1861e7ce9ceed9cb67f22227060406004356110a96001600160a01b038554163314611e30565b600554908060055582519182526020820152a180f35b50346102345760403660031901126102345760043560243567ffffffffffffffff81116107c0576110f4903690600401611a19565b8284526020916006835260ff600360408720015460a81c166002811015611210576001036111cb578461112683611c34565b916111346040519384611b1e565b8383528483019336818301116107c05780869286378301015251902083526008815281604084205581835260068152600360408420017403000000000000000000000000000000000000000060ff60a01b19825416179055600761119a60045442611ae9565b918385525260408320557fe4e1e2afaa20a4e7e37593d3fb41a91d496a30ea2b7ccf67a9aa9450e74af4f08280a280f35b60405162461bcd60e51b815260048101849052601660248201527f6e6f7420612076616c6964206f702072657175657374000000000000000000006044820152606490fd5b634e487b7160e01b86526021600452602486fd5b5034610234576020366003190112610234577f87a73c061f18ffd513249d1d727921e40e348948b01e2979efb36ef4f5204a6360406004356112716001600160a01b038554163314611e30565b600354908060035582519182526020820152a180f35b5034610234576060366003190112610234576004356112a4611a78565b60443567ffffffffffffffff8111610a02576112f7916112ca6020923690600401611a19565b9190866001600160a01b0360025416926040519687958694859363e044095360e01b855260048501611bc4565b03925af1801561138e57839061135b575b61131491508214611be8565b808252600660205260036040832001600160a01b60ff60a01b198254161790557f799191eb766b210bea2d9052b39f21140ed9fbf3ff2fe5102fbd6bb5bc134e3e8280a280f35b506020813d8211611386575b8161137460209383611b1e565b81010312610490576113149051611308565b3d9150611367565b6040513d85823e3d90fd5b50346102345760a03660031901126102345760043567ffffffffffffffff8111610b97576113cb903690600401611a47565b9060243567ffffffffffffffff8111610a02576113ec903690600401611a47565b60449391933567ffffffffffffffff811161048c5761140f903690600401611a47565b9060643567ffffffffffffffff811161188857611430903690600401611a47565b909160843567ffffffffffffffff81116107b857611452903690600401611a47565b92909187156118435786880361183f576040514660208201526020815280604081011067ffffffffffffffff60408301111761182b5760408101604052958b5b898b8183106117db57505050604051964660208901523060601b60408901527f46756c66696c6c5265717565737473000000000000000000000000000000000060548901526043885287608081011067ffffffffffffffff60808a0111176117c757604088611537926080820183528151602083012060a083015261152181518092602060c086019101611dc3565b8101036020810160808b01520160808901611b1e565b6001600160a01b037f0000000000000000000000000000000000000000000000000000000000000000163b156117c3579160206115c58d9795936115aa99979560a4806040519c8d809c633416de1160e11b82526080600483015260a06080820151948386608481960152019101611dc3565b601f01601f19168a018a810360a00160248c01520191611ce0565b86810360031901604488015282815201939086905b80821061178857505050916115fc918493600319858403016064860152611c7f565b03816001600160a01b037f0000000000000000000000000000000000000000000000000000000000000000165afa801561177d5761176a575b50845b82811061169157507fa1c3ef280bbac31181188d4beffe370ebae03e08d58a3aa4832b107d540c0a839361168b9161167d604051958695604087526040870191611c7f565b918483036020860152611ce0565b0390a180f35b856001600160a01b03600254166116a9838688611cbc565b35813b156107c057829160248392604051948593849263e26d07d360e01b845260048401525af1801561175f5761174b575b5050806116ec611746928587611cbc565b3587526006602052600360408820017402000000000000000000000000000000000000000060ff60a01b1982541617905561172960045442611ae9565b611734828688611cbc565b35885260076020526040882055611db5565b611638565b61175490611b0a565b61048c57855f6116db565b6040513d84823e3d90fd5b61177690959195611b0a565b935f611635565b6040513d88823e3d90fd5b92949196509294508535906001600160a01b0382168092036117bf576020816001938293520196019201918694928c9694926115da565b8c80fd5b8b80fd5b634e487b7160e01b8d52604160045260248dfd5b60406117f084611826959c9461182094611cbc565b35928151938161180a869351809260208087019101611dc3565b8201906020820152036020810184520182611b1e565b97611db5565b611492565b634e487b7160e01b8c52604160045260248cfd5b8a80fd5b60405162461bcd60e51b815260206004820152601260248201527f696e76616c6964207265717565737449647300000000000000000000000000006044820152606490fd5b8780fd5b50346102345780600319360112610234576020600354604051908152f35b50346102345760203660031901126102345760043567ffffffffffffffff8111610b97576118dc903690600401611a19565b50508080526008602052604081205480156119245781526006602052600360408220017405000000000000000000000000000000000000000060ff60a01b1982541617905580f35b60405162461bcd60e51b815260206004820152601560248201527f71756572792064617461206e6f7420706f7374656400000000000000000000006044820152606490fd5b5034610234576020366003190112610234577fedb9338f4b0faf2b899d2d7f54b90753d2a8ebb34936e381edb91b091c3e45a760406004356119b66001600160a01b038554163314611e30565b600454908060045582519182526020820152a180f35b905034610b97576020366003190112610b97576004358252600760205260408220805490600260ff6001830154169101549183526003811015610b83576060935060208301526040820152f35b9181601f840112156104905782359167ffffffffffffffff8311610490576020838186019501011161049057565b9181601f840112156104905782359167ffffffffffffffff8311610490576020808501948460051b01011161049057565b6024359067ffffffffffffffff8216820361049057565b602435906001600160a01b038216820361049057565b600435906001600160a01b038216820361049057565b906008821015611ac85752565b634e487b7160e01b5f52602160045260245ffd5b906002821015611ac85752565b91908201809211611af657565b634e487b7160e01b5f52601160045260245ffd5b67ffffffffffffffff81116103ee57604052565b90601f8019910116810190811067ffffffffffffffff8211176103ee57604052565b90816020910312610490575180151581036104905790565b15611b5f57565b60405162461bcd60e51b815260206004820152601760248201527f70726f6f6620616c72656164792067656e6572617465640000000000000000006044820152606490fd5b908060209392818452848401375f828201840152601f01601f1916010190565b60409067ffffffffffffffff611be595931681528160208201520191611ba4565b90565b15611bef57565b60405162461bcd60e51b815260206004820152601d60248201527f72657175657374496420616e642070726f6f66206e6f74206d617463680000006044820152606490fd5b67ffffffffffffffff81116103ee57601f01601f191660200190565b3d15611c7a573d90611c6182611c34565b91611c6f6040519384611b1e565b82523d5f602084013e565b606090565b90918281527f07ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff83116104905760209260051b809284830137010190565b9190811015611ccc5760051b0190565b634e487b7160e01b5f52603260045260245ffd5b9082818152602080910193818360051b82010194845f925b858410611d09575050505050505090565b90919293949596601f198282030184528735601e198436030181121561049057830186810191903567ffffffffffffffff811161049057803603831361049057611d5888928392600195611ba4565b990194019401929594939190611cf8565b15611d7057565b60405162461bcd60e51b815260206004820152601260248201527f73656e64206e6174697665206661696c656400000000000000000000000000006044820152606490fd5b5f198114611af65760010190565b5f5b838110611dd45750505f910152565b8181015183820152602001611dc5565b15611deb57565b60405162461bcd60e51b815260206004820152601a60248201527f6e6f7420696e20612064697370757461626c65207374617475730000000000006044820152606490fd5b15611e3757565b606460405162461bcd60e51b815260206004820152602060248201527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e65726044820152fd5b5f8181526020906006825260409060ff6003838320015460a01c166008811015611f12576002148015611f43575b80611f2f575b611f26578381526006835260ff6003838320015460a01c166008811015611f125760041480611efb575b611ef257600660039360ff9583525220015460a01c1690565b50505050600590565b508381526007835260028282200154421015611ed9565b634e487b7160e01b82526021600452602482fd5b50505050600690565b508381526007835281812054421015611eaf565b508381526006835260ff6003838320015460a01c166008811015611f1257600314611ea956fea2646970667358221220a4eb4c3f22bcf5a39e07deb6da42e8ea4d306d1467e8ddf84118b6fa2e29574d64736f6c63430008140033",
 }
 
 // BrevisRequestABI is the input ABI used to generate the binding from.
@@ -7087,7 +6509,7 @@ var BrevisRequestABI = BrevisRequestMetaData.ABI
 var BrevisRequestBin = BrevisRequestMetaData.Bin
 
 // DeployBrevisRequest deploys a new Ethereum contract, binding an instance of BrevisRequest to it.
-func DeployBrevisRequest(auth *bind.TransactOpts, backend bind.ContractBackend, _feeCollector common.Address, _brevisProof common.Address) (common.Address, *types.Transaction, *BrevisRequest, error) {
+func DeployBrevisRequest(auth *bind.TransactOpts, backend bind.ContractBackend, _feeCollector common.Address, _brevisProof common.Address, _sigsVerifier common.Address) (common.Address, *types.Transaction, *BrevisRequest, error) {
 	parsed, err := BrevisRequestMetaData.GetAbi()
 	if err != nil {
 		return common.Address{}, nil, nil, err
@@ -7096,7 +6518,7 @@ func DeployBrevisRequest(auth *bind.TransactOpts, backend bind.ContractBackend, 
 		return common.Address{}, nil, nil, errors.New("GetABI returned nil")
 	}
 
-	address, tx, contract, err := bind.DeployContract(auth, *parsed, common.FromHex(BrevisRequestBin), backend, _feeCollector, _brevisProof)
+	address, tx, contract, err := bind.DeployContract(auth, *parsed, common.FromHex(BrevisRequestBin), backend, _feeCollector, _brevisProof, _sigsVerifier)
 	if err != nil {
 		return common.Address{}, nil, nil, err
 	}
@@ -7276,6 +6698,37 @@ func (_BrevisRequest *BrevisRequestCallerSession) BrevisProof() (common.Address,
 	return _BrevisRequest.Contract.BrevisProof(&_BrevisRequest.CallOpts)
 }
 
+// ChallengeWindow is a free data retrieval call binding the contract method 0x861a1412.
+//
+// Solidity: function challengeWindow() view returns(uint256)
+func (_BrevisRequest *BrevisRequestCaller) ChallengeWindow(opts *bind.CallOpts) (*big.Int, error) {
+	var out []interface{}
+	err := _BrevisRequest.contract.Call(opts, &out, "challengeWindow")
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
+}
+
+// ChallengeWindow is a free data retrieval call binding the contract method 0x861a1412.
+//
+// Solidity: function challengeWindow() view returns(uint256)
+func (_BrevisRequest *BrevisRequestSession) ChallengeWindow() (*big.Int, error) {
+	return _BrevisRequest.Contract.ChallengeWindow(&_BrevisRequest.CallOpts)
+}
+
+// ChallengeWindow is a free data retrieval call binding the contract method 0x861a1412.
+//
+// Solidity: function challengeWindow() view returns(uint256)
+func (_BrevisRequest *BrevisRequestCallerSession) ChallengeWindow() (*big.Int, error) {
+	return _BrevisRequest.Contract.ChallengeWindow(&_BrevisRequest.CallOpts)
+}
+
 // FeeCollector is a free data retrieval call binding the contract method 0xc415b95c.
 //
 // Solidity: function feeCollector() view returns(address)
@@ -7305,6 +6758,37 @@ func (_BrevisRequest *BrevisRequestSession) FeeCollector() (common.Address, erro
 // Solidity: function feeCollector() view returns(address)
 func (_BrevisRequest *BrevisRequestCallerSession) FeeCollector() (common.Address, error) {
 	return _BrevisRequest.Contract.FeeCollector(&_BrevisRequest.CallOpts)
+}
+
+// KeccakToMimc is a free data retrieval call binding the contract method 0x95d39656.
+//
+// Solidity: function keccakToMimc(bytes32 ) view returns(bytes32)
+func (_BrevisRequest *BrevisRequestCaller) KeccakToMimc(opts *bind.CallOpts, arg0 [32]byte) ([32]byte, error) {
+	var out []interface{}
+	err := _BrevisRequest.contract.Call(opts, &out, "keccakToMimc", arg0)
+
+	if err != nil {
+		return *new([32]byte), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
+
+	return out0, err
+
+}
+
+// KeccakToMimc is a free data retrieval call binding the contract method 0x95d39656.
+//
+// Solidity: function keccakToMimc(bytes32 ) view returns(bytes32)
+func (_BrevisRequest *BrevisRequestSession) KeccakToMimc(arg0 [32]byte) ([32]byte, error) {
+	return _BrevisRequest.Contract.KeccakToMimc(&_BrevisRequest.CallOpts, arg0)
+}
+
+// KeccakToMimc is a free data retrieval call binding the contract method 0x95d39656.
+//
+// Solidity: function keccakToMimc(bytes32 ) view returns(bytes32)
+func (_BrevisRequest *BrevisRequestCallerSession) KeccakToMimc(arg0 [32]byte) ([32]byte, error) {
+	return _BrevisRequest.Contract.KeccakToMimc(&_BrevisRequest.CallOpts, arg0)
 }
 
 // Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
@@ -7369,6 +6853,56 @@ func (_BrevisRequest *BrevisRequestCallerSession) QueryRequestStatus(_requestId 
 	return _BrevisRequest.Contract.QueryRequestStatus(&_BrevisRequest.CallOpts, _requestId)
 }
 
+// RequestExts is a free data retrieval call binding the contract method 0x00a731ed.
+//
+// Solidity: function requestExts(bytes32 ) view returns(uint256 canChallengeBefore, uint8 askFor, uint256 shouldRespondBefore)
+func (_BrevisRequest *BrevisRequestCaller) RequestExts(opts *bind.CallOpts, arg0 [32]byte) (struct {
+	CanChallengeBefore  *big.Int
+	AskFor              uint8
+	ShouldRespondBefore *big.Int
+}, error) {
+	var out []interface{}
+	err := _BrevisRequest.contract.Call(opts, &out, "requestExts", arg0)
+
+	outstruct := new(struct {
+		CanChallengeBefore  *big.Int
+		AskFor              uint8
+		ShouldRespondBefore *big.Int
+	})
+	if err != nil {
+		return *outstruct, err
+	}
+
+	outstruct.CanChallengeBefore = *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+	outstruct.AskFor = *abi.ConvertType(out[1], new(uint8)).(*uint8)
+	outstruct.ShouldRespondBefore = *abi.ConvertType(out[2], new(*big.Int)).(**big.Int)
+
+	return *outstruct, err
+
+}
+
+// RequestExts is a free data retrieval call binding the contract method 0x00a731ed.
+//
+// Solidity: function requestExts(bytes32 ) view returns(uint256 canChallengeBefore, uint8 askFor, uint256 shouldRespondBefore)
+func (_BrevisRequest *BrevisRequestSession) RequestExts(arg0 [32]byte) (struct {
+	CanChallengeBefore  *big.Int
+	AskFor              uint8
+	ShouldRespondBefore *big.Int
+}, error) {
+	return _BrevisRequest.Contract.RequestExts(&_BrevisRequest.CallOpts, arg0)
+}
+
+// RequestExts is a free data retrieval call binding the contract method 0x00a731ed.
+//
+// Solidity: function requestExts(bytes32 ) view returns(uint256 canChallengeBefore, uint8 askFor, uint256 shouldRespondBefore)
+func (_BrevisRequest *BrevisRequestCallerSession) RequestExts(arg0 [32]byte) (struct {
+	CanChallengeBefore  *big.Int
+	AskFor              uint8
+	ShouldRespondBefore *big.Int
+}, error) {
+	return _BrevisRequest.Contract.RequestExts(&_BrevisRequest.CallOpts, arg0)
+}
+
 // RequestTimeout is a free data retrieval call binding the contract method 0x3f20b4c9.
 //
 // Solidity: function requestTimeout() view returns(uint256)
@@ -7402,13 +6936,14 @@ func (_BrevisRequest *BrevisRequestCallerSession) RequestTimeout() (*big.Int, er
 
 // Requests is a free data retrieval call binding the contract method 0x9d866985.
 //
-// Solidity: function requests(bytes32 ) view returns(uint256 deadline, uint256 fee, address refundee, address callback, uint8 status)
+// Solidity: function requests(bytes32 ) view returns(uint256 deadline, uint256 fee, address refundee, address callback, uint8 status, uint8 option)
 func (_BrevisRequest *BrevisRequestCaller) Requests(opts *bind.CallOpts, arg0 [32]byte) (struct {
 	Deadline *big.Int
 	Fee      *big.Int
 	Refundee common.Address
 	Callback common.Address
 	Status   uint8
+	Option   uint8
 }, error) {
 	var out []interface{}
 	err := _BrevisRequest.contract.Call(opts, &out, "requests", arg0)
@@ -7419,6 +6954,7 @@ func (_BrevisRequest *BrevisRequestCaller) Requests(opts *bind.CallOpts, arg0 [3
 		Refundee common.Address
 		Callback common.Address
 		Status   uint8
+		Option   uint8
 	})
 	if err != nil {
 		return *outstruct, err
@@ -7429,6 +6965,7 @@ func (_BrevisRequest *BrevisRequestCaller) Requests(opts *bind.CallOpts, arg0 [3
 	outstruct.Refundee = *abi.ConvertType(out[2], new(common.Address)).(*common.Address)
 	outstruct.Callback = *abi.ConvertType(out[3], new(common.Address)).(*common.Address)
 	outstruct.Status = *abi.ConvertType(out[4], new(uint8)).(*uint8)
+	outstruct.Option = *abi.ConvertType(out[5], new(uint8)).(*uint8)
 
 	return *outstruct, err
 
@@ -7436,28 +6973,155 @@ func (_BrevisRequest *BrevisRequestCaller) Requests(opts *bind.CallOpts, arg0 [3
 
 // Requests is a free data retrieval call binding the contract method 0x9d866985.
 //
-// Solidity: function requests(bytes32 ) view returns(uint256 deadline, uint256 fee, address refundee, address callback, uint8 status)
+// Solidity: function requests(bytes32 ) view returns(uint256 deadline, uint256 fee, address refundee, address callback, uint8 status, uint8 option)
 func (_BrevisRequest *BrevisRequestSession) Requests(arg0 [32]byte) (struct {
 	Deadline *big.Int
 	Fee      *big.Int
 	Refundee common.Address
 	Callback common.Address
 	Status   uint8
+	Option   uint8
 }, error) {
 	return _BrevisRequest.Contract.Requests(&_BrevisRequest.CallOpts, arg0)
 }
 
 // Requests is a free data retrieval call binding the contract method 0x9d866985.
 //
-// Solidity: function requests(bytes32 ) view returns(uint256 deadline, uint256 fee, address refundee, address callback, uint8 status)
+// Solidity: function requests(bytes32 ) view returns(uint256 deadline, uint256 fee, address refundee, address callback, uint8 status, uint8 option)
 func (_BrevisRequest *BrevisRequestCallerSession) Requests(arg0 [32]byte) (struct {
 	Deadline *big.Int
 	Fee      *big.Int
 	Refundee common.Address
 	Callback common.Address
 	Status   uint8
+	Option   uint8
 }, error) {
 	return _BrevisRequest.Contract.Requests(&_BrevisRequest.CallOpts, arg0)
+}
+
+// ResponseTimeout is a free data retrieval call binding the contract method 0xa17ed96c.
+//
+// Solidity: function responseTimeout() view returns(uint256)
+func (_BrevisRequest *BrevisRequestCaller) ResponseTimeout(opts *bind.CallOpts) (*big.Int, error) {
+	var out []interface{}
+	err := _BrevisRequest.contract.Call(opts, &out, "responseTimeout")
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
+}
+
+// ResponseTimeout is a free data retrieval call binding the contract method 0xa17ed96c.
+//
+// Solidity: function responseTimeout() view returns(uint256)
+func (_BrevisRequest *BrevisRequestSession) ResponseTimeout() (*big.Int, error) {
+	return _BrevisRequest.Contract.ResponseTimeout(&_BrevisRequest.CallOpts)
+}
+
+// ResponseTimeout is a free data retrieval call binding the contract method 0xa17ed96c.
+//
+// Solidity: function responseTimeout() view returns(uint256)
+func (_BrevisRequest *BrevisRequestCallerSession) ResponseTimeout() (*big.Int, error) {
+	return _BrevisRequest.Contract.ResponseTimeout(&_BrevisRequest.CallOpts)
+}
+
+// SigsVerifier is a free data retrieval call binding the contract method 0xccf2683b.
+//
+// Solidity: function sigsVerifier() view returns(address)
+func (_BrevisRequest *BrevisRequestCaller) SigsVerifier(opts *bind.CallOpts) (common.Address, error) {
+	var out []interface{}
+	err := _BrevisRequest.contract.Call(opts, &out, "sigsVerifier")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
+}
+
+// SigsVerifier is a free data retrieval call binding the contract method 0xccf2683b.
+//
+// Solidity: function sigsVerifier() view returns(address)
+func (_BrevisRequest *BrevisRequestSession) SigsVerifier() (common.Address, error) {
+	return _BrevisRequest.Contract.SigsVerifier(&_BrevisRequest.CallOpts)
+}
+
+// SigsVerifier is a free data retrieval call binding the contract method 0xccf2683b.
+//
+// Solidity: function sigsVerifier() view returns(address)
+func (_BrevisRequest *BrevisRequestCallerSession) SigsVerifier() (common.Address, error) {
+	return _BrevisRequest.Contract.SigsVerifier(&_BrevisRequest.CallOpts)
+}
+
+// AskForProof is a paid mutator transaction binding the contract method 0x6db03b1d.
+//
+// Solidity: function askForProof(bytes32 _requestId) payable returns()
+func (_BrevisRequest *BrevisRequestTransactor) AskForProof(opts *bind.TransactOpts, _requestId [32]byte) (*types.Transaction, error) {
+	return _BrevisRequest.contract.Transact(opts, "askForProof", _requestId)
+}
+
+// AskForProof is a paid mutator transaction binding the contract method 0x6db03b1d.
+//
+// Solidity: function askForProof(bytes32 _requestId) payable returns()
+func (_BrevisRequest *BrevisRequestSession) AskForProof(_requestId [32]byte) (*types.Transaction, error) {
+	return _BrevisRequest.Contract.AskForProof(&_BrevisRequest.TransactOpts, _requestId)
+}
+
+// AskForProof is a paid mutator transaction binding the contract method 0x6db03b1d.
+//
+// Solidity: function askForProof(bytes32 _requestId) payable returns()
+func (_BrevisRequest *BrevisRequestTransactorSession) AskForProof(_requestId [32]byte) (*types.Transaction, error) {
+	return _BrevisRequest.Contract.AskForProof(&_BrevisRequest.TransactOpts, _requestId)
+}
+
+// AskForQueryData is a paid mutator transaction binding the contract method 0xa4514ff3.
+//
+// Solidity: function askForQueryData(bytes32 _requestId) payable returns()
+func (_BrevisRequest *BrevisRequestTransactor) AskForQueryData(opts *bind.TransactOpts, _requestId [32]byte) (*types.Transaction, error) {
+	return _BrevisRequest.contract.Transact(opts, "askForQueryData", _requestId)
+}
+
+// AskForQueryData is a paid mutator transaction binding the contract method 0xa4514ff3.
+//
+// Solidity: function askForQueryData(bytes32 _requestId) payable returns()
+func (_BrevisRequest *BrevisRequestSession) AskForQueryData(_requestId [32]byte) (*types.Transaction, error) {
+	return _BrevisRequest.Contract.AskForQueryData(&_BrevisRequest.TransactOpts, _requestId)
+}
+
+// AskForQueryData is a paid mutator transaction binding the contract method 0xa4514ff3.
+//
+// Solidity: function askForQueryData(bytes32 _requestId) payable returns()
+func (_BrevisRequest *BrevisRequestTransactorSession) AskForQueryData(_requestId [32]byte) (*types.Transaction, error) {
+	return _BrevisRequest.Contract.AskForQueryData(&_BrevisRequest.TransactOpts, _requestId)
+}
+
+// ChallengeQueryData is a paid mutator transaction binding the contract method 0x2763ce8a.
+//
+// Solidity: function challengeQueryData(bytes _proof) returns()
+func (_BrevisRequest *BrevisRequestTransactor) ChallengeQueryData(opts *bind.TransactOpts, _proof []byte) (*types.Transaction, error) {
+	return _BrevisRequest.contract.Transact(opts, "challengeQueryData", _proof)
+}
+
+// ChallengeQueryData is a paid mutator transaction binding the contract method 0x2763ce8a.
+//
+// Solidity: function challengeQueryData(bytes _proof) returns()
+func (_BrevisRequest *BrevisRequestSession) ChallengeQueryData(_proof []byte) (*types.Transaction, error) {
+	return _BrevisRequest.Contract.ChallengeQueryData(&_BrevisRequest.TransactOpts, _proof)
+}
+
+// ChallengeQueryData is a paid mutator transaction binding the contract method 0x2763ce8a.
+//
+// Solidity: function challengeQueryData(bytes _proof) returns()
+func (_BrevisRequest *BrevisRequestTransactorSession) ChallengeQueryData(_proof []byte) (*types.Transaction, error) {
+	return _BrevisRequest.Contract.ChallengeQueryData(&_BrevisRequest.TransactOpts, _proof)
 }
 
 // CollectFee is a paid mutator transaction binding the contract method 0x7ff7b0d2.
@@ -7502,25 +7166,88 @@ func (_BrevisRequest *BrevisRequestTransactorSession) FulfillAggRequests(_chainI
 	return _BrevisRequest.Contract.FulfillAggRequests(&_BrevisRequest.TransactOpts, _chainId, _requestIds, _proof, _proofDataArray, _appCircuitOutputs, _callback)
 }
 
-// FulfillRequest is a paid mutator transaction binding the contract method 0x6a961735.
+// FulfillOpRequests is a paid mutator transaction binding the contract method 0x5685fd67.
 //
-// Solidity: function fulfillRequest(bytes32 _requestId, uint64 _chainId, bytes _proof, bool _withAppProof, bytes _appCircuitOutput) returns()
-func (_BrevisRequest *BrevisRequestTransactor) FulfillRequest(opts *bind.TransactOpts, _requestId [32]byte, _chainId uint64, _proof []byte, _withAppProof bool, _appCircuitOutput []byte) (*types.Transaction, error) {
-	return _BrevisRequest.contract.Transact(opts, "fulfillRequest", _requestId, _chainId, _proof, _withAppProof, _appCircuitOutput)
+// Solidity: function fulfillOpRequests(bytes32[] _requestIds, bytes[] _queryURLs, bytes[] _sigs, address[] _signers, uint256[] _powers) returns()
+func (_BrevisRequest *BrevisRequestTransactor) FulfillOpRequests(opts *bind.TransactOpts, _requestIds [][32]byte, _queryURLs [][]byte, _sigs [][]byte, _signers []common.Address, _powers []*big.Int) (*types.Transaction, error) {
+	return _BrevisRequest.contract.Transact(opts, "fulfillOpRequests", _requestIds, _queryURLs, _sigs, _signers, _powers)
 }
 
-// FulfillRequest is a paid mutator transaction binding the contract method 0x6a961735.
+// FulfillOpRequests is a paid mutator transaction binding the contract method 0x5685fd67.
 //
-// Solidity: function fulfillRequest(bytes32 _requestId, uint64 _chainId, bytes _proof, bool _withAppProof, bytes _appCircuitOutput) returns()
-func (_BrevisRequest *BrevisRequestSession) FulfillRequest(_requestId [32]byte, _chainId uint64, _proof []byte, _withAppProof bool, _appCircuitOutput []byte) (*types.Transaction, error) {
-	return _BrevisRequest.Contract.FulfillRequest(&_BrevisRequest.TransactOpts, _requestId, _chainId, _proof, _withAppProof, _appCircuitOutput)
+// Solidity: function fulfillOpRequests(bytes32[] _requestIds, bytes[] _queryURLs, bytes[] _sigs, address[] _signers, uint256[] _powers) returns()
+func (_BrevisRequest *BrevisRequestSession) FulfillOpRequests(_requestIds [][32]byte, _queryURLs [][]byte, _sigs [][]byte, _signers []common.Address, _powers []*big.Int) (*types.Transaction, error) {
+	return _BrevisRequest.Contract.FulfillOpRequests(&_BrevisRequest.TransactOpts, _requestIds, _queryURLs, _sigs, _signers, _powers)
 }
 
-// FulfillRequest is a paid mutator transaction binding the contract method 0x6a961735.
+// FulfillOpRequests is a paid mutator transaction binding the contract method 0x5685fd67.
 //
-// Solidity: function fulfillRequest(bytes32 _requestId, uint64 _chainId, bytes _proof, bool _withAppProof, bytes _appCircuitOutput) returns()
-func (_BrevisRequest *BrevisRequestTransactorSession) FulfillRequest(_requestId [32]byte, _chainId uint64, _proof []byte, _withAppProof bool, _appCircuitOutput []byte) (*types.Transaction, error) {
-	return _BrevisRequest.Contract.FulfillRequest(&_BrevisRequest.TransactOpts, _requestId, _chainId, _proof, _withAppProof, _appCircuitOutput)
+// Solidity: function fulfillOpRequests(bytes32[] _requestIds, bytes[] _queryURLs, bytes[] _sigs, address[] _signers, uint256[] _powers) returns()
+func (_BrevisRequest *BrevisRequestTransactorSession) FulfillOpRequests(_requestIds [][32]byte, _queryURLs [][]byte, _sigs [][]byte, _signers []common.Address, _powers []*big.Int) (*types.Transaction, error) {
+	return _BrevisRequest.Contract.FulfillOpRequests(&_BrevisRequest.TransactOpts, _requestIds, _queryURLs, _sigs, _signers, _powers)
+}
+
+// FulfillRequest is a paid mutator transaction binding the contract method 0xda03667a.
+//
+// Solidity: function fulfillRequest(bytes32 _requestId, uint64 _chainId, bytes _proof, bytes _appCircuitOutput) returns()
+func (_BrevisRequest *BrevisRequestTransactor) FulfillRequest(opts *bind.TransactOpts, _requestId [32]byte, _chainId uint64, _proof []byte, _appCircuitOutput []byte) (*types.Transaction, error) {
+	return _BrevisRequest.contract.Transact(opts, "fulfillRequest", _requestId, _chainId, _proof, _appCircuitOutput)
+}
+
+// FulfillRequest is a paid mutator transaction binding the contract method 0xda03667a.
+//
+// Solidity: function fulfillRequest(bytes32 _requestId, uint64 _chainId, bytes _proof, bytes _appCircuitOutput) returns()
+func (_BrevisRequest *BrevisRequestSession) FulfillRequest(_requestId [32]byte, _chainId uint64, _proof []byte, _appCircuitOutput []byte) (*types.Transaction, error) {
+	return _BrevisRequest.Contract.FulfillRequest(&_BrevisRequest.TransactOpts, _requestId, _chainId, _proof, _appCircuitOutput)
+}
+
+// FulfillRequest is a paid mutator transaction binding the contract method 0xda03667a.
+//
+// Solidity: function fulfillRequest(bytes32 _requestId, uint64 _chainId, bytes _proof, bytes _appCircuitOutput) returns()
+func (_BrevisRequest *BrevisRequestTransactorSession) FulfillRequest(_requestId [32]byte, _chainId uint64, _proof []byte, _appCircuitOutput []byte) (*types.Transaction, error) {
+	return _BrevisRequest.Contract.FulfillRequest(&_BrevisRequest.TransactOpts, _requestId, _chainId, _proof, _appCircuitOutput)
+}
+
+// PostProof is a paid mutator transaction binding the contract method 0x61b9fd73.
+//
+// Solidity: function postProof(bytes32 _requestId, uint64 _chainId, bytes _proof) returns()
+func (_BrevisRequest *BrevisRequestTransactor) PostProof(opts *bind.TransactOpts, _requestId [32]byte, _chainId uint64, _proof []byte) (*types.Transaction, error) {
+	return _BrevisRequest.contract.Transact(opts, "postProof", _requestId, _chainId, _proof)
+}
+
+// PostProof is a paid mutator transaction binding the contract method 0x61b9fd73.
+//
+// Solidity: function postProof(bytes32 _requestId, uint64 _chainId, bytes _proof) returns()
+func (_BrevisRequest *BrevisRequestSession) PostProof(_requestId [32]byte, _chainId uint64, _proof []byte) (*types.Transaction, error) {
+	return _BrevisRequest.Contract.PostProof(&_BrevisRequest.TransactOpts, _requestId, _chainId, _proof)
+}
+
+// PostProof is a paid mutator transaction binding the contract method 0x61b9fd73.
+//
+// Solidity: function postProof(bytes32 _requestId, uint64 _chainId, bytes _proof) returns()
+func (_BrevisRequest *BrevisRequestTransactorSession) PostProof(_requestId [32]byte, _chainId uint64, _proof []byte) (*types.Transaction, error) {
+	return _BrevisRequest.Contract.PostProof(&_BrevisRequest.TransactOpts, _requestId, _chainId, _proof)
+}
+
+// PostQueryData is a paid mutator transaction binding the contract method 0x69c228a1.
+//
+// Solidity: function postQueryData(bytes32 _requestId, bytes _queryData) returns()
+func (_BrevisRequest *BrevisRequestTransactor) PostQueryData(opts *bind.TransactOpts, _requestId [32]byte, _queryData []byte) (*types.Transaction, error) {
+	return _BrevisRequest.contract.Transact(opts, "postQueryData", _requestId, _queryData)
+}
+
+// PostQueryData is a paid mutator transaction binding the contract method 0x69c228a1.
+//
+// Solidity: function postQueryData(bytes32 _requestId, bytes _queryData) returns()
+func (_BrevisRequest *BrevisRequestSession) PostQueryData(_requestId [32]byte, _queryData []byte) (*types.Transaction, error) {
+	return _BrevisRequest.Contract.PostQueryData(&_BrevisRequest.TransactOpts, _requestId, _queryData)
+}
+
+// PostQueryData is a paid mutator transaction binding the contract method 0x69c228a1.
+//
+// Solidity: function postQueryData(bytes32 _requestId, bytes _queryData) returns()
+func (_BrevisRequest *BrevisRequestTransactorSession) PostQueryData(_requestId [32]byte, _queryData []byte) (*types.Transaction, error) {
+	return _BrevisRequest.Contract.PostQueryData(&_BrevisRequest.TransactOpts, _requestId, _queryData)
 }
 
 // Refund is a paid mutator transaction binding the contract method 0x7249fbb6.
@@ -7565,25 +7292,46 @@ func (_BrevisRequest *BrevisRequestTransactorSession) RenounceOwnership() (*type
 	return _BrevisRequest.Contract.RenounceOwnership(&_BrevisRequest.TransactOpts)
 }
 
-// SendRequest is a paid mutator transaction binding the contract method 0xda47dc32.
+// SendRequest is a paid mutator transaction binding the contract method 0xf2a9c666.
 //
-// Solidity: function sendRequest(bytes32 _requestId, address _refundee, address _callback) payable returns()
-func (_BrevisRequest *BrevisRequestTransactor) SendRequest(opts *bind.TransactOpts, _requestId [32]byte, _refundee common.Address, _callback common.Address) (*types.Transaction, error) {
-	return _BrevisRequest.contract.Transact(opts, "sendRequest", _requestId, _refundee, _callback)
+// Solidity: function sendRequest(bytes32 _requestId, address _refundee, address _callback, uint8 _option) payable returns()
+func (_BrevisRequest *BrevisRequestTransactor) SendRequest(opts *bind.TransactOpts, _requestId [32]byte, _refundee common.Address, _callback common.Address, _option uint8) (*types.Transaction, error) {
+	return _BrevisRequest.contract.Transact(opts, "sendRequest", _requestId, _refundee, _callback, _option)
 }
 
-// SendRequest is a paid mutator transaction binding the contract method 0xda47dc32.
+// SendRequest is a paid mutator transaction binding the contract method 0xf2a9c666.
 //
-// Solidity: function sendRequest(bytes32 _requestId, address _refundee, address _callback) payable returns()
-func (_BrevisRequest *BrevisRequestSession) SendRequest(_requestId [32]byte, _refundee common.Address, _callback common.Address) (*types.Transaction, error) {
-	return _BrevisRequest.Contract.SendRequest(&_BrevisRequest.TransactOpts, _requestId, _refundee, _callback)
+// Solidity: function sendRequest(bytes32 _requestId, address _refundee, address _callback, uint8 _option) payable returns()
+func (_BrevisRequest *BrevisRequestSession) SendRequest(_requestId [32]byte, _refundee common.Address, _callback common.Address, _option uint8) (*types.Transaction, error) {
+	return _BrevisRequest.Contract.SendRequest(&_BrevisRequest.TransactOpts, _requestId, _refundee, _callback, _option)
 }
 
-// SendRequest is a paid mutator transaction binding the contract method 0xda47dc32.
+// SendRequest is a paid mutator transaction binding the contract method 0xf2a9c666.
 //
-// Solidity: function sendRequest(bytes32 _requestId, address _refundee, address _callback) payable returns()
-func (_BrevisRequest *BrevisRequestTransactorSession) SendRequest(_requestId [32]byte, _refundee common.Address, _callback common.Address) (*types.Transaction, error) {
-	return _BrevisRequest.Contract.SendRequest(&_BrevisRequest.TransactOpts, _requestId, _refundee, _callback)
+// Solidity: function sendRequest(bytes32 _requestId, address _refundee, address _callback, uint8 _option) payable returns()
+func (_BrevisRequest *BrevisRequestTransactorSession) SendRequest(_requestId [32]byte, _refundee common.Address, _callback common.Address, _option uint8) (*types.Transaction, error) {
+	return _BrevisRequest.Contract.SendRequest(&_BrevisRequest.TransactOpts, _requestId, _refundee, _callback, _option)
+}
+
+// SetChallengeWindow is a paid mutator transaction binding the contract method 0x01c1aa0d.
+//
+// Solidity: function setChallengeWindow(uint256 _challengeWindow) returns()
+func (_BrevisRequest *BrevisRequestTransactor) SetChallengeWindow(opts *bind.TransactOpts, _challengeWindow *big.Int) (*types.Transaction, error) {
+	return _BrevisRequest.contract.Transact(opts, "setChallengeWindow", _challengeWindow)
+}
+
+// SetChallengeWindow is a paid mutator transaction binding the contract method 0x01c1aa0d.
+//
+// Solidity: function setChallengeWindow(uint256 _challengeWindow) returns()
+func (_BrevisRequest *BrevisRequestSession) SetChallengeWindow(_challengeWindow *big.Int) (*types.Transaction, error) {
+	return _BrevisRequest.Contract.SetChallengeWindow(&_BrevisRequest.TransactOpts, _challengeWindow)
+}
+
+// SetChallengeWindow is a paid mutator transaction binding the contract method 0x01c1aa0d.
+//
+// Solidity: function setChallengeWindow(uint256 _challengeWindow) returns()
+func (_BrevisRequest *BrevisRequestTransactorSession) SetChallengeWindow(_challengeWindow *big.Int) (*types.Transaction, error) {
+	return _BrevisRequest.Contract.SetChallengeWindow(&_BrevisRequest.TransactOpts, _challengeWindow)
 }
 
 // SetFeeCollector is a paid mutator transaction binding the contract method 0xa42dce80.
@@ -7628,6 +7376,27 @@ func (_BrevisRequest *BrevisRequestTransactorSession) SetRequestTimeout(_timeout
 	return _BrevisRequest.Contract.SetRequestTimeout(&_BrevisRequest.TransactOpts, _timeout)
 }
 
+// SetResponseTimeout is a paid mutator transaction binding the contract method 0x69dc1903.
+//
+// Solidity: function setResponseTimeout(uint256 _responseTimeout) returns()
+func (_BrevisRequest *BrevisRequestTransactor) SetResponseTimeout(opts *bind.TransactOpts, _responseTimeout *big.Int) (*types.Transaction, error) {
+	return _BrevisRequest.contract.Transact(opts, "setResponseTimeout", _responseTimeout)
+}
+
+// SetResponseTimeout is a paid mutator transaction binding the contract method 0x69dc1903.
+//
+// Solidity: function setResponseTimeout(uint256 _responseTimeout) returns()
+func (_BrevisRequest *BrevisRequestSession) SetResponseTimeout(_responseTimeout *big.Int) (*types.Transaction, error) {
+	return _BrevisRequest.Contract.SetResponseTimeout(&_BrevisRequest.TransactOpts, _responseTimeout)
+}
+
+// SetResponseTimeout is a paid mutator transaction binding the contract method 0x69dc1903.
+//
+// Solidity: function setResponseTimeout(uint256 _responseTimeout) returns()
+func (_BrevisRequest *BrevisRequestTransactorSession) SetResponseTimeout(_responseTimeout *big.Int) (*types.Transaction, error) {
+	return _BrevisRequest.Contract.SetResponseTimeout(&_BrevisRequest.TransactOpts, _responseTimeout)
+}
+
 // TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
 //
 // Solidity: function transferOwnership(address newOwner) returns()
@@ -7668,6 +7437,287 @@ func (_BrevisRequest *BrevisRequestSession) Receive() (*types.Transaction, error
 // Solidity: receive() payable returns()
 func (_BrevisRequest *BrevisRequestTransactorSession) Receive() (*types.Transaction, error) {
 	return _BrevisRequest.Contract.Receive(&_BrevisRequest.TransactOpts)
+}
+
+// BrevisRequestAskForIterator is returned from FilterAskFor and is used to iterate over the raw logs and unpacked data for AskFor events raised by the BrevisRequest contract.
+type BrevisRequestAskForIterator struct {
+	Event *BrevisRequestAskFor // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *BrevisRequestAskForIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(BrevisRequestAskFor)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(BrevisRequestAskFor)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *BrevisRequestAskForIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *BrevisRequestAskForIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// BrevisRequestAskFor represents a AskFor event raised by the BrevisRequest contract.
+type BrevisRequestAskFor struct {
+	RequestId [32]byte
+	AskFor    uint8
+	From      common.Address
+	Raw       types.Log // Blockchain specific contextual infos
+}
+
+// FilterAskFor is a free log retrieval operation binding the contract event 0xe77f1579b66737e0839e75b8ee1a189f5b6b5d2e504090f76337ffde5903da3a.
+//
+// Solidity: event AskFor(bytes32 indexed requestId, uint8 askFor, address from)
+func (_BrevisRequest *BrevisRequestFilterer) FilterAskFor(opts *bind.FilterOpts, requestId [][32]byte) (*BrevisRequestAskForIterator, error) {
+
+	var requestIdRule []interface{}
+	for _, requestIdItem := range requestId {
+		requestIdRule = append(requestIdRule, requestIdItem)
+	}
+
+	logs, sub, err := _BrevisRequest.contract.FilterLogs(opts, "AskFor", requestIdRule)
+	if err != nil {
+		return nil, err
+	}
+	return &BrevisRequestAskForIterator{contract: _BrevisRequest.contract, event: "AskFor", logs: logs, sub: sub}, nil
+}
+
+// WatchAskFor is a free log subscription operation binding the contract event 0xe77f1579b66737e0839e75b8ee1a189f5b6b5d2e504090f76337ffde5903da3a.
+//
+// Solidity: event AskFor(bytes32 indexed requestId, uint8 askFor, address from)
+func (_BrevisRequest *BrevisRequestFilterer) WatchAskFor(opts *bind.WatchOpts, sink chan<- *BrevisRequestAskFor, requestId [][32]byte) (event.Subscription, error) {
+
+	var requestIdRule []interface{}
+	for _, requestIdItem := range requestId {
+		requestIdRule = append(requestIdRule, requestIdItem)
+	}
+
+	logs, sub, err := _BrevisRequest.contract.WatchLogs(opts, "AskFor", requestIdRule)
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(BrevisRequestAskFor)
+				if err := _BrevisRequest.contract.UnpackLog(event, "AskFor", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseAskFor is a log parse operation binding the contract event 0xe77f1579b66737e0839e75b8ee1a189f5b6b5d2e504090f76337ffde5903da3a.
+//
+// Solidity: event AskFor(bytes32 indexed requestId, uint8 askFor, address from)
+func (_BrevisRequest *BrevisRequestFilterer) ParseAskFor(log types.Log) (*BrevisRequestAskFor, error) {
+	event := new(BrevisRequestAskFor)
+	if err := _BrevisRequest.contract.UnpackLog(event, "AskFor", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// BrevisRequestChallengeWindowUpdatedIterator is returned from FilterChallengeWindowUpdated and is used to iterate over the raw logs and unpacked data for ChallengeWindowUpdated events raised by the BrevisRequest contract.
+type BrevisRequestChallengeWindowUpdatedIterator struct {
+	Event *BrevisRequestChallengeWindowUpdated // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *BrevisRequestChallengeWindowUpdatedIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(BrevisRequestChallengeWindowUpdated)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(BrevisRequestChallengeWindowUpdated)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *BrevisRequestChallengeWindowUpdatedIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *BrevisRequestChallengeWindowUpdatedIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// BrevisRequestChallengeWindowUpdated represents a ChallengeWindowUpdated event raised by the BrevisRequest contract.
+type BrevisRequestChallengeWindowUpdated struct {
+	From *big.Int
+	To   *big.Int
+	Raw  types.Log // Blockchain specific contextual infos
+}
+
+// FilterChallengeWindowUpdated is a free log retrieval operation binding the contract event 0xedb9338f4b0faf2b899d2d7f54b90753d2a8ebb34936e381edb91b091c3e45a7.
+//
+// Solidity: event ChallengeWindowUpdated(uint256 from, uint256 to)
+func (_BrevisRequest *BrevisRequestFilterer) FilterChallengeWindowUpdated(opts *bind.FilterOpts) (*BrevisRequestChallengeWindowUpdatedIterator, error) {
+
+	logs, sub, err := _BrevisRequest.contract.FilterLogs(opts, "ChallengeWindowUpdated")
+	if err != nil {
+		return nil, err
+	}
+	return &BrevisRequestChallengeWindowUpdatedIterator{contract: _BrevisRequest.contract, event: "ChallengeWindowUpdated", logs: logs, sub: sub}, nil
+}
+
+// WatchChallengeWindowUpdated is a free log subscription operation binding the contract event 0xedb9338f4b0faf2b899d2d7f54b90753d2a8ebb34936e381edb91b091c3e45a7.
+//
+// Solidity: event ChallengeWindowUpdated(uint256 from, uint256 to)
+func (_BrevisRequest *BrevisRequestFilterer) WatchChallengeWindowUpdated(opts *bind.WatchOpts, sink chan<- *BrevisRequestChallengeWindowUpdated) (event.Subscription, error) {
+
+	logs, sub, err := _BrevisRequest.contract.WatchLogs(opts, "ChallengeWindowUpdated")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(BrevisRequestChallengeWindowUpdated)
+				if err := _BrevisRequest.contract.UnpackLog(event, "ChallengeWindowUpdated", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseChallengeWindowUpdated is a log parse operation binding the contract event 0xedb9338f4b0faf2b899d2d7f54b90753d2a8ebb34936e381edb91b091c3e45a7.
+//
+// Solidity: event ChallengeWindowUpdated(uint256 from, uint256 to)
+func (_BrevisRequest *BrevisRequestFilterer) ParseChallengeWindowUpdated(log types.Log) (*BrevisRequestChallengeWindowUpdated, error) {
+	event := new(BrevisRequestChallengeWindowUpdated)
+	if err := _BrevisRequest.contract.UnpackLog(event, "ChallengeWindowUpdated", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
 }
 
 // BrevisRequestFeeCollectorUpdatedIterator is returned from FilterFeeCollectorUpdated and is used to iterate over the raw logs and unpacked data for FeeCollectorUpdated events raised by the BrevisRequest contract.
@@ -7799,6 +7849,141 @@ func (_BrevisRequest *BrevisRequestFilterer) WatchFeeCollectorUpdated(opts *bind
 func (_BrevisRequest *BrevisRequestFilterer) ParseFeeCollectorUpdated(log types.Log) (*BrevisRequestFeeCollectorUpdated, error) {
 	event := new(BrevisRequestFeeCollectorUpdated)
 	if err := _BrevisRequest.contract.UnpackLog(event, "FeeCollectorUpdated", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// BrevisRequestOpRequestsFulfilledIterator is returned from FilterOpRequestsFulfilled and is used to iterate over the raw logs and unpacked data for OpRequestsFulfilled events raised by the BrevisRequest contract.
+type BrevisRequestOpRequestsFulfilledIterator struct {
+	Event *BrevisRequestOpRequestsFulfilled // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *BrevisRequestOpRequestsFulfilledIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(BrevisRequestOpRequestsFulfilled)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(BrevisRequestOpRequestsFulfilled)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *BrevisRequestOpRequestsFulfilledIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *BrevisRequestOpRequestsFulfilledIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// BrevisRequestOpRequestsFulfilled represents a OpRequestsFulfilled event raised by the BrevisRequest contract.
+type BrevisRequestOpRequestsFulfilled struct {
+	RequestIds [][32]byte
+	QueryURLs  [][]byte
+	Raw        types.Log // Blockchain specific contextual infos
+}
+
+// FilterOpRequestsFulfilled is a free log retrieval operation binding the contract event 0xa1c3ef280bbac31181188d4beffe370ebae03e08d58a3aa4832b107d540c0a83.
+//
+// Solidity: event OpRequestsFulfilled(bytes32[] requestIds, bytes[] queryURLs)
+func (_BrevisRequest *BrevisRequestFilterer) FilterOpRequestsFulfilled(opts *bind.FilterOpts) (*BrevisRequestOpRequestsFulfilledIterator, error) {
+
+	logs, sub, err := _BrevisRequest.contract.FilterLogs(opts, "OpRequestsFulfilled")
+	if err != nil {
+		return nil, err
+	}
+	return &BrevisRequestOpRequestsFulfilledIterator{contract: _BrevisRequest.contract, event: "OpRequestsFulfilled", logs: logs, sub: sub}, nil
+}
+
+// WatchOpRequestsFulfilled is a free log subscription operation binding the contract event 0xa1c3ef280bbac31181188d4beffe370ebae03e08d58a3aa4832b107d540c0a83.
+//
+// Solidity: event OpRequestsFulfilled(bytes32[] requestIds, bytes[] queryURLs)
+func (_BrevisRequest *BrevisRequestFilterer) WatchOpRequestsFulfilled(opts *bind.WatchOpts, sink chan<- *BrevisRequestOpRequestsFulfilled) (event.Subscription, error) {
+
+	logs, sub, err := _BrevisRequest.contract.WatchLogs(opts, "OpRequestsFulfilled")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(BrevisRequestOpRequestsFulfilled)
+				if err := _BrevisRequest.contract.UnpackLog(event, "OpRequestsFulfilled", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseOpRequestsFulfilled is a log parse operation binding the contract event 0xa1c3ef280bbac31181188d4beffe370ebae03e08d58a3aa4832b107d540c0a83.
+//
+// Solidity: event OpRequestsFulfilled(bytes32[] requestIds, bytes[] queryURLs)
+func (_BrevisRequest *BrevisRequestFilterer) ParseOpRequestsFulfilled(log types.Log) (*BrevisRequestOpRequestsFulfilled, error) {
+	event := new(BrevisRequestOpRequestsFulfilled)
+	if err := _BrevisRequest.contract.UnpackLog(event, "OpRequestsFulfilled", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
@@ -7958,6 +8143,428 @@ func (_BrevisRequest *BrevisRequestFilterer) ParseOwnershipTransferred(log types
 	return event, nil
 }
 
+// BrevisRequestProofPostIterator is returned from FilterProofPost and is used to iterate over the raw logs and unpacked data for ProofPost events raised by the BrevisRequest contract.
+type BrevisRequestProofPostIterator struct {
+	Event *BrevisRequestProofPost // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *BrevisRequestProofPostIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(BrevisRequestProofPost)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(BrevisRequestProofPost)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *BrevisRequestProofPostIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *BrevisRequestProofPostIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// BrevisRequestProofPost represents a ProofPost event raised by the BrevisRequest contract.
+type BrevisRequestProofPost struct {
+	RequestId [32]byte
+	Raw       types.Log // Blockchain specific contextual infos
+}
+
+// FilterProofPost is a free log retrieval operation binding the contract event 0x799191eb766b210bea2d9052b39f21140ed9fbf3ff2fe5102fbd6bb5bc134e3e.
+//
+// Solidity: event ProofPost(bytes32 indexed requestId)
+func (_BrevisRequest *BrevisRequestFilterer) FilterProofPost(opts *bind.FilterOpts, requestId [][32]byte) (*BrevisRequestProofPostIterator, error) {
+
+	var requestIdRule []interface{}
+	for _, requestIdItem := range requestId {
+		requestIdRule = append(requestIdRule, requestIdItem)
+	}
+
+	logs, sub, err := _BrevisRequest.contract.FilterLogs(opts, "ProofPost", requestIdRule)
+	if err != nil {
+		return nil, err
+	}
+	return &BrevisRequestProofPostIterator{contract: _BrevisRequest.contract, event: "ProofPost", logs: logs, sub: sub}, nil
+}
+
+// WatchProofPost is a free log subscription operation binding the contract event 0x799191eb766b210bea2d9052b39f21140ed9fbf3ff2fe5102fbd6bb5bc134e3e.
+//
+// Solidity: event ProofPost(bytes32 indexed requestId)
+func (_BrevisRequest *BrevisRequestFilterer) WatchProofPost(opts *bind.WatchOpts, sink chan<- *BrevisRequestProofPost, requestId [][32]byte) (event.Subscription, error) {
+
+	var requestIdRule []interface{}
+	for _, requestIdItem := range requestId {
+		requestIdRule = append(requestIdRule, requestIdItem)
+	}
+
+	logs, sub, err := _BrevisRequest.contract.WatchLogs(opts, "ProofPost", requestIdRule)
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(BrevisRequestProofPost)
+				if err := _BrevisRequest.contract.UnpackLog(event, "ProofPost", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseProofPost is a log parse operation binding the contract event 0x799191eb766b210bea2d9052b39f21140ed9fbf3ff2fe5102fbd6bb5bc134e3e.
+//
+// Solidity: event ProofPost(bytes32 indexed requestId)
+func (_BrevisRequest *BrevisRequestFilterer) ParseProofPost(log types.Log) (*BrevisRequestProofPost, error) {
+	event := new(BrevisRequestProofPost)
+	if err := _BrevisRequest.contract.UnpackLog(event, "ProofPost", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// BrevisRequestQueryDataPostIterator is returned from FilterQueryDataPost and is used to iterate over the raw logs and unpacked data for QueryDataPost events raised by the BrevisRequest contract.
+type BrevisRequestQueryDataPostIterator struct {
+	Event *BrevisRequestQueryDataPost // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *BrevisRequestQueryDataPostIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(BrevisRequestQueryDataPost)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(BrevisRequestQueryDataPost)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *BrevisRequestQueryDataPostIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *BrevisRequestQueryDataPostIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// BrevisRequestQueryDataPost represents a QueryDataPost event raised by the BrevisRequest contract.
+type BrevisRequestQueryDataPost struct {
+	RequestId [32]byte
+	Raw       types.Log // Blockchain specific contextual infos
+}
+
+// FilterQueryDataPost is a free log retrieval operation binding the contract event 0xe4e1e2afaa20a4e7e37593d3fb41a91d496a30ea2b7ccf67a9aa9450e74af4f0.
+//
+// Solidity: event QueryDataPost(bytes32 indexed requestId)
+func (_BrevisRequest *BrevisRequestFilterer) FilterQueryDataPost(opts *bind.FilterOpts, requestId [][32]byte) (*BrevisRequestQueryDataPostIterator, error) {
+
+	var requestIdRule []interface{}
+	for _, requestIdItem := range requestId {
+		requestIdRule = append(requestIdRule, requestIdItem)
+	}
+
+	logs, sub, err := _BrevisRequest.contract.FilterLogs(opts, "QueryDataPost", requestIdRule)
+	if err != nil {
+		return nil, err
+	}
+	return &BrevisRequestQueryDataPostIterator{contract: _BrevisRequest.contract, event: "QueryDataPost", logs: logs, sub: sub}, nil
+}
+
+// WatchQueryDataPost is a free log subscription operation binding the contract event 0xe4e1e2afaa20a4e7e37593d3fb41a91d496a30ea2b7ccf67a9aa9450e74af4f0.
+//
+// Solidity: event QueryDataPost(bytes32 indexed requestId)
+func (_BrevisRequest *BrevisRequestFilterer) WatchQueryDataPost(opts *bind.WatchOpts, sink chan<- *BrevisRequestQueryDataPost, requestId [][32]byte) (event.Subscription, error) {
+
+	var requestIdRule []interface{}
+	for _, requestIdItem := range requestId {
+		requestIdRule = append(requestIdRule, requestIdItem)
+	}
+
+	logs, sub, err := _BrevisRequest.contract.WatchLogs(opts, "QueryDataPost", requestIdRule)
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(BrevisRequestQueryDataPost)
+				if err := _BrevisRequest.contract.UnpackLog(event, "QueryDataPost", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseQueryDataPost is a log parse operation binding the contract event 0xe4e1e2afaa20a4e7e37593d3fb41a91d496a30ea2b7ccf67a9aa9450e74af4f0.
+//
+// Solidity: event QueryDataPost(bytes32 indexed requestId)
+func (_BrevisRequest *BrevisRequestFilterer) ParseQueryDataPost(log types.Log) (*BrevisRequestQueryDataPost, error) {
+	event := new(BrevisRequestQueryDataPost)
+	if err := _BrevisRequest.contract.UnpackLog(event, "QueryDataPost", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// BrevisRequestRequestCallbackFailedIterator is returned from FilterRequestCallbackFailed and is used to iterate over the raw logs and unpacked data for RequestCallbackFailed events raised by the BrevisRequest contract.
+type BrevisRequestRequestCallbackFailedIterator struct {
+	Event *BrevisRequestRequestCallbackFailed // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *BrevisRequestRequestCallbackFailedIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(BrevisRequestRequestCallbackFailed)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(BrevisRequestRequestCallbackFailed)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *BrevisRequestRequestCallbackFailedIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *BrevisRequestRequestCallbackFailedIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// BrevisRequestRequestCallbackFailed represents a RequestCallbackFailed event raised by the BrevisRequest contract.
+type BrevisRequestRequestCallbackFailed struct {
+	RequestId [32]byte
+	Raw       types.Log // Blockchain specific contextual infos
+}
+
+// FilterRequestCallbackFailed is a free log retrieval operation binding the contract event 0xf9e9ac125efc63eaa0638c58fd8a1ab11673bae30202f01909611e4ebdbe9b4e.
+//
+// Solidity: event RequestCallbackFailed(bytes32 requestId)
+func (_BrevisRequest *BrevisRequestFilterer) FilterRequestCallbackFailed(opts *bind.FilterOpts) (*BrevisRequestRequestCallbackFailedIterator, error) {
+
+	logs, sub, err := _BrevisRequest.contract.FilterLogs(opts, "RequestCallbackFailed")
+	if err != nil {
+		return nil, err
+	}
+	return &BrevisRequestRequestCallbackFailedIterator{contract: _BrevisRequest.contract, event: "RequestCallbackFailed", logs: logs, sub: sub}, nil
+}
+
+// WatchRequestCallbackFailed is a free log subscription operation binding the contract event 0xf9e9ac125efc63eaa0638c58fd8a1ab11673bae30202f01909611e4ebdbe9b4e.
+//
+// Solidity: event RequestCallbackFailed(bytes32 requestId)
+func (_BrevisRequest *BrevisRequestFilterer) WatchRequestCallbackFailed(opts *bind.WatchOpts, sink chan<- *BrevisRequestRequestCallbackFailed) (event.Subscription, error) {
+
+	logs, sub, err := _BrevisRequest.contract.WatchLogs(opts, "RequestCallbackFailed")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(BrevisRequestRequestCallbackFailed)
+				if err := _BrevisRequest.contract.UnpackLog(event, "RequestCallbackFailed", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseRequestCallbackFailed is a log parse operation binding the contract event 0xf9e9ac125efc63eaa0638c58fd8a1ab11673bae30202f01909611e4ebdbe9b4e.
+//
+// Solidity: event RequestCallbackFailed(bytes32 requestId)
+func (_BrevisRequest *BrevisRequestFilterer) ParseRequestCallbackFailed(log types.Log) (*BrevisRequestRequestCallbackFailed, error) {
+	event := new(BrevisRequestRequestCallbackFailed)
+	if err := _BrevisRequest.contract.UnpackLog(event, "RequestCallbackFailed", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
 // BrevisRequestRequestFulfilledIterator is returned from FilterRequestFulfilled and is used to iterate over the raw logs and unpacked data for RequestFulfilled events raised by the BrevisRequest contract.
 type BrevisRequestRequestFulfilledIterator struct {
 	Event *BrevisRequestRequestFulfilled // Event containing the contract specifics and raw log
@@ -8092,6 +8699,140 @@ func (_BrevisRequest *BrevisRequestFilterer) ParseRequestFulfilled(log types.Log
 	return event, nil
 }
 
+// BrevisRequestRequestRefundedIterator is returned from FilterRequestRefunded and is used to iterate over the raw logs and unpacked data for RequestRefunded events raised by the BrevisRequest contract.
+type BrevisRequestRequestRefundedIterator struct {
+	Event *BrevisRequestRequestRefunded // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *BrevisRequestRequestRefundedIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(BrevisRequestRequestRefunded)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(BrevisRequestRequestRefunded)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *BrevisRequestRequestRefundedIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *BrevisRequestRequestRefundedIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// BrevisRequestRequestRefunded represents a RequestRefunded event raised by the BrevisRequest contract.
+type BrevisRequestRequestRefunded struct {
+	RequestId [32]byte
+	Raw       types.Log // Blockchain specific contextual infos
+}
+
+// FilterRequestRefunded is a free log retrieval operation binding the contract event 0xfea410cb461deba9fe807dde02d6641d82e1bf09ecc88ecfa0f2ffadf2a1fdfe.
+//
+// Solidity: event RequestRefunded(bytes32 requestId)
+func (_BrevisRequest *BrevisRequestFilterer) FilterRequestRefunded(opts *bind.FilterOpts) (*BrevisRequestRequestRefundedIterator, error) {
+
+	logs, sub, err := _BrevisRequest.contract.FilterLogs(opts, "RequestRefunded")
+	if err != nil {
+		return nil, err
+	}
+	return &BrevisRequestRequestRefundedIterator{contract: _BrevisRequest.contract, event: "RequestRefunded", logs: logs, sub: sub}, nil
+}
+
+// WatchRequestRefunded is a free log subscription operation binding the contract event 0xfea410cb461deba9fe807dde02d6641d82e1bf09ecc88ecfa0f2ffadf2a1fdfe.
+//
+// Solidity: event RequestRefunded(bytes32 requestId)
+func (_BrevisRequest *BrevisRequestFilterer) WatchRequestRefunded(opts *bind.WatchOpts, sink chan<- *BrevisRequestRequestRefunded) (event.Subscription, error) {
+
+	logs, sub, err := _BrevisRequest.contract.WatchLogs(opts, "RequestRefunded")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(BrevisRequestRequestRefunded)
+				if err := _BrevisRequest.contract.UnpackLog(event, "RequestRefunded", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseRequestRefunded is a log parse operation binding the contract event 0xfea410cb461deba9fe807dde02d6641d82e1bf09ecc88ecfa0f2ffadf2a1fdfe.
+//
+// Solidity: event RequestRefunded(bytes32 requestId)
+func (_BrevisRequest *BrevisRequestFilterer) ParseRequestRefunded(log types.Log) (*BrevisRequestRequestRefunded, error) {
+	event := new(BrevisRequestRequestRefunded)
+	if err := _BrevisRequest.contract.UnpackLog(event, "RequestRefunded", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
 // BrevisRequestRequestSentIterator is returned from FilterRequestSent and is used to iterate over the raw logs and unpacked data for RequestSent events raised by the BrevisRequest contract.
 type BrevisRequestRequestSentIterator struct {
 	Event *BrevisRequestRequestSent // Event containing the contract specifics and raw log
@@ -8165,12 +8906,13 @@ type BrevisRequestRequestSent struct {
 	Sender    common.Address
 	Fee       *big.Int
 	Callback  common.Address
+	Option    uint8
 	Raw       types.Log // Blockchain specific contextual infos
 }
 
-// FilterRequestSent is a free log retrieval operation binding the contract event 0x4eede03ca33645529b4d82428b024149165298c901cf7453f68eb43bd3d3b658.
+// FilterRequestSent is a free log retrieval operation binding the contract event 0x8351e4cc62a96a972da26714bfbb019926334976bb613c36e0dc72b69cf8f564.
 //
-// Solidity: event RequestSent(bytes32 requestId, address sender, uint256 fee, address callback)
+// Solidity: event RequestSent(bytes32 requestId, address sender, uint256 fee, address callback, uint8 option)
 func (_BrevisRequest *BrevisRequestFilterer) FilterRequestSent(opts *bind.FilterOpts) (*BrevisRequestRequestSentIterator, error) {
 
 	logs, sub, err := _BrevisRequest.contract.FilterLogs(opts, "RequestSent")
@@ -8180,9 +8922,9 @@ func (_BrevisRequest *BrevisRequestFilterer) FilterRequestSent(opts *bind.Filter
 	return &BrevisRequestRequestSentIterator{contract: _BrevisRequest.contract, event: "RequestSent", logs: logs, sub: sub}, nil
 }
 
-// WatchRequestSent is a free log subscription operation binding the contract event 0x4eede03ca33645529b4d82428b024149165298c901cf7453f68eb43bd3d3b658.
+// WatchRequestSent is a free log subscription operation binding the contract event 0x8351e4cc62a96a972da26714bfbb019926334976bb613c36e0dc72b69cf8f564.
 //
-// Solidity: event RequestSent(bytes32 requestId, address sender, uint256 fee, address callback)
+// Solidity: event RequestSent(bytes32 requestId, address sender, uint256 fee, address callback, uint8 option)
 func (_BrevisRequest *BrevisRequestFilterer) WatchRequestSent(opts *bind.WatchOpts, sink chan<- *BrevisRequestRequestSent) (event.Subscription, error) {
 
 	logs, sub, err := _BrevisRequest.contract.WatchLogs(opts, "RequestSent")
@@ -8217,9 +8959,9 @@ func (_BrevisRequest *BrevisRequestFilterer) WatchRequestSent(opts *bind.WatchOp
 	}), nil
 }
 
-// ParseRequestSent is a log parse operation binding the contract event 0x4eede03ca33645529b4d82428b024149165298c901cf7453f68eb43bd3d3b658.
+// ParseRequestSent is a log parse operation binding the contract event 0x8351e4cc62a96a972da26714bfbb019926334976bb613c36e0dc72b69cf8f564.
 //
-// Solidity: event RequestSent(bytes32 requestId, address sender, uint256 fee, address callback)
+// Solidity: event RequestSent(bytes32 requestId, address sender, uint256 fee, address callback, uint8 option)
 func (_BrevisRequest *BrevisRequestFilterer) ParseRequestSent(log types.Log) (*BrevisRequestRequestSent, error) {
 	event := new(BrevisRequestRequestSent)
 	if err := _BrevisRequest.contract.UnpackLog(event, "RequestSent", log); err != nil {
@@ -8364,6 +9106,140 @@ func (_BrevisRequest *BrevisRequestFilterer) ParseRequestTimeoutUpdated(log type
 	return event, nil
 }
 
+// BrevisRequestRequestsCallbackFailedIterator is returned from FilterRequestsCallbackFailed and is used to iterate over the raw logs and unpacked data for RequestsCallbackFailed events raised by the BrevisRequest contract.
+type BrevisRequestRequestsCallbackFailedIterator struct {
+	Event *BrevisRequestRequestsCallbackFailed // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *BrevisRequestRequestsCallbackFailedIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(BrevisRequestRequestsCallbackFailed)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(BrevisRequestRequestsCallbackFailed)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *BrevisRequestRequestsCallbackFailedIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *BrevisRequestRequestsCallbackFailedIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// BrevisRequestRequestsCallbackFailed represents a RequestsCallbackFailed event raised by the BrevisRequest contract.
+type BrevisRequestRequestsCallbackFailed struct {
+	RequestIds [][32]byte
+	Raw        types.Log // Blockchain specific contextual infos
+}
+
+// FilterRequestsCallbackFailed is a free log retrieval operation binding the contract event 0xa27ac73d985dc053bec967c59a530feb90be0582343095d7b85ec7e7c3fef208.
+//
+// Solidity: event RequestsCallbackFailed(bytes32[] requestIds)
+func (_BrevisRequest *BrevisRequestFilterer) FilterRequestsCallbackFailed(opts *bind.FilterOpts) (*BrevisRequestRequestsCallbackFailedIterator, error) {
+
+	logs, sub, err := _BrevisRequest.contract.FilterLogs(opts, "RequestsCallbackFailed")
+	if err != nil {
+		return nil, err
+	}
+	return &BrevisRequestRequestsCallbackFailedIterator{contract: _BrevisRequest.contract, event: "RequestsCallbackFailed", logs: logs, sub: sub}, nil
+}
+
+// WatchRequestsCallbackFailed is a free log subscription operation binding the contract event 0xa27ac73d985dc053bec967c59a530feb90be0582343095d7b85ec7e7c3fef208.
+//
+// Solidity: event RequestsCallbackFailed(bytes32[] requestIds)
+func (_BrevisRequest *BrevisRequestFilterer) WatchRequestsCallbackFailed(opts *bind.WatchOpts, sink chan<- *BrevisRequestRequestsCallbackFailed) (event.Subscription, error) {
+
+	logs, sub, err := _BrevisRequest.contract.WatchLogs(opts, "RequestsCallbackFailed")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(BrevisRequestRequestsCallbackFailed)
+				if err := _BrevisRequest.contract.UnpackLog(event, "RequestsCallbackFailed", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseRequestsCallbackFailed is a log parse operation binding the contract event 0xa27ac73d985dc053bec967c59a530feb90be0582343095d7b85ec7e7c3fef208.
+//
+// Solidity: event RequestsCallbackFailed(bytes32[] requestIds)
+func (_BrevisRequest *BrevisRequestFilterer) ParseRequestsCallbackFailed(log types.Log) (*BrevisRequestRequestsCallbackFailed, error) {
+	event := new(BrevisRequestRequestsCallbackFailed)
+	if err := _BrevisRequest.contract.UnpackLog(event, "RequestsCallbackFailed", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
 // BrevisRequestRequestsFulfilledIterator is returned from FilterRequestsFulfilled and is used to iterate over the raw logs and unpacked data for RequestsFulfilled events raised by the BrevisRequest contract.
 type BrevisRequestRequestsFulfilledIterator struct {
 	Event *BrevisRequestRequestsFulfilled // Event containing the contract specifics and raw log
@@ -8492,6 +9368,141 @@ func (_BrevisRequest *BrevisRequestFilterer) WatchRequestsFulfilled(opts *bind.W
 func (_BrevisRequest *BrevisRequestFilterer) ParseRequestsFulfilled(log types.Log) (*BrevisRequestRequestsFulfilled, error) {
 	event := new(BrevisRequestRequestsFulfilled)
 	if err := _BrevisRequest.contract.UnpackLog(event, "RequestsFulfilled", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// BrevisRequestResponseTimeoutUpdatedIterator is returned from FilterResponseTimeoutUpdated and is used to iterate over the raw logs and unpacked data for ResponseTimeoutUpdated events raised by the BrevisRequest contract.
+type BrevisRequestResponseTimeoutUpdatedIterator struct {
+	Event *BrevisRequestResponseTimeoutUpdated // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *BrevisRequestResponseTimeoutUpdatedIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(BrevisRequestResponseTimeoutUpdated)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(BrevisRequestResponseTimeoutUpdated)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *BrevisRequestResponseTimeoutUpdatedIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *BrevisRequestResponseTimeoutUpdatedIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// BrevisRequestResponseTimeoutUpdated represents a ResponseTimeoutUpdated event raised by the BrevisRequest contract.
+type BrevisRequestResponseTimeoutUpdated struct {
+	From *big.Int
+	To   *big.Int
+	Raw  types.Log // Blockchain specific contextual infos
+}
+
+// FilterResponseTimeoutUpdated is a free log retrieval operation binding the contract event 0x86fe7fc31f35681a1ed77325f0cf24935a5d25b1861e7ce9ceed9cb67f222270.
+//
+// Solidity: event ResponseTimeoutUpdated(uint256 from, uint256 to)
+func (_BrevisRequest *BrevisRequestFilterer) FilterResponseTimeoutUpdated(opts *bind.FilterOpts) (*BrevisRequestResponseTimeoutUpdatedIterator, error) {
+
+	logs, sub, err := _BrevisRequest.contract.FilterLogs(opts, "ResponseTimeoutUpdated")
+	if err != nil {
+		return nil, err
+	}
+	return &BrevisRequestResponseTimeoutUpdatedIterator{contract: _BrevisRequest.contract, event: "ResponseTimeoutUpdated", logs: logs, sub: sub}, nil
+}
+
+// WatchResponseTimeoutUpdated is a free log subscription operation binding the contract event 0x86fe7fc31f35681a1ed77325f0cf24935a5d25b1861e7ce9ceed9cb67f222270.
+//
+// Solidity: event ResponseTimeoutUpdated(uint256 from, uint256 to)
+func (_BrevisRequest *BrevisRequestFilterer) WatchResponseTimeoutUpdated(opts *bind.WatchOpts, sink chan<- *BrevisRequestResponseTimeoutUpdated) (event.Subscription, error) {
+
+	logs, sub, err := _BrevisRequest.contract.WatchLogs(opts, "ResponseTimeoutUpdated")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(BrevisRequestResponseTimeoutUpdated)
+				if err := _BrevisRequest.contract.UnpackLog(event, "ResponseTimeoutUpdated", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseResponseTimeoutUpdated is a log parse operation binding the contract event 0x86fe7fc31f35681a1ed77325f0cf24935a5d25b1861e7ce9ceed9cb67f222270.
+//
+// Solidity: event ResponseTimeoutUpdated(uint256 from, uint256 to)
+func (_BrevisRequest *BrevisRequestFilterer) ParseResponseTimeoutUpdated(log types.Log) (*BrevisRequestResponseTimeoutUpdated, error) {
+	event := new(BrevisRequestResponseTimeoutUpdated)
+	if err := _BrevisRequest.contract.UnpackLog(event, "ResponseTimeoutUpdated", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
@@ -15212,7 +16223,7 @@ func (_IBrevisApp *IBrevisAppTransactorSession) BrevisCallback(_requestId [32]by
 
 // IBrevisProofMetaData contains all meta data concerning the IBrevisProof contract.
 var IBrevisProofMetaData = &bind.MetaData{
-	ABI: "[{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"}],\"name\":\"getProofAppData\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"}],\"name\":\"getProofData\",\"outputs\":[{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"commitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"vkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appCommitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appVkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"smtRoot\",\"type\":\"bytes32\"}],\"internalType\":\"structBrevis.ProofData\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"}],\"name\":\"hasProof\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"internalType\":\"bytes32[]\",\"name\":\"_requestIds\",\"type\":\"bytes32[]\"},{\"internalType\":\"bytes\",\"name\":\"_proofWithPubInputs\",\"type\":\"bytes\"}],\"name\":\"mustSubmitAggProof\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"commitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"vkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appCommitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appVkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"smtRoot\",\"type\":\"bytes32\"}],\"internalType\":\"structBrevis.ProofData\",\"name\":\"_proofData\",\"type\":\"tuple\"},{\"internalType\":\"bytes32\",\"name\":\"_merkleRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32[]\",\"name\":\"_merkleProof\",\"type\":\"bytes32[]\"},{\"internalType\":\"bool\",\"name\":\"_isLeftSide\",\"type\":\"bool\"}],\"name\":\"mustValidateRequest\",\"outputs\":[],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"commitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"vkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appCommitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appVkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"smtRoot\",\"type\":\"bytes32\"}],\"internalType\":\"structBrevis.ProofData[]\",\"name\":\"_proofDataArray\",\"type\":\"tuple[]\"}],\"name\":\"mustValidateRequests\",\"outputs\":[],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"internalType\":\"bytes\",\"name\":\"_proofWithPubInputs\",\"type\":\"bytes\"},{\"internalType\":\"bool\",\"name\":\"_withAppProof\",\"type\":\"bool\"}],\"name\":\"submitProof\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"},{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"smtRoot\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"uint64\",\"name\":\"blkNum\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"receiptIndex\",\"type\":\"uint64\"},{\"components\":[{\"components\":[{\"internalType\":\"uint8\",\"name\":\"valueFromTopic\",\"type\":\"uint8\"},{\"internalType\":\"uint64\",\"name\":\"valueIndex\",\"type\":\"uint64\"},{\"internalType\":\"address\",\"name\":\"contractAddress\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"logTopic0\",\"type\":\"bytes32\"}],\"internalType\":\"structBrevis.LogExtraInfo\",\"name\":\"logExtraInfo\",\"type\":\"tuple\"},{\"internalType\":\"uint64\",\"name\":\"logIndex\",\"type\":\"uint64\"},{\"internalType\":\"bytes32\",\"name\":\"value\",\"type\":\"bytes32\"}],\"internalType\":\"structBrevis.LogInfo[5]\",\"name\":\"logs\",\"type\":\"tuple[5]\"}],\"internalType\":\"structBrevis.ReceiptInfo[]\",\"name\":\"receipts\",\"type\":\"tuple[]\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"blockHash\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"slot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"slotValue\",\"type\":\"bytes32\"},{\"internalType\":\"uint64\",\"name\":\"blockNumber\",\"type\":\"uint64\"}],\"internalType\":\"structBrevis.StorageInfo[]\",\"name\":\"stores\",\"type\":\"tuple[]\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"leafHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"blockHash\",\"type\":\"bytes32\"},{\"internalType\":\"uint64\",\"name\":\"blockNumber\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"blockTime\",\"type\":\"uint64\"},{\"internalType\":\"bytes\",\"name\":\"leafRlpPrefix\",\"type\":\"bytes\"}],\"internalType\":\"structBrevis.TransactionInfo[]\",\"name\":\"txs\",\"type\":\"tuple[]\"}],\"internalType\":\"structBrevis.ExtractInfos\",\"name\":\"_info\",\"type\":\"tuple\"}],\"name\":\"validateRequest\",\"outputs\":[],\"stateMutability\":\"view\",\"type\":\"function\"}]",
+	ABI: "[{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"}],\"name\":\"getProofAppData\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"}],\"name\":\"hasProof\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"internalType\":\"bytes32[]\",\"name\":\"_requestIds\",\"type\":\"bytes32[]\"},{\"internalType\":\"bytes\",\"name\":\"_proofWithPubInputs\",\"type\":\"bytes\"}],\"name\":\"mustSubmitAggProof\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"commitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"vkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appCommitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appVkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"smtRoot\",\"type\":\"bytes32\"}],\"internalType\":\"structBrevis.ProofData\",\"name\":\"_proofData\",\"type\":\"tuple\"},{\"internalType\":\"bytes32\",\"name\":\"_merkleRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32[]\",\"name\":\"_merkleProof\",\"type\":\"bytes32[]\"},{\"internalType\":\"uint8\",\"name\":\"_nodeIndex\",\"type\":\"uint8\"}],\"name\":\"mustValidateRequest\",\"outputs\":[],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"commitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"vkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appCommitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appVkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"smtRoot\",\"type\":\"bytes32\"}],\"internalType\":\"structBrevis.ProofData[]\",\"name\":\"_proofDataArray\",\"type\":\"tuple[]\"}],\"name\":\"mustValidateRequests\",\"outputs\":[],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"}],\"name\":\"submitOpResult\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"internalType\":\"bytes\",\"name\":\"_proofWithPubInputs\",\"type\":\"bytes\"}],\"name\":\"submitProof\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
 }
 
 // IBrevisProofABI is the input ABI used to generate the binding from.
@@ -15393,37 +16404,6 @@ func (_IBrevisProof *IBrevisProofCallerSession) GetProofAppData(_requestId [32]b
 	return _IBrevisProof.Contract.GetProofAppData(&_IBrevisProof.CallOpts, _requestId)
 }
 
-// GetProofData is a free data retrieval call binding the contract method 0x9546bf00.
-//
-// Solidity: function getProofData(bytes32 _requestId) view returns((bytes32,bytes32,bytes32,bytes32,bytes32))
-func (_IBrevisProof *IBrevisProofCaller) GetProofData(opts *bind.CallOpts, _requestId [32]byte) (BrevisProofData, error) {
-	var out []interface{}
-	err := _IBrevisProof.contract.Call(opts, &out, "getProofData", _requestId)
-
-	if err != nil {
-		return *new(BrevisProofData), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new(BrevisProofData)).(*BrevisProofData)
-
-	return out0, err
-
-}
-
-// GetProofData is a free data retrieval call binding the contract method 0x9546bf00.
-//
-// Solidity: function getProofData(bytes32 _requestId) view returns((bytes32,bytes32,bytes32,bytes32,bytes32))
-func (_IBrevisProof *IBrevisProofSession) GetProofData(_requestId [32]byte) (BrevisProofData, error) {
-	return _IBrevisProof.Contract.GetProofData(&_IBrevisProof.CallOpts, _requestId)
-}
-
-// GetProofData is a free data retrieval call binding the contract method 0x9546bf00.
-//
-// Solidity: function getProofData(bytes32 _requestId) view returns((bytes32,bytes32,bytes32,bytes32,bytes32))
-func (_IBrevisProof *IBrevisProofCallerSession) GetProofData(_requestId [32]byte) (BrevisProofData, error) {
-	return _IBrevisProof.Contract.GetProofData(&_IBrevisProof.CallOpts, _requestId)
-}
-
 // HasProof is a free data retrieval call binding the contract method 0xe3d1e6d6.
 //
 // Solidity: function hasProof(bytes32 _requestId) view returns(bool)
@@ -15455,12 +16435,12 @@ func (_IBrevisProof *IBrevisProofCallerSession) HasProof(_requestId [32]byte) (b
 	return _IBrevisProof.Contract.HasProof(&_IBrevisProof.CallOpts, _requestId)
 }
 
-// MustValidateRequest is a free data retrieval call binding the contract method 0xa0922259.
+// MustValidateRequest is a free data retrieval call binding the contract method 0x2247cd8f.
 //
-// Solidity: function mustValidateRequest(uint64 _chainId, (bytes32,bytes32,bytes32,bytes32,bytes32) _proofData, bytes32 _merkleRoot, bytes32[] _merkleProof, bool _isLeftSide) view returns()
-func (_IBrevisProof *IBrevisProofCaller) MustValidateRequest(opts *bind.CallOpts, _chainId uint64, _proofData BrevisProofData, _merkleRoot [32]byte, _merkleProof [][32]byte, _isLeftSide bool) error {
+// Solidity: function mustValidateRequest(uint64 _chainId, (bytes32,bytes32,bytes32,bytes32,bytes32) _proofData, bytes32 _merkleRoot, bytes32[] _merkleProof, uint8 _nodeIndex) view returns()
+func (_IBrevisProof *IBrevisProofCaller) MustValidateRequest(opts *bind.CallOpts, _chainId uint64, _proofData BrevisProofData, _merkleRoot [32]byte, _merkleProof [][32]byte, _nodeIndex uint8) error {
 	var out []interface{}
-	err := _IBrevisProof.contract.Call(opts, &out, "mustValidateRequest", _chainId, _proofData, _merkleRoot, _merkleProof, _isLeftSide)
+	err := _IBrevisProof.contract.Call(opts, &out, "mustValidateRequest", _chainId, _proofData, _merkleRoot, _merkleProof, _nodeIndex)
 
 	if err != nil {
 		return err
@@ -15470,18 +16450,18 @@ func (_IBrevisProof *IBrevisProofCaller) MustValidateRequest(opts *bind.CallOpts
 
 }
 
-// MustValidateRequest is a free data retrieval call binding the contract method 0xa0922259.
+// MustValidateRequest is a free data retrieval call binding the contract method 0x2247cd8f.
 //
-// Solidity: function mustValidateRequest(uint64 _chainId, (bytes32,bytes32,bytes32,bytes32,bytes32) _proofData, bytes32 _merkleRoot, bytes32[] _merkleProof, bool _isLeftSide) view returns()
-func (_IBrevisProof *IBrevisProofSession) MustValidateRequest(_chainId uint64, _proofData BrevisProofData, _merkleRoot [32]byte, _merkleProof [][32]byte, _isLeftSide bool) error {
-	return _IBrevisProof.Contract.MustValidateRequest(&_IBrevisProof.CallOpts, _chainId, _proofData, _merkleRoot, _merkleProof, _isLeftSide)
+// Solidity: function mustValidateRequest(uint64 _chainId, (bytes32,bytes32,bytes32,bytes32,bytes32) _proofData, bytes32 _merkleRoot, bytes32[] _merkleProof, uint8 _nodeIndex) view returns()
+func (_IBrevisProof *IBrevisProofSession) MustValidateRequest(_chainId uint64, _proofData BrevisProofData, _merkleRoot [32]byte, _merkleProof [][32]byte, _nodeIndex uint8) error {
+	return _IBrevisProof.Contract.MustValidateRequest(&_IBrevisProof.CallOpts, _chainId, _proofData, _merkleRoot, _merkleProof, _nodeIndex)
 }
 
-// MustValidateRequest is a free data retrieval call binding the contract method 0xa0922259.
+// MustValidateRequest is a free data retrieval call binding the contract method 0x2247cd8f.
 //
-// Solidity: function mustValidateRequest(uint64 _chainId, (bytes32,bytes32,bytes32,bytes32,bytes32) _proofData, bytes32 _merkleRoot, bytes32[] _merkleProof, bool _isLeftSide) view returns()
-func (_IBrevisProof *IBrevisProofCallerSession) MustValidateRequest(_chainId uint64, _proofData BrevisProofData, _merkleRoot [32]byte, _merkleProof [][32]byte, _isLeftSide bool) error {
-	return _IBrevisProof.Contract.MustValidateRequest(&_IBrevisProof.CallOpts, _chainId, _proofData, _merkleRoot, _merkleProof, _isLeftSide)
+// Solidity: function mustValidateRequest(uint64 _chainId, (bytes32,bytes32,bytes32,bytes32,bytes32) _proofData, bytes32 _merkleRoot, bytes32[] _merkleProof, uint8 _nodeIndex) view returns()
+func (_IBrevisProof *IBrevisProofCallerSession) MustValidateRequest(_chainId uint64, _proofData BrevisProofData, _merkleRoot [32]byte, _merkleProof [][32]byte, _nodeIndex uint8) error {
+	return _IBrevisProof.Contract.MustValidateRequest(&_IBrevisProof.CallOpts, _chainId, _proofData, _merkleRoot, _merkleProof, _nodeIndex)
 }
 
 // MustValidateRequests is a free data retrieval call binding the contract method 0xcf7ac5a9.
@@ -15513,35 +16493,6 @@ func (_IBrevisProof *IBrevisProofCallerSession) MustValidateRequests(_chainId ui
 	return _IBrevisProof.Contract.MustValidateRequests(&_IBrevisProof.CallOpts, _chainId, _proofDataArray)
 }
 
-// ValidateRequest is a free data retrieval call binding the contract method 0x7c08aa74.
-//
-// Solidity: function validateRequest(bytes32 _requestId, uint64 _chainId, (bytes32,(uint64,uint64,((uint8,uint64,address,bytes32),uint64,bytes32)[5])[],(bytes32,address,bytes32,bytes32,uint64)[],(bytes32,bytes32,uint64,uint64,bytes)[]) _info) view returns()
-func (_IBrevisProof *IBrevisProofCaller) ValidateRequest(opts *bind.CallOpts, _requestId [32]byte, _chainId uint64, _info BrevisExtractInfos) error {
-	var out []interface{}
-	err := _IBrevisProof.contract.Call(opts, &out, "validateRequest", _requestId, _chainId, _info)
-
-	if err != nil {
-		return err
-	}
-
-	return err
-
-}
-
-// ValidateRequest is a free data retrieval call binding the contract method 0x7c08aa74.
-//
-// Solidity: function validateRequest(bytes32 _requestId, uint64 _chainId, (bytes32,(uint64,uint64,((uint8,uint64,address,bytes32),uint64,bytes32)[5])[],(bytes32,address,bytes32,bytes32,uint64)[],(bytes32,bytes32,uint64,uint64,bytes)[]) _info) view returns()
-func (_IBrevisProof *IBrevisProofSession) ValidateRequest(_requestId [32]byte, _chainId uint64, _info BrevisExtractInfos) error {
-	return _IBrevisProof.Contract.ValidateRequest(&_IBrevisProof.CallOpts, _requestId, _chainId, _info)
-}
-
-// ValidateRequest is a free data retrieval call binding the contract method 0x7c08aa74.
-//
-// Solidity: function validateRequest(bytes32 _requestId, uint64 _chainId, (bytes32,(uint64,uint64,((uint8,uint64,address,bytes32),uint64,bytes32)[5])[],(bytes32,address,bytes32,bytes32,uint64)[],(bytes32,bytes32,uint64,uint64,bytes)[]) _info) view returns()
-func (_IBrevisProof *IBrevisProofCallerSession) ValidateRequest(_requestId [32]byte, _chainId uint64, _info BrevisExtractInfos) error {
-	return _IBrevisProof.Contract.ValidateRequest(&_IBrevisProof.CallOpts, _requestId, _chainId, _info)
-}
-
 // MustSubmitAggProof is a paid mutator transaction binding the contract method 0xead635bc.
 //
 // Solidity: function mustSubmitAggProof(uint64 _chainId, bytes32[] _requestIds, bytes _proofWithPubInputs) returns()
@@ -15563,25 +16514,2199 @@ func (_IBrevisProof *IBrevisProofTransactorSession) MustSubmitAggProof(_chainId 
 	return _IBrevisProof.Contract.MustSubmitAggProof(&_IBrevisProof.TransactOpts, _chainId, _requestIds, _proofWithPubInputs)
 }
 
-// SubmitProof is a paid mutator transaction binding the contract method 0x25e49034.
+// SubmitOpResult is a paid mutator transaction binding the contract method 0xe26d07d3.
 //
-// Solidity: function submitProof(uint64 _chainId, bytes _proofWithPubInputs, bool _withAppProof) returns(bytes32 _requestId)
-func (_IBrevisProof *IBrevisProofTransactor) SubmitProof(opts *bind.TransactOpts, _chainId uint64, _proofWithPubInputs []byte, _withAppProof bool) (*types.Transaction, error) {
-	return _IBrevisProof.contract.Transact(opts, "submitProof", _chainId, _proofWithPubInputs, _withAppProof)
+// Solidity: function submitOpResult(bytes32 _requestId) returns()
+func (_IBrevisProof *IBrevisProofTransactor) SubmitOpResult(opts *bind.TransactOpts, _requestId [32]byte) (*types.Transaction, error) {
+	return _IBrevisProof.contract.Transact(opts, "submitOpResult", _requestId)
 }
 
-// SubmitProof is a paid mutator transaction binding the contract method 0x25e49034.
+// SubmitOpResult is a paid mutator transaction binding the contract method 0xe26d07d3.
 //
-// Solidity: function submitProof(uint64 _chainId, bytes _proofWithPubInputs, bool _withAppProof) returns(bytes32 _requestId)
-func (_IBrevisProof *IBrevisProofSession) SubmitProof(_chainId uint64, _proofWithPubInputs []byte, _withAppProof bool) (*types.Transaction, error) {
-	return _IBrevisProof.Contract.SubmitProof(&_IBrevisProof.TransactOpts, _chainId, _proofWithPubInputs, _withAppProof)
+// Solidity: function submitOpResult(bytes32 _requestId) returns()
+func (_IBrevisProof *IBrevisProofSession) SubmitOpResult(_requestId [32]byte) (*types.Transaction, error) {
+	return _IBrevisProof.Contract.SubmitOpResult(&_IBrevisProof.TransactOpts, _requestId)
 }
 
-// SubmitProof is a paid mutator transaction binding the contract method 0x25e49034.
+// SubmitOpResult is a paid mutator transaction binding the contract method 0xe26d07d3.
 //
-// Solidity: function submitProof(uint64 _chainId, bytes _proofWithPubInputs, bool _withAppProof) returns(bytes32 _requestId)
-func (_IBrevisProof *IBrevisProofTransactorSession) SubmitProof(_chainId uint64, _proofWithPubInputs []byte, _withAppProof bool) (*types.Transaction, error) {
-	return _IBrevisProof.Contract.SubmitProof(&_IBrevisProof.TransactOpts, _chainId, _proofWithPubInputs, _withAppProof)
+// Solidity: function submitOpResult(bytes32 _requestId) returns()
+func (_IBrevisProof *IBrevisProofTransactorSession) SubmitOpResult(_requestId [32]byte) (*types.Transaction, error) {
+	return _IBrevisProof.Contract.SubmitOpResult(&_IBrevisProof.TransactOpts, _requestId)
+}
+
+// SubmitProof is a paid mutator transaction binding the contract method 0xe0440953.
+//
+// Solidity: function submitProof(uint64 _chainId, bytes _proofWithPubInputs) returns(bytes32 _requestId)
+func (_IBrevisProof *IBrevisProofTransactor) SubmitProof(opts *bind.TransactOpts, _chainId uint64, _proofWithPubInputs []byte) (*types.Transaction, error) {
+	return _IBrevisProof.contract.Transact(opts, "submitProof", _chainId, _proofWithPubInputs)
+}
+
+// SubmitProof is a paid mutator transaction binding the contract method 0xe0440953.
+//
+// Solidity: function submitProof(uint64 _chainId, bytes _proofWithPubInputs) returns(bytes32 _requestId)
+func (_IBrevisProof *IBrevisProofSession) SubmitProof(_chainId uint64, _proofWithPubInputs []byte) (*types.Transaction, error) {
+	return _IBrevisProof.Contract.SubmitProof(&_IBrevisProof.TransactOpts, _chainId, _proofWithPubInputs)
+}
+
+// SubmitProof is a paid mutator transaction binding the contract method 0xe0440953.
+//
+// Solidity: function submitProof(uint64 _chainId, bytes _proofWithPubInputs) returns(bytes32 _requestId)
+func (_IBrevisProof *IBrevisProofTransactorSession) SubmitProof(_chainId uint64, _proofWithPubInputs []byte) (*types.Transaction, error) {
+	return _IBrevisProof.Contract.SubmitProof(&_IBrevisProof.TransactOpts, _chainId, _proofWithPubInputs)
+}
+
+// IBrevisRequestMetaData contains all meta data concerning the IBrevisRequest contract.
+var IBrevisRequestMetaData = &bind.MetaData{
+	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"requestId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"enumIBrevisRequest.AskForType\",\"name\":\"askFor\",\"type\":\"uint8\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"}],\"name\":\"AskFor\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"from\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"to\",\"type\":\"uint256\"}],\"name\":\"ChallengeWindowUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32[]\",\"name\":\"requestIds\",\"type\":\"bytes32[]\"},{\"indexed\":false,\"internalType\":\"bytes[]\",\"name\":\"queryURLs\",\"type\":\"bytes[]\"}],\"name\":\"OpRequestsFulfilled\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"requestId\",\"type\":\"bytes32\"}],\"name\":\"ProofPost\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"requestId\",\"type\":\"bytes32\"}],\"name\":\"QueryDataPost\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"requestId\",\"type\":\"bytes32\"}],\"name\":\"RequestCallbackFailed\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"requestId\",\"type\":\"bytes32\"}],\"name\":\"RequestFulfilled\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"requestId\",\"type\":\"bytes32\"}],\"name\":\"RequestRefunded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"requestId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"fee\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"callback\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"enumIBrevisRequest.Option\",\"name\":\"option\",\"type\":\"uint8\"}],\"name\":\"RequestSent\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"from\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"to\",\"type\":\"uint256\"}],\"name\":\"RequestTimeoutUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32[]\",\"name\":\"requestIds\",\"type\":\"bytes32[]\"}],\"name\":\"RequestsCallbackFailed\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32[]\",\"name\":\"requestId\",\"type\":\"bytes32[]\"}],\"name\":\"RequestsFulfilled\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"from\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"to\",\"type\":\"uint256\"}],\"name\":\"ResponseTimeoutUpdated\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"}],\"name\":\"askForProof\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"}],\"name\":\"askForQueryData\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"_proof\",\"type\":\"bytes\"}],\"name\":\"challengeQueryData\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"internalType\":\"bytes32[]\",\"name\":\"_requestIds\",\"type\":\"bytes32[]\"},{\"internalType\":\"bytes\",\"name\":\"_proof\",\"type\":\"bytes\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"commitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"vkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appCommitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appVkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"smtRoot\",\"type\":\"bytes32\"}],\"internalType\":\"structBrevis.ProofData[]\",\"name\":\"_proofDataArray\",\"type\":\"tuple[]\"},{\"internalType\":\"bytes[]\",\"name\":\"_appCircuitOutputs\",\"type\":\"bytes[]\"},{\"internalType\":\"address\",\"name\":\"_callback\",\"type\":\"address\"}],\"name\":\"fulfillAggRequests\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"},{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"internalType\":\"bytes\",\"name\":\"_proof\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"_appCircuitOutput\",\"type\":\"bytes\"}],\"name\":\"fulfillRequest\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"},{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"internalType\":\"bytes\",\"name\":\"_proof\",\"type\":\"bytes\"}],\"name\":\"postProof\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"_queryData\",\"type\":\"bytes\"}],\"name\":\"postQueryData\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"}],\"name\":\"queryRequestStatus\",\"outputs\":[{\"internalType\":\"enumIBrevisRequest.RequestStatus\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"}],\"name\":\"refund\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"_refundee\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_callback\",\"type\":\"address\"},{\"internalType\":\"enumIBrevisRequest.Option\",\"name\":\"_option\",\"type\":\"uint8\"}],\"name\":\"sendRequest\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"}]",
+}
+
+// IBrevisRequestABI is the input ABI used to generate the binding from.
+// Deprecated: Use IBrevisRequestMetaData.ABI instead.
+var IBrevisRequestABI = IBrevisRequestMetaData.ABI
+
+// IBrevisRequest is an auto generated Go binding around an Ethereum contract.
+type IBrevisRequest struct {
+	IBrevisRequestCaller     // Read-only binding to the contract
+	IBrevisRequestTransactor // Write-only binding to the contract
+	IBrevisRequestFilterer   // Log filterer for contract events
+}
+
+// IBrevisRequestCaller is an auto generated read-only Go binding around an Ethereum contract.
+type IBrevisRequestCaller struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// IBrevisRequestTransactor is an auto generated write-only Go binding around an Ethereum contract.
+type IBrevisRequestTransactor struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// IBrevisRequestFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
+type IBrevisRequestFilterer struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// IBrevisRequestSession is an auto generated Go binding around an Ethereum contract,
+// with pre-set call and transact options.
+type IBrevisRequestSession struct {
+	Contract     *IBrevisRequest   // Generic contract binding to set the session for
+	CallOpts     bind.CallOpts     // Call options to use throughout this session
+	TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
+}
+
+// IBrevisRequestCallerSession is an auto generated read-only Go binding around an Ethereum contract,
+// with pre-set call options.
+type IBrevisRequestCallerSession struct {
+	Contract *IBrevisRequestCaller // Generic contract caller binding to set the session for
+	CallOpts bind.CallOpts         // Call options to use throughout this session
+}
+
+// IBrevisRequestTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
+// with pre-set transact options.
+type IBrevisRequestTransactorSession struct {
+	Contract     *IBrevisRequestTransactor // Generic contract transactor binding to set the session for
+	TransactOpts bind.TransactOpts         // Transaction auth options to use throughout this session
+}
+
+// IBrevisRequestRaw is an auto generated low-level Go binding around an Ethereum contract.
+type IBrevisRequestRaw struct {
+	Contract *IBrevisRequest // Generic contract binding to access the raw methods on
+}
+
+// IBrevisRequestCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
+type IBrevisRequestCallerRaw struct {
+	Contract *IBrevisRequestCaller // Generic read-only contract binding to access the raw methods on
+}
+
+// IBrevisRequestTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
+type IBrevisRequestTransactorRaw struct {
+	Contract *IBrevisRequestTransactor // Generic write-only contract binding to access the raw methods on
+}
+
+// NewIBrevisRequest creates a new instance of IBrevisRequest, bound to a specific deployed contract.
+func NewIBrevisRequest(address common.Address, backend bind.ContractBackend) (*IBrevisRequest, error) {
+	contract, err := bindIBrevisRequest(address, backend, backend, backend)
+	if err != nil {
+		return nil, err
+	}
+	return &IBrevisRequest{IBrevisRequestCaller: IBrevisRequestCaller{contract: contract}, IBrevisRequestTransactor: IBrevisRequestTransactor{contract: contract}, IBrevisRequestFilterer: IBrevisRequestFilterer{contract: contract}}, nil
+}
+
+// NewIBrevisRequestCaller creates a new read-only instance of IBrevisRequest, bound to a specific deployed contract.
+func NewIBrevisRequestCaller(address common.Address, caller bind.ContractCaller) (*IBrevisRequestCaller, error) {
+	contract, err := bindIBrevisRequest(address, caller, nil, nil)
+	if err != nil {
+		return nil, err
+	}
+	return &IBrevisRequestCaller{contract: contract}, nil
+}
+
+// NewIBrevisRequestTransactor creates a new write-only instance of IBrevisRequest, bound to a specific deployed contract.
+func NewIBrevisRequestTransactor(address common.Address, transactor bind.ContractTransactor) (*IBrevisRequestTransactor, error) {
+	contract, err := bindIBrevisRequest(address, nil, transactor, nil)
+	if err != nil {
+		return nil, err
+	}
+	return &IBrevisRequestTransactor{contract: contract}, nil
+}
+
+// NewIBrevisRequestFilterer creates a new log filterer instance of IBrevisRequest, bound to a specific deployed contract.
+func NewIBrevisRequestFilterer(address common.Address, filterer bind.ContractFilterer) (*IBrevisRequestFilterer, error) {
+	contract, err := bindIBrevisRequest(address, nil, nil, filterer)
+	if err != nil {
+		return nil, err
+	}
+	return &IBrevisRequestFilterer{contract: contract}, nil
+}
+
+// bindIBrevisRequest binds a generic wrapper to an already deployed contract.
+func bindIBrevisRequest(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
+	parsed, err := IBrevisRequestMetaData.GetAbi()
+	if err != nil {
+		return nil, err
+	}
+	return bind.NewBoundContract(address, *parsed, caller, transactor, filterer), nil
+}
+
+// Call invokes the (constant) contract method with params as input values and
+// sets the output to result. The result type might be a single field for simple
+// returns, a slice of interfaces for anonymous returns and a struct for named
+// returns.
+func (_IBrevisRequest *IBrevisRequestRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
+	return _IBrevisRequest.Contract.IBrevisRequestCaller.contract.Call(opts, result, method, params...)
+}
+
+// Transfer initiates a plain transaction to move funds to the contract, calling
+// its default method if one is available.
+func (_IBrevisRequest *IBrevisRequestRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _IBrevisRequest.Contract.IBrevisRequestTransactor.contract.Transfer(opts)
+}
+
+// Transact invokes the (paid) contract method with params as input values.
+func (_IBrevisRequest *IBrevisRequestRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _IBrevisRequest.Contract.IBrevisRequestTransactor.contract.Transact(opts, method, params...)
+}
+
+// Call invokes the (constant) contract method with params as input values and
+// sets the output to result. The result type might be a single field for simple
+// returns, a slice of interfaces for anonymous returns and a struct for named
+// returns.
+func (_IBrevisRequest *IBrevisRequestCallerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
+	return _IBrevisRequest.Contract.contract.Call(opts, result, method, params...)
+}
+
+// Transfer initiates a plain transaction to move funds to the contract, calling
+// its default method if one is available.
+func (_IBrevisRequest *IBrevisRequestTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _IBrevisRequest.Contract.contract.Transfer(opts)
+}
+
+// Transact invokes the (paid) contract method with params as input values.
+func (_IBrevisRequest *IBrevisRequestTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _IBrevisRequest.Contract.contract.Transact(opts, method, params...)
+}
+
+// QueryRequestStatus is a free data retrieval call binding the contract method 0xb6979c3e.
+//
+// Solidity: function queryRequestStatus(bytes32 _requestId) view returns(uint8)
+func (_IBrevisRequest *IBrevisRequestCaller) QueryRequestStatus(opts *bind.CallOpts, _requestId [32]byte) (uint8, error) {
+	var out []interface{}
+	err := _IBrevisRequest.contract.Call(opts, &out, "queryRequestStatus", _requestId)
+
+	if err != nil {
+		return *new(uint8), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(uint8)).(*uint8)
+
+	return out0, err
+
+}
+
+// QueryRequestStatus is a free data retrieval call binding the contract method 0xb6979c3e.
+//
+// Solidity: function queryRequestStatus(bytes32 _requestId) view returns(uint8)
+func (_IBrevisRequest *IBrevisRequestSession) QueryRequestStatus(_requestId [32]byte) (uint8, error) {
+	return _IBrevisRequest.Contract.QueryRequestStatus(&_IBrevisRequest.CallOpts, _requestId)
+}
+
+// QueryRequestStatus is a free data retrieval call binding the contract method 0xb6979c3e.
+//
+// Solidity: function queryRequestStatus(bytes32 _requestId) view returns(uint8)
+func (_IBrevisRequest *IBrevisRequestCallerSession) QueryRequestStatus(_requestId [32]byte) (uint8, error) {
+	return _IBrevisRequest.Contract.QueryRequestStatus(&_IBrevisRequest.CallOpts, _requestId)
+}
+
+// AskForProof is a paid mutator transaction binding the contract method 0x6db03b1d.
+//
+// Solidity: function askForProof(bytes32 _requestId) payable returns()
+func (_IBrevisRequest *IBrevisRequestTransactor) AskForProof(opts *bind.TransactOpts, _requestId [32]byte) (*types.Transaction, error) {
+	return _IBrevisRequest.contract.Transact(opts, "askForProof", _requestId)
+}
+
+// AskForProof is a paid mutator transaction binding the contract method 0x6db03b1d.
+//
+// Solidity: function askForProof(bytes32 _requestId) payable returns()
+func (_IBrevisRequest *IBrevisRequestSession) AskForProof(_requestId [32]byte) (*types.Transaction, error) {
+	return _IBrevisRequest.Contract.AskForProof(&_IBrevisRequest.TransactOpts, _requestId)
+}
+
+// AskForProof is a paid mutator transaction binding the contract method 0x6db03b1d.
+//
+// Solidity: function askForProof(bytes32 _requestId) payable returns()
+func (_IBrevisRequest *IBrevisRequestTransactorSession) AskForProof(_requestId [32]byte) (*types.Transaction, error) {
+	return _IBrevisRequest.Contract.AskForProof(&_IBrevisRequest.TransactOpts, _requestId)
+}
+
+// AskForQueryData is a paid mutator transaction binding the contract method 0xa4514ff3.
+//
+// Solidity: function askForQueryData(bytes32 _requestId) payable returns()
+func (_IBrevisRequest *IBrevisRequestTransactor) AskForQueryData(opts *bind.TransactOpts, _requestId [32]byte) (*types.Transaction, error) {
+	return _IBrevisRequest.contract.Transact(opts, "askForQueryData", _requestId)
+}
+
+// AskForQueryData is a paid mutator transaction binding the contract method 0xa4514ff3.
+//
+// Solidity: function askForQueryData(bytes32 _requestId) payable returns()
+func (_IBrevisRequest *IBrevisRequestSession) AskForQueryData(_requestId [32]byte) (*types.Transaction, error) {
+	return _IBrevisRequest.Contract.AskForQueryData(&_IBrevisRequest.TransactOpts, _requestId)
+}
+
+// AskForQueryData is a paid mutator transaction binding the contract method 0xa4514ff3.
+//
+// Solidity: function askForQueryData(bytes32 _requestId) payable returns()
+func (_IBrevisRequest *IBrevisRequestTransactorSession) AskForQueryData(_requestId [32]byte) (*types.Transaction, error) {
+	return _IBrevisRequest.Contract.AskForQueryData(&_IBrevisRequest.TransactOpts, _requestId)
+}
+
+// ChallengeQueryData is a paid mutator transaction binding the contract method 0x2763ce8a.
+//
+// Solidity: function challengeQueryData(bytes _proof) returns()
+func (_IBrevisRequest *IBrevisRequestTransactor) ChallengeQueryData(opts *bind.TransactOpts, _proof []byte) (*types.Transaction, error) {
+	return _IBrevisRequest.contract.Transact(opts, "challengeQueryData", _proof)
+}
+
+// ChallengeQueryData is a paid mutator transaction binding the contract method 0x2763ce8a.
+//
+// Solidity: function challengeQueryData(bytes _proof) returns()
+func (_IBrevisRequest *IBrevisRequestSession) ChallengeQueryData(_proof []byte) (*types.Transaction, error) {
+	return _IBrevisRequest.Contract.ChallengeQueryData(&_IBrevisRequest.TransactOpts, _proof)
+}
+
+// ChallengeQueryData is a paid mutator transaction binding the contract method 0x2763ce8a.
+//
+// Solidity: function challengeQueryData(bytes _proof) returns()
+func (_IBrevisRequest *IBrevisRequestTransactorSession) ChallengeQueryData(_proof []byte) (*types.Transaction, error) {
+	return _IBrevisRequest.Contract.ChallengeQueryData(&_IBrevisRequest.TransactOpts, _proof)
+}
+
+// FulfillAggRequests is a paid mutator transaction binding the contract method 0xecdafd46.
+//
+// Solidity: function fulfillAggRequests(uint64 _chainId, bytes32[] _requestIds, bytes _proof, (bytes32,bytes32,bytes32,bytes32,bytes32)[] _proofDataArray, bytes[] _appCircuitOutputs, address _callback) returns()
+func (_IBrevisRequest *IBrevisRequestTransactor) FulfillAggRequests(opts *bind.TransactOpts, _chainId uint64, _requestIds [][32]byte, _proof []byte, _proofDataArray []BrevisProofData, _appCircuitOutputs [][]byte, _callback common.Address) (*types.Transaction, error) {
+	return _IBrevisRequest.contract.Transact(opts, "fulfillAggRequests", _chainId, _requestIds, _proof, _proofDataArray, _appCircuitOutputs, _callback)
+}
+
+// FulfillAggRequests is a paid mutator transaction binding the contract method 0xecdafd46.
+//
+// Solidity: function fulfillAggRequests(uint64 _chainId, bytes32[] _requestIds, bytes _proof, (bytes32,bytes32,bytes32,bytes32,bytes32)[] _proofDataArray, bytes[] _appCircuitOutputs, address _callback) returns()
+func (_IBrevisRequest *IBrevisRequestSession) FulfillAggRequests(_chainId uint64, _requestIds [][32]byte, _proof []byte, _proofDataArray []BrevisProofData, _appCircuitOutputs [][]byte, _callback common.Address) (*types.Transaction, error) {
+	return _IBrevisRequest.Contract.FulfillAggRequests(&_IBrevisRequest.TransactOpts, _chainId, _requestIds, _proof, _proofDataArray, _appCircuitOutputs, _callback)
+}
+
+// FulfillAggRequests is a paid mutator transaction binding the contract method 0xecdafd46.
+//
+// Solidity: function fulfillAggRequests(uint64 _chainId, bytes32[] _requestIds, bytes _proof, (bytes32,bytes32,bytes32,bytes32,bytes32)[] _proofDataArray, bytes[] _appCircuitOutputs, address _callback) returns()
+func (_IBrevisRequest *IBrevisRequestTransactorSession) FulfillAggRequests(_chainId uint64, _requestIds [][32]byte, _proof []byte, _proofDataArray []BrevisProofData, _appCircuitOutputs [][]byte, _callback common.Address) (*types.Transaction, error) {
+	return _IBrevisRequest.Contract.FulfillAggRequests(&_IBrevisRequest.TransactOpts, _chainId, _requestIds, _proof, _proofDataArray, _appCircuitOutputs, _callback)
+}
+
+// FulfillRequest is a paid mutator transaction binding the contract method 0xda03667a.
+//
+// Solidity: function fulfillRequest(bytes32 _requestId, uint64 _chainId, bytes _proof, bytes _appCircuitOutput) returns()
+func (_IBrevisRequest *IBrevisRequestTransactor) FulfillRequest(opts *bind.TransactOpts, _requestId [32]byte, _chainId uint64, _proof []byte, _appCircuitOutput []byte) (*types.Transaction, error) {
+	return _IBrevisRequest.contract.Transact(opts, "fulfillRequest", _requestId, _chainId, _proof, _appCircuitOutput)
+}
+
+// FulfillRequest is a paid mutator transaction binding the contract method 0xda03667a.
+//
+// Solidity: function fulfillRequest(bytes32 _requestId, uint64 _chainId, bytes _proof, bytes _appCircuitOutput) returns()
+func (_IBrevisRequest *IBrevisRequestSession) FulfillRequest(_requestId [32]byte, _chainId uint64, _proof []byte, _appCircuitOutput []byte) (*types.Transaction, error) {
+	return _IBrevisRequest.Contract.FulfillRequest(&_IBrevisRequest.TransactOpts, _requestId, _chainId, _proof, _appCircuitOutput)
+}
+
+// FulfillRequest is a paid mutator transaction binding the contract method 0xda03667a.
+//
+// Solidity: function fulfillRequest(bytes32 _requestId, uint64 _chainId, bytes _proof, bytes _appCircuitOutput) returns()
+func (_IBrevisRequest *IBrevisRequestTransactorSession) FulfillRequest(_requestId [32]byte, _chainId uint64, _proof []byte, _appCircuitOutput []byte) (*types.Transaction, error) {
+	return _IBrevisRequest.Contract.FulfillRequest(&_IBrevisRequest.TransactOpts, _requestId, _chainId, _proof, _appCircuitOutput)
+}
+
+// PostProof is a paid mutator transaction binding the contract method 0x61b9fd73.
+//
+// Solidity: function postProof(bytes32 _requestId, uint64 _chainId, bytes _proof) returns()
+func (_IBrevisRequest *IBrevisRequestTransactor) PostProof(opts *bind.TransactOpts, _requestId [32]byte, _chainId uint64, _proof []byte) (*types.Transaction, error) {
+	return _IBrevisRequest.contract.Transact(opts, "postProof", _requestId, _chainId, _proof)
+}
+
+// PostProof is a paid mutator transaction binding the contract method 0x61b9fd73.
+//
+// Solidity: function postProof(bytes32 _requestId, uint64 _chainId, bytes _proof) returns()
+func (_IBrevisRequest *IBrevisRequestSession) PostProof(_requestId [32]byte, _chainId uint64, _proof []byte) (*types.Transaction, error) {
+	return _IBrevisRequest.Contract.PostProof(&_IBrevisRequest.TransactOpts, _requestId, _chainId, _proof)
+}
+
+// PostProof is a paid mutator transaction binding the contract method 0x61b9fd73.
+//
+// Solidity: function postProof(bytes32 _requestId, uint64 _chainId, bytes _proof) returns()
+func (_IBrevisRequest *IBrevisRequestTransactorSession) PostProof(_requestId [32]byte, _chainId uint64, _proof []byte) (*types.Transaction, error) {
+	return _IBrevisRequest.Contract.PostProof(&_IBrevisRequest.TransactOpts, _requestId, _chainId, _proof)
+}
+
+// PostQueryData is a paid mutator transaction binding the contract method 0x69c228a1.
+//
+// Solidity: function postQueryData(bytes32 _requestId, bytes _queryData) returns()
+func (_IBrevisRequest *IBrevisRequestTransactor) PostQueryData(opts *bind.TransactOpts, _requestId [32]byte, _queryData []byte) (*types.Transaction, error) {
+	return _IBrevisRequest.contract.Transact(opts, "postQueryData", _requestId, _queryData)
+}
+
+// PostQueryData is a paid mutator transaction binding the contract method 0x69c228a1.
+//
+// Solidity: function postQueryData(bytes32 _requestId, bytes _queryData) returns()
+func (_IBrevisRequest *IBrevisRequestSession) PostQueryData(_requestId [32]byte, _queryData []byte) (*types.Transaction, error) {
+	return _IBrevisRequest.Contract.PostQueryData(&_IBrevisRequest.TransactOpts, _requestId, _queryData)
+}
+
+// PostQueryData is a paid mutator transaction binding the contract method 0x69c228a1.
+//
+// Solidity: function postQueryData(bytes32 _requestId, bytes _queryData) returns()
+func (_IBrevisRequest *IBrevisRequestTransactorSession) PostQueryData(_requestId [32]byte, _queryData []byte) (*types.Transaction, error) {
+	return _IBrevisRequest.Contract.PostQueryData(&_IBrevisRequest.TransactOpts, _requestId, _queryData)
+}
+
+// Refund is a paid mutator transaction binding the contract method 0x7249fbb6.
+//
+// Solidity: function refund(bytes32 _requestId) returns()
+func (_IBrevisRequest *IBrevisRequestTransactor) Refund(opts *bind.TransactOpts, _requestId [32]byte) (*types.Transaction, error) {
+	return _IBrevisRequest.contract.Transact(opts, "refund", _requestId)
+}
+
+// Refund is a paid mutator transaction binding the contract method 0x7249fbb6.
+//
+// Solidity: function refund(bytes32 _requestId) returns()
+func (_IBrevisRequest *IBrevisRequestSession) Refund(_requestId [32]byte) (*types.Transaction, error) {
+	return _IBrevisRequest.Contract.Refund(&_IBrevisRequest.TransactOpts, _requestId)
+}
+
+// Refund is a paid mutator transaction binding the contract method 0x7249fbb6.
+//
+// Solidity: function refund(bytes32 _requestId) returns()
+func (_IBrevisRequest *IBrevisRequestTransactorSession) Refund(_requestId [32]byte) (*types.Transaction, error) {
+	return _IBrevisRequest.Contract.Refund(&_IBrevisRequest.TransactOpts, _requestId)
+}
+
+// SendRequest is a paid mutator transaction binding the contract method 0xf2a9c666.
+//
+// Solidity: function sendRequest(bytes32 _requestId, address _refundee, address _callback, uint8 _option) payable returns()
+func (_IBrevisRequest *IBrevisRequestTransactor) SendRequest(opts *bind.TransactOpts, _requestId [32]byte, _refundee common.Address, _callback common.Address, _option uint8) (*types.Transaction, error) {
+	return _IBrevisRequest.contract.Transact(opts, "sendRequest", _requestId, _refundee, _callback, _option)
+}
+
+// SendRequest is a paid mutator transaction binding the contract method 0xf2a9c666.
+//
+// Solidity: function sendRequest(bytes32 _requestId, address _refundee, address _callback, uint8 _option) payable returns()
+func (_IBrevisRequest *IBrevisRequestSession) SendRequest(_requestId [32]byte, _refundee common.Address, _callback common.Address, _option uint8) (*types.Transaction, error) {
+	return _IBrevisRequest.Contract.SendRequest(&_IBrevisRequest.TransactOpts, _requestId, _refundee, _callback, _option)
+}
+
+// SendRequest is a paid mutator transaction binding the contract method 0xf2a9c666.
+//
+// Solidity: function sendRequest(bytes32 _requestId, address _refundee, address _callback, uint8 _option) payable returns()
+func (_IBrevisRequest *IBrevisRequestTransactorSession) SendRequest(_requestId [32]byte, _refundee common.Address, _callback common.Address, _option uint8) (*types.Transaction, error) {
+	return _IBrevisRequest.Contract.SendRequest(&_IBrevisRequest.TransactOpts, _requestId, _refundee, _callback, _option)
+}
+
+// IBrevisRequestAskForIterator is returned from FilterAskFor and is used to iterate over the raw logs and unpacked data for AskFor events raised by the IBrevisRequest contract.
+type IBrevisRequestAskForIterator struct {
+	Event *IBrevisRequestAskFor // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *IBrevisRequestAskForIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(IBrevisRequestAskFor)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(IBrevisRequestAskFor)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *IBrevisRequestAskForIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *IBrevisRequestAskForIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// IBrevisRequestAskFor represents a AskFor event raised by the IBrevisRequest contract.
+type IBrevisRequestAskFor struct {
+	RequestId [32]byte
+	AskFor    uint8
+	From      common.Address
+	Raw       types.Log // Blockchain specific contextual infos
+}
+
+// FilterAskFor is a free log retrieval operation binding the contract event 0xe77f1579b66737e0839e75b8ee1a189f5b6b5d2e504090f76337ffde5903da3a.
+//
+// Solidity: event AskFor(bytes32 indexed requestId, uint8 askFor, address from)
+func (_IBrevisRequest *IBrevisRequestFilterer) FilterAskFor(opts *bind.FilterOpts, requestId [][32]byte) (*IBrevisRequestAskForIterator, error) {
+
+	var requestIdRule []interface{}
+	for _, requestIdItem := range requestId {
+		requestIdRule = append(requestIdRule, requestIdItem)
+	}
+
+	logs, sub, err := _IBrevisRequest.contract.FilterLogs(opts, "AskFor", requestIdRule)
+	if err != nil {
+		return nil, err
+	}
+	return &IBrevisRequestAskForIterator{contract: _IBrevisRequest.contract, event: "AskFor", logs: logs, sub: sub}, nil
+}
+
+// WatchAskFor is a free log subscription operation binding the contract event 0xe77f1579b66737e0839e75b8ee1a189f5b6b5d2e504090f76337ffde5903da3a.
+//
+// Solidity: event AskFor(bytes32 indexed requestId, uint8 askFor, address from)
+func (_IBrevisRequest *IBrevisRequestFilterer) WatchAskFor(opts *bind.WatchOpts, sink chan<- *IBrevisRequestAskFor, requestId [][32]byte) (event.Subscription, error) {
+
+	var requestIdRule []interface{}
+	for _, requestIdItem := range requestId {
+		requestIdRule = append(requestIdRule, requestIdItem)
+	}
+
+	logs, sub, err := _IBrevisRequest.contract.WatchLogs(opts, "AskFor", requestIdRule)
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(IBrevisRequestAskFor)
+				if err := _IBrevisRequest.contract.UnpackLog(event, "AskFor", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseAskFor is a log parse operation binding the contract event 0xe77f1579b66737e0839e75b8ee1a189f5b6b5d2e504090f76337ffde5903da3a.
+//
+// Solidity: event AskFor(bytes32 indexed requestId, uint8 askFor, address from)
+func (_IBrevisRequest *IBrevisRequestFilterer) ParseAskFor(log types.Log) (*IBrevisRequestAskFor, error) {
+	event := new(IBrevisRequestAskFor)
+	if err := _IBrevisRequest.contract.UnpackLog(event, "AskFor", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// IBrevisRequestChallengeWindowUpdatedIterator is returned from FilterChallengeWindowUpdated and is used to iterate over the raw logs and unpacked data for ChallengeWindowUpdated events raised by the IBrevisRequest contract.
+type IBrevisRequestChallengeWindowUpdatedIterator struct {
+	Event *IBrevisRequestChallengeWindowUpdated // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *IBrevisRequestChallengeWindowUpdatedIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(IBrevisRequestChallengeWindowUpdated)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(IBrevisRequestChallengeWindowUpdated)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *IBrevisRequestChallengeWindowUpdatedIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *IBrevisRequestChallengeWindowUpdatedIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// IBrevisRequestChallengeWindowUpdated represents a ChallengeWindowUpdated event raised by the IBrevisRequest contract.
+type IBrevisRequestChallengeWindowUpdated struct {
+	From *big.Int
+	To   *big.Int
+	Raw  types.Log // Blockchain specific contextual infos
+}
+
+// FilterChallengeWindowUpdated is a free log retrieval operation binding the contract event 0xedb9338f4b0faf2b899d2d7f54b90753d2a8ebb34936e381edb91b091c3e45a7.
+//
+// Solidity: event ChallengeWindowUpdated(uint256 from, uint256 to)
+func (_IBrevisRequest *IBrevisRequestFilterer) FilterChallengeWindowUpdated(opts *bind.FilterOpts) (*IBrevisRequestChallengeWindowUpdatedIterator, error) {
+
+	logs, sub, err := _IBrevisRequest.contract.FilterLogs(opts, "ChallengeWindowUpdated")
+	if err != nil {
+		return nil, err
+	}
+	return &IBrevisRequestChallengeWindowUpdatedIterator{contract: _IBrevisRequest.contract, event: "ChallengeWindowUpdated", logs: logs, sub: sub}, nil
+}
+
+// WatchChallengeWindowUpdated is a free log subscription operation binding the contract event 0xedb9338f4b0faf2b899d2d7f54b90753d2a8ebb34936e381edb91b091c3e45a7.
+//
+// Solidity: event ChallengeWindowUpdated(uint256 from, uint256 to)
+func (_IBrevisRequest *IBrevisRequestFilterer) WatchChallengeWindowUpdated(opts *bind.WatchOpts, sink chan<- *IBrevisRequestChallengeWindowUpdated) (event.Subscription, error) {
+
+	logs, sub, err := _IBrevisRequest.contract.WatchLogs(opts, "ChallengeWindowUpdated")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(IBrevisRequestChallengeWindowUpdated)
+				if err := _IBrevisRequest.contract.UnpackLog(event, "ChallengeWindowUpdated", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseChallengeWindowUpdated is a log parse operation binding the contract event 0xedb9338f4b0faf2b899d2d7f54b90753d2a8ebb34936e381edb91b091c3e45a7.
+//
+// Solidity: event ChallengeWindowUpdated(uint256 from, uint256 to)
+func (_IBrevisRequest *IBrevisRequestFilterer) ParseChallengeWindowUpdated(log types.Log) (*IBrevisRequestChallengeWindowUpdated, error) {
+	event := new(IBrevisRequestChallengeWindowUpdated)
+	if err := _IBrevisRequest.contract.UnpackLog(event, "ChallengeWindowUpdated", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// IBrevisRequestOpRequestsFulfilledIterator is returned from FilterOpRequestsFulfilled and is used to iterate over the raw logs and unpacked data for OpRequestsFulfilled events raised by the IBrevisRequest contract.
+type IBrevisRequestOpRequestsFulfilledIterator struct {
+	Event *IBrevisRequestOpRequestsFulfilled // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *IBrevisRequestOpRequestsFulfilledIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(IBrevisRequestOpRequestsFulfilled)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(IBrevisRequestOpRequestsFulfilled)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *IBrevisRequestOpRequestsFulfilledIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *IBrevisRequestOpRequestsFulfilledIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// IBrevisRequestOpRequestsFulfilled represents a OpRequestsFulfilled event raised by the IBrevisRequest contract.
+type IBrevisRequestOpRequestsFulfilled struct {
+	RequestIds [][32]byte
+	QueryURLs  [][]byte
+	Raw        types.Log // Blockchain specific contextual infos
+}
+
+// FilterOpRequestsFulfilled is a free log retrieval operation binding the contract event 0xa1c3ef280bbac31181188d4beffe370ebae03e08d58a3aa4832b107d540c0a83.
+//
+// Solidity: event OpRequestsFulfilled(bytes32[] requestIds, bytes[] queryURLs)
+func (_IBrevisRequest *IBrevisRequestFilterer) FilterOpRequestsFulfilled(opts *bind.FilterOpts) (*IBrevisRequestOpRequestsFulfilledIterator, error) {
+
+	logs, sub, err := _IBrevisRequest.contract.FilterLogs(opts, "OpRequestsFulfilled")
+	if err != nil {
+		return nil, err
+	}
+	return &IBrevisRequestOpRequestsFulfilledIterator{contract: _IBrevisRequest.contract, event: "OpRequestsFulfilled", logs: logs, sub: sub}, nil
+}
+
+// WatchOpRequestsFulfilled is a free log subscription operation binding the contract event 0xa1c3ef280bbac31181188d4beffe370ebae03e08d58a3aa4832b107d540c0a83.
+//
+// Solidity: event OpRequestsFulfilled(bytes32[] requestIds, bytes[] queryURLs)
+func (_IBrevisRequest *IBrevisRequestFilterer) WatchOpRequestsFulfilled(opts *bind.WatchOpts, sink chan<- *IBrevisRequestOpRequestsFulfilled) (event.Subscription, error) {
+
+	logs, sub, err := _IBrevisRequest.contract.WatchLogs(opts, "OpRequestsFulfilled")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(IBrevisRequestOpRequestsFulfilled)
+				if err := _IBrevisRequest.contract.UnpackLog(event, "OpRequestsFulfilled", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseOpRequestsFulfilled is a log parse operation binding the contract event 0xa1c3ef280bbac31181188d4beffe370ebae03e08d58a3aa4832b107d540c0a83.
+//
+// Solidity: event OpRequestsFulfilled(bytes32[] requestIds, bytes[] queryURLs)
+func (_IBrevisRequest *IBrevisRequestFilterer) ParseOpRequestsFulfilled(log types.Log) (*IBrevisRequestOpRequestsFulfilled, error) {
+	event := new(IBrevisRequestOpRequestsFulfilled)
+	if err := _IBrevisRequest.contract.UnpackLog(event, "OpRequestsFulfilled", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// IBrevisRequestProofPostIterator is returned from FilterProofPost and is used to iterate over the raw logs and unpacked data for ProofPost events raised by the IBrevisRequest contract.
+type IBrevisRequestProofPostIterator struct {
+	Event *IBrevisRequestProofPost // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *IBrevisRequestProofPostIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(IBrevisRequestProofPost)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(IBrevisRequestProofPost)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *IBrevisRequestProofPostIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *IBrevisRequestProofPostIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// IBrevisRequestProofPost represents a ProofPost event raised by the IBrevisRequest contract.
+type IBrevisRequestProofPost struct {
+	RequestId [32]byte
+	Raw       types.Log // Blockchain specific contextual infos
+}
+
+// FilterProofPost is a free log retrieval operation binding the contract event 0x799191eb766b210bea2d9052b39f21140ed9fbf3ff2fe5102fbd6bb5bc134e3e.
+//
+// Solidity: event ProofPost(bytes32 indexed requestId)
+func (_IBrevisRequest *IBrevisRequestFilterer) FilterProofPost(opts *bind.FilterOpts, requestId [][32]byte) (*IBrevisRequestProofPostIterator, error) {
+
+	var requestIdRule []interface{}
+	for _, requestIdItem := range requestId {
+		requestIdRule = append(requestIdRule, requestIdItem)
+	}
+
+	logs, sub, err := _IBrevisRequest.contract.FilterLogs(opts, "ProofPost", requestIdRule)
+	if err != nil {
+		return nil, err
+	}
+	return &IBrevisRequestProofPostIterator{contract: _IBrevisRequest.contract, event: "ProofPost", logs: logs, sub: sub}, nil
+}
+
+// WatchProofPost is a free log subscription operation binding the contract event 0x799191eb766b210bea2d9052b39f21140ed9fbf3ff2fe5102fbd6bb5bc134e3e.
+//
+// Solidity: event ProofPost(bytes32 indexed requestId)
+func (_IBrevisRequest *IBrevisRequestFilterer) WatchProofPost(opts *bind.WatchOpts, sink chan<- *IBrevisRequestProofPost, requestId [][32]byte) (event.Subscription, error) {
+
+	var requestIdRule []interface{}
+	for _, requestIdItem := range requestId {
+		requestIdRule = append(requestIdRule, requestIdItem)
+	}
+
+	logs, sub, err := _IBrevisRequest.contract.WatchLogs(opts, "ProofPost", requestIdRule)
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(IBrevisRequestProofPost)
+				if err := _IBrevisRequest.contract.UnpackLog(event, "ProofPost", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseProofPost is a log parse operation binding the contract event 0x799191eb766b210bea2d9052b39f21140ed9fbf3ff2fe5102fbd6bb5bc134e3e.
+//
+// Solidity: event ProofPost(bytes32 indexed requestId)
+func (_IBrevisRequest *IBrevisRequestFilterer) ParseProofPost(log types.Log) (*IBrevisRequestProofPost, error) {
+	event := new(IBrevisRequestProofPost)
+	if err := _IBrevisRequest.contract.UnpackLog(event, "ProofPost", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// IBrevisRequestQueryDataPostIterator is returned from FilterQueryDataPost and is used to iterate over the raw logs and unpacked data for QueryDataPost events raised by the IBrevisRequest contract.
+type IBrevisRequestQueryDataPostIterator struct {
+	Event *IBrevisRequestQueryDataPost // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *IBrevisRequestQueryDataPostIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(IBrevisRequestQueryDataPost)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(IBrevisRequestQueryDataPost)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *IBrevisRequestQueryDataPostIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *IBrevisRequestQueryDataPostIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// IBrevisRequestQueryDataPost represents a QueryDataPost event raised by the IBrevisRequest contract.
+type IBrevisRequestQueryDataPost struct {
+	RequestId [32]byte
+	Raw       types.Log // Blockchain specific contextual infos
+}
+
+// FilterQueryDataPost is a free log retrieval operation binding the contract event 0xe4e1e2afaa20a4e7e37593d3fb41a91d496a30ea2b7ccf67a9aa9450e74af4f0.
+//
+// Solidity: event QueryDataPost(bytes32 indexed requestId)
+func (_IBrevisRequest *IBrevisRequestFilterer) FilterQueryDataPost(opts *bind.FilterOpts, requestId [][32]byte) (*IBrevisRequestQueryDataPostIterator, error) {
+
+	var requestIdRule []interface{}
+	for _, requestIdItem := range requestId {
+		requestIdRule = append(requestIdRule, requestIdItem)
+	}
+
+	logs, sub, err := _IBrevisRequest.contract.FilterLogs(opts, "QueryDataPost", requestIdRule)
+	if err != nil {
+		return nil, err
+	}
+	return &IBrevisRequestQueryDataPostIterator{contract: _IBrevisRequest.contract, event: "QueryDataPost", logs: logs, sub: sub}, nil
+}
+
+// WatchQueryDataPost is a free log subscription operation binding the contract event 0xe4e1e2afaa20a4e7e37593d3fb41a91d496a30ea2b7ccf67a9aa9450e74af4f0.
+//
+// Solidity: event QueryDataPost(bytes32 indexed requestId)
+func (_IBrevisRequest *IBrevisRequestFilterer) WatchQueryDataPost(opts *bind.WatchOpts, sink chan<- *IBrevisRequestQueryDataPost, requestId [][32]byte) (event.Subscription, error) {
+
+	var requestIdRule []interface{}
+	for _, requestIdItem := range requestId {
+		requestIdRule = append(requestIdRule, requestIdItem)
+	}
+
+	logs, sub, err := _IBrevisRequest.contract.WatchLogs(opts, "QueryDataPost", requestIdRule)
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(IBrevisRequestQueryDataPost)
+				if err := _IBrevisRequest.contract.UnpackLog(event, "QueryDataPost", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseQueryDataPost is a log parse operation binding the contract event 0xe4e1e2afaa20a4e7e37593d3fb41a91d496a30ea2b7ccf67a9aa9450e74af4f0.
+//
+// Solidity: event QueryDataPost(bytes32 indexed requestId)
+func (_IBrevisRequest *IBrevisRequestFilterer) ParseQueryDataPost(log types.Log) (*IBrevisRequestQueryDataPost, error) {
+	event := new(IBrevisRequestQueryDataPost)
+	if err := _IBrevisRequest.contract.UnpackLog(event, "QueryDataPost", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// IBrevisRequestRequestCallbackFailedIterator is returned from FilterRequestCallbackFailed and is used to iterate over the raw logs and unpacked data for RequestCallbackFailed events raised by the IBrevisRequest contract.
+type IBrevisRequestRequestCallbackFailedIterator struct {
+	Event *IBrevisRequestRequestCallbackFailed // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *IBrevisRequestRequestCallbackFailedIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(IBrevisRequestRequestCallbackFailed)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(IBrevisRequestRequestCallbackFailed)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *IBrevisRequestRequestCallbackFailedIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *IBrevisRequestRequestCallbackFailedIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// IBrevisRequestRequestCallbackFailed represents a RequestCallbackFailed event raised by the IBrevisRequest contract.
+type IBrevisRequestRequestCallbackFailed struct {
+	RequestId [32]byte
+	Raw       types.Log // Blockchain specific contextual infos
+}
+
+// FilterRequestCallbackFailed is a free log retrieval operation binding the contract event 0xf9e9ac125efc63eaa0638c58fd8a1ab11673bae30202f01909611e4ebdbe9b4e.
+//
+// Solidity: event RequestCallbackFailed(bytes32 requestId)
+func (_IBrevisRequest *IBrevisRequestFilterer) FilterRequestCallbackFailed(opts *bind.FilterOpts) (*IBrevisRequestRequestCallbackFailedIterator, error) {
+
+	logs, sub, err := _IBrevisRequest.contract.FilterLogs(opts, "RequestCallbackFailed")
+	if err != nil {
+		return nil, err
+	}
+	return &IBrevisRequestRequestCallbackFailedIterator{contract: _IBrevisRequest.contract, event: "RequestCallbackFailed", logs: logs, sub: sub}, nil
+}
+
+// WatchRequestCallbackFailed is a free log subscription operation binding the contract event 0xf9e9ac125efc63eaa0638c58fd8a1ab11673bae30202f01909611e4ebdbe9b4e.
+//
+// Solidity: event RequestCallbackFailed(bytes32 requestId)
+func (_IBrevisRequest *IBrevisRequestFilterer) WatchRequestCallbackFailed(opts *bind.WatchOpts, sink chan<- *IBrevisRequestRequestCallbackFailed) (event.Subscription, error) {
+
+	logs, sub, err := _IBrevisRequest.contract.WatchLogs(opts, "RequestCallbackFailed")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(IBrevisRequestRequestCallbackFailed)
+				if err := _IBrevisRequest.contract.UnpackLog(event, "RequestCallbackFailed", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseRequestCallbackFailed is a log parse operation binding the contract event 0xf9e9ac125efc63eaa0638c58fd8a1ab11673bae30202f01909611e4ebdbe9b4e.
+//
+// Solidity: event RequestCallbackFailed(bytes32 requestId)
+func (_IBrevisRequest *IBrevisRequestFilterer) ParseRequestCallbackFailed(log types.Log) (*IBrevisRequestRequestCallbackFailed, error) {
+	event := new(IBrevisRequestRequestCallbackFailed)
+	if err := _IBrevisRequest.contract.UnpackLog(event, "RequestCallbackFailed", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// IBrevisRequestRequestFulfilledIterator is returned from FilterRequestFulfilled and is used to iterate over the raw logs and unpacked data for RequestFulfilled events raised by the IBrevisRequest contract.
+type IBrevisRequestRequestFulfilledIterator struct {
+	Event *IBrevisRequestRequestFulfilled // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *IBrevisRequestRequestFulfilledIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(IBrevisRequestRequestFulfilled)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(IBrevisRequestRequestFulfilled)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *IBrevisRequestRequestFulfilledIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *IBrevisRequestRequestFulfilledIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// IBrevisRequestRequestFulfilled represents a RequestFulfilled event raised by the IBrevisRequest contract.
+type IBrevisRequestRequestFulfilled struct {
+	RequestId [32]byte
+	Raw       types.Log // Blockchain specific contextual infos
+}
+
+// FilterRequestFulfilled is a free log retrieval operation binding the contract event 0x85e1543bf2f84fe80c6badbce3648c8539ad1df4d2b3d822938ca0538be727e6.
+//
+// Solidity: event RequestFulfilled(bytes32 requestId)
+func (_IBrevisRequest *IBrevisRequestFilterer) FilterRequestFulfilled(opts *bind.FilterOpts) (*IBrevisRequestRequestFulfilledIterator, error) {
+
+	logs, sub, err := _IBrevisRequest.contract.FilterLogs(opts, "RequestFulfilled")
+	if err != nil {
+		return nil, err
+	}
+	return &IBrevisRequestRequestFulfilledIterator{contract: _IBrevisRequest.contract, event: "RequestFulfilled", logs: logs, sub: sub}, nil
+}
+
+// WatchRequestFulfilled is a free log subscription operation binding the contract event 0x85e1543bf2f84fe80c6badbce3648c8539ad1df4d2b3d822938ca0538be727e6.
+//
+// Solidity: event RequestFulfilled(bytes32 requestId)
+func (_IBrevisRequest *IBrevisRequestFilterer) WatchRequestFulfilled(opts *bind.WatchOpts, sink chan<- *IBrevisRequestRequestFulfilled) (event.Subscription, error) {
+
+	logs, sub, err := _IBrevisRequest.contract.WatchLogs(opts, "RequestFulfilled")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(IBrevisRequestRequestFulfilled)
+				if err := _IBrevisRequest.contract.UnpackLog(event, "RequestFulfilled", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseRequestFulfilled is a log parse operation binding the contract event 0x85e1543bf2f84fe80c6badbce3648c8539ad1df4d2b3d822938ca0538be727e6.
+//
+// Solidity: event RequestFulfilled(bytes32 requestId)
+func (_IBrevisRequest *IBrevisRequestFilterer) ParseRequestFulfilled(log types.Log) (*IBrevisRequestRequestFulfilled, error) {
+	event := new(IBrevisRequestRequestFulfilled)
+	if err := _IBrevisRequest.contract.UnpackLog(event, "RequestFulfilled", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// IBrevisRequestRequestRefundedIterator is returned from FilterRequestRefunded and is used to iterate over the raw logs and unpacked data for RequestRefunded events raised by the IBrevisRequest contract.
+type IBrevisRequestRequestRefundedIterator struct {
+	Event *IBrevisRequestRequestRefunded // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *IBrevisRequestRequestRefundedIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(IBrevisRequestRequestRefunded)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(IBrevisRequestRequestRefunded)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *IBrevisRequestRequestRefundedIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *IBrevisRequestRequestRefundedIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// IBrevisRequestRequestRefunded represents a RequestRefunded event raised by the IBrevisRequest contract.
+type IBrevisRequestRequestRefunded struct {
+	RequestId [32]byte
+	Raw       types.Log // Blockchain specific contextual infos
+}
+
+// FilterRequestRefunded is a free log retrieval operation binding the contract event 0xfea410cb461deba9fe807dde02d6641d82e1bf09ecc88ecfa0f2ffadf2a1fdfe.
+//
+// Solidity: event RequestRefunded(bytes32 requestId)
+func (_IBrevisRequest *IBrevisRequestFilterer) FilterRequestRefunded(opts *bind.FilterOpts) (*IBrevisRequestRequestRefundedIterator, error) {
+
+	logs, sub, err := _IBrevisRequest.contract.FilterLogs(opts, "RequestRefunded")
+	if err != nil {
+		return nil, err
+	}
+	return &IBrevisRequestRequestRefundedIterator{contract: _IBrevisRequest.contract, event: "RequestRefunded", logs: logs, sub: sub}, nil
+}
+
+// WatchRequestRefunded is a free log subscription operation binding the contract event 0xfea410cb461deba9fe807dde02d6641d82e1bf09ecc88ecfa0f2ffadf2a1fdfe.
+//
+// Solidity: event RequestRefunded(bytes32 requestId)
+func (_IBrevisRequest *IBrevisRequestFilterer) WatchRequestRefunded(opts *bind.WatchOpts, sink chan<- *IBrevisRequestRequestRefunded) (event.Subscription, error) {
+
+	logs, sub, err := _IBrevisRequest.contract.WatchLogs(opts, "RequestRefunded")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(IBrevisRequestRequestRefunded)
+				if err := _IBrevisRequest.contract.UnpackLog(event, "RequestRefunded", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseRequestRefunded is a log parse operation binding the contract event 0xfea410cb461deba9fe807dde02d6641d82e1bf09ecc88ecfa0f2ffadf2a1fdfe.
+//
+// Solidity: event RequestRefunded(bytes32 requestId)
+func (_IBrevisRequest *IBrevisRequestFilterer) ParseRequestRefunded(log types.Log) (*IBrevisRequestRequestRefunded, error) {
+	event := new(IBrevisRequestRequestRefunded)
+	if err := _IBrevisRequest.contract.UnpackLog(event, "RequestRefunded", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// IBrevisRequestRequestSentIterator is returned from FilterRequestSent and is used to iterate over the raw logs and unpacked data for RequestSent events raised by the IBrevisRequest contract.
+type IBrevisRequestRequestSentIterator struct {
+	Event *IBrevisRequestRequestSent // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *IBrevisRequestRequestSentIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(IBrevisRequestRequestSent)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(IBrevisRequestRequestSent)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *IBrevisRequestRequestSentIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *IBrevisRequestRequestSentIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// IBrevisRequestRequestSent represents a RequestSent event raised by the IBrevisRequest contract.
+type IBrevisRequestRequestSent struct {
+	RequestId [32]byte
+	Sender    common.Address
+	Fee       *big.Int
+	Callback  common.Address
+	Option    uint8
+	Raw       types.Log // Blockchain specific contextual infos
+}
+
+// FilterRequestSent is a free log retrieval operation binding the contract event 0x8351e4cc62a96a972da26714bfbb019926334976bb613c36e0dc72b69cf8f564.
+//
+// Solidity: event RequestSent(bytes32 requestId, address sender, uint256 fee, address callback, uint8 option)
+func (_IBrevisRequest *IBrevisRequestFilterer) FilterRequestSent(opts *bind.FilterOpts) (*IBrevisRequestRequestSentIterator, error) {
+
+	logs, sub, err := _IBrevisRequest.contract.FilterLogs(opts, "RequestSent")
+	if err != nil {
+		return nil, err
+	}
+	return &IBrevisRequestRequestSentIterator{contract: _IBrevisRequest.contract, event: "RequestSent", logs: logs, sub: sub}, nil
+}
+
+// WatchRequestSent is a free log subscription operation binding the contract event 0x8351e4cc62a96a972da26714bfbb019926334976bb613c36e0dc72b69cf8f564.
+//
+// Solidity: event RequestSent(bytes32 requestId, address sender, uint256 fee, address callback, uint8 option)
+func (_IBrevisRequest *IBrevisRequestFilterer) WatchRequestSent(opts *bind.WatchOpts, sink chan<- *IBrevisRequestRequestSent) (event.Subscription, error) {
+
+	logs, sub, err := _IBrevisRequest.contract.WatchLogs(opts, "RequestSent")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(IBrevisRequestRequestSent)
+				if err := _IBrevisRequest.contract.UnpackLog(event, "RequestSent", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseRequestSent is a log parse operation binding the contract event 0x8351e4cc62a96a972da26714bfbb019926334976bb613c36e0dc72b69cf8f564.
+//
+// Solidity: event RequestSent(bytes32 requestId, address sender, uint256 fee, address callback, uint8 option)
+func (_IBrevisRequest *IBrevisRequestFilterer) ParseRequestSent(log types.Log) (*IBrevisRequestRequestSent, error) {
+	event := new(IBrevisRequestRequestSent)
+	if err := _IBrevisRequest.contract.UnpackLog(event, "RequestSent", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// IBrevisRequestRequestTimeoutUpdatedIterator is returned from FilterRequestTimeoutUpdated and is used to iterate over the raw logs and unpacked data for RequestTimeoutUpdated events raised by the IBrevisRequest contract.
+type IBrevisRequestRequestTimeoutUpdatedIterator struct {
+	Event *IBrevisRequestRequestTimeoutUpdated // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *IBrevisRequestRequestTimeoutUpdatedIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(IBrevisRequestRequestTimeoutUpdated)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(IBrevisRequestRequestTimeoutUpdated)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *IBrevisRequestRequestTimeoutUpdatedIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *IBrevisRequestRequestTimeoutUpdatedIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// IBrevisRequestRequestTimeoutUpdated represents a RequestTimeoutUpdated event raised by the IBrevisRequest contract.
+type IBrevisRequestRequestTimeoutUpdated struct {
+	From *big.Int
+	To   *big.Int
+	Raw  types.Log // Blockchain specific contextual infos
+}
+
+// FilterRequestTimeoutUpdated is a free log retrieval operation binding the contract event 0x87a73c061f18ffd513249d1d727921e40e348948b01e2979efb36ef4f5204a63.
+//
+// Solidity: event RequestTimeoutUpdated(uint256 from, uint256 to)
+func (_IBrevisRequest *IBrevisRequestFilterer) FilterRequestTimeoutUpdated(opts *bind.FilterOpts) (*IBrevisRequestRequestTimeoutUpdatedIterator, error) {
+
+	logs, sub, err := _IBrevisRequest.contract.FilterLogs(opts, "RequestTimeoutUpdated")
+	if err != nil {
+		return nil, err
+	}
+	return &IBrevisRequestRequestTimeoutUpdatedIterator{contract: _IBrevisRequest.contract, event: "RequestTimeoutUpdated", logs: logs, sub: sub}, nil
+}
+
+// WatchRequestTimeoutUpdated is a free log subscription operation binding the contract event 0x87a73c061f18ffd513249d1d727921e40e348948b01e2979efb36ef4f5204a63.
+//
+// Solidity: event RequestTimeoutUpdated(uint256 from, uint256 to)
+func (_IBrevisRequest *IBrevisRequestFilterer) WatchRequestTimeoutUpdated(opts *bind.WatchOpts, sink chan<- *IBrevisRequestRequestTimeoutUpdated) (event.Subscription, error) {
+
+	logs, sub, err := _IBrevisRequest.contract.WatchLogs(opts, "RequestTimeoutUpdated")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(IBrevisRequestRequestTimeoutUpdated)
+				if err := _IBrevisRequest.contract.UnpackLog(event, "RequestTimeoutUpdated", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseRequestTimeoutUpdated is a log parse operation binding the contract event 0x87a73c061f18ffd513249d1d727921e40e348948b01e2979efb36ef4f5204a63.
+//
+// Solidity: event RequestTimeoutUpdated(uint256 from, uint256 to)
+func (_IBrevisRequest *IBrevisRequestFilterer) ParseRequestTimeoutUpdated(log types.Log) (*IBrevisRequestRequestTimeoutUpdated, error) {
+	event := new(IBrevisRequestRequestTimeoutUpdated)
+	if err := _IBrevisRequest.contract.UnpackLog(event, "RequestTimeoutUpdated", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// IBrevisRequestRequestsCallbackFailedIterator is returned from FilterRequestsCallbackFailed and is used to iterate over the raw logs and unpacked data for RequestsCallbackFailed events raised by the IBrevisRequest contract.
+type IBrevisRequestRequestsCallbackFailedIterator struct {
+	Event *IBrevisRequestRequestsCallbackFailed // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *IBrevisRequestRequestsCallbackFailedIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(IBrevisRequestRequestsCallbackFailed)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(IBrevisRequestRequestsCallbackFailed)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *IBrevisRequestRequestsCallbackFailedIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *IBrevisRequestRequestsCallbackFailedIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// IBrevisRequestRequestsCallbackFailed represents a RequestsCallbackFailed event raised by the IBrevisRequest contract.
+type IBrevisRequestRequestsCallbackFailed struct {
+	RequestIds [][32]byte
+	Raw        types.Log // Blockchain specific contextual infos
+}
+
+// FilterRequestsCallbackFailed is a free log retrieval operation binding the contract event 0xa27ac73d985dc053bec967c59a530feb90be0582343095d7b85ec7e7c3fef208.
+//
+// Solidity: event RequestsCallbackFailed(bytes32[] requestIds)
+func (_IBrevisRequest *IBrevisRequestFilterer) FilterRequestsCallbackFailed(opts *bind.FilterOpts) (*IBrevisRequestRequestsCallbackFailedIterator, error) {
+
+	logs, sub, err := _IBrevisRequest.contract.FilterLogs(opts, "RequestsCallbackFailed")
+	if err != nil {
+		return nil, err
+	}
+	return &IBrevisRequestRequestsCallbackFailedIterator{contract: _IBrevisRequest.contract, event: "RequestsCallbackFailed", logs: logs, sub: sub}, nil
+}
+
+// WatchRequestsCallbackFailed is a free log subscription operation binding the contract event 0xa27ac73d985dc053bec967c59a530feb90be0582343095d7b85ec7e7c3fef208.
+//
+// Solidity: event RequestsCallbackFailed(bytes32[] requestIds)
+func (_IBrevisRequest *IBrevisRequestFilterer) WatchRequestsCallbackFailed(opts *bind.WatchOpts, sink chan<- *IBrevisRequestRequestsCallbackFailed) (event.Subscription, error) {
+
+	logs, sub, err := _IBrevisRequest.contract.WatchLogs(opts, "RequestsCallbackFailed")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(IBrevisRequestRequestsCallbackFailed)
+				if err := _IBrevisRequest.contract.UnpackLog(event, "RequestsCallbackFailed", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseRequestsCallbackFailed is a log parse operation binding the contract event 0xa27ac73d985dc053bec967c59a530feb90be0582343095d7b85ec7e7c3fef208.
+//
+// Solidity: event RequestsCallbackFailed(bytes32[] requestIds)
+func (_IBrevisRequest *IBrevisRequestFilterer) ParseRequestsCallbackFailed(log types.Log) (*IBrevisRequestRequestsCallbackFailed, error) {
+	event := new(IBrevisRequestRequestsCallbackFailed)
+	if err := _IBrevisRequest.contract.UnpackLog(event, "RequestsCallbackFailed", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// IBrevisRequestRequestsFulfilledIterator is returned from FilterRequestsFulfilled and is used to iterate over the raw logs and unpacked data for RequestsFulfilled events raised by the IBrevisRequest contract.
+type IBrevisRequestRequestsFulfilledIterator struct {
+	Event *IBrevisRequestRequestsFulfilled // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *IBrevisRequestRequestsFulfilledIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(IBrevisRequestRequestsFulfilled)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(IBrevisRequestRequestsFulfilled)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *IBrevisRequestRequestsFulfilledIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *IBrevisRequestRequestsFulfilledIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// IBrevisRequestRequestsFulfilled represents a RequestsFulfilled event raised by the IBrevisRequest contract.
+type IBrevisRequestRequestsFulfilled struct {
+	RequestId [][32]byte
+	Raw       types.Log // Blockchain specific contextual infos
+}
+
+// FilterRequestsFulfilled is a free log retrieval operation binding the contract event 0xc9f9dbb4a40f26672580c28841452a59f824f5c0053e412183cfec77e76570ef.
+//
+// Solidity: event RequestsFulfilled(bytes32[] requestId)
+func (_IBrevisRequest *IBrevisRequestFilterer) FilterRequestsFulfilled(opts *bind.FilterOpts) (*IBrevisRequestRequestsFulfilledIterator, error) {
+
+	logs, sub, err := _IBrevisRequest.contract.FilterLogs(opts, "RequestsFulfilled")
+	if err != nil {
+		return nil, err
+	}
+	return &IBrevisRequestRequestsFulfilledIterator{contract: _IBrevisRequest.contract, event: "RequestsFulfilled", logs: logs, sub: sub}, nil
+}
+
+// WatchRequestsFulfilled is a free log subscription operation binding the contract event 0xc9f9dbb4a40f26672580c28841452a59f824f5c0053e412183cfec77e76570ef.
+//
+// Solidity: event RequestsFulfilled(bytes32[] requestId)
+func (_IBrevisRequest *IBrevisRequestFilterer) WatchRequestsFulfilled(opts *bind.WatchOpts, sink chan<- *IBrevisRequestRequestsFulfilled) (event.Subscription, error) {
+
+	logs, sub, err := _IBrevisRequest.contract.WatchLogs(opts, "RequestsFulfilled")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(IBrevisRequestRequestsFulfilled)
+				if err := _IBrevisRequest.contract.UnpackLog(event, "RequestsFulfilled", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseRequestsFulfilled is a log parse operation binding the contract event 0xc9f9dbb4a40f26672580c28841452a59f824f5c0053e412183cfec77e76570ef.
+//
+// Solidity: event RequestsFulfilled(bytes32[] requestId)
+func (_IBrevisRequest *IBrevisRequestFilterer) ParseRequestsFulfilled(log types.Log) (*IBrevisRequestRequestsFulfilled, error) {
+	event := new(IBrevisRequestRequestsFulfilled)
+	if err := _IBrevisRequest.contract.UnpackLog(event, "RequestsFulfilled", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// IBrevisRequestResponseTimeoutUpdatedIterator is returned from FilterResponseTimeoutUpdated and is used to iterate over the raw logs and unpacked data for ResponseTimeoutUpdated events raised by the IBrevisRequest contract.
+type IBrevisRequestResponseTimeoutUpdatedIterator struct {
+	Event *IBrevisRequestResponseTimeoutUpdated // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *IBrevisRequestResponseTimeoutUpdatedIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(IBrevisRequestResponseTimeoutUpdated)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(IBrevisRequestResponseTimeoutUpdated)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *IBrevisRequestResponseTimeoutUpdatedIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *IBrevisRequestResponseTimeoutUpdatedIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// IBrevisRequestResponseTimeoutUpdated represents a ResponseTimeoutUpdated event raised by the IBrevisRequest contract.
+type IBrevisRequestResponseTimeoutUpdated struct {
+	From *big.Int
+	To   *big.Int
+	Raw  types.Log // Blockchain specific contextual infos
+}
+
+// FilterResponseTimeoutUpdated is a free log retrieval operation binding the contract event 0x86fe7fc31f35681a1ed77325f0cf24935a5d25b1861e7ce9ceed9cb67f222270.
+//
+// Solidity: event ResponseTimeoutUpdated(uint256 from, uint256 to)
+func (_IBrevisRequest *IBrevisRequestFilterer) FilterResponseTimeoutUpdated(opts *bind.FilterOpts) (*IBrevisRequestResponseTimeoutUpdatedIterator, error) {
+
+	logs, sub, err := _IBrevisRequest.contract.FilterLogs(opts, "ResponseTimeoutUpdated")
+	if err != nil {
+		return nil, err
+	}
+	return &IBrevisRequestResponseTimeoutUpdatedIterator{contract: _IBrevisRequest.contract, event: "ResponseTimeoutUpdated", logs: logs, sub: sub}, nil
+}
+
+// WatchResponseTimeoutUpdated is a free log subscription operation binding the contract event 0x86fe7fc31f35681a1ed77325f0cf24935a5d25b1861e7ce9ceed9cb67f222270.
+//
+// Solidity: event ResponseTimeoutUpdated(uint256 from, uint256 to)
+func (_IBrevisRequest *IBrevisRequestFilterer) WatchResponseTimeoutUpdated(opts *bind.WatchOpts, sink chan<- *IBrevisRequestResponseTimeoutUpdated) (event.Subscription, error) {
+
+	logs, sub, err := _IBrevisRequest.contract.WatchLogs(opts, "ResponseTimeoutUpdated")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(IBrevisRequestResponseTimeoutUpdated)
+				if err := _IBrevisRequest.contract.UnpackLog(event, "ResponseTimeoutUpdated", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseResponseTimeoutUpdated is a log parse operation binding the contract event 0x86fe7fc31f35681a1ed77325f0cf24935a5d25b1861e7ce9ceed9cb67f222270.
+//
+// Solidity: event ResponseTimeoutUpdated(uint256 from, uint256 to)
+func (_IBrevisRequest *IBrevisRequestFilterer) ParseResponseTimeoutUpdated(log types.Log) (*IBrevisRequestResponseTimeoutUpdated, error) {
+	event := new(IBrevisRequestResponseTimeoutUpdated)
+	if err := _IBrevisRequest.contract.UnpackLog(event, "ResponseTimeoutUpdated", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
 }
 
 // IDynamicFeeManagerMetaData contains all meta data concerning the IDynamicFeeManager contract.
@@ -18812,7 +21937,7 @@ func (_IERC20Minimal *IERC20MinimalFilterer) ParseTransfer(log types.Log) (*IERC
 
 // IEthereumLightClientMetaData contains all meta data concerning the IEthereumLightClient contract.
 var IEthereumLightClientMetaData = &bind.MetaData{
-	ABI: "[{\"inputs\":[],\"name\":\"finalizedExecutionStateRootAndSlot\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"root\",\"type\":\"bytes32\"},{\"internalType\":\"uint64\",\"name\":\"slot\",\"type\":\"uint64\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"optimisticExecutionStateRootAndSlot\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"root\",\"type\":\"bytes32\"},{\"internalType\":\"uint64\",\"name\":\"slot\",\"type\":\"uint64\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"signatureSlot\",\"type\":\"uint64\"},{\"components\":[{\"internalType\":\"uint64\",\"name\":\"slot\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"proposerIndex\",\"type\":\"uint64\"},{\"internalType\":\"bytes32\",\"name\":\"parentRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"stateRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"bodyRoot\",\"type\":\"bytes32\"}],\"internalType\":\"structBeaconBlockHeader\",\"name\":\"header\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"uint64\",\"name\":\"participation\",\"type\":\"uint64\"},{\"internalType\":\"bytes32\",\"name\":\"poseidonRoot\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"commitment\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"uint256[2]\",\"name\":\"a\",\"type\":\"uint256[2]\"},{\"internalType\":\"uint256[2][2]\",\"name\":\"b\",\"type\":\"uint256[2][2]\"},{\"internalType\":\"uint256[2]\",\"name\":\"c\",\"type\":\"uint256[2]\"},{\"internalType\":\"uint256[2]\",\"name\":\"commitment\",\"type\":\"uint256[2]\"}],\"internalType\":\"structIBeaconVerifier.Proof\",\"name\":\"proof\",\"type\":\"tuple\"}],\"internalType\":\"structSyncAggregate\",\"name\":\"syncAggregate\",\"type\":\"tuple\"}],\"name\":\"verifyCommitteeSignature\",\"outputs\":[],\"stateMutability\":\"view\",\"type\":\"function\"}]",
+	ABI: "[{\"inputs\":[],\"name\":\"finalizedExecutionStateRootAndSlot\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"root\",\"type\":\"bytes32\"},{\"internalType\":\"uint64\",\"name\":\"slot\",\"type\":\"uint64\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"optimisticExecutionStateRootAndSlot\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"root\",\"type\":\"bytes32\"},{\"internalType\":\"uint64\",\"name\":\"slot\",\"type\":\"uint64\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
 }
 
 // IEthereumLightClientABI is the input ABI used to generate the binding from.
@@ -19049,35 +22174,6 @@ func (_IEthereumLightClient *IEthereumLightClientCallerSession) OptimisticExecut
 	Slot uint64
 }, error) {
 	return _IEthereumLightClient.Contract.OptimisticExecutionStateRootAndSlot(&_IEthereumLightClient.CallOpts)
-}
-
-// VerifyCommitteeSignature is a free data retrieval call binding the contract method 0x3dd3f4aa.
-//
-// Solidity: function verifyCommitteeSignature(uint64 signatureSlot, (uint64,uint64,bytes32,bytes32,bytes32) header, (uint64,bytes32,uint256,(uint256[2],uint256[2][2],uint256[2],uint256[2])) syncAggregate) view returns()
-func (_IEthereumLightClient *IEthereumLightClientCaller) VerifyCommitteeSignature(opts *bind.CallOpts, signatureSlot uint64, header BeaconBlockHeader, syncAggregate SyncAggregate) error {
-	var out []interface{}
-	err := _IEthereumLightClient.contract.Call(opts, &out, "verifyCommitteeSignature", signatureSlot, header, syncAggregate)
-
-	if err != nil {
-		return err
-	}
-
-	return err
-
-}
-
-// VerifyCommitteeSignature is a free data retrieval call binding the contract method 0x3dd3f4aa.
-//
-// Solidity: function verifyCommitteeSignature(uint64 signatureSlot, (uint64,uint64,bytes32,bytes32,bytes32) header, (uint64,bytes32,uint256,(uint256[2],uint256[2][2],uint256[2],uint256[2])) syncAggregate) view returns()
-func (_IEthereumLightClient *IEthereumLightClientSession) VerifyCommitteeSignature(signatureSlot uint64, header BeaconBlockHeader, syncAggregate SyncAggregate) error {
-	return _IEthereumLightClient.Contract.VerifyCommitteeSignature(&_IEthereumLightClient.CallOpts, signatureSlot, header, syncAggregate)
-}
-
-// VerifyCommitteeSignature is a free data retrieval call binding the contract method 0x3dd3f4aa.
-//
-// Solidity: function verifyCommitteeSignature(uint64 signatureSlot, (uint64,uint64,bytes32,bytes32,bytes32) header, (uint64,bytes32,uint256,(uint256[2],uint256[2][2],uint256[2],uint256[2])) syncAggregate) view returns()
-func (_IEthereumLightClient *IEthereumLightClientCallerSession) VerifyCommitteeSignature(signatureSlot uint64, header BeaconBlockHeader, syncAggregate SyncAggregate) error {
-	return _IEthereumLightClient.Contract.VerifyCommitteeSignature(&_IEthereumLightClient.CallOpts, signatureSlot, header, syncAggregate)
 }
 
 // IFeesMetaData contains all meta data concerning the IFees contract.
@@ -37521,6 +40617,1157 @@ func (_SwapMath *SwapMathTransactorRaw) Transact(opts *bind.TransactOpts, method
 	return _SwapMath.Contract.contract.Transact(opts, method, params...)
 }
 
+// TestSMTMetaData contains all meta data concerning the TestSMT contract.
+var TestSMTMetaData = &bind.MetaData{
+	ABI: "[{\"inputs\":[{\"internalType\":\"uint64[]\",\"name\":\"_chainIds\",\"type\":\"uint64[]\"},{\"internalType\":\"address[]\",\"name\":\"_anchorProviders\",\"type\":\"address[]\"},{\"internalType\":\"address[]\",\"name\":\"_verifiers\",\"type\":\"address[]\"},{\"internalType\":\"bytes32[]\",\"name\":\"_initRoots\",\"type\":\"bytes32[]\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint64\",\"name\":\"chainId\",\"type\":\"uint64\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"anchorProvider\",\"type\":\"address\"}],\"name\":\"AnchorProviderUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"smtRoot\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"uint64\",\"name\":\"endBlockNum\",\"type\":\"uint64\"},{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"bufferIndex\",\"type\":\"uint8\"}],\"name\":\"SmtRootUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint64\",\"name\":\"chainId\",\"type\":\"uint64\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"verifier\",\"type\":\"address\"}],\"name\":\"VerifierUpdated\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"BUFFER_SIZE\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"chainId\",\"type\":\"uint64\"},{\"internalType\":\"bytes32\",\"name\":\"newRoot\",\"type\":\"bytes32\"},{\"internalType\":\"uint64\",\"name\":\"endBlockNum\",\"type\":\"uint64\"}],\"name\":\"addRootForTesting\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"name\":\"anchorProviders\",\"outputs\":[{\"internalType\":\"contractIAnchorBlocks\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"name\":\"curBufferIndices\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"chainId\",\"type\":\"uint64\"}],\"name\":\"getLatestRoot\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"root\",\"type\":\"bytes32\"},{\"internalType\":\"uint8\",\"name\":\"bufferIndex\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"chainId\",\"type\":\"uint64\"},{\"internalType\":\"uint8\",\"name\":\"bufferIndex\",\"type\":\"uint8\"}],\"name\":\"getRoot\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"root\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"chainId\",\"type\":\"uint64\"},{\"internalType\":\"bytes32\",\"name\":\"smtRoot\",\"type\":\"bytes32\"}],\"name\":\"isSmtRootValid\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"chainId\",\"type\":\"uint64\"},{\"internalType\":\"address\",\"name\":\"anchorProvider\",\"type\":\"address\"}],\"name\":\"setAnchorProvider\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"chainId\",\"type\":\"uint64\"},{\"internalType\":\"address\",\"name\":\"verifier\",\"type\":\"address\"}],\"name\":\"setVerifier\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"smtRoots\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"chainId\",\"type\":\"uint64\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"newSmtRoot\",\"type\":\"bytes32\"},{\"internalType\":\"uint64\",\"name\":\"endBlockNum\",\"type\":\"uint64\"},{\"internalType\":\"bytes32\",\"name\":\"endBlockHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"nextChunkMerkleRoot\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"uint256[2]\",\"name\":\"a\",\"type\":\"uint256[2]\"},{\"internalType\":\"uint256[2][2]\",\"name\":\"b\",\"type\":\"uint256[2][2]\"},{\"internalType\":\"uint256[2]\",\"name\":\"c\",\"type\":\"uint256[2]\"},{\"internalType\":\"uint256[2]\",\"name\":\"commitment\",\"type\":\"uint256[2]\"}],\"internalType\":\"structIVerifier.Proof\",\"name\":\"proof\",\"type\":\"tuple\"},{\"internalType\":\"bytes32\",\"name\":\"commitPub\",\"type\":\"bytes32\"}],\"internalType\":\"structISMT.SmtUpdate\",\"name\":\"u\",\"type\":\"tuple\"}],\"name\":\"updateRoot\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"name\":\"verifiers\",\"outputs\":[{\"internalType\":\"contractIVerifier\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
+	Bin: "0x604060808152346200025457620012fe803803806200001e8162000272565b928339810190608081830312620002545780516001600160401b0393908481116200025457820183601f820112156200025457805193620000696200006386620002ac565b62000272565b9182958084526020808095019160051b8301019183831162000254578401905b828210620002585750505081840151868111620002545781620000ae918601620002c4565b9583850151818111620002545782620000c9918701620002c4565b946060810151908282116200025457019180601f8401121562000254578251620000f76200006382620002ac565b93858086848152019260051b820101928311620002545785809101915b838310620002435750505f8054336001600160a01b0319808316821784556001600160a01b039c939a9096909550929350908b167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e08a80a36200017b895183511462000332565b6200018a895184511462000332565b62000199895186511462000332565b875b8951811015620002345781620001b2828c6200036e565b51168b620001c183866200036e565b5116818b5260018952898b2090878254161790558b620001e283876200036e565b5116818b5260028952898b2090878254161790556200020282886200036e565b51908a5260038852888a20555f19811462000220576001016200019b565b634e487b7160e01b89526011600452602489fd5b8751610f669081620003988239f35b825181529181019186910162000114565b5f80fd5b815189811681036200025457815290840190840162000089565b6040519190601f01601f191682016001600160401b038111838210176200029857604052565b634e487b7160e01b5f52604160045260245ffd5b6001600160401b038111620002985760051b60200190565b9080601f830112156200025457815190620002e36200006383620002ac565b9182938184526020808095019260051b82010192831162000254578301905b82821062000311575050505090565b81516001600160a01b03811681036200025457815290830190830162000302565b156200033a57565b60405162461bcd60e51b815260206004820152600c60248201526b0d8cadc40dad2e6dac2e8c6d60a31b6044820152606490fd5b8051821015620003835760209160051b010190565b634e487b7160e01b5f52603260045260245ffdfe6080806040526004361015610012575f80fd5b5f3560e01c9081624e394e14610d11575080631019b61614610ce0578063318a492d14610661578063479aa6da146105d95780635ca32bd814610529578063679594fd146104ed578063715018a6146104925780637930508b1461044b5780638195408d146104095780638da5cb5b146103e45780639c8413c514610334578063afe8154b146102f2578063e31476da146101f7578063f2fde38b1461011a5763f9a885f3146100c0575f80fd5b34610116576040366003190112610116576100d9610d2a565b67ffffffffffffffff60243591165f52600360205260405f2060108210156101165760209161010791610dc9565b90549060031b1c604051908152f35b5f80fd5b34610116576020366003190112610116576004356001600160a01b03808216809203610116575f5490811690610151338314610ee5565b821561018c576001600160a01b0319839116175f557f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e05f80a3005b60405162461bcd60e51b815260206004820152602660248201527f4f776e61626c653a206e6577206f776e657220697320746865207a65726f206160448201527f64647265737300000000000000000000000000000000000000000000000000006064820152608490fd5b34610116576060366003190112610116577f6a70343b232c18280821471baf247ce69fbf740893ec9fb80a47bda7f4ea4a2f610231610d2a565b6024356102ed67ffffffffffffffff610248610d41565b9361025e6001600160a01b035f54163314610ee5565b16805f526004602052600f61027960ff60405f205416610e98565b1690805f5260036020526102ac846102948460405f20610dc9565b90919082549060031b91821b915f19901b1916179055565b5f52600460205260405f208160ff198254161790556040519384938491604091949367ffffffffffffffff60ff926060860197865216602085015216910152565b0390a1005b346101165760203660031901126101165767ffffffffffffffff610314610d2a565b165f52600160205260206001600160a01b0360405f205416604051908152f35b34610116576040366003190112610116577fb78ea0eaf11776732556ef6189312ceb60eab6b3177526b3a12d966e37be816261036e610d2a565b610376610db3565b906001600160a01b0361038d815f54163314610ee5565b67ffffffffffffffff82165f52600260205260405f209083166001600160a01b03198254161790556102ed604051928392839092916001600160a01b0360209167ffffffffffffffff604085019616845216910152565b34610116575f3660031901126101165760206001600160a01b035f5416604051908152f35b346101165760203660031901126101165767ffffffffffffffff61042b610d2a565b165f52600260205260206001600160a01b0360405f205416604051908152f35b3461011657604036600319011261011657610464610d2a565b6024359060ff821682036101165760209167ffffffffffffffff61010792165f526003835260405f20610dc9565b34610116575f366003190112610116575f80546001600160a01b03196001600160a01b038216916104c4338414610ee5565b1682557f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e08280a3005b346101165760203660031901126101165767ffffffffffffffff61050f610d2a565b165f526004602052602060ff60405f205416604051908152f35b34610116576040366003190112610116577fd621c244f07f12e1f37bb9c40d61e278041fc4f2859a6736794b26f4297c8090610563610d2a565b61056b610db3565b906001600160a01b03610582815f54163314610ee5565b67ffffffffffffffff82165f52600160205260405f209083166001600160a01b03198254161790556102ed604051928392839092916001600160a01b0360209167ffffffffffffffff604085019616845216910152565b34610116576020806003193601126101165767ffffffffffffffff6105fc610d2a565b1690815f526003815260405f209160405190815f905b6010821061064c5750506040935061062982610d74565b5f526004825261064060ff845f2054168092610dec565b51918351928352820152f35b60018581928854815201960191019094610612565b34610116576102003660031901126101165761067b610d2a565b6101e0366023190112610116576040519060c0820182811067ffffffffffffffff821117610ae05760405260243582526106b3610d41565b6020830152606435604083015260843560608301526101403660a3190112610116576040516080810181811067ffffffffffffffff821117610ae057806040523660c312156101165761070581610d58565b803660e4116101165760a4905b60e48210610cd057505081523661010312156101165760405161073481610d58565b8036610164116101165760e4905b6101648210610c7e57505060208201523661018312156101165760405161076881610d58565b80366101a41161011657610164905b6101a48210610c6e5750506040820152366101c312156101165760405161079d81610d58565b80366101e411610116576101a4905b6101e48210610c5e575050606082015260808301526101e43560a0830152606082015115610b39575b67ffffffffffffffff81165f52600460205260ff60405f2054169160036020526108028360405f20610dc9565b90549060031b1c67ffffffffffffffff83165f5260026020526001600160a01b0360405f2054168015610af457604051918261014081011067ffffffffffffffff61014085011117610ae057916109189261014082016040526101403683378060801c82526fffffffffffffffffffffffffffffffff8091166020830152845160801c6040830152808551166060830152604085015160801c60808301528060408601511660a083015267ffffffffffffffff60208601511660c0830152606085015160801c60e083015260608501511661010082015260a084015161012082015260808401519081519160208101519060606040820151910151916040519687956313a4214360e31b87526004870190610ebe565b5f604486015b60028210610ab8575050509061093b6109469260c4860190610ebe565b610104840190610ebe565b5f61014483015b600a8210610a9e57505050610284816020935afa908115610a93575f91610a58575b5015610a135767ffffffffffffffff600f6109aa7f6a70343b232c18280821471baf247ce69fbf740893ec9fb80a47bda7f4ea4a2f95610e98565b16926109c883518383165f5260036020526102948660405f20610dc9565b165f90815260046020908152604091829020805460ff191685179055825192810151825193845267ffffffffffffffff169083015260ff9092169181019190915280606081016102ed565b60405162461bcd60e51b815260206004820152601060248201527f696e76616c6964207a6b2070726f6f66000000000000000000000000000000006044820152606490fd5b90506020813d602011610a8b575b81610a7360209383610d91565b8101031261011657518015158103610116578461096f565b3d9150610a66565b6040513d5f823e3d90fd5b82935060208091600193945181520193019101849261094d565b829394959650604081610ad16020936001959651610ebe565b0193019101879594939261091e565b634e487b7160e01b5f52604160045260245ffd5b60405162461bcd60e51b815260206004820152601760248201527f6e6f20766572696669657220666f7220636861696e49640000000000000000006044820152606490fd5b67ffffffffffffffff81165f5260016020526001600160a01b0360405f2054168015610c1957602067ffffffffffffffff818501511660246040518094819363f25b3f9960e01b835260048301525afa908115610a93575f91610be7575b506040830151146107d55760405162461bcd60e51b815260206004820152601360248201527f616e63686f7220636865636b206661696c6564000000000000000000000000006044820152606490fd5b90506020813d602011610c11575b81610c0260209383610d91565b81010312610116575183610b97565b3d9150610bf5565b60405162461bcd60e51b815260206004820152601760248201527f756e6b6e6f776e20616e63686f722070726f76696465720000000000000000006044820152606490fd5b81358152602091820191016107ac565b8135815260209182019101610777565b36601f8301121561011657604051610c9581610d58565b803660408501116101165783905b604085018210610cc0575050816020916040935201910190610742565b8135815260209182019101610ca3565b8135815260209182019101610712565b34610116576040366003190112610116576020610d07610cfe610d2a565b60243590610dfd565b6040519015158152f35b34610116575f3660031901126101165780601060209252f35b6004359067ffffffffffffffff8216820361011657565b6044359067ffffffffffffffff8216820361011657565b6040810190811067ffffffffffffffff821117610ae057604052565b610200810190811067ffffffffffffffff821117610ae057604052565b90601f8019910116810190811067ffffffffffffffff821117610ae057604052565b602435906001600160a01b038216820361011657565b6010821015610dd85701905f90565b634e487b7160e01b5f52603260045260245ffd5b906010811015610dd85760051b0190565b67ffffffffffffffff165f90815260036020908152604080832090519293918490845b60108310610e835750505050610e3582610d74565b825b60108110610e455750505090565b81610e508285610dec565b5114610e7a575f198114610e6657600101610e37565b634e487b7160e01b84526011600452602484fd5b50505050600190565b60018281928654815201940192019192610e20565b60ff60019116019060ff8211610eaa57565b634e487b7160e01b5f52601160045260245ffd5b5f915b60028310610ece57505050565b600190825181526020809101920192019190610ec1565b15610eec57565b606460405162461bcd60e51b815260206004820152602060248201527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e65726044820152fdfea2646970667358221220d01efe850c88cda865691d3d8735ffefc91db187309d3bf66a579a0449161b2664736f6c63430008140033",
+}
+
+// TestSMTABI is the input ABI used to generate the binding from.
+// Deprecated: Use TestSMTMetaData.ABI instead.
+var TestSMTABI = TestSMTMetaData.ABI
+
+// TestSMTBin is the compiled bytecode used for deploying new contracts.
+// Deprecated: Use TestSMTMetaData.Bin instead.
+var TestSMTBin = TestSMTMetaData.Bin
+
+// DeployTestSMT deploys a new Ethereum contract, binding an instance of TestSMT to it.
+func DeployTestSMT(auth *bind.TransactOpts, backend bind.ContractBackend, _chainIds []uint64, _anchorProviders []common.Address, _verifiers []common.Address, _initRoots [][32]byte) (common.Address, *types.Transaction, *TestSMT, error) {
+	parsed, err := TestSMTMetaData.GetAbi()
+	if err != nil {
+		return common.Address{}, nil, nil, err
+	}
+	if parsed == nil {
+		return common.Address{}, nil, nil, errors.New("GetABI returned nil")
+	}
+
+	address, tx, contract, err := bind.DeployContract(auth, *parsed, common.FromHex(TestSMTBin), backend, _chainIds, _anchorProviders, _verifiers, _initRoots)
+	if err != nil {
+		return common.Address{}, nil, nil, err
+	}
+	return address, tx, &TestSMT{TestSMTCaller: TestSMTCaller{contract: contract}, TestSMTTransactor: TestSMTTransactor{contract: contract}, TestSMTFilterer: TestSMTFilterer{contract: contract}}, nil
+}
+
+// TestSMT is an auto generated Go binding around an Ethereum contract.
+type TestSMT struct {
+	TestSMTCaller     // Read-only binding to the contract
+	TestSMTTransactor // Write-only binding to the contract
+	TestSMTFilterer   // Log filterer for contract events
+}
+
+// TestSMTCaller is an auto generated read-only Go binding around an Ethereum contract.
+type TestSMTCaller struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// TestSMTTransactor is an auto generated write-only Go binding around an Ethereum contract.
+type TestSMTTransactor struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// TestSMTFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
+type TestSMTFilterer struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// TestSMTSession is an auto generated Go binding around an Ethereum contract,
+// with pre-set call and transact options.
+type TestSMTSession struct {
+	Contract     *TestSMT          // Generic contract binding to set the session for
+	CallOpts     bind.CallOpts     // Call options to use throughout this session
+	TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
+}
+
+// TestSMTCallerSession is an auto generated read-only Go binding around an Ethereum contract,
+// with pre-set call options.
+type TestSMTCallerSession struct {
+	Contract *TestSMTCaller // Generic contract caller binding to set the session for
+	CallOpts bind.CallOpts  // Call options to use throughout this session
+}
+
+// TestSMTTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
+// with pre-set transact options.
+type TestSMTTransactorSession struct {
+	Contract     *TestSMTTransactor // Generic contract transactor binding to set the session for
+	TransactOpts bind.TransactOpts  // Transaction auth options to use throughout this session
+}
+
+// TestSMTRaw is an auto generated low-level Go binding around an Ethereum contract.
+type TestSMTRaw struct {
+	Contract *TestSMT // Generic contract binding to access the raw methods on
+}
+
+// TestSMTCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
+type TestSMTCallerRaw struct {
+	Contract *TestSMTCaller // Generic read-only contract binding to access the raw methods on
+}
+
+// TestSMTTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
+type TestSMTTransactorRaw struct {
+	Contract *TestSMTTransactor // Generic write-only contract binding to access the raw methods on
+}
+
+// NewTestSMT creates a new instance of TestSMT, bound to a specific deployed contract.
+func NewTestSMT(address common.Address, backend bind.ContractBackend) (*TestSMT, error) {
+	contract, err := bindTestSMT(address, backend, backend, backend)
+	if err != nil {
+		return nil, err
+	}
+	return &TestSMT{TestSMTCaller: TestSMTCaller{contract: contract}, TestSMTTransactor: TestSMTTransactor{contract: contract}, TestSMTFilterer: TestSMTFilterer{contract: contract}}, nil
+}
+
+// NewTestSMTCaller creates a new read-only instance of TestSMT, bound to a specific deployed contract.
+func NewTestSMTCaller(address common.Address, caller bind.ContractCaller) (*TestSMTCaller, error) {
+	contract, err := bindTestSMT(address, caller, nil, nil)
+	if err != nil {
+		return nil, err
+	}
+	return &TestSMTCaller{contract: contract}, nil
+}
+
+// NewTestSMTTransactor creates a new write-only instance of TestSMT, bound to a specific deployed contract.
+func NewTestSMTTransactor(address common.Address, transactor bind.ContractTransactor) (*TestSMTTransactor, error) {
+	contract, err := bindTestSMT(address, nil, transactor, nil)
+	if err != nil {
+		return nil, err
+	}
+	return &TestSMTTransactor{contract: contract}, nil
+}
+
+// NewTestSMTFilterer creates a new log filterer instance of TestSMT, bound to a specific deployed contract.
+func NewTestSMTFilterer(address common.Address, filterer bind.ContractFilterer) (*TestSMTFilterer, error) {
+	contract, err := bindTestSMT(address, nil, nil, filterer)
+	if err != nil {
+		return nil, err
+	}
+	return &TestSMTFilterer{contract: contract}, nil
+}
+
+// bindTestSMT binds a generic wrapper to an already deployed contract.
+func bindTestSMT(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
+	parsed, err := TestSMTMetaData.GetAbi()
+	if err != nil {
+		return nil, err
+	}
+	return bind.NewBoundContract(address, *parsed, caller, transactor, filterer), nil
+}
+
+// Call invokes the (constant) contract method with params as input values and
+// sets the output to result. The result type might be a single field for simple
+// returns, a slice of interfaces for anonymous returns and a struct for named
+// returns.
+func (_TestSMT *TestSMTRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
+	return _TestSMT.Contract.TestSMTCaller.contract.Call(opts, result, method, params...)
+}
+
+// Transfer initiates a plain transaction to move funds to the contract, calling
+// its default method if one is available.
+func (_TestSMT *TestSMTRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _TestSMT.Contract.TestSMTTransactor.contract.Transfer(opts)
+}
+
+// Transact invokes the (paid) contract method with params as input values.
+func (_TestSMT *TestSMTRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _TestSMT.Contract.TestSMTTransactor.contract.Transact(opts, method, params...)
+}
+
+// Call invokes the (constant) contract method with params as input values and
+// sets the output to result. The result type might be a single field for simple
+// returns, a slice of interfaces for anonymous returns and a struct for named
+// returns.
+func (_TestSMT *TestSMTCallerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
+	return _TestSMT.Contract.contract.Call(opts, result, method, params...)
+}
+
+// Transfer initiates a plain transaction to move funds to the contract, calling
+// its default method if one is available.
+func (_TestSMT *TestSMTTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _TestSMT.Contract.contract.Transfer(opts)
+}
+
+// Transact invokes the (paid) contract method with params as input values.
+func (_TestSMT *TestSMTTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _TestSMT.Contract.contract.Transact(opts, method, params...)
+}
+
+// BUFFERSIZE is a free data retrieval call binding the contract method 0x004e394e.
+//
+// Solidity: function BUFFER_SIZE() view returns(uint8)
+func (_TestSMT *TestSMTCaller) BUFFERSIZE(opts *bind.CallOpts) (uint8, error) {
+	var out []interface{}
+	err := _TestSMT.contract.Call(opts, &out, "BUFFER_SIZE")
+
+	if err != nil {
+		return *new(uint8), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(uint8)).(*uint8)
+
+	return out0, err
+
+}
+
+// BUFFERSIZE is a free data retrieval call binding the contract method 0x004e394e.
+//
+// Solidity: function BUFFER_SIZE() view returns(uint8)
+func (_TestSMT *TestSMTSession) BUFFERSIZE() (uint8, error) {
+	return _TestSMT.Contract.BUFFERSIZE(&_TestSMT.CallOpts)
+}
+
+// BUFFERSIZE is a free data retrieval call binding the contract method 0x004e394e.
+//
+// Solidity: function BUFFER_SIZE() view returns(uint8)
+func (_TestSMT *TestSMTCallerSession) BUFFERSIZE() (uint8, error) {
+	return _TestSMT.Contract.BUFFERSIZE(&_TestSMT.CallOpts)
+}
+
+// AnchorProviders is a free data retrieval call binding the contract method 0xafe8154b.
+//
+// Solidity: function anchorProviders(uint64 ) view returns(address)
+func (_TestSMT *TestSMTCaller) AnchorProviders(opts *bind.CallOpts, arg0 uint64) (common.Address, error) {
+	var out []interface{}
+	err := _TestSMT.contract.Call(opts, &out, "anchorProviders", arg0)
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
+}
+
+// AnchorProviders is a free data retrieval call binding the contract method 0xafe8154b.
+//
+// Solidity: function anchorProviders(uint64 ) view returns(address)
+func (_TestSMT *TestSMTSession) AnchorProviders(arg0 uint64) (common.Address, error) {
+	return _TestSMT.Contract.AnchorProviders(&_TestSMT.CallOpts, arg0)
+}
+
+// AnchorProviders is a free data retrieval call binding the contract method 0xafe8154b.
+//
+// Solidity: function anchorProviders(uint64 ) view returns(address)
+func (_TestSMT *TestSMTCallerSession) AnchorProviders(arg0 uint64) (common.Address, error) {
+	return _TestSMT.Contract.AnchorProviders(&_TestSMT.CallOpts, arg0)
+}
+
+// CurBufferIndices is a free data retrieval call binding the contract method 0x679594fd.
+//
+// Solidity: function curBufferIndices(uint64 ) view returns(uint8)
+func (_TestSMT *TestSMTCaller) CurBufferIndices(opts *bind.CallOpts, arg0 uint64) (uint8, error) {
+	var out []interface{}
+	err := _TestSMT.contract.Call(opts, &out, "curBufferIndices", arg0)
+
+	if err != nil {
+		return *new(uint8), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(uint8)).(*uint8)
+
+	return out0, err
+
+}
+
+// CurBufferIndices is a free data retrieval call binding the contract method 0x679594fd.
+//
+// Solidity: function curBufferIndices(uint64 ) view returns(uint8)
+func (_TestSMT *TestSMTSession) CurBufferIndices(arg0 uint64) (uint8, error) {
+	return _TestSMT.Contract.CurBufferIndices(&_TestSMT.CallOpts, arg0)
+}
+
+// CurBufferIndices is a free data retrieval call binding the contract method 0x679594fd.
+//
+// Solidity: function curBufferIndices(uint64 ) view returns(uint8)
+func (_TestSMT *TestSMTCallerSession) CurBufferIndices(arg0 uint64) (uint8, error) {
+	return _TestSMT.Contract.CurBufferIndices(&_TestSMT.CallOpts, arg0)
+}
+
+// GetLatestRoot is a free data retrieval call binding the contract method 0x479aa6da.
+//
+// Solidity: function getLatestRoot(uint64 chainId) view returns(bytes32 root, uint8 bufferIndex)
+func (_TestSMT *TestSMTCaller) GetLatestRoot(opts *bind.CallOpts, chainId uint64) (struct {
+	Root        [32]byte
+	BufferIndex uint8
+}, error) {
+	var out []interface{}
+	err := _TestSMT.contract.Call(opts, &out, "getLatestRoot", chainId)
+
+	outstruct := new(struct {
+		Root        [32]byte
+		BufferIndex uint8
+	})
+	if err != nil {
+		return *outstruct, err
+	}
+
+	outstruct.Root = *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
+	outstruct.BufferIndex = *abi.ConvertType(out[1], new(uint8)).(*uint8)
+
+	return *outstruct, err
+
+}
+
+// GetLatestRoot is a free data retrieval call binding the contract method 0x479aa6da.
+//
+// Solidity: function getLatestRoot(uint64 chainId) view returns(bytes32 root, uint8 bufferIndex)
+func (_TestSMT *TestSMTSession) GetLatestRoot(chainId uint64) (struct {
+	Root        [32]byte
+	BufferIndex uint8
+}, error) {
+	return _TestSMT.Contract.GetLatestRoot(&_TestSMT.CallOpts, chainId)
+}
+
+// GetLatestRoot is a free data retrieval call binding the contract method 0x479aa6da.
+//
+// Solidity: function getLatestRoot(uint64 chainId) view returns(bytes32 root, uint8 bufferIndex)
+func (_TestSMT *TestSMTCallerSession) GetLatestRoot(chainId uint64) (struct {
+	Root        [32]byte
+	BufferIndex uint8
+}, error) {
+	return _TestSMT.Contract.GetLatestRoot(&_TestSMT.CallOpts, chainId)
+}
+
+// GetRoot is a free data retrieval call binding the contract method 0x7930508b.
+//
+// Solidity: function getRoot(uint64 chainId, uint8 bufferIndex) view returns(bytes32 root)
+func (_TestSMT *TestSMTCaller) GetRoot(opts *bind.CallOpts, chainId uint64, bufferIndex uint8) ([32]byte, error) {
+	var out []interface{}
+	err := _TestSMT.contract.Call(opts, &out, "getRoot", chainId, bufferIndex)
+
+	if err != nil {
+		return *new([32]byte), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
+
+	return out0, err
+
+}
+
+// GetRoot is a free data retrieval call binding the contract method 0x7930508b.
+//
+// Solidity: function getRoot(uint64 chainId, uint8 bufferIndex) view returns(bytes32 root)
+func (_TestSMT *TestSMTSession) GetRoot(chainId uint64, bufferIndex uint8) ([32]byte, error) {
+	return _TestSMT.Contract.GetRoot(&_TestSMT.CallOpts, chainId, bufferIndex)
+}
+
+// GetRoot is a free data retrieval call binding the contract method 0x7930508b.
+//
+// Solidity: function getRoot(uint64 chainId, uint8 bufferIndex) view returns(bytes32 root)
+func (_TestSMT *TestSMTCallerSession) GetRoot(chainId uint64, bufferIndex uint8) ([32]byte, error) {
+	return _TestSMT.Contract.GetRoot(&_TestSMT.CallOpts, chainId, bufferIndex)
+}
+
+// IsSmtRootValid is a free data retrieval call binding the contract method 0x1019b616.
+//
+// Solidity: function isSmtRootValid(uint64 chainId, bytes32 smtRoot) view returns(bool)
+func (_TestSMT *TestSMTCaller) IsSmtRootValid(opts *bind.CallOpts, chainId uint64, smtRoot [32]byte) (bool, error) {
+	var out []interface{}
+	err := _TestSMT.contract.Call(opts, &out, "isSmtRootValid", chainId, smtRoot)
+
+	if err != nil {
+		return *new(bool), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+
+	return out0, err
+
+}
+
+// IsSmtRootValid is a free data retrieval call binding the contract method 0x1019b616.
+//
+// Solidity: function isSmtRootValid(uint64 chainId, bytes32 smtRoot) view returns(bool)
+func (_TestSMT *TestSMTSession) IsSmtRootValid(chainId uint64, smtRoot [32]byte) (bool, error) {
+	return _TestSMT.Contract.IsSmtRootValid(&_TestSMT.CallOpts, chainId, smtRoot)
+}
+
+// IsSmtRootValid is a free data retrieval call binding the contract method 0x1019b616.
+//
+// Solidity: function isSmtRootValid(uint64 chainId, bytes32 smtRoot) view returns(bool)
+func (_TestSMT *TestSMTCallerSession) IsSmtRootValid(chainId uint64, smtRoot [32]byte) (bool, error) {
+	return _TestSMT.Contract.IsSmtRootValid(&_TestSMT.CallOpts, chainId, smtRoot)
+}
+
+// Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
+//
+// Solidity: function owner() view returns(address)
+func (_TestSMT *TestSMTCaller) Owner(opts *bind.CallOpts) (common.Address, error) {
+	var out []interface{}
+	err := _TestSMT.contract.Call(opts, &out, "owner")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
+}
+
+// Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
+//
+// Solidity: function owner() view returns(address)
+func (_TestSMT *TestSMTSession) Owner() (common.Address, error) {
+	return _TestSMT.Contract.Owner(&_TestSMT.CallOpts)
+}
+
+// Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
+//
+// Solidity: function owner() view returns(address)
+func (_TestSMT *TestSMTCallerSession) Owner() (common.Address, error) {
+	return _TestSMT.Contract.Owner(&_TestSMT.CallOpts)
+}
+
+// SmtRoots is a free data retrieval call binding the contract method 0xf9a885f3.
+//
+// Solidity: function smtRoots(uint64 , uint256 ) view returns(bytes32)
+func (_TestSMT *TestSMTCaller) SmtRoots(opts *bind.CallOpts, arg0 uint64, arg1 *big.Int) ([32]byte, error) {
+	var out []interface{}
+	err := _TestSMT.contract.Call(opts, &out, "smtRoots", arg0, arg1)
+
+	if err != nil {
+		return *new([32]byte), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
+
+	return out0, err
+
+}
+
+// SmtRoots is a free data retrieval call binding the contract method 0xf9a885f3.
+//
+// Solidity: function smtRoots(uint64 , uint256 ) view returns(bytes32)
+func (_TestSMT *TestSMTSession) SmtRoots(arg0 uint64, arg1 *big.Int) ([32]byte, error) {
+	return _TestSMT.Contract.SmtRoots(&_TestSMT.CallOpts, arg0, arg1)
+}
+
+// SmtRoots is a free data retrieval call binding the contract method 0xf9a885f3.
+//
+// Solidity: function smtRoots(uint64 , uint256 ) view returns(bytes32)
+func (_TestSMT *TestSMTCallerSession) SmtRoots(arg0 uint64, arg1 *big.Int) ([32]byte, error) {
+	return _TestSMT.Contract.SmtRoots(&_TestSMT.CallOpts, arg0, arg1)
+}
+
+// Verifiers is a free data retrieval call binding the contract method 0x8195408d.
+//
+// Solidity: function verifiers(uint64 ) view returns(address)
+func (_TestSMT *TestSMTCaller) Verifiers(opts *bind.CallOpts, arg0 uint64) (common.Address, error) {
+	var out []interface{}
+	err := _TestSMT.contract.Call(opts, &out, "verifiers", arg0)
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
+}
+
+// Verifiers is a free data retrieval call binding the contract method 0x8195408d.
+//
+// Solidity: function verifiers(uint64 ) view returns(address)
+func (_TestSMT *TestSMTSession) Verifiers(arg0 uint64) (common.Address, error) {
+	return _TestSMT.Contract.Verifiers(&_TestSMT.CallOpts, arg0)
+}
+
+// Verifiers is a free data retrieval call binding the contract method 0x8195408d.
+//
+// Solidity: function verifiers(uint64 ) view returns(address)
+func (_TestSMT *TestSMTCallerSession) Verifiers(arg0 uint64) (common.Address, error) {
+	return _TestSMT.Contract.Verifiers(&_TestSMT.CallOpts, arg0)
+}
+
+// AddRootForTesting is a paid mutator transaction binding the contract method 0xe31476da.
+//
+// Solidity: function addRootForTesting(uint64 chainId, bytes32 newRoot, uint64 endBlockNum) returns()
+func (_TestSMT *TestSMTTransactor) AddRootForTesting(opts *bind.TransactOpts, chainId uint64, newRoot [32]byte, endBlockNum uint64) (*types.Transaction, error) {
+	return _TestSMT.contract.Transact(opts, "addRootForTesting", chainId, newRoot, endBlockNum)
+}
+
+// AddRootForTesting is a paid mutator transaction binding the contract method 0xe31476da.
+//
+// Solidity: function addRootForTesting(uint64 chainId, bytes32 newRoot, uint64 endBlockNum) returns()
+func (_TestSMT *TestSMTSession) AddRootForTesting(chainId uint64, newRoot [32]byte, endBlockNum uint64) (*types.Transaction, error) {
+	return _TestSMT.Contract.AddRootForTesting(&_TestSMT.TransactOpts, chainId, newRoot, endBlockNum)
+}
+
+// AddRootForTesting is a paid mutator transaction binding the contract method 0xe31476da.
+//
+// Solidity: function addRootForTesting(uint64 chainId, bytes32 newRoot, uint64 endBlockNum) returns()
+func (_TestSMT *TestSMTTransactorSession) AddRootForTesting(chainId uint64, newRoot [32]byte, endBlockNum uint64) (*types.Transaction, error) {
+	return _TestSMT.Contract.AddRootForTesting(&_TestSMT.TransactOpts, chainId, newRoot, endBlockNum)
+}
+
+// RenounceOwnership is a paid mutator transaction binding the contract method 0x715018a6.
+//
+// Solidity: function renounceOwnership() returns()
+func (_TestSMT *TestSMTTransactor) RenounceOwnership(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _TestSMT.contract.Transact(opts, "renounceOwnership")
+}
+
+// RenounceOwnership is a paid mutator transaction binding the contract method 0x715018a6.
+//
+// Solidity: function renounceOwnership() returns()
+func (_TestSMT *TestSMTSession) RenounceOwnership() (*types.Transaction, error) {
+	return _TestSMT.Contract.RenounceOwnership(&_TestSMT.TransactOpts)
+}
+
+// RenounceOwnership is a paid mutator transaction binding the contract method 0x715018a6.
+//
+// Solidity: function renounceOwnership() returns()
+func (_TestSMT *TestSMTTransactorSession) RenounceOwnership() (*types.Transaction, error) {
+	return _TestSMT.Contract.RenounceOwnership(&_TestSMT.TransactOpts)
+}
+
+// SetAnchorProvider is a paid mutator transaction binding the contract method 0x5ca32bd8.
+//
+// Solidity: function setAnchorProvider(uint64 chainId, address anchorProvider) returns()
+func (_TestSMT *TestSMTTransactor) SetAnchorProvider(opts *bind.TransactOpts, chainId uint64, anchorProvider common.Address) (*types.Transaction, error) {
+	return _TestSMT.contract.Transact(opts, "setAnchorProvider", chainId, anchorProvider)
+}
+
+// SetAnchorProvider is a paid mutator transaction binding the contract method 0x5ca32bd8.
+//
+// Solidity: function setAnchorProvider(uint64 chainId, address anchorProvider) returns()
+func (_TestSMT *TestSMTSession) SetAnchorProvider(chainId uint64, anchorProvider common.Address) (*types.Transaction, error) {
+	return _TestSMT.Contract.SetAnchorProvider(&_TestSMT.TransactOpts, chainId, anchorProvider)
+}
+
+// SetAnchorProvider is a paid mutator transaction binding the contract method 0x5ca32bd8.
+//
+// Solidity: function setAnchorProvider(uint64 chainId, address anchorProvider) returns()
+func (_TestSMT *TestSMTTransactorSession) SetAnchorProvider(chainId uint64, anchorProvider common.Address) (*types.Transaction, error) {
+	return _TestSMT.Contract.SetAnchorProvider(&_TestSMT.TransactOpts, chainId, anchorProvider)
+}
+
+// SetVerifier is a paid mutator transaction binding the contract method 0x9c8413c5.
+//
+// Solidity: function setVerifier(uint64 chainId, address verifier) returns()
+func (_TestSMT *TestSMTTransactor) SetVerifier(opts *bind.TransactOpts, chainId uint64, verifier common.Address) (*types.Transaction, error) {
+	return _TestSMT.contract.Transact(opts, "setVerifier", chainId, verifier)
+}
+
+// SetVerifier is a paid mutator transaction binding the contract method 0x9c8413c5.
+//
+// Solidity: function setVerifier(uint64 chainId, address verifier) returns()
+func (_TestSMT *TestSMTSession) SetVerifier(chainId uint64, verifier common.Address) (*types.Transaction, error) {
+	return _TestSMT.Contract.SetVerifier(&_TestSMT.TransactOpts, chainId, verifier)
+}
+
+// SetVerifier is a paid mutator transaction binding the contract method 0x9c8413c5.
+//
+// Solidity: function setVerifier(uint64 chainId, address verifier) returns()
+func (_TestSMT *TestSMTTransactorSession) SetVerifier(chainId uint64, verifier common.Address) (*types.Transaction, error) {
+	return _TestSMT.Contract.SetVerifier(&_TestSMT.TransactOpts, chainId, verifier)
+}
+
+// TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
+//
+// Solidity: function transferOwnership(address newOwner) returns()
+func (_TestSMT *TestSMTTransactor) TransferOwnership(opts *bind.TransactOpts, newOwner common.Address) (*types.Transaction, error) {
+	return _TestSMT.contract.Transact(opts, "transferOwnership", newOwner)
+}
+
+// TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
+//
+// Solidity: function transferOwnership(address newOwner) returns()
+func (_TestSMT *TestSMTSession) TransferOwnership(newOwner common.Address) (*types.Transaction, error) {
+	return _TestSMT.Contract.TransferOwnership(&_TestSMT.TransactOpts, newOwner)
+}
+
+// TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
+//
+// Solidity: function transferOwnership(address newOwner) returns()
+func (_TestSMT *TestSMTTransactorSession) TransferOwnership(newOwner common.Address) (*types.Transaction, error) {
+	return _TestSMT.Contract.TransferOwnership(&_TestSMT.TransactOpts, newOwner)
+}
+
+// UpdateRoot is a paid mutator transaction binding the contract method 0x318a492d.
+//
+// Solidity: function updateRoot(uint64 chainId, (bytes32,uint64,bytes32,bytes32,(uint256[2],uint256[2][2],uint256[2],uint256[2]),bytes32) u) returns()
+func (_TestSMT *TestSMTTransactor) UpdateRoot(opts *bind.TransactOpts, chainId uint64, u ISMTSmtUpdate) (*types.Transaction, error) {
+	return _TestSMT.contract.Transact(opts, "updateRoot", chainId, u)
+}
+
+// UpdateRoot is a paid mutator transaction binding the contract method 0x318a492d.
+//
+// Solidity: function updateRoot(uint64 chainId, (bytes32,uint64,bytes32,bytes32,(uint256[2],uint256[2][2],uint256[2],uint256[2]),bytes32) u) returns()
+func (_TestSMT *TestSMTSession) UpdateRoot(chainId uint64, u ISMTSmtUpdate) (*types.Transaction, error) {
+	return _TestSMT.Contract.UpdateRoot(&_TestSMT.TransactOpts, chainId, u)
+}
+
+// UpdateRoot is a paid mutator transaction binding the contract method 0x318a492d.
+//
+// Solidity: function updateRoot(uint64 chainId, (bytes32,uint64,bytes32,bytes32,(uint256[2],uint256[2][2],uint256[2],uint256[2]),bytes32) u) returns()
+func (_TestSMT *TestSMTTransactorSession) UpdateRoot(chainId uint64, u ISMTSmtUpdate) (*types.Transaction, error) {
+	return _TestSMT.Contract.UpdateRoot(&_TestSMT.TransactOpts, chainId, u)
+}
+
+// TestSMTAnchorProviderUpdatedIterator is returned from FilterAnchorProviderUpdated and is used to iterate over the raw logs and unpacked data for AnchorProviderUpdated events raised by the TestSMT contract.
+type TestSMTAnchorProviderUpdatedIterator struct {
+	Event *TestSMTAnchorProviderUpdated // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *TestSMTAnchorProviderUpdatedIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(TestSMTAnchorProviderUpdated)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(TestSMTAnchorProviderUpdated)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *TestSMTAnchorProviderUpdatedIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *TestSMTAnchorProviderUpdatedIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// TestSMTAnchorProviderUpdated represents a AnchorProviderUpdated event raised by the TestSMT contract.
+type TestSMTAnchorProviderUpdated struct {
+	ChainId        uint64
+	AnchorProvider common.Address
+	Raw            types.Log // Blockchain specific contextual infos
+}
+
+// FilterAnchorProviderUpdated is a free log retrieval operation binding the contract event 0xd621c244f07f12e1f37bb9c40d61e278041fc4f2859a6736794b26f4297c8090.
+//
+// Solidity: event AnchorProviderUpdated(uint64 chainId, address anchorProvider)
+func (_TestSMT *TestSMTFilterer) FilterAnchorProviderUpdated(opts *bind.FilterOpts) (*TestSMTAnchorProviderUpdatedIterator, error) {
+
+	logs, sub, err := _TestSMT.contract.FilterLogs(opts, "AnchorProviderUpdated")
+	if err != nil {
+		return nil, err
+	}
+	return &TestSMTAnchorProviderUpdatedIterator{contract: _TestSMT.contract, event: "AnchorProviderUpdated", logs: logs, sub: sub}, nil
+}
+
+// WatchAnchorProviderUpdated is a free log subscription operation binding the contract event 0xd621c244f07f12e1f37bb9c40d61e278041fc4f2859a6736794b26f4297c8090.
+//
+// Solidity: event AnchorProviderUpdated(uint64 chainId, address anchorProvider)
+func (_TestSMT *TestSMTFilterer) WatchAnchorProviderUpdated(opts *bind.WatchOpts, sink chan<- *TestSMTAnchorProviderUpdated) (event.Subscription, error) {
+
+	logs, sub, err := _TestSMT.contract.WatchLogs(opts, "AnchorProviderUpdated")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(TestSMTAnchorProviderUpdated)
+				if err := _TestSMT.contract.UnpackLog(event, "AnchorProviderUpdated", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseAnchorProviderUpdated is a log parse operation binding the contract event 0xd621c244f07f12e1f37bb9c40d61e278041fc4f2859a6736794b26f4297c8090.
+//
+// Solidity: event AnchorProviderUpdated(uint64 chainId, address anchorProvider)
+func (_TestSMT *TestSMTFilterer) ParseAnchorProviderUpdated(log types.Log) (*TestSMTAnchorProviderUpdated, error) {
+	event := new(TestSMTAnchorProviderUpdated)
+	if err := _TestSMT.contract.UnpackLog(event, "AnchorProviderUpdated", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// TestSMTOwnershipTransferredIterator is returned from FilterOwnershipTransferred and is used to iterate over the raw logs and unpacked data for OwnershipTransferred events raised by the TestSMT contract.
+type TestSMTOwnershipTransferredIterator struct {
+	Event *TestSMTOwnershipTransferred // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *TestSMTOwnershipTransferredIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(TestSMTOwnershipTransferred)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(TestSMTOwnershipTransferred)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *TestSMTOwnershipTransferredIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *TestSMTOwnershipTransferredIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// TestSMTOwnershipTransferred represents a OwnershipTransferred event raised by the TestSMT contract.
+type TestSMTOwnershipTransferred struct {
+	PreviousOwner common.Address
+	NewOwner      common.Address
+	Raw           types.Log // Blockchain specific contextual infos
+}
+
+// FilterOwnershipTransferred is a free log retrieval operation binding the contract event 0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0.
+//
+// Solidity: event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
+func (_TestSMT *TestSMTFilterer) FilterOwnershipTransferred(opts *bind.FilterOpts, previousOwner []common.Address, newOwner []common.Address) (*TestSMTOwnershipTransferredIterator, error) {
+
+	var previousOwnerRule []interface{}
+	for _, previousOwnerItem := range previousOwner {
+		previousOwnerRule = append(previousOwnerRule, previousOwnerItem)
+	}
+	var newOwnerRule []interface{}
+	for _, newOwnerItem := range newOwner {
+		newOwnerRule = append(newOwnerRule, newOwnerItem)
+	}
+
+	logs, sub, err := _TestSMT.contract.FilterLogs(opts, "OwnershipTransferred", previousOwnerRule, newOwnerRule)
+	if err != nil {
+		return nil, err
+	}
+	return &TestSMTOwnershipTransferredIterator{contract: _TestSMT.contract, event: "OwnershipTransferred", logs: logs, sub: sub}, nil
+}
+
+// WatchOwnershipTransferred is a free log subscription operation binding the contract event 0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0.
+//
+// Solidity: event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
+func (_TestSMT *TestSMTFilterer) WatchOwnershipTransferred(opts *bind.WatchOpts, sink chan<- *TestSMTOwnershipTransferred, previousOwner []common.Address, newOwner []common.Address) (event.Subscription, error) {
+
+	var previousOwnerRule []interface{}
+	for _, previousOwnerItem := range previousOwner {
+		previousOwnerRule = append(previousOwnerRule, previousOwnerItem)
+	}
+	var newOwnerRule []interface{}
+	for _, newOwnerItem := range newOwner {
+		newOwnerRule = append(newOwnerRule, newOwnerItem)
+	}
+
+	logs, sub, err := _TestSMT.contract.WatchLogs(opts, "OwnershipTransferred", previousOwnerRule, newOwnerRule)
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(TestSMTOwnershipTransferred)
+				if err := _TestSMT.contract.UnpackLog(event, "OwnershipTransferred", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseOwnershipTransferred is a log parse operation binding the contract event 0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0.
+//
+// Solidity: event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
+func (_TestSMT *TestSMTFilterer) ParseOwnershipTransferred(log types.Log) (*TestSMTOwnershipTransferred, error) {
+	event := new(TestSMTOwnershipTransferred)
+	if err := _TestSMT.contract.UnpackLog(event, "OwnershipTransferred", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// TestSMTSmtRootUpdatedIterator is returned from FilterSmtRootUpdated and is used to iterate over the raw logs and unpacked data for SmtRootUpdated events raised by the TestSMT contract.
+type TestSMTSmtRootUpdatedIterator struct {
+	Event *TestSMTSmtRootUpdated // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *TestSMTSmtRootUpdatedIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(TestSMTSmtRootUpdated)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(TestSMTSmtRootUpdated)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *TestSMTSmtRootUpdatedIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *TestSMTSmtRootUpdatedIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// TestSMTSmtRootUpdated represents a SmtRootUpdated event raised by the TestSMT contract.
+type TestSMTSmtRootUpdated struct {
+	SmtRoot     [32]byte
+	EndBlockNum uint64
+	BufferIndex uint8
+	Raw         types.Log // Blockchain specific contextual infos
+}
+
+// FilterSmtRootUpdated is a free log retrieval operation binding the contract event 0x6a70343b232c18280821471baf247ce69fbf740893ec9fb80a47bda7f4ea4a2f.
+//
+// Solidity: event SmtRootUpdated(bytes32 smtRoot, uint64 endBlockNum, uint8 bufferIndex)
+func (_TestSMT *TestSMTFilterer) FilterSmtRootUpdated(opts *bind.FilterOpts) (*TestSMTSmtRootUpdatedIterator, error) {
+
+	logs, sub, err := _TestSMT.contract.FilterLogs(opts, "SmtRootUpdated")
+	if err != nil {
+		return nil, err
+	}
+	return &TestSMTSmtRootUpdatedIterator{contract: _TestSMT.contract, event: "SmtRootUpdated", logs: logs, sub: sub}, nil
+}
+
+// WatchSmtRootUpdated is a free log subscription operation binding the contract event 0x6a70343b232c18280821471baf247ce69fbf740893ec9fb80a47bda7f4ea4a2f.
+//
+// Solidity: event SmtRootUpdated(bytes32 smtRoot, uint64 endBlockNum, uint8 bufferIndex)
+func (_TestSMT *TestSMTFilterer) WatchSmtRootUpdated(opts *bind.WatchOpts, sink chan<- *TestSMTSmtRootUpdated) (event.Subscription, error) {
+
+	logs, sub, err := _TestSMT.contract.WatchLogs(opts, "SmtRootUpdated")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(TestSMTSmtRootUpdated)
+				if err := _TestSMT.contract.UnpackLog(event, "SmtRootUpdated", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseSmtRootUpdated is a log parse operation binding the contract event 0x6a70343b232c18280821471baf247ce69fbf740893ec9fb80a47bda7f4ea4a2f.
+//
+// Solidity: event SmtRootUpdated(bytes32 smtRoot, uint64 endBlockNum, uint8 bufferIndex)
+func (_TestSMT *TestSMTFilterer) ParseSmtRootUpdated(log types.Log) (*TestSMTSmtRootUpdated, error) {
+	event := new(TestSMTSmtRootUpdated)
+	if err := _TestSMT.contract.UnpackLog(event, "SmtRootUpdated", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// TestSMTVerifierUpdatedIterator is returned from FilterVerifierUpdated and is used to iterate over the raw logs and unpacked data for VerifierUpdated events raised by the TestSMT contract.
+type TestSMTVerifierUpdatedIterator struct {
+	Event *TestSMTVerifierUpdated // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *TestSMTVerifierUpdatedIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(TestSMTVerifierUpdated)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(TestSMTVerifierUpdated)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *TestSMTVerifierUpdatedIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *TestSMTVerifierUpdatedIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// TestSMTVerifierUpdated represents a VerifierUpdated event raised by the TestSMT contract.
+type TestSMTVerifierUpdated struct {
+	ChainId  uint64
+	Verifier common.Address
+	Raw      types.Log // Blockchain specific contextual infos
+}
+
+// FilterVerifierUpdated is a free log retrieval operation binding the contract event 0xb78ea0eaf11776732556ef6189312ceb60eab6b3177526b3a12d966e37be8162.
+//
+// Solidity: event VerifierUpdated(uint64 chainId, address verifier)
+func (_TestSMT *TestSMTFilterer) FilterVerifierUpdated(opts *bind.FilterOpts) (*TestSMTVerifierUpdatedIterator, error) {
+
+	logs, sub, err := _TestSMT.contract.FilterLogs(opts, "VerifierUpdated")
+	if err != nil {
+		return nil, err
+	}
+	return &TestSMTVerifierUpdatedIterator{contract: _TestSMT.contract, event: "VerifierUpdated", logs: logs, sub: sub}, nil
+}
+
+// WatchVerifierUpdated is a free log subscription operation binding the contract event 0xb78ea0eaf11776732556ef6189312ceb60eab6b3177526b3a12d966e37be8162.
+//
+// Solidity: event VerifierUpdated(uint64 chainId, address verifier)
+func (_TestSMT *TestSMTFilterer) WatchVerifierUpdated(opts *bind.WatchOpts, sink chan<- *TestSMTVerifierUpdated) (event.Subscription, error) {
+
+	logs, sub, err := _TestSMT.contract.WatchLogs(opts, "VerifierUpdated")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(TestSMTVerifierUpdated)
+				if err := _TestSMT.contract.UnpackLog(event, "VerifierUpdated", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseVerifierUpdated is a log parse operation binding the contract event 0xb78ea0eaf11776732556ef6189312ceb60eab6b3177526b3a12d966e37be8162.
+//
+// Solidity: event VerifierUpdated(uint64 chainId, address verifier)
+func (_TestSMT *TestSMTFilterer) ParseVerifierUpdated(log types.Log) (*TestSMTVerifierUpdated, error) {
+	event := new(TestSMTVerifierUpdated)
+	if err := _TestSMT.contract.UnpackLog(event, "VerifierUpdated", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
 // TickBitmapMetaData contains all meta data concerning the TickBitmap contract.
 var TickBitmapMetaData = &bind.MetaData{
 	ABI: "[{\"inputs\":[{\"internalType\":\"int24\",\"name\":\"tick\",\"type\":\"int24\"},{\"internalType\":\"int24\",\"name\":\"tickSpacing\",\"type\":\"int24\"}],\"name\":\"TickMisaligned\",\"type\":\"error\"}]",
@@ -40592,7 +44839,7 @@ func (_TokenVault *TokenVaultFilterer) ParseWithdrawn(log types.Log) (*TokenVaul
 // TxMetaData contains all meta data concerning the Tx contract.
 var TxMetaData = &bind.MetaData{
 	ABI: "[{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"txRaw\",\"type\":\"bytes\"}],\"name\":\"decodeTx\",\"outputs\":[{\"components\":[{\"internalType\":\"uint64\",\"name\":\"chainId\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"nonce\",\"type\":\"uint64\"},{\"internalType\":\"uint256\",\"name\":\"gasTipCap\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"gasFeeCap\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"gas\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"},{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"}],\"internalType\":\"structTx.TxInfo\",\"name\":\"info\",\"type\":\"tuple\"}],\"stateMutability\":\"pure\",\"type\":\"function\"}]",
-	Bin: "0x6080806040523461001a57610e3a908161001f823930815050f35b5f80fdfe6040608081526004361015610012575f80fd5b5f90813560e01c63dae029d314610027575f80fd5b602090816003193601126103d55767ffffffffffffffff916004358381116103d157366023820112156103d15780600401359384116103d157602481019060248536920101116103d1576102e4946102da926102c992610085610526565b9660ff926100ba6002856100b36100ad61009f8789610591565b356001600160f81b03191690565b60f81c90565b16146105ae565b6100df6100da6100d56100ce8580886105fa565b36916106a7565b6109ff565b610a66565b926101136101056100f86100f2876106dd565b51610b79565b67ffffffffffffffff1690565b67ffffffffffffffff168b52565b6101356101256100f86100f2876106ea565b67ffffffffffffffff168b840152565b6101416100f2856106fa565b898b01526101516100f28561070a565b60608b01526101626100f28561071a565b60808b015261018c61017c6101768661072a565b51610b5b565b6001600160a01b031660a08c0152565b6101986100f28561073a565b60c08b01526101af6101a98561074a565b51610be7565b60e08b01526101c96101c36100f28661075b565b60ff1690565b956101ed6101e26101a96101e76101e26101a98a61076c565b6107a2565b9761077d565b958a6102076102026100ad61009f898861059f565b6107d8565b9582871660010361039b576102336101c361022e6100ad610228858a610637565b90610865565b6107f0565b965b61ffff8816603781116102e85750506102bd939261029d8761028f6102b5958561028961027a6102686102a5998e610648565b9d909361027481610891565b91610656565b929093519c8d968701916108f8565b916108f8565b03601f1981018852876104f5565b859716610814565b60f81b6001600160f81b03191690565b901a91610971565b535b8151910120610981565b6001600160a01b0316610100840152565b5191829182610417565b0390f35b909697945083959391925011155f146103615761035b93828261031d61031761009f61032f9661034d98610591565b98610803565b9261032782610891565b931691610673565b8c5195869491929160f81b6001600160f81b03191690888601610940565b03601f1981018352826104f5565b906102bf565b61035b93828261031d61031761009f61037d9661034d98610591565b8c5195869491929160f01b6001600160f01b03191690888601610905565b6103cb6103c66103c06103ba6103b36101c38c610803565b858a61061a565b90610825565b60f01c90565b610851565b96610235565b8480fd5b8280fd5b91908251928382525f5b848110610403575050825f602080949584010152601f8019910116010190565b6020818301810151848301820152016103e3565b6104bd906020815261043660208201845167ffffffffffffffff169052565b602083015167ffffffffffffffff1660408201526040830151606082015260608301516080820152608083015160a082015261048260a084015160c08301906001600160a01b03169052565b60c083015160e082015260e0830151610120906104ac6101009183838601526101408501906103d9565b9401516001600160a01b0316910152565b90565b634e487b7160e01b5f52604160045260245ffd5b6040810190811067ffffffffffffffff8211176104f057604052565b6104c0565b90601f8019910116810190811067ffffffffffffffff8211176104f057604052565b60405190610524826104d4565b565b60405190610120820182811067ffffffffffffffff8211176104f057604052816101005f918281528260208201528260408201528260608201528260808201528260a08201528260c0820152606060e08201520152565b634e487b7160e01b5f52603260045260245ffd5b901561059a5790565b61057d565b906001101561059a5760010190565b156105b557565b60405162461bcd60e51b815260206004820152601660248201527f6e6f7420612044796e616d6963466565547854797065000000000000000000006044820152606490fd5b909291928360011161061657831161061657600101915f190190565b5f80fd5b909291928360021161061657831161061657600201916001190190565b906003116106165760020190600190565b906002116106165790600290565b909291928360031161061657831161061657600301916002190190565b90939293848311610616578411610616578101920390565b67ffffffffffffffff81116104f057601f01601f191660200190565b9291926106b38261068b565b916106c160405193846104f5565b829481845281830111610616578281602093845f960137010152565b80511561059a5760200190565b80516001101561059a5760400190565b80516002101561059a5760600190565b80516003101561059a5760800190565b80516004101561059a5760a00190565b80516005101561059a5760c00190565b80516006101561059a5760e00190565b80516007101561059a576101000190565b80516009101561059a576101400190565b8051600a101561059a576101600190565b8051600b101561059a576101800190565b805182101561059a5760209160051b010190565b6020815191015190602081106107b6575090565b5f199060200360031b1b1690565b634e487b7160e01b5f52601160045260245ffd5b60ff60f6199116019060ff82116107eb57565b6107c4565b60ff6042199116019060ff82116107eb57565b60ff166002019060ff82116107eb57565b60ff1660c0019060ff82116107eb57565b6001600160f01b0319903581811693926002811061084257505050565b60020360031b82901b16169150565b61ffff90811660421901919082116107eb57565b6001600160f81b0319903581811693926001811061088257505050565b60010360031b82901b16169150565b6042198101919082116107eb57565b60bf198101919082116107eb57565b607f198101919082116107eb57565b60200390602082116107eb57565b5f198101919082116107eb57565b60f6198101919082116107eb57565b60b6198101919082116107eb57565b908092918237015f815290565b6001600160f81b0319909116815260f960f81b60018201526001600160f01b031990911660028201526004929182908483013701015f815290565b6001600160f81b03199182168152601f60fb1b6001820152911660028201526003929182908483013701015f815290565b80516001101561059a5760210190565b919260ff8116601b81106109cd575b509160209360809260ff5f9560405194855216868401526040830152606082015282805260015afa156109c2575f5190565b6040513d5f823e3d90fd5b601b9150929192019060ff82116107eb5791906020610990565b604051906109f4826104d4565b5f6020838281520152565b610a076109e7565b50602081519160405192610a1a846104d4565b835201602082015290565b67ffffffffffffffff81116104f05760051b60200190565b90600182018092116107eb57565b919082018092116107eb57565b5f1981146107eb5760010190565b610a6f81610b37565b1561061657610a7d81610c34565b610a8681610a25565b91610a9460405193846104f5565b818352601f19610aa383610a25565b015f5b818110610b20575050610ac7602080920151610ac181610d1a565b90610a4b565b5f905b838210610ad8575050505090565b610b1481610ae8610b1a93610c95565b90610af1610517565b8281528187820152610b03868a61078e565b52610b0e858961078e565b50610a4b565b91610a58565b90610aca565b602090610b2b6109e7565b82828801015201610aa6565b805115610b5657602060c0910151515f1a10610b5257600190565b5f90565b505f90565b601581510361061657610b756001600160a01b0391610b79565b1690565b80518015159081610baf575b501561061657610b9490610bbb565b90519060208110610ba3575090565b6020036101000a900490565b6021915011155f610b85565b906020820191610bcb8351610d1a565b9251908382018092116107eb57519283039283116107eb579190565b80511561061657610bfa6104bd91610bbb565b610c068193929361068b565b92610c1460405194856104f5565b818452601f19610c238361068b565b013660208601378360200190610d87565b805115610b56575f9060208101908151610c4d81610d1a565b81018091116107eb579151905181018091116107eb5791905b828110610c735750905090565b610c7c81610c95565b81018091116107eb57610c8f9091610a58565b90610c66565b80515f1a906080821015610caa575050600190565b60b8821015610cc55750610cc06104bd916108af565b610a3d565b9060c0811015610ce95760b51991600160b783602003016101000a91015104010190565b9060f8821015610d005750610cc06104bd916108a0565b60010151602082900360f7016101000a90040160f5190190565b515f1a6080811015610d2b57505f90565b60b881108015610d62575b15610d415750600190565b60c0811015610d5657610cc06104bd916108e9565b610cc06104bd916108da565b5060c08110158015610d36575060f88110610d36565b601f81116107eb576101000a90565b929091928315610dfe5792915b602093848410610dc957805182528481018091116107eb579381018091116107eb5791601f1981019081116107eb5791610d94565b9193509180610dd757505050565b610deb610de6610df0926108be565b610d78565b6108cc565b905182518216911916179052565b5091505056fea2646970667358221220384102b3320f21e2ec577beb5cd174bd69dd95af1421c4ebe18ea4a79b6e767064736f6c63430008140033",
+	Bin: "0x6080806040523461001a57610e3a908161001f823930815050f35b5f80fdfe6040608081526004361015610012575f80fd5b5f90813560e01c63dae029d314610027575f80fd5b602090816003193601126103d55767ffffffffffffffff916004358381116103d157366023820112156103d15780600401359384116103d157602481019060248536920101116103d1576102e4946102da926102c992610085610526565b9660ff926100ba6002856100b36100ad61009f8789610591565b356001600160f81b03191690565b60f81c90565b16146105ae565b6100df6100da6100d56100ce8580886105fa565b36916106a7565b6109ff565b610a66565b926101136101056100f86100f2876106dd565b51610b79565b67ffffffffffffffff1690565b67ffffffffffffffff168b52565b6101356101256100f86100f2876106ea565b67ffffffffffffffff168b840152565b6101416100f2856106fa565b898b01526101516100f28561070a565b60608b01526101626100f28561071a565b60808b015261018c61017c6101768661072a565b51610b5b565b6001600160a01b031660a08c0152565b6101986100f28561073a565b60c08b01526101af6101a98561074a565b51610be7565b60e08b01526101c96101c36100f28661075b565b60ff1690565b956101ed6101e26101a96101e76101e26101a98a61076c565b6107a2565b9761077d565b958a6102076102026100ad61009f898861059f565b6107d8565b9582871660010361039b576102336101c361022e6100ad610228858a610637565b90610865565b6107f0565b965b61ffff8816603781116102e85750506102bd939261029d8761028f6102b5958561028961027a6102686102a5998e610648565b9d909361027481610891565b91610656565b929093519c8d968701916108f8565b916108f8565b03601f1981018852876104f5565b859716610814565b60f81b6001600160f81b03191690565b901a91610971565b535b8151910120610981565b6001600160a01b0316610100840152565b5191829182610417565b0390f35b909697945083959391925011155f146103615761035b93828261031d61031761009f61032f9661034d98610591565b98610803565b9261032782610891565b931691610673565b8c5195869491929160f81b6001600160f81b03191690888601610940565b03601f1981018352826104f5565b906102bf565b61035b93828261031d61031761009f61037d9661034d98610591565b8c5195869491929160f01b6001600160f01b03191690888601610905565b6103cb6103c66103c06103ba6103b36101c38c610803565b858a61061a565b90610825565b60f01c90565b610851565b96610235565b8480fd5b8280fd5b91908251928382525f5b848110610403575050825f602080949584010152601f8019910116010190565b6020818301810151848301820152016103e3565b6104bd906020815261043660208201845167ffffffffffffffff169052565b602083015167ffffffffffffffff1660408201526040830151606082015260608301516080820152608083015160a082015261048260a084015160c08301906001600160a01b03169052565b60c083015160e082015260e0830151610120906104ac6101009183838601526101408501906103d9565b9401516001600160a01b0316910152565b90565b634e487b7160e01b5f52604160045260245ffd5b6040810190811067ffffffffffffffff8211176104f057604052565b6104c0565b90601f8019910116810190811067ffffffffffffffff8211176104f057604052565b60405190610524826104d4565b565b60405190610120820182811067ffffffffffffffff8211176104f057604052816101005f918281528260208201528260408201528260608201528260808201528260a08201528260c0820152606060e08201520152565b634e487b7160e01b5f52603260045260245ffd5b901561059a5790565b61057d565b906001101561059a5760010190565b156105b557565b60405162461bcd60e51b815260206004820152601660248201527f6e6f7420612044796e616d6963466565547854797065000000000000000000006044820152606490fd5b909291928360011161061657831161061657600101915f190190565b5f80fd5b909291928360021161061657831161061657600201916001190190565b906003116106165760020190600190565b906002116106165790600290565b909291928360031161061657831161061657600301916002190190565b90939293848311610616578411610616578101920390565b67ffffffffffffffff81116104f057601f01601f191660200190565b9291926106b38261068b565b916106c160405193846104f5565b829481845281830111610616578281602093845f960137010152565b80511561059a5760200190565b80516001101561059a5760400190565b80516002101561059a5760600190565b80516003101561059a5760800190565b80516004101561059a5760a00190565b80516005101561059a5760c00190565b80516006101561059a5760e00190565b80516007101561059a576101000190565b80516009101561059a576101400190565b8051600a101561059a576101600190565b8051600b101561059a576101800190565b805182101561059a5760209160051b010190565b6020815191015190602081106107b6575090565b5f199060200360031b1b1690565b634e487b7160e01b5f52601160045260245ffd5b60ff60f6199116019060ff82116107eb57565b6107c4565b60ff6042199116019060ff82116107eb57565b60ff166002019060ff82116107eb57565b60ff1660c0019060ff82116107eb57565b6001600160f01b0319903581811693926002811061084257505050565b60020360031b82901b16169150565b61ffff90811660421901919082116107eb57565b6001600160f81b0319903581811693926001811061088257505050565b60010360031b82901b16169150565b6042198101919082116107eb57565b60bf198101919082116107eb57565b607f198101919082116107eb57565b60200390602082116107eb57565b5f198101919082116107eb57565b60f6198101919082116107eb57565b60b6198101919082116107eb57565b908092918237015f815290565b6001600160f81b0319909116815260f960f81b60018201526001600160f01b031990911660028201526004929182908483013701015f815290565b6001600160f81b03199182168152601f60fb1b6001820152911660028201526003929182908483013701015f815290565b80516001101561059a5760210190565b919260ff8116601b81106109cd575b509160209360809260ff5f9560405194855216868401526040830152606082015282805260015afa156109c2575f5190565b6040513d5f823e3d90fd5b601b9150929192019060ff82116107eb5791906020610990565b604051906109f4826104d4565b5f6020838281520152565b610a076109e7565b50602081519160405192610a1a846104d4565b835201602082015290565b67ffffffffffffffff81116104f05760051b60200190565b90600182018092116107eb57565b919082018092116107eb57565b5f1981146107eb5760010190565b610a6f81610b37565b1561061657610a7d81610c34565b610a8681610a25565b91610a9460405193846104f5565b818352601f19610aa383610a25565b015f5b818110610b20575050610ac7602080920151610ac181610d1a565b90610a4b565b5f905b838210610ad8575050505090565b610b1481610ae8610b1a93610c95565b90610af1610517565b8281528187820152610b03868a61078e565b52610b0e858961078e565b50610a4b565b91610a58565b90610aca565b602090610b2b6109e7565b82828801015201610aa6565b805115610b5657602060c0910151515f1a10610b5257600190565b5f90565b505f90565b601581510361061657610b756001600160a01b0391610b79565b1690565b80518015159081610baf575b501561061657610b9490610bbb565b90519060208110610ba3575090565b6020036101000a900490565b6021915011155f610b85565b906020820191610bcb8351610d1a565b9251908382018092116107eb57519283039283116107eb579190565b80511561061657610bfa6104bd91610bbb565b610c068193929361068b565b92610c1460405194856104f5565b818452601f19610c238361068b565b013660208601378360200190610d87565b805115610b56575f9060208101908151610c4d81610d1a565b81018091116107eb579151905181018091116107eb5791905b828110610c735750905090565b610c7c81610c95565b81018091116107eb57610c8f9091610a58565b90610c66565b80515f1a906080821015610caa575050600190565b60b8821015610cc55750610cc06104bd916108af565b610a3d565b9060c0811015610ce95760b51991600160b783602003016101000a91015104010190565b9060f8821015610d005750610cc06104bd916108a0565b60010151602082900360f7016101000a90040160f5190190565b515f1a6080811015610d2b57505f90565b60b881108015610d62575b15610d415750600190565b60c0811015610d5657610cc06104bd916108e9565b610cc06104bd916108da565b5060c08110158015610d36575060f88110610d36565b601f81116107eb576101000a90565b929091928315610dfe5792915b602093848410610dc957805182528481018091116107eb579381018091116107eb5791601f1981019081116107eb5791610d94565b9193509180610dd757505050565b610deb610de6610df0926108be565b610d78565b6108cc565b905182518216911916179052565b5091505056fea2646970667358221220ea96a816c12a0d5c0d6c4fe972ea7db361a063013c3d506bcbfabeface5e5a0d64736f6c63430008140033",
 }
 
 // TxABI is the input ABI used to generate the binding from.
