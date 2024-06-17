@@ -285,6 +285,8 @@ type SMTUpdateAssignmentData struct {
 	NewChunkIndex       uint64            `json:"new_chunk_index,omitempty"`
 	NewChunkMerkleRoot  []byte            `json:"new_chunk_merkle_root,omitempty"`
 	NewChunkRoot        []byte            `json:"new_chunk_root,omitempty"`
+
+	InitialStartBlockNum uint64 `json:"initial_start_block_num,omitempty"`
 }
 
 type SDKQueryProvingInfo struct {
