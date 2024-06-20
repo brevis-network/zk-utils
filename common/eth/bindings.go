@@ -4987,6 +4987,644 @@ func (_BrevisAggProof *BrevisAggProofFilterer) ParseSmtContractUpdated(log types
 	return event, nil
 }
 
+// BrevisAppMetaData contains all meta data concerning the BrevisApp contract.
+var BrevisAppMetaData = &bind.MetaData{
+	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"commitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"vkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appCommitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appVkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"smtRoot\",\"type\":\"bytes32\"}],\"internalType\":\"structBrevis.ProofData\",\"name\":\"_proofData\",\"type\":\"tuple\"},{\"internalType\":\"bytes32\",\"name\":\"_merkleRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32[]\",\"name\":\"_merkleProof\",\"type\":\"bytes32[]\"},{\"internalType\":\"uint8\",\"name\":\"_nodeIndex\",\"type\":\"uint8\"},{\"internalType\":\"bytes\",\"name\":\"_appCircuitOutput\",\"type\":\"bytes\"}],\"name\":\"applyBrevisAggProof\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"commitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"vkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appCommitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appVkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"smtRoot\",\"type\":\"bytes32\"}],\"internalType\":\"structBrevis.ProofData[]\",\"name\":\"_proofDataArray\",\"type\":\"tuple[]\"},{\"internalType\":\"bytes[]\",\"name\":\"_appCircuitOutputs\",\"type\":\"bytes[]\"}],\"name\":\"applyBrevisAggProof\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_appVkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_appCommitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"_appCircuitOutput\",\"type\":\"bytes\"}],\"name\":\"applyBrevisOpResult\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32[]\",\"name\":\"_requestIds\",\"type\":\"bytes32[]\"},{\"internalType\":\"bytes32[]\",\"name\":\"_appVkHashes\",\"type\":\"bytes32[]\"},{\"internalType\":\"bytes32[]\",\"name\":\"_appCommitHashes\",\"type\":\"bytes32[]\"},{\"internalType\":\"bytes[]\",\"name\":\"_appCircuitOutputs\",\"type\":\"bytes[]\"}],\"name\":\"applyBrevisOpResults\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_appVkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_appCommitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"_appCircuitOutput\",\"type\":\"bytes\"}],\"name\":\"applyBrevisProof\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32[]\",\"name\":\"_appVkHashes\",\"type\":\"bytes32[]\"},{\"internalType\":\"bytes[]\",\"name\":\"_appCircuitOutputs\",\"type\":\"bytes[]\"}],\"name\":\"brevisBatchCallback\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_appVkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"_appCircuitOutput\",\"type\":\"bytes\"}],\"name\":\"brevisCallback\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"brevisProof\",\"outputs\":[{\"internalType\":\"contractIBrevisProof\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"brevisRequest\",\"outputs\":[{\"internalType\":\"contractIBrevisRequest\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"opChallengeWindow\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_challangeWindow\",\"type\":\"uint256\"}],\"name\":\"setOpChallengeWindow\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
+}
+
+// BrevisAppABI is the input ABI used to generate the binding from.
+// Deprecated: Use BrevisAppMetaData.ABI instead.
+var BrevisAppABI = BrevisAppMetaData.ABI
+
+// BrevisApp is an auto generated Go binding around an Ethereum contract.
+type BrevisApp struct {
+	BrevisAppCaller     // Read-only binding to the contract
+	BrevisAppTransactor // Write-only binding to the contract
+	BrevisAppFilterer   // Log filterer for contract events
+}
+
+// BrevisAppCaller is an auto generated read-only Go binding around an Ethereum contract.
+type BrevisAppCaller struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// BrevisAppTransactor is an auto generated write-only Go binding around an Ethereum contract.
+type BrevisAppTransactor struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// BrevisAppFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
+type BrevisAppFilterer struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// BrevisAppSession is an auto generated Go binding around an Ethereum contract,
+// with pre-set call and transact options.
+type BrevisAppSession struct {
+	Contract     *BrevisApp        // Generic contract binding to set the session for
+	CallOpts     bind.CallOpts     // Call options to use throughout this session
+	TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
+}
+
+// BrevisAppCallerSession is an auto generated read-only Go binding around an Ethereum contract,
+// with pre-set call options.
+type BrevisAppCallerSession struct {
+	Contract *BrevisAppCaller // Generic contract caller binding to set the session for
+	CallOpts bind.CallOpts    // Call options to use throughout this session
+}
+
+// BrevisAppTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
+// with pre-set transact options.
+type BrevisAppTransactorSession struct {
+	Contract     *BrevisAppTransactor // Generic contract transactor binding to set the session for
+	TransactOpts bind.TransactOpts    // Transaction auth options to use throughout this session
+}
+
+// BrevisAppRaw is an auto generated low-level Go binding around an Ethereum contract.
+type BrevisAppRaw struct {
+	Contract *BrevisApp // Generic contract binding to access the raw methods on
+}
+
+// BrevisAppCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
+type BrevisAppCallerRaw struct {
+	Contract *BrevisAppCaller // Generic read-only contract binding to access the raw methods on
+}
+
+// BrevisAppTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
+type BrevisAppTransactorRaw struct {
+	Contract *BrevisAppTransactor // Generic write-only contract binding to access the raw methods on
+}
+
+// NewBrevisApp creates a new instance of BrevisApp, bound to a specific deployed contract.
+func NewBrevisApp(address common.Address, backend bind.ContractBackend) (*BrevisApp, error) {
+	contract, err := bindBrevisApp(address, backend, backend, backend)
+	if err != nil {
+		return nil, err
+	}
+	return &BrevisApp{BrevisAppCaller: BrevisAppCaller{contract: contract}, BrevisAppTransactor: BrevisAppTransactor{contract: contract}, BrevisAppFilterer: BrevisAppFilterer{contract: contract}}, nil
+}
+
+// NewBrevisAppCaller creates a new read-only instance of BrevisApp, bound to a specific deployed contract.
+func NewBrevisAppCaller(address common.Address, caller bind.ContractCaller) (*BrevisAppCaller, error) {
+	contract, err := bindBrevisApp(address, caller, nil, nil)
+	if err != nil {
+		return nil, err
+	}
+	return &BrevisAppCaller{contract: contract}, nil
+}
+
+// NewBrevisAppTransactor creates a new write-only instance of BrevisApp, bound to a specific deployed contract.
+func NewBrevisAppTransactor(address common.Address, transactor bind.ContractTransactor) (*BrevisAppTransactor, error) {
+	contract, err := bindBrevisApp(address, nil, transactor, nil)
+	if err != nil {
+		return nil, err
+	}
+	return &BrevisAppTransactor{contract: contract}, nil
+}
+
+// NewBrevisAppFilterer creates a new log filterer instance of BrevisApp, bound to a specific deployed contract.
+func NewBrevisAppFilterer(address common.Address, filterer bind.ContractFilterer) (*BrevisAppFilterer, error) {
+	contract, err := bindBrevisApp(address, nil, nil, filterer)
+	if err != nil {
+		return nil, err
+	}
+	return &BrevisAppFilterer{contract: contract}, nil
+}
+
+// bindBrevisApp binds a generic wrapper to an already deployed contract.
+func bindBrevisApp(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
+	parsed, err := BrevisAppMetaData.GetAbi()
+	if err != nil {
+		return nil, err
+	}
+	return bind.NewBoundContract(address, *parsed, caller, transactor, filterer), nil
+}
+
+// Call invokes the (constant) contract method with params as input values and
+// sets the output to result. The result type might be a single field for simple
+// returns, a slice of interfaces for anonymous returns and a struct for named
+// returns.
+func (_BrevisApp *BrevisAppRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
+	return _BrevisApp.Contract.BrevisAppCaller.contract.Call(opts, result, method, params...)
+}
+
+// Transfer initiates a plain transaction to move funds to the contract, calling
+// its default method if one is available.
+func (_BrevisApp *BrevisAppRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _BrevisApp.Contract.BrevisAppTransactor.contract.Transfer(opts)
+}
+
+// Transact invokes the (paid) contract method with params as input values.
+func (_BrevisApp *BrevisAppRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _BrevisApp.Contract.BrevisAppTransactor.contract.Transact(opts, method, params...)
+}
+
+// Call invokes the (constant) contract method with params as input values and
+// sets the output to result. The result type might be a single field for simple
+// returns, a slice of interfaces for anonymous returns and a struct for named
+// returns.
+func (_BrevisApp *BrevisAppCallerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
+	return _BrevisApp.Contract.contract.Call(opts, result, method, params...)
+}
+
+// Transfer initiates a plain transaction to move funds to the contract, calling
+// its default method if one is available.
+func (_BrevisApp *BrevisAppTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _BrevisApp.Contract.contract.Transfer(opts)
+}
+
+// Transact invokes the (paid) contract method with params as input values.
+func (_BrevisApp *BrevisAppTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _BrevisApp.Contract.contract.Transact(opts, method, params...)
+}
+
+// BrevisProof is a free data retrieval call binding the contract method 0xc7f5aaa0.
+//
+// Solidity: function brevisProof() view returns(address)
+func (_BrevisApp *BrevisAppCaller) BrevisProof(opts *bind.CallOpts) (common.Address, error) {
+	var out []interface{}
+	err := _BrevisApp.contract.Call(opts, &out, "brevisProof")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
+}
+
+// BrevisProof is a free data retrieval call binding the contract method 0xc7f5aaa0.
+//
+// Solidity: function brevisProof() view returns(address)
+func (_BrevisApp *BrevisAppSession) BrevisProof() (common.Address, error) {
+	return _BrevisApp.Contract.BrevisProof(&_BrevisApp.CallOpts)
+}
+
+// BrevisProof is a free data retrieval call binding the contract method 0xc7f5aaa0.
+//
+// Solidity: function brevisProof() view returns(address)
+func (_BrevisApp *BrevisAppCallerSession) BrevisProof() (common.Address, error) {
+	return _BrevisApp.Contract.BrevisProof(&_BrevisApp.CallOpts)
+}
+
+// BrevisRequest is a free data retrieval call binding the contract method 0x38931a31.
+//
+// Solidity: function brevisRequest() view returns(address)
+func (_BrevisApp *BrevisAppCaller) BrevisRequest(opts *bind.CallOpts) (common.Address, error) {
+	var out []interface{}
+	err := _BrevisApp.contract.Call(opts, &out, "brevisRequest")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
+}
+
+// BrevisRequest is a free data retrieval call binding the contract method 0x38931a31.
+//
+// Solidity: function brevisRequest() view returns(address)
+func (_BrevisApp *BrevisAppSession) BrevisRequest() (common.Address, error) {
+	return _BrevisApp.Contract.BrevisRequest(&_BrevisApp.CallOpts)
+}
+
+// BrevisRequest is a free data retrieval call binding the contract method 0x38931a31.
+//
+// Solidity: function brevisRequest() view returns(address)
+func (_BrevisApp *BrevisAppCallerSession) BrevisRequest() (common.Address, error) {
+	return _BrevisApp.Contract.BrevisRequest(&_BrevisApp.CallOpts)
+}
+
+// OpChallengeWindow is a free data retrieval call binding the contract method 0xd5caf16f.
+//
+// Solidity: function opChallengeWindow() view returns(uint256)
+func (_BrevisApp *BrevisAppCaller) OpChallengeWindow(opts *bind.CallOpts) (*big.Int, error) {
+	var out []interface{}
+	err := _BrevisApp.contract.Call(opts, &out, "opChallengeWindow")
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
+}
+
+// OpChallengeWindow is a free data retrieval call binding the contract method 0xd5caf16f.
+//
+// Solidity: function opChallengeWindow() view returns(uint256)
+func (_BrevisApp *BrevisAppSession) OpChallengeWindow() (*big.Int, error) {
+	return _BrevisApp.Contract.OpChallengeWindow(&_BrevisApp.CallOpts)
+}
+
+// OpChallengeWindow is a free data retrieval call binding the contract method 0xd5caf16f.
+//
+// Solidity: function opChallengeWindow() view returns(uint256)
+func (_BrevisApp *BrevisAppCallerSession) OpChallengeWindow() (*big.Int, error) {
+	return _BrevisApp.Contract.OpChallengeWindow(&_BrevisApp.CallOpts)
+}
+
+// Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
+//
+// Solidity: function owner() view returns(address)
+func (_BrevisApp *BrevisAppCaller) Owner(opts *bind.CallOpts) (common.Address, error) {
+	var out []interface{}
+	err := _BrevisApp.contract.Call(opts, &out, "owner")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
+}
+
+// Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
+//
+// Solidity: function owner() view returns(address)
+func (_BrevisApp *BrevisAppSession) Owner() (common.Address, error) {
+	return _BrevisApp.Contract.Owner(&_BrevisApp.CallOpts)
+}
+
+// Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
+//
+// Solidity: function owner() view returns(address)
+func (_BrevisApp *BrevisAppCallerSession) Owner() (common.Address, error) {
+	return _BrevisApp.Contract.Owner(&_BrevisApp.CallOpts)
+}
+
+// ApplyBrevisAggProof is a paid mutator transaction binding the contract method 0x0223b7c6.
+//
+// Solidity: function applyBrevisAggProof(uint64 _chainId, (bytes32,bytes32,bytes32,bytes32,bytes32) _proofData, bytes32 _merkleRoot, bytes32[] _merkleProof, uint8 _nodeIndex, bytes _appCircuitOutput) returns()
+func (_BrevisApp *BrevisAppTransactor) ApplyBrevisAggProof(opts *bind.TransactOpts, _chainId uint64, _proofData BrevisProofData, _merkleRoot [32]byte, _merkleProof [][32]byte, _nodeIndex uint8, _appCircuitOutput []byte) (*types.Transaction, error) {
+	return _BrevisApp.contract.Transact(opts, "applyBrevisAggProof", _chainId, _proofData, _merkleRoot, _merkleProof, _nodeIndex, _appCircuitOutput)
+}
+
+// ApplyBrevisAggProof is a paid mutator transaction binding the contract method 0x0223b7c6.
+//
+// Solidity: function applyBrevisAggProof(uint64 _chainId, (bytes32,bytes32,bytes32,bytes32,bytes32) _proofData, bytes32 _merkleRoot, bytes32[] _merkleProof, uint8 _nodeIndex, bytes _appCircuitOutput) returns()
+func (_BrevisApp *BrevisAppSession) ApplyBrevisAggProof(_chainId uint64, _proofData BrevisProofData, _merkleRoot [32]byte, _merkleProof [][32]byte, _nodeIndex uint8, _appCircuitOutput []byte) (*types.Transaction, error) {
+	return _BrevisApp.Contract.ApplyBrevisAggProof(&_BrevisApp.TransactOpts, _chainId, _proofData, _merkleRoot, _merkleProof, _nodeIndex, _appCircuitOutput)
+}
+
+// ApplyBrevisAggProof is a paid mutator transaction binding the contract method 0x0223b7c6.
+//
+// Solidity: function applyBrevisAggProof(uint64 _chainId, (bytes32,bytes32,bytes32,bytes32,bytes32) _proofData, bytes32 _merkleRoot, bytes32[] _merkleProof, uint8 _nodeIndex, bytes _appCircuitOutput) returns()
+func (_BrevisApp *BrevisAppTransactorSession) ApplyBrevisAggProof(_chainId uint64, _proofData BrevisProofData, _merkleRoot [32]byte, _merkleProof [][32]byte, _nodeIndex uint8, _appCircuitOutput []byte) (*types.Transaction, error) {
+	return _BrevisApp.Contract.ApplyBrevisAggProof(&_BrevisApp.TransactOpts, _chainId, _proofData, _merkleRoot, _merkleProof, _nodeIndex, _appCircuitOutput)
+}
+
+// ApplyBrevisAggProof0 is a paid mutator transaction binding the contract method 0xa346bf3f.
+//
+// Solidity: function applyBrevisAggProof(uint64 _chainId, (bytes32,bytes32,bytes32,bytes32,bytes32)[] _proofDataArray, bytes[] _appCircuitOutputs) returns()
+func (_BrevisApp *BrevisAppTransactor) ApplyBrevisAggProof0(opts *bind.TransactOpts, _chainId uint64, _proofDataArray []BrevisProofData, _appCircuitOutputs [][]byte) (*types.Transaction, error) {
+	return _BrevisApp.contract.Transact(opts, "applyBrevisAggProof0", _chainId, _proofDataArray, _appCircuitOutputs)
+}
+
+// ApplyBrevisAggProof0 is a paid mutator transaction binding the contract method 0xa346bf3f.
+//
+// Solidity: function applyBrevisAggProof(uint64 _chainId, (bytes32,bytes32,bytes32,bytes32,bytes32)[] _proofDataArray, bytes[] _appCircuitOutputs) returns()
+func (_BrevisApp *BrevisAppSession) ApplyBrevisAggProof0(_chainId uint64, _proofDataArray []BrevisProofData, _appCircuitOutputs [][]byte) (*types.Transaction, error) {
+	return _BrevisApp.Contract.ApplyBrevisAggProof0(&_BrevisApp.TransactOpts, _chainId, _proofDataArray, _appCircuitOutputs)
+}
+
+// ApplyBrevisAggProof0 is a paid mutator transaction binding the contract method 0xa346bf3f.
+//
+// Solidity: function applyBrevisAggProof(uint64 _chainId, (bytes32,bytes32,bytes32,bytes32,bytes32)[] _proofDataArray, bytes[] _appCircuitOutputs) returns()
+func (_BrevisApp *BrevisAppTransactorSession) ApplyBrevisAggProof0(_chainId uint64, _proofDataArray []BrevisProofData, _appCircuitOutputs [][]byte) (*types.Transaction, error) {
+	return _BrevisApp.Contract.ApplyBrevisAggProof0(&_BrevisApp.TransactOpts, _chainId, _proofDataArray, _appCircuitOutputs)
+}
+
+// ApplyBrevisOpResult is a paid mutator transaction binding the contract method 0x114ee746.
+//
+// Solidity: function applyBrevisOpResult(bytes32 _requestId, bytes32 _appVkHash, bytes32 _appCommitHash, bytes _appCircuitOutput) returns()
+func (_BrevisApp *BrevisAppTransactor) ApplyBrevisOpResult(opts *bind.TransactOpts, _requestId [32]byte, _appVkHash [32]byte, _appCommitHash [32]byte, _appCircuitOutput []byte) (*types.Transaction, error) {
+	return _BrevisApp.contract.Transact(opts, "applyBrevisOpResult", _requestId, _appVkHash, _appCommitHash, _appCircuitOutput)
+}
+
+// ApplyBrevisOpResult is a paid mutator transaction binding the contract method 0x114ee746.
+//
+// Solidity: function applyBrevisOpResult(bytes32 _requestId, bytes32 _appVkHash, bytes32 _appCommitHash, bytes _appCircuitOutput) returns()
+func (_BrevisApp *BrevisAppSession) ApplyBrevisOpResult(_requestId [32]byte, _appVkHash [32]byte, _appCommitHash [32]byte, _appCircuitOutput []byte) (*types.Transaction, error) {
+	return _BrevisApp.Contract.ApplyBrevisOpResult(&_BrevisApp.TransactOpts, _requestId, _appVkHash, _appCommitHash, _appCircuitOutput)
+}
+
+// ApplyBrevisOpResult is a paid mutator transaction binding the contract method 0x114ee746.
+//
+// Solidity: function applyBrevisOpResult(bytes32 _requestId, bytes32 _appVkHash, bytes32 _appCommitHash, bytes _appCircuitOutput) returns()
+func (_BrevisApp *BrevisAppTransactorSession) ApplyBrevisOpResult(_requestId [32]byte, _appVkHash [32]byte, _appCommitHash [32]byte, _appCircuitOutput []byte) (*types.Transaction, error) {
+	return _BrevisApp.Contract.ApplyBrevisOpResult(&_BrevisApp.TransactOpts, _requestId, _appVkHash, _appCommitHash, _appCircuitOutput)
+}
+
+// ApplyBrevisOpResults is a paid mutator transaction binding the contract method 0xd29ede2b.
+//
+// Solidity: function applyBrevisOpResults(bytes32[] _requestIds, bytes32[] _appVkHashes, bytes32[] _appCommitHashes, bytes[] _appCircuitOutputs) returns()
+func (_BrevisApp *BrevisAppTransactor) ApplyBrevisOpResults(opts *bind.TransactOpts, _requestIds [][32]byte, _appVkHashes [][32]byte, _appCommitHashes [][32]byte, _appCircuitOutputs [][]byte) (*types.Transaction, error) {
+	return _BrevisApp.contract.Transact(opts, "applyBrevisOpResults", _requestIds, _appVkHashes, _appCommitHashes, _appCircuitOutputs)
+}
+
+// ApplyBrevisOpResults is a paid mutator transaction binding the contract method 0xd29ede2b.
+//
+// Solidity: function applyBrevisOpResults(bytes32[] _requestIds, bytes32[] _appVkHashes, bytes32[] _appCommitHashes, bytes[] _appCircuitOutputs) returns()
+func (_BrevisApp *BrevisAppSession) ApplyBrevisOpResults(_requestIds [][32]byte, _appVkHashes [][32]byte, _appCommitHashes [][32]byte, _appCircuitOutputs [][]byte) (*types.Transaction, error) {
+	return _BrevisApp.Contract.ApplyBrevisOpResults(&_BrevisApp.TransactOpts, _requestIds, _appVkHashes, _appCommitHashes, _appCircuitOutputs)
+}
+
+// ApplyBrevisOpResults is a paid mutator transaction binding the contract method 0xd29ede2b.
+//
+// Solidity: function applyBrevisOpResults(bytes32[] _requestIds, bytes32[] _appVkHashes, bytes32[] _appCommitHashes, bytes[] _appCircuitOutputs) returns()
+func (_BrevisApp *BrevisAppTransactorSession) ApplyBrevisOpResults(_requestIds [][32]byte, _appVkHashes [][32]byte, _appCommitHashes [][32]byte, _appCircuitOutputs [][]byte) (*types.Transaction, error) {
+	return _BrevisApp.Contract.ApplyBrevisOpResults(&_BrevisApp.TransactOpts, _requestIds, _appVkHashes, _appCommitHashes, _appCircuitOutputs)
+}
+
+// ApplyBrevisProof is a paid mutator transaction binding the contract method 0x06fac260.
+//
+// Solidity: function applyBrevisProof(bytes32 _requestId, bytes32 _appVkHash, bytes32 _appCommitHash, bytes _appCircuitOutput) returns()
+func (_BrevisApp *BrevisAppTransactor) ApplyBrevisProof(opts *bind.TransactOpts, _requestId [32]byte, _appVkHash [32]byte, _appCommitHash [32]byte, _appCircuitOutput []byte) (*types.Transaction, error) {
+	return _BrevisApp.contract.Transact(opts, "applyBrevisProof", _requestId, _appVkHash, _appCommitHash, _appCircuitOutput)
+}
+
+// ApplyBrevisProof is a paid mutator transaction binding the contract method 0x06fac260.
+//
+// Solidity: function applyBrevisProof(bytes32 _requestId, bytes32 _appVkHash, bytes32 _appCommitHash, bytes _appCircuitOutput) returns()
+func (_BrevisApp *BrevisAppSession) ApplyBrevisProof(_requestId [32]byte, _appVkHash [32]byte, _appCommitHash [32]byte, _appCircuitOutput []byte) (*types.Transaction, error) {
+	return _BrevisApp.Contract.ApplyBrevisProof(&_BrevisApp.TransactOpts, _requestId, _appVkHash, _appCommitHash, _appCircuitOutput)
+}
+
+// ApplyBrevisProof is a paid mutator transaction binding the contract method 0x06fac260.
+//
+// Solidity: function applyBrevisProof(bytes32 _requestId, bytes32 _appVkHash, bytes32 _appCommitHash, bytes _appCircuitOutput) returns()
+func (_BrevisApp *BrevisAppTransactorSession) ApplyBrevisProof(_requestId [32]byte, _appVkHash [32]byte, _appCommitHash [32]byte, _appCircuitOutput []byte) (*types.Transaction, error) {
+	return _BrevisApp.Contract.ApplyBrevisProof(&_BrevisApp.TransactOpts, _requestId, _appVkHash, _appCommitHash, _appCircuitOutput)
+}
+
+// BrevisBatchCallback is a paid mutator transaction binding the contract method 0x3bca02fc.
+//
+// Solidity: function brevisBatchCallback(bytes32[] _appVkHashes, bytes[] _appCircuitOutputs) returns()
+func (_BrevisApp *BrevisAppTransactor) BrevisBatchCallback(opts *bind.TransactOpts, _appVkHashes [][32]byte, _appCircuitOutputs [][]byte) (*types.Transaction, error) {
+	return _BrevisApp.contract.Transact(opts, "brevisBatchCallback", _appVkHashes, _appCircuitOutputs)
+}
+
+// BrevisBatchCallback is a paid mutator transaction binding the contract method 0x3bca02fc.
+//
+// Solidity: function brevisBatchCallback(bytes32[] _appVkHashes, bytes[] _appCircuitOutputs) returns()
+func (_BrevisApp *BrevisAppSession) BrevisBatchCallback(_appVkHashes [][32]byte, _appCircuitOutputs [][]byte) (*types.Transaction, error) {
+	return _BrevisApp.Contract.BrevisBatchCallback(&_BrevisApp.TransactOpts, _appVkHashes, _appCircuitOutputs)
+}
+
+// BrevisBatchCallback is a paid mutator transaction binding the contract method 0x3bca02fc.
+//
+// Solidity: function brevisBatchCallback(bytes32[] _appVkHashes, bytes[] _appCircuitOutputs) returns()
+func (_BrevisApp *BrevisAppTransactorSession) BrevisBatchCallback(_appVkHashes [][32]byte, _appCircuitOutputs [][]byte) (*types.Transaction, error) {
+	return _BrevisApp.Contract.BrevisBatchCallback(&_BrevisApp.TransactOpts, _appVkHashes, _appCircuitOutputs)
+}
+
+// BrevisCallback is a paid mutator transaction binding the contract method 0x79d6b6a2.
+//
+// Solidity: function brevisCallback(bytes32 _appVkHash, bytes _appCircuitOutput) returns()
+func (_BrevisApp *BrevisAppTransactor) BrevisCallback(opts *bind.TransactOpts, _appVkHash [32]byte, _appCircuitOutput []byte) (*types.Transaction, error) {
+	return _BrevisApp.contract.Transact(opts, "brevisCallback", _appVkHash, _appCircuitOutput)
+}
+
+// BrevisCallback is a paid mutator transaction binding the contract method 0x79d6b6a2.
+//
+// Solidity: function brevisCallback(bytes32 _appVkHash, bytes _appCircuitOutput) returns()
+func (_BrevisApp *BrevisAppSession) BrevisCallback(_appVkHash [32]byte, _appCircuitOutput []byte) (*types.Transaction, error) {
+	return _BrevisApp.Contract.BrevisCallback(&_BrevisApp.TransactOpts, _appVkHash, _appCircuitOutput)
+}
+
+// BrevisCallback is a paid mutator transaction binding the contract method 0x79d6b6a2.
+//
+// Solidity: function brevisCallback(bytes32 _appVkHash, bytes _appCircuitOutput) returns()
+func (_BrevisApp *BrevisAppTransactorSession) BrevisCallback(_appVkHash [32]byte, _appCircuitOutput []byte) (*types.Transaction, error) {
+	return _BrevisApp.Contract.BrevisCallback(&_BrevisApp.TransactOpts, _appVkHash, _appCircuitOutput)
+}
+
+// RenounceOwnership is a paid mutator transaction binding the contract method 0x715018a6.
+//
+// Solidity: function renounceOwnership() returns()
+func (_BrevisApp *BrevisAppTransactor) RenounceOwnership(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _BrevisApp.contract.Transact(opts, "renounceOwnership")
+}
+
+// RenounceOwnership is a paid mutator transaction binding the contract method 0x715018a6.
+//
+// Solidity: function renounceOwnership() returns()
+func (_BrevisApp *BrevisAppSession) RenounceOwnership() (*types.Transaction, error) {
+	return _BrevisApp.Contract.RenounceOwnership(&_BrevisApp.TransactOpts)
+}
+
+// RenounceOwnership is a paid mutator transaction binding the contract method 0x715018a6.
+//
+// Solidity: function renounceOwnership() returns()
+func (_BrevisApp *BrevisAppTransactorSession) RenounceOwnership() (*types.Transaction, error) {
+	return _BrevisApp.Contract.RenounceOwnership(&_BrevisApp.TransactOpts)
+}
+
+// SetOpChallengeWindow is a paid mutator transaction binding the contract method 0x4c18293a.
+//
+// Solidity: function setOpChallengeWindow(uint256 _challangeWindow) returns()
+func (_BrevisApp *BrevisAppTransactor) SetOpChallengeWindow(opts *bind.TransactOpts, _challangeWindow *big.Int) (*types.Transaction, error) {
+	return _BrevisApp.contract.Transact(opts, "setOpChallengeWindow", _challangeWindow)
+}
+
+// SetOpChallengeWindow is a paid mutator transaction binding the contract method 0x4c18293a.
+//
+// Solidity: function setOpChallengeWindow(uint256 _challangeWindow) returns()
+func (_BrevisApp *BrevisAppSession) SetOpChallengeWindow(_challangeWindow *big.Int) (*types.Transaction, error) {
+	return _BrevisApp.Contract.SetOpChallengeWindow(&_BrevisApp.TransactOpts, _challangeWindow)
+}
+
+// SetOpChallengeWindow is a paid mutator transaction binding the contract method 0x4c18293a.
+//
+// Solidity: function setOpChallengeWindow(uint256 _challangeWindow) returns()
+func (_BrevisApp *BrevisAppTransactorSession) SetOpChallengeWindow(_challangeWindow *big.Int) (*types.Transaction, error) {
+	return _BrevisApp.Contract.SetOpChallengeWindow(&_BrevisApp.TransactOpts, _challangeWindow)
+}
+
+// TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
+//
+// Solidity: function transferOwnership(address newOwner) returns()
+func (_BrevisApp *BrevisAppTransactor) TransferOwnership(opts *bind.TransactOpts, newOwner common.Address) (*types.Transaction, error) {
+	return _BrevisApp.contract.Transact(opts, "transferOwnership", newOwner)
+}
+
+// TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
+//
+// Solidity: function transferOwnership(address newOwner) returns()
+func (_BrevisApp *BrevisAppSession) TransferOwnership(newOwner common.Address) (*types.Transaction, error) {
+	return _BrevisApp.Contract.TransferOwnership(&_BrevisApp.TransactOpts, newOwner)
+}
+
+// TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
+//
+// Solidity: function transferOwnership(address newOwner) returns()
+func (_BrevisApp *BrevisAppTransactorSession) TransferOwnership(newOwner common.Address) (*types.Transaction, error) {
+	return _BrevisApp.Contract.TransferOwnership(&_BrevisApp.TransactOpts, newOwner)
+}
+
+// BrevisAppOwnershipTransferredIterator is returned from FilterOwnershipTransferred and is used to iterate over the raw logs and unpacked data for OwnershipTransferred events raised by the BrevisApp contract.
+type BrevisAppOwnershipTransferredIterator struct {
+	Event *BrevisAppOwnershipTransferred // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *BrevisAppOwnershipTransferredIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(BrevisAppOwnershipTransferred)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(BrevisAppOwnershipTransferred)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *BrevisAppOwnershipTransferredIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *BrevisAppOwnershipTransferredIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// BrevisAppOwnershipTransferred represents a OwnershipTransferred event raised by the BrevisApp contract.
+type BrevisAppOwnershipTransferred struct {
+	PreviousOwner common.Address
+	NewOwner      common.Address
+	Raw           types.Log // Blockchain specific contextual infos
+}
+
+// FilterOwnershipTransferred is a free log retrieval operation binding the contract event 0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0.
+//
+// Solidity: event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
+func (_BrevisApp *BrevisAppFilterer) FilterOwnershipTransferred(opts *bind.FilterOpts, previousOwner []common.Address, newOwner []common.Address) (*BrevisAppOwnershipTransferredIterator, error) {
+
+	var previousOwnerRule []interface{}
+	for _, previousOwnerItem := range previousOwner {
+		previousOwnerRule = append(previousOwnerRule, previousOwnerItem)
+	}
+	var newOwnerRule []interface{}
+	for _, newOwnerItem := range newOwner {
+		newOwnerRule = append(newOwnerRule, newOwnerItem)
+	}
+
+	logs, sub, err := _BrevisApp.contract.FilterLogs(opts, "OwnershipTransferred", previousOwnerRule, newOwnerRule)
+	if err != nil {
+		return nil, err
+	}
+	return &BrevisAppOwnershipTransferredIterator{contract: _BrevisApp.contract, event: "OwnershipTransferred", logs: logs, sub: sub}, nil
+}
+
+// WatchOwnershipTransferred is a free log subscription operation binding the contract event 0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0.
+//
+// Solidity: event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
+func (_BrevisApp *BrevisAppFilterer) WatchOwnershipTransferred(opts *bind.WatchOpts, sink chan<- *BrevisAppOwnershipTransferred, previousOwner []common.Address, newOwner []common.Address) (event.Subscription, error) {
+
+	var previousOwnerRule []interface{}
+	for _, previousOwnerItem := range previousOwner {
+		previousOwnerRule = append(previousOwnerRule, previousOwnerItem)
+	}
+	var newOwnerRule []interface{}
+	for _, newOwnerItem := range newOwner {
+		newOwnerRule = append(newOwnerRule, newOwnerItem)
+	}
+
+	logs, sub, err := _BrevisApp.contract.WatchLogs(opts, "OwnershipTransferred", previousOwnerRule, newOwnerRule)
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(BrevisAppOwnershipTransferred)
+				if err := _BrevisApp.contract.UnpackLog(event, "OwnershipTransferred", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseOwnershipTransferred is a log parse operation binding the contract event 0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0.
+//
+// Solidity: event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
+func (_BrevisApp *BrevisAppFilterer) ParseOwnershipTransferred(log types.Log) (*BrevisAppOwnershipTransferred, error) {
+	event := new(BrevisAppOwnershipTransferred)
+	if err := _BrevisApp.contract.UnpackLog(event, "OwnershipTransferred", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
 // BrevisProofMetaData contains all meta data concerning the BrevisProof contract.
 var BrevisProofMetaData = &bind.MetaData{
 	ABI: "[{\"inputs\":[{\"internalType\":\"contractISMT\",\"name\":\"_smtContract\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint64[]\",\"name\":\"chainIds\",\"type\":\"uint64[]\"},{\"indexed\":false,\"internalType\":\"contractIZkpVerifier[]\",\"name\":\"newAddresses\",\"type\":\"address[]\"}],\"name\":\"AggProofVerifierAddressesUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"brevisRequest\",\"type\":\"address\"}],\"name\":\"BrevisRequestContractUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"contractISMT\",\"name\":\"smtContract\",\"type\":\"address\"}],\"name\":\"SmtContractUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint64[]\",\"name\":\"chainIds\",\"type\":\"uint64[]\"},{\"indexed\":false,\"internalType\":\"contractIZkpVerifier[]\",\"name\":\"newAddresses\",\"type\":\"address[]\"}],\"name\":\"VerifierAddressesUpdated\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"name\":\"aggProofVerifierAddress\",\"outputs\":[{\"internalType\":\"contractIZkpVerifier\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"brevisRequest\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getRequestContract\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"merkleRoots\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"proofs\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"requestIds\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"smtContract\",\"outputs\":[{\"internalType\":\"contractISMT\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"internalType\":\"bytes32[]\",\"name\":\"_requestIds\",\"type\":\"bytes32[]\"},{\"internalType\":\"bytes\",\"name\":\"_proofWithPubInputs\",\"type\":\"bytes\"}],\"name\":\"submitAggProof\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"internalType\":\"bytes\",\"name\":\"_proofWithPubInputs\",\"type\":\"bytes\"}],\"name\":\"submitProof\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"requestId\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appCommitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appVkHash\",\"type\":\"bytes32\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64[]\",\"name\":\"_chainIds\",\"type\":\"uint64[]\"},{\"internalType\":\"contractIZkpVerifier[]\",\"name\":\"_verifierAddresses\",\"type\":\"address[]\"}],\"name\":\"updateAggProofVerifierAddresses\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_brevisRequest\",\"type\":\"address\"}],\"name\":\"updateBrevisRequestContract\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contractISMT\",\"name\":\"_smtContract\",\"type\":\"address\"}],\"name\":\"updateSmtContract\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64[]\",\"name\":\"_chainIds\",\"type\":\"uint64[]\"},{\"internalType\":\"contractIZkpVerifier[]\",\"name\":\"_verifierAddresses\",\"type\":\"address[]\"}],\"name\":\"updateVerifierAddress\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"commitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"vkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appCommitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appVkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"smtRoot\",\"type\":\"bytes32\"}],\"internalType\":\"structBrevis.ProofData[]\",\"name\":\"_proofDataArray\",\"type\":\"tuple[]\"}],\"name\":\"validateAggProofData\",\"outputs\":[],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"commitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"vkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appCommitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appVkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"smtRoot\",\"type\":\"bytes32\"}],\"internalType\":\"structBrevis.ProofData\",\"name\":\"_proofData\",\"type\":\"tuple\"},{\"internalType\":\"bytes32\",\"name\":\"_merkleRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32[]\",\"name\":\"_merkleProof\",\"type\":\"bytes32[]\"},{\"internalType\":\"uint8\",\"name\":\"_nodeIndex\",\"type\":\"uint8\"}],\"name\":\"validateAggProofData\",\"outputs\":[],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_appCommitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_appVkHash\",\"type\":\"bytes32\"}],\"name\":\"validateProofAppData\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"name\":\"verifierAddresses\",\"outputs\":[{\"internalType\":\"contractIZkpVerifier\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
@@ -22725,7 +23363,7 @@ func (_IERC20Minimal *IERC20MinimalFilterer) ParseTransfer(log types.Log) (*IERC
 
 // IEthereumLightClientMetaData contains all meta data concerning the IEthereumLightClient contract.
 var IEthereumLightClientMetaData = &bind.MetaData{
-	ABI: "[{\"inputs\":[],\"name\":\"finalizedExecutionStateRootAndSlot\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"root\",\"type\":\"bytes32\"},{\"internalType\":\"uint64\",\"name\":\"slot\",\"type\":\"uint64\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"optimisticExecutionStateRootAndSlot\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"root\",\"type\":\"bytes32\"},{\"internalType\":\"uint64\",\"name\":\"slot\",\"type\":\"uint64\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"signatureSlot\",\"type\":\"uint64\"},{\"components\":[{\"internalType\":\"uint64\",\"name\":\"slot\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"proposerIndex\",\"type\":\"uint64\"},{\"internalType\":\"bytes32\",\"name\":\"parentRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"stateRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"bodyRoot\",\"type\":\"bytes32\"}],\"internalType\":\"structBeaconBlockHeader\",\"name\":\"header\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"uint64\",\"name\":\"participation\",\"type\":\"uint64\"},{\"internalType\":\"bytes32\",\"name\":\"poseidonRoot\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"commitment\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"uint256[2]\",\"name\":\"a\",\"type\":\"uint256[2]\"},{\"internalType\":\"uint256[2][2]\",\"name\":\"b\",\"type\":\"uint256[2][2]\"},{\"internalType\":\"uint256[2]\",\"name\":\"c\",\"type\":\"uint256[2]\"},{\"internalType\":\"uint256[2]\",\"name\":\"commitment\",\"type\":\"uint256[2]\"}],\"internalType\":\"structIBeaconVerifier.Proof\",\"name\":\"proof\",\"type\":\"tuple\"}],\"internalType\":\"structSyncAggregate\",\"name\":\"syncAggregate\",\"type\":\"tuple\"}],\"name\":\"verifyCommitteeSignature\",\"outputs\":[],\"stateMutability\":\"view\",\"type\":\"function\"}]",
+	ABI: "[{\"inputs\":[],\"name\":\"finalizedExecutionStateRootAndSlot\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"root\",\"type\":\"bytes32\"},{\"internalType\":\"uint64\",\"name\":\"slot\",\"type\":\"uint64\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"optimisticExecutionStateRootAndSlot\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"root\",\"type\":\"bytes32\"},{\"internalType\":\"uint64\",\"name\":\"slot\",\"type\":\"uint64\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
 }
 
 // IEthereumLightClientABI is the input ABI used to generate the binding from.
@@ -22962,35 +23600,6 @@ func (_IEthereumLightClient *IEthereumLightClientCallerSession) OptimisticExecut
 	Slot uint64
 }, error) {
 	return _IEthereumLightClient.Contract.OptimisticExecutionStateRootAndSlot(&_IEthereumLightClient.CallOpts)
-}
-
-// VerifyCommitteeSignature is a free data retrieval call binding the contract method 0x3dd3f4aa.
-//
-// Solidity: function verifyCommitteeSignature(uint64 signatureSlot, (uint64,uint64,bytes32,bytes32,bytes32) header, (uint64,bytes32,uint256,(uint256[2],uint256[2][2],uint256[2],uint256[2])) syncAggregate) view returns()
-func (_IEthereumLightClient *IEthereumLightClientCaller) VerifyCommitteeSignature(opts *bind.CallOpts, signatureSlot uint64, header BeaconBlockHeader, syncAggregate SyncAggregate) error {
-	var out []interface{}
-	err := _IEthereumLightClient.contract.Call(opts, &out, "verifyCommitteeSignature", signatureSlot, header, syncAggregate)
-
-	if err != nil {
-		return err
-	}
-
-	return err
-
-}
-
-// VerifyCommitteeSignature is a free data retrieval call binding the contract method 0x3dd3f4aa.
-//
-// Solidity: function verifyCommitteeSignature(uint64 signatureSlot, (uint64,uint64,bytes32,bytes32,bytes32) header, (uint64,bytes32,uint256,(uint256[2],uint256[2][2],uint256[2],uint256[2])) syncAggregate) view returns()
-func (_IEthereumLightClient *IEthereumLightClientSession) VerifyCommitteeSignature(signatureSlot uint64, header BeaconBlockHeader, syncAggregate SyncAggregate) error {
-	return _IEthereumLightClient.Contract.VerifyCommitteeSignature(&_IEthereumLightClient.CallOpts, signatureSlot, header, syncAggregate)
-}
-
-// VerifyCommitteeSignature is a free data retrieval call binding the contract method 0x3dd3f4aa.
-//
-// Solidity: function verifyCommitteeSignature(uint64 signatureSlot, (uint64,uint64,bytes32,bytes32,bytes32) header, (uint64,bytes32,uint256,(uint256[2],uint256[2][2],uint256[2],uint256[2])) syncAggregate) view returns()
-func (_IEthereumLightClient *IEthereumLightClientCallerSession) VerifyCommitteeSignature(signatureSlot uint64, header BeaconBlockHeader, syncAggregate SyncAggregate) error {
-	return _IEthereumLightClient.Contract.VerifyCommitteeSignature(&_IEthereumLightClient.CallOpts, signatureSlot, header, syncAggregate)
 }
 
 // IFeesMetaData contains all meta data concerning the IFees contract.
@@ -34148,6 +34757,666 @@ func (_MsgSender *MsgSenderFilterer) WatchMsgSent(opts *bind.WatchOpts, sink cha
 func (_MsgSender *MsgSenderFilterer) ParseMsgSent(log types.Log) (*MsgSenderMsgSent, error) {
 	event := new(MsgSenderMsgSent)
 	if err := _MsgSender.contract.UnpackLog(event, "MsgSent", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// MyBrevisAppMetaData contains all meta data concerning the MyBrevisApp contract.
+var MyBrevisAppMetaData = &bind.MetaData{
+	ABI: "[{\"inputs\":[{\"internalType\":\"contractIBrevisProof\",\"name\":\"_brevisProof\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"commitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"vkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appCommitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appVkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"smtRoot\",\"type\":\"bytes32\"}],\"internalType\":\"structBrevis.ProofData\",\"name\":\"_proofData\",\"type\":\"tuple\"},{\"internalType\":\"bytes32\",\"name\":\"_merkleRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32[]\",\"name\":\"_merkleProof\",\"type\":\"bytes32[]\"},{\"internalType\":\"uint8\",\"name\":\"_nodeIndex\",\"type\":\"uint8\"},{\"internalType\":\"bytes\",\"name\":\"_appCircuitOutput\",\"type\":\"bytes\"}],\"name\":\"applyBrevisAggProof\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"_chainId\",\"type\":\"uint64\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"commitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"vkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appCommitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"appVkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"smtRoot\",\"type\":\"bytes32\"}],\"internalType\":\"structBrevis.ProofData[]\",\"name\":\"_proofDataArray\",\"type\":\"tuple[]\"},{\"internalType\":\"bytes[]\",\"name\":\"_appCircuitOutputs\",\"type\":\"bytes[]\"}],\"name\":\"applyBrevisAggProof\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_appVkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_appCommitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"_appCircuitOutput\",\"type\":\"bytes\"}],\"name\":\"applyBrevisOpResult\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32[]\",\"name\":\"_requestIds\",\"type\":\"bytes32[]\"},{\"internalType\":\"bytes32[]\",\"name\":\"_appVkHashes\",\"type\":\"bytes32[]\"},{\"internalType\":\"bytes32[]\",\"name\":\"_appCommitHashes\",\"type\":\"bytes32[]\"},{\"internalType\":\"bytes[]\",\"name\":\"_appCircuitOutputs\",\"type\":\"bytes[]\"}],\"name\":\"applyBrevisOpResults\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_appVkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_appCommitHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"_appCircuitOutput\",\"type\":\"bytes\"}],\"name\":\"applyBrevisProof\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32[]\",\"name\":\"_appVkHashes\",\"type\":\"bytes32[]\"},{\"internalType\":\"bytes[]\",\"name\":\"_appCircuitOutputs\",\"type\":\"bytes[]\"}],\"name\":\"brevisBatchCallback\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_appVkHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"_appCircuitOutput\",\"type\":\"bytes\"}],\"name\":\"brevisCallback\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"brevisProof\",\"outputs\":[{\"internalType\":\"contractIBrevisProof\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"brevisRequest\",\"outputs\":[{\"internalType\":\"contractIBrevisRequest\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"opChallengeWindow\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_challangeWindow\",\"type\":\"uint256\"}],\"name\":\"setOpChallengeWindow\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
+	Bin: "0x6080806040523461011657602081610e5f803803809161001f828561011a565b83398101031261011657516001600160a01b0380821691829003610116575f91825492602060018060a01b03199433868216178355600460405180958193883391167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e08880a3600180548a168217905563b7434b7b60e01b82525afa9182156101095781926100c4575b505016906002541617600255604051610d0d90816101528239f35b9091506020813d8211610101575b816100df6020938361011a565b810103126100fd57519082821682036100fa57505f806100a9565b80fd5b5080fd5b3d91506100d2565b50604051903d90823e3d90fd5b5f80fd5b601f909101601f19168101906001600160401b0382119082101761013d57604052565b634e487b7160e01b5f52604160045260245ffdfe6080604081815260049081361015610015575f80fd5b5f92833560e01c9081630223b7c6146107c05750806306fac26014610721578063114ee7461461070657806338931a31146106de5780633bca02fc146106525780634c18293a14610623578063715018a6146105b457806379d6b6a21461056a5780638da5cb5b14610544578063a346bf3f14610351578063c7f5aaa014610329578063d29ede2b146101d2578063d5caf16f146101af5763f2fde38b146100bb575f80fd5b346101ab5760203660031901126101ab578135916001600160a01b03918284168094036101a7576100f0838654163314610c8c565b831561013e5750505f548273ffffffffffffffffffffffffffffffffffffffff198216175f55167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e05f80a380f35b906020608492519162461bcd60e51b8352820152602660248201527f4f776e61626c653a206e6577206f776e657220697320746865207a65726f206160448201527f64647265737300000000000000000000000000000000000000000000000000006064820152fd5b8480fd5b8280fd5b8382346101ce57816003193601126101ce576020906003549051908152f35b5080fd5b508290346101ce5760803660031901126101ce5767ffffffffffffffff8335818111610325576102059036908601610943565b9490926024358381116103215761021f9036908401610943565b60449391933585811161031d576102399036908401610943565b989095606435908111610319576102539036908501610943565b93909483831480610310575b80610307575b156102c4575050875b818110610279578880f35b806102ba8b886102a68461029e818f6102976102bf9a8c8e93610a4c565b3595610a4c565b35938d610a4c565b356102b2858a8c610a70565b939092610bb5565b610a2a565b61026e565b906020606492519162461bcd60e51b8352820152600f60248201527f6c656e677468206d69736d6174636800000000000000000000000000000000006044820152fd5b50848314610265565b508a831461025f565b8880fd5b8780fd5b8580fd5b8380fd5b8382346101ce57816003193601126101ce576020906001600160a01b03600154169051908152f35b5090346101ab576060806003193601126103255761036d610928565b60243567ffffffffffffffff808211610540573660238301121561054057818501359281841161031d57602483019260a090602436918388020101116103195760443583811161053c576103c49036908901610943565b9790968887036104f9576001916001600160a01b0383541694853b156104f5578b51633bda38a360e01b8152961690860152602485018a9052604485018790528a949392606485019287929091875b8d8b82106104bb5750505050505083918380809303915afa80156104b15761049d575b505b828110610443578680f35b8061047a87610456610498948787610ba5565b013561046d610466848a8a610a70565b3691610b14565b6020815191012014610b5a565b610485818585610ba5565b50610491818787610a70565b5050610a2a565b610438565b6104a690610ab2565b61032157855f610436565b87513d84823e3d90fd5b853587526020808701359088015280860135908701528285013583870152608080860135908701528e985094810194938101938301610413565b8c80fd5b895162461bcd60e51b8152602081840152601060248201527f6c656e677468206e6f74206d61746368000000000000000000000000000000006044820152606490fd5b8980fd5b8680fd5b8382346101ce57816003193601126101ce576001600160a01b0360209254169051908152f35b50346101ab573660031901126101ce576024359067ffffffffffffffff82116101ab5761059991369101610974565b50506105b16001600160a01b036002541633146109de565b80f35b83346106205780600319360112610620575f6001600160a01b036105dc818454163314610c8c565b815473ffffffffffffffffffffffffffffffffffffffff1981168355167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e08280a380f35b80fd5b5050346101ce5760203660031901126101ce5761064b6001600160a01b038354163314610c8c565b3560035580f35b50346101ab573660031901126101ce5767ffffffffffffffff8135818111610325576106819036908401610943565b9190926024359182116101a75761069a91369101610943565b916106b16001600160a01b036002541633146109de565b845b8181106106be578580f35b806106cd6106d9928488610a4c565b50610491818686610a70565b6106b3565b8382346101ce57816003193601126101ce576020906001600160a01b03600254169051908152f35b8334610620576105b1610718366109a2565b93929092610bb5565b50346101ab576020906064610735366109a2565b95939196929490976001600160a01b036001541685519687948593630901783760e41b855284015289602484015260448301525afa9081156107b75750916105b1949161046d93610789575b503691610b14565b6107a99060203d81116107b0575b6107a18183610ada565b810190610afc565b505f610781565b503d610797565b513d87823e3d90fd5b90508391346101ab576101403660031901126101ab576107de610928565b9160a03660231901126103255767ffffffffffffffff9160e4358381116103215761080c9036908801610943565b9490610104803560ff811680910361031957610124978835888111610924576108389036908d01610974565b9b90986001600160a01b036001541696873b156104f5576307b1cc4560e41b8a5216908801526024356024880152604435604488015280606435998a60648a015260843560848a015260a43560a48a015260c43560c48a015261012060e48a01528801527f07ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff811161053c5792868a9593819593829460051b9182610144958686013783015281010301915afa90811561091b5750610902575b5061046d906105b193943691610b14565b906105b19361091361046d93610ab2565b9350906108f1565b513d86823e3d90fd5b8a80fd5b6004359067ffffffffffffffff8216820361093f57565b5f80fd5b9181601f8401121561093f5782359167ffffffffffffffff831161093f576020808501948460051b01011161093f57565b9181601f8401121561093f5782359167ffffffffffffffff831161093f576020838186019501011161093f57565b90608060031983011261093f576004359160243591604435916064359067ffffffffffffffff821161093f576109da91600401610974565b9091565b156109e557565b60405162461bcd60e51b815260206004820152600e60248201527f696e76616c69642063616c6c65720000000000000000000000000000000000006044820152606490fd5b5f198114610a385760010190565b634e487b7160e01b5f52601160045260245ffd5b9190811015610a5c5760051b0190565b634e487b7160e01b5f52603260045260245ffd5b9190811015610a5c5760051b81013590601e198136030182121561093f57019081359167ffffffffffffffff831161093f57602001823603811361093f579190565b67ffffffffffffffff8111610ac657604052565b634e487b7160e01b5f52604160045260245ffd5b90601f8019910116810190811067ffffffffffffffff821117610ac657604052565b9081602091031261093f5751801515810361093f5790565b92919267ffffffffffffffff8211610ac65760405191610b3e601f8201601f191660200184610ada565b82948184528183011161093f578281602093845f960137010152565b15610b6157565b606460405162461bcd60e51b815260206004820152602060248201527f6661696c656420746f206f70656e206f757470757420636f6d6d69746d656e746044820152fd5b9190811015610a5c5760a0020190565b906020909492939460846001600160a01b036002541693600354946040519586948593638a87897960e01b85526004850152602484015288604484015260648301525afa908115610c81575f91610c63575b5015610c1e57610c1c9261046d913691610b14565b565b60405162461bcd60e51b815260206004820152601560248201527f64617461206e6f7420726561647920746f2075736500000000000000000000006044820152606490fd5b610c7b915060203d81116107b0576107a18183610ada565b5f610c07565b6040513d5f823e3d90fd5b15610c9357565b606460405162461bcd60e51b815260206004820152602060248201527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e65726044820152fdfea26469706673582212201bc8156df327d74cd89517c73a276454adf06bb4789ec511129dea6da6ac5ae564736f6c63430008140033",
+}
+
+// MyBrevisAppABI is the input ABI used to generate the binding from.
+// Deprecated: Use MyBrevisAppMetaData.ABI instead.
+var MyBrevisAppABI = MyBrevisAppMetaData.ABI
+
+// MyBrevisAppBin is the compiled bytecode used for deploying new contracts.
+// Deprecated: Use MyBrevisAppMetaData.Bin instead.
+var MyBrevisAppBin = MyBrevisAppMetaData.Bin
+
+// DeployMyBrevisApp deploys a new Ethereum contract, binding an instance of MyBrevisApp to it.
+func DeployMyBrevisApp(auth *bind.TransactOpts, backend bind.ContractBackend, _brevisProof common.Address) (common.Address, *types.Transaction, *MyBrevisApp, error) {
+	parsed, err := MyBrevisAppMetaData.GetAbi()
+	if err != nil {
+		return common.Address{}, nil, nil, err
+	}
+	if parsed == nil {
+		return common.Address{}, nil, nil, errors.New("GetABI returned nil")
+	}
+
+	address, tx, contract, err := bind.DeployContract(auth, *parsed, common.FromHex(MyBrevisAppBin), backend, _brevisProof)
+	if err != nil {
+		return common.Address{}, nil, nil, err
+	}
+	return address, tx, &MyBrevisApp{MyBrevisAppCaller: MyBrevisAppCaller{contract: contract}, MyBrevisAppTransactor: MyBrevisAppTransactor{contract: contract}, MyBrevisAppFilterer: MyBrevisAppFilterer{contract: contract}}, nil
+}
+
+// MyBrevisApp is an auto generated Go binding around an Ethereum contract.
+type MyBrevisApp struct {
+	MyBrevisAppCaller     // Read-only binding to the contract
+	MyBrevisAppTransactor // Write-only binding to the contract
+	MyBrevisAppFilterer   // Log filterer for contract events
+}
+
+// MyBrevisAppCaller is an auto generated read-only Go binding around an Ethereum contract.
+type MyBrevisAppCaller struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// MyBrevisAppTransactor is an auto generated write-only Go binding around an Ethereum contract.
+type MyBrevisAppTransactor struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// MyBrevisAppFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
+type MyBrevisAppFilterer struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// MyBrevisAppSession is an auto generated Go binding around an Ethereum contract,
+// with pre-set call and transact options.
+type MyBrevisAppSession struct {
+	Contract     *MyBrevisApp      // Generic contract binding to set the session for
+	CallOpts     bind.CallOpts     // Call options to use throughout this session
+	TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
+}
+
+// MyBrevisAppCallerSession is an auto generated read-only Go binding around an Ethereum contract,
+// with pre-set call options.
+type MyBrevisAppCallerSession struct {
+	Contract *MyBrevisAppCaller // Generic contract caller binding to set the session for
+	CallOpts bind.CallOpts      // Call options to use throughout this session
+}
+
+// MyBrevisAppTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
+// with pre-set transact options.
+type MyBrevisAppTransactorSession struct {
+	Contract     *MyBrevisAppTransactor // Generic contract transactor binding to set the session for
+	TransactOpts bind.TransactOpts      // Transaction auth options to use throughout this session
+}
+
+// MyBrevisAppRaw is an auto generated low-level Go binding around an Ethereum contract.
+type MyBrevisAppRaw struct {
+	Contract *MyBrevisApp // Generic contract binding to access the raw methods on
+}
+
+// MyBrevisAppCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
+type MyBrevisAppCallerRaw struct {
+	Contract *MyBrevisAppCaller // Generic read-only contract binding to access the raw methods on
+}
+
+// MyBrevisAppTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
+type MyBrevisAppTransactorRaw struct {
+	Contract *MyBrevisAppTransactor // Generic write-only contract binding to access the raw methods on
+}
+
+// NewMyBrevisApp creates a new instance of MyBrevisApp, bound to a specific deployed contract.
+func NewMyBrevisApp(address common.Address, backend bind.ContractBackend) (*MyBrevisApp, error) {
+	contract, err := bindMyBrevisApp(address, backend, backend, backend)
+	if err != nil {
+		return nil, err
+	}
+	return &MyBrevisApp{MyBrevisAppCaller: MyBrevisAppCaller{contract: contract}, MyBrevisAppTransactor: MyBrevisAppTransactor{contract: contract}, MyBrevisAppFilterer: MyBrevisAppFilterer{contract: contract}}, nil
+}
+
+// NewMyBrevisAppCaller creates a new read-only instance of MyBrevisApp, bound to a specific deployed contract.
+func NewMyBrevisAppCaller(address common.Address, caller bind.ContractCaller) (*MyBrevisAppCaller, error) {
+	contract, err := bindMyBrevisApp(address, caller, nil, nil)
+	if err != nil {
+		return nil, err
+	}
+	return &MyBrevisAppCaller{contract: contract}, nil
+}
+
+// NewMyBrevisAppTransactor creates a new write-only instance of MyBrevisApp, bound to a specific deployed contract.
+func NewMyBrevisAppTransactor(address common.Address, transactor bind.ContractTransactor) (*MyBrevisAppTransactor, error) {
+	contract, err := bindMyBrevisApp(address, nil, transactor, nil)
+	if err != nil {
+		return nil, err
+	}
+	return &MyBrevisAppTransactor{contract: contract}, nil
+}
+
+// NewMyBrevisAppFilterer creates a new log filterer instance of MyBrevisApp, bound to a specific deployed contract.
+func NewMyBrevisAppFilterer(address common.Address, filterer bind.ContractFilterer) (*MyBrevisAppFilterer, error) {
+	contract, err := bindMyBrevisApp(address, nil, nil, filterer)
+	if err != nil {
+		return nil, err
+	}
+	return &MyBrevisAppFilterer{contract: contract}, nil
+}
+
+// bindMyBrevisApp binds a generic wrapper to an already deployed contract.
+func bindMyBrevisApp(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
+	parsed, err := MyBrevisAppMetaData.GetAbi()
+	if err != nil {
+		return nil, err
+	}
+	return bind.NewBoundContract(address, *parsed, caller, transactor, filterer), nil
+}
+
+// Call invokes the (constant) contract method with params as input values and
+// sets the output to result. The result type might be a single field for simple
+// returns, a slice of interfaces for anonymous returns and a struct for named
+// returns.
+func (_MyBrevisApp *MyBrevisAppRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
+	return _MyBrevisApp.Contract.MyBrevisAppCaller.contract.Call(opts, result, method, params...)
+}
+
+// Transfer initiates a plain transaction to move funds to the contract, calling
+// its default method if one is available.
+func (_MyBrevisApp *MyBrevisAppRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _MyBrevisApp.Contract.MyBrevisAppTransactor.contract.Transfer(opts)
+}
+
+// Transact invokes the (paid) contract method with params as input values.
+func (_MyBrevisApp *MyBrevisAppRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _MyBrevisApp.Contract.MyBrevisAppTransactor.contract.Transact(opts, method, params...)
+}
+
+// Call invokes the (constant) contract method with params as input values and
+// sets the output to result. The result type might be a single field for simple
+// returns, a slice of interfaces for anonymous returns and a struct for named
+// returns.
+func (_MyBrevisApp *MyBrevisAppCallerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
+	return _MyBrevisApp.Contract.contract.Call(opts, result, method, params...)
+}
+
+// Transfer initiates a plain transaction to move funds to the contract, calling
+// its default method if one is available.
+func (_MyBrevisApp *MyBrevisAppTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _MyBrevisApp.Contract.contract.Transfer(opts)
+}
+
+// Transact invokes the (paid) contract method with params as input values.
+func (_MyBrevisApp *MyBrevisAppTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _MyBrevisApp.Contract.contract.Transact(opts, method, params...)
+}
+
+// BrevisProof is a free data retrieval call binding the contract method 0xc7f5aaa0.
+//
+// Solidity: function brevisProof() view returns(address)
+func (_MyBrevisApp *MyBrevisAppCaller) BrevisProof(opts *bind.CallOpts) (common.Address, error) {
+	var out []interface{}
+	err := _MyBrevisApp.contract.Call(opts, &out, "brevisProof")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
+}
+
+// BrevisProof is a free data retrieval call binding the contract method 0xc7f5aaa0.
+//
+// Solidity: function brevisProof() view returns(address)
+func (_MyBrevisApp *MyBrevisAppSession) BrevisProof() (common.Address, error) {
+	return _MyBrevisApp.Contract.BrevisProof(&_MyBrevisApp.CallOpts)
+}
+
+// BrevisProof is a free data retrieval call binding the contract method 0xc7f5aaa0.
+//
+// Solidity: function brevisProof() view returns(address)
+func (_MyBrevisApp *MyBrevisAppCallerSession) BrevisProof() (common.Address, error) {
+	return _MyBrevisApp.Contract.BrevisProof(&_MyBrevisApp.CallOpts)
+}
+
+// BrevisRequest is a free data retrieval call binding the contract method 0x38931a31.
+//
+// Solidity: function brevisRequest() view returns(address)
+func (_MyBrevisApp *MyBrevisAppCaller) BrevisRequest(opts *bind.CallOpts) (common.Address, error) {
+	var out []interface{}
+	err := _MyBrevisApp.contract.Call(opts, &out, "brevisRequest")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
+}
+
+// BrevisRequest is a free data retrieval call binding the contract method 0x38931a31.
+//
+// Solidity: function brevisRequest() view returns(address)
+func (_MyBrevisApp *MyBrevisAppSession) BrevisRequest() (common.Address, error) {
+	return _MyBrevisApp.Contract.BrevisRequest(&_MyBrevisApp.CallOpts)
+}
+
+// BrevisRequest is a free data retrieval call binding the contract method 0x38931a31.
+//
+// Solidity: function brevisRequest() view returns(address)
+func (_MyBrevisApp *MyBrevisAppCallerSession) BrevisRequest() (common.Address, error) {
+	return _MyBrevisApp.Contract.BrevisRequest(&_MyBrevisApp.CallOpts)
+}
+
+// OpChallengeWindow is a free data retrieval call binding the contract method 0xd5caf16f.
+//
+// Solidity: function opChallengeWindow() view returns(uint256)
+func (_MyBrevisApp *MyBrevisAppCaller) OpChallengeWindow(opts *bind.CallOpts) (*big.Int, error) {
+	var out []interface{}
+	err := _MyBrevisApp.contract.Call(opts, &out, "opChallengeWindow")
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
+}
+
+// OpChallengeWindow is a free data retrieval call binding the contract method 0xd5caf16f.
+//
+// Solidity: function opChallengeWindow() view returns(uint256)
+func (_MyBrevisApp *MyBrevisAppSession) OpChallengeWindow() (*big.Int, error) {
+	return _MyBrevisApp.Contract.OpChallengeWindow(&_MyBrevisApp.CallOpts)
+}
+
+// OpChallengeWindow is a free data retrieval call binding the contract method 0xd5caf16f.
+//
+// Solidity: function opChallengeWindow() view returns(uint256)
+func (_MyBrevisApp *MyBrevisAppCallerSession) OpChallengeWindow() (*big.Int, error) {
+	return _MyBrevisApp.Contract.OpChallengeWindow(&_MyBrevisApp.CallOpts)
+}
+
+// Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
+//
+// Solidity: function owner() view returns(address)
+func (_MyBrevisApp *MyBrevisAppCaller) Owner(opts *bind.CallOpts) (common.Address, error) {
+	var out []interface{}
+	err := _MyBrevisApp.contract.Call(opts, &out, "owner")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
+}
+
+// Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
+//
+// Solidity: function owner() view returns(address)
+func (_MyBrevisApp *MyBrevisAppSession) Owner() (common.Address, error) {
+	return _MyBrevisApp.Contract.Owner(&_MyBrevisApp.CallOpts)
+}
+
+// Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
+//
+// Solidity: function owner() view returns(address)
+func (_MyBrevisApp *MyBrevisAppCallerSession) Owner() (common.Address, error) {
+	return _MyBrevisApp.Contract.Owner(&_MyBrevisApp.CallOpts)
+}
+
+// ApplyBrevisAggProof is a paid mutator transaction binding the contract method 0x0223b7c6.
+//
+// Solidity: function applyBrevisAggProof(uint64 _chainId, (bytes32,bytes32,bytes32,bytes32,bytes32) _proofData, bytes32 _merkleRoot, bytes32[] _merkleProof, uint8 _nodeIndex, bytes _appCircuitOutput) returns()
+func (_MyBrevisApp *MyBrevisAppTransactor) ApplyBrevisAggProof(opts *bind.TransactOpts, _chainId uint64, _proofData BrevisProofData, _merkleRoot [32]byte, _merkleProof [][32]byte, _nodeIndex uint8, _appCircuitOutput []byte) (*types.Transaction, error) {
+	return _MyBrevisApp.contract.Transact(opts, "applyBrevisAggProof", _chainId, _proofData, _merkleRoot, _merkleProof, _nodeIndex, _appCircuitOutput)
+}
+
+// ApplyBrevisAggProof is a paid mutator transaction binding the contract method 0x0223b7c6.
+//
+// Solidity: function applyBrevisAggProof(uint64 _chainId, (bytes32,bytes32,bytes32,bytes32,bytes32) _proofData, bytes32 _merkleRoot, bytes32[] _merkleProof, uint8 _nodeIndex, bytes _appCircuitOutput) returns()
+func (_MyBrevisApp *MyBrevisAppSession) ApplyBrevisAggProof(_chainId uint64, _proofData BrevisProofData, _merkleRoot [32]byte, _merkleProof [][32]byte, _nodeIndex uint8, _appCircuitOutput []byte) (*types.Transaction, error) {
+	return _MyBrevisApp.Contract.ApplyBrevisAggProof(&_MyBrevisApp.TransactOpts, _chainId, _proofData, _merkleRoot, _merkleProof, _nodeIndex, _appCircuitOutput)
+}
+
+// ApplyBrevisAggProof is a paid mutator transaction binding the contract method 0x0223b7c6.
+//
+// Solidity: function applyBrevisAggProof(uint64 _chainId, (bytes32,bytes32,bytes32,bytes32,bytes32) _proofData, bytes32 _merkleRoot, bytes32[] _merkleProof, uint8 _nodeIndex, bytes _appCircuitOutput) returns()
+func (_MyBrevisApp *MyBrevisAppTransactorSession) ApplyBrevisAggProof(_chainId uint64, _proofData BrevisProofData, _merkleRoot [32]byte, _merkleProof [][32]byte, _nodeIndex uint8, _appCircuitOutput []byte) (*types.Transaction, error) {
+	return _MyBrevisApp.Contract.ApplyBrevisAggProof(&_MyBrevisApp.TransactOpts, _chainId, _proofData, _merkleRoot, _merkleProof, _nodeIndex, _appCircuitOutput)
+}
+
+// ApplyBrevisAggProof0 is a paid mutator transaction binding the contract method 0xa346bf3f.
+//
+// Solidity: function applyBrevisAggProof(uint64 _chainId, (bytes32,bytes32,bytes32,bytes32,bytes32)[] _proofDataArray, bytes[] _appCircuitOutputs) returns()
+func (_MyBrevisApp *MyBrevisAppTransactor) ApplyBrevisAggProof0(opts *bind.TransactOpts, _chainId uint64, _proofDataArray []BrevisProofData, _appCircuitOutputs [][]byte) (*types.Transaction, error) {
+	return _MyBrevisApp.contract.Transact(opts, "applyBrevisAggProof0", _chainId, _proofDataArray, _appCircuitOutputs)
+}
+
+// ApplyBrevisAggProof0 is a paid mutator transaction binding the contract method 0xa346bf3f.
+//
+// Solidity: function applyBrevisAggProof(uint64 _chainId, (bytes32,bytes32,bytes32,bytes32,bytes32)[] _proofDataArray, bytes[] _appCircuitOutputs) returns()
+func (_MyBrevisApp *MyBrevisAppSession) ApplyBrevisAggProof0(_chainId uint64, _proofDataArray []BrevisProofData, _appCircuitOutputs [][]byte) (*types.Transaction, error) {
+	return _MyBrevisApp.Contract.ApplyBrevisAggProof0(&_MyBrevisApp.TransactOpts, _chainId, _proofDataArray, _appCircuitOutputs)
+}
+
+// ApplyBrevisAggProof0 is a paid mutator transaction binding the contract method 0xa346bf3f.
+//
+// Solidity: function applyBrevisAggProof(uint64 _chainId, (bytes32,bytes32,bytes32,bytes32,bytes32)[] _proofDataArray, bytes[] _appCircuitOutputs) returns()
+func (_MyBrevisApp *MyBrevisAppTransactorSession) ApplyBrevisAggProof0(_chainId uint64, _proofDataArray []BrevisProofData, _appCircuitOutputs [][]byte) (*types.Transaction, error) {
+	return _MyBrevisApp.Contract.ApplyBrevisAggProof0(&_MyBrevisApp.TransactOpts, _chainId, _proofDataArray, _appCircuitOutputs)
+}
+
+// ApplyBrevisOpResult is a paid mutator transaction binding the contract method 0x114ee746.
+//
+// Solidity: function applyBrevisOpResult(bytes32 _requestId, bytes32 _appVkHash, bytes32 _appCommitHash, bytes _appCircuitOutput) returns()
+func (_MyBrevisApp *MyBrevisAppTransactor) ApplyBrevisOpResult(opts *bind.TransactOpts, _requestId [32]byte, _appVkHash [32]byte, _appCommitHash [32]byte, _appCircuitOutput []byte) (*types.Transaction, error) {
+	return _MyBrevisApp.contract.Transact(opts, "applyBrevisOpResult", _requestId, _appVkHash, _appCommitHash, _appCircuitOutput)
+}
+
+// ApplyBrevisOpResult is a paid mutator transaction binding the contract method 0x114ee746.
+//
+// Solidity: function applyBrevisOpResult(bytes32 _requestId, bytes32 _appVkHash, bytes32 _appCommitHash, bytes _appCircuitOutput) returns()
+func (_MyBrevisApp *MyBrevisAppSession) ApplyBrevisOpResult(_requestId [32]byte, _appVkHash [32]byte, _appCommitHash [32]byte, _appCircuitOutput []byte) (*types.Transaction, error) {
+	return _MyBrevisApp.Contract.ApplyBrevisOpResult(&_MyBrevisApp.TransactOpts, _requestId, _appVkHash, _appCommitHash, _appCircuitOutput)
+}
+
+// ApplyBrevisOpResult is a paid mutator transaction binding the contract method 0x114ee746.
+//
+// Solidity: function applyBrevisOpResult(bytes32 _requestId, bytes32 _appVkHash, bytes32 _appCommitHash, bytes _appCircuitOutput) returns()
+func (_MyBrevisApp *MyBrevisAppTransactorSession) ApplyBrevisOpResult(_requestId [32]byte, _appVkHash [32]byte, _appCommitHash [32]byte, _appCircuitOutput []byte) (*types.Transaction, error) {
+	return _MyBrevisApp.Contract.ApplyBrevisOpResult(&_MyBrevisApp.TransactOpts, _requestId, _appVkHash, _appCommitHash, _appCircuitOutput)
+}
+
+// ApplyBrevisOpResults is a paid mutator transaction binding the contract method 0xd29ede2b.
+//
+// Solidity: function applyBrevisOpResults(bytes32[] _requestIds, bytes32[] _appVkHashes, bytes32[] _appCommitHashes, bytes[] _appCircuitOutputs) returns()
+func (_MyBrevisApp *MyBrevisAppTransactor) ApplyBrevisOpResults(opts *bind.TransactOpts, _requestIds [][32]byte, _appVkHashes [][32]byte, _appCommitHashes [][32]byte, _appCircuitOutputs [][]byte) (*types.Transaction, error) {
+	return _MyBrevisApp.contract.Transact(opts, "applyBrevisOpResults", _requestIds, _appVkHashes, _appCommitHashes, _appCircuitOutputs)
+}
+
+// ApplyBrevisOpResults is a paid mutator transaction binding the contract method 0xd29ede2b.
+//
+// Solidity: function applyBrevisOpResults(bytes32[] _requestIds, bytes32[] _appVkHashes, bytes32[] _appCommitHashes, bytes[] _appCircuitOutputs) returns()
+func (_MyBrevisApp *MyBrevisAppSession) ApplyBrevisOpResults(_requestIds [][32]byte, _appVkHashes [][32]byte, _appCommitHashes [][32]byte, _appCircuitOutputs [][]byte) (*types.Transaction, error) {
+	return _MyBrevisApp.Contract.ApplyBrevisOpResults(&_MyBrevisApp.TransactOpts, _requestIds, _appVkHashes, _appCommitHashes, _appCircuitOutputs)
+}
+
+// ApplyBrevisOpResults is a paid mutator transaction binding the contract method 0xd29ede2b.
+//
+// Solidity: function applyBrevisOpResults(bytes32[] _requestIds, bytes32[] _appVkHashes, bytes32[] _appCommitHashes, bytes[] _appCircuitOutputs) returns()
+func (_MyBrevisApp *MyBrevisAppTransactorSession) ApplyBrevisOpResults(_requestIds [][32]byte, _appVkHashes [][32]byte, _appCommitHashes [][32]byte, _appCircuitOutputs [][]byte) (*types.Transaction, error) {
+	return _MyBrevisApp.Contract.ApplyBrevisOpResults(&_MyBrevisApp.TransactOpts, _requestIds, _appVkHashes, _appCommitHashes, _appCircuitOutputs)
+}
+
+// ApplyBrevisProof is a paid mutator transaction binding the contract method 0x06fac260.
+//
+// Solidity: function applyBrevisProof(bytes32 _requestId, bytes32 _appVkHash, bytes32 _appCommitHash, bytes _appCircuitOutput) returns()
+func (_MyBrevisApp *MyBrevisAppTransactor) ApplyBrevisProof(opts *bind.TransactOpts, _requestId [32]byte, _appVkHash [32]byte, _appCommitHash [32]byte, _appCircuitOutput []byte) (*types.Transaction, error) {
+	return _MyBrevisApp.contract.Transact(opts, "applyBrevisProof", _requestId, _appVkHash, _appCommitHash, _appCircuitOutput)
+}
+
+// ApplyBrevisProof is a paid mutator transaction binding the contract method 0x06fac260.
+//
+// Solidity: function applyBrevisProof(bytes32 _requestId, bytes32 _appVkHash, bytes32 _appCommitHash, bytes _appCircuitOutput) returns()
+func (_MyBrevisApp *MyBrevisAppSession) ApplyBrevisProof(_requestId [32]byte, _appVkHash [32]byte, _appCommitHash [32]byte, _appCircuitOutput []byte) (*types.Transaction, error) {
+	return _MyBrevisApp.Contract.ApplyBrevisProof(&_MyBrevisApp.TransactOpts, _requestId, _appVkHash, _appCommitHash, _appCircuitOutput)
+}
+
+// ApplyBrevisProof is a paid mutator transaction binding the contract method 0x06fac260.
+//
+// Solidity: function applyBrevisProof(bytes32 _requestId, bytes32 _appVkHash, bytes32 _appCommitHash, bytes _appCircuitOutput) returns()
+func (_MyBrevisApp *MyBrevisAppTransactorSession) ApplyBrevisProof(_requestId [32]byte, _appVkHash [32]byte, _appCommitHash [32]byte, _appCircuitOutput []byte) (*types.Transaction, error) {
+	return _MyBrevisApp.Contract.ApplyBrevisProof(&_MyBrevisApp.TransactOpts, _requestId, _appVkHash, _appCommitHash, _appCircuitOutput)
+}
+
+// BrevisBatchCallback is a paid mutator transaction binding the contract method 0x3bca02fc.
+//
+// Solidity: function brevisBatchCallback(bytes32[] _appVkHashes, bytes[] _appCircuitOutputs) returns()
+func (_MyBrevisApp *MyBrevisAppTransactor) BrevisBatchCallback(opts *bind.TransactOpts, _appVkHashes [][32]byte, _appCircuitOutputs [][]byte) (*types.Transaction, error) {
+	return _MyBrevisApp.contract.Transact(opts, "brevisBatchCallback", _appVkHashes, _appCircuitOutputs)
+}
+
+// BrevisBatchCallback is a paid mutator transaction binding the contract method 0x3bca02fc.
+//
+// Solidity: function brevisBatchCallback(bytes32[] _appVkHashes, bytes[] _appCircuitOutputs) returns()
+func (_MyBrevisApp *MyBrevisAppSession) BrevisBatchCallback(_appVkHashes [][32]byte, _appCircuitOutputs [][]byte) (*types.Transaction, error) {
+	return _MyBrevisApp.Contract.BrevisBatchCallback(&_MyBrevisApp.TransactOpts, _appVkHashes, _appCircuitOutputs)
+}
+
+// BrevisBatchCallback is a paid mutator transaction binding the contract method 0x3bca02fc.
+//
+// Solidity: function brevisBatchCallback(bytes32[] _appVkHashes, bytes[] _appCircuitOutputs) returns()
+func (_MyBrevisApp *MyBrevisAppTransactorSession) BrevisBatchCallback(_appVkHashes [][32]byte, _appCircuitOutputs [][]byte) (*types.Transaction, error) {
+	return _MyBrevisApp.Contract.BrevisBatchCallback(&_MyBrevisApp.TransactOpts, _appVkHashes, _appCircuitOutputs)
+}
+
+// BrevisCallback is a paid mutator transaction binding the contract method 0x79d6b6a2.
+//
+// Solidity: function brevisCallback(bytes32 _appVkHash, bytes _appCircuitOutput) returns()
+func (_MyBrevisApp *MyBrevisAppTransactor) BrevisCallback(opts *bind.TransactOpts, _appVkHash [32]byte, _appCircuitOutput []byte) (*types.Transaction, error) {
+	return _MyBrevisApp.contract.Transact(opts, "brevisCallback", _appVkHash, _appCircuitOutput)
+}
+
+// BrevisCallback is a paid mutator transaction binding the contract method 0x79d6b6a2.
+//
+// Solidity: function brevisCallback(bytes32 _appVkHash, bytes _appCircuitOutput) returns()
+func (_MyBrevisApp *MyBrevisAppSession) BrevisCallback(_appVkHash [32]byte, _appCircuitOutput []byte) (*types.Transaction, error) {
+	return _MyBrevisApp.Contract.BrevisCallback(&_MyBrevisApp.TransactOpts, _appVkHash, _appCircuitOutput)
+}
+
+// BrevisCallback is a paid mutator transaction binding the contract method 0x79d6b6a2.
+//
+// Solidity: function brevisCallback(bytes32 _appVkHash, bytes _appCircuitOutput) returns()
+func (_MyBrevisApp *MyBrevisAppTransactorSession) BrevisCallback(_appVkHash [32]byte, _appCircuitOutput []byte) (*types.Transaction, error) {
+	return _MyBrevisApp.Contract.BrevisCallback(&_MyBrevisApp.TransactOpts, _appVkHash, _appCircuitOutput)
+}
+
+// RenounceOwnership is a paid mutator transaction binding the contract method 0x715018a6.
+//
+// Solidity: function renounceOwnership() returns()
+func (_MyBrevisApp *MyBrevisAppTransactor) RenounceOwnership(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _MyBrevisApp.contract.Transact(opts, "renounceOwnership")
+}
+
+// RenounceOwnership is a paid mutator transaction binding the contract method 0x715018a6.
+//
+// Solidity: function renounceOwnership() returns()
+func (_MyBrevisApp *MyBrevisAppSession) RenounceOwnership() (*types.Transaction, error) {
+	return _MyBrevisApp.Contract.RenounceOwnership(&_MyBrevisApp.TransactOpts)
+}
+
+// RenounceOwnership is a paid mutator transaction binding the contract method 0x715018a6.
+//
+// Solidity: function renounceOwnership() returns()
+func (_MyBrevisApp *MyBrevisAppTransactorSession) RenounceOwnership() (*types.Transaction, error) {
+	return _MyBrevisApp.Contract.RenounceOwnership(&_MyBrevisApp.TransactOpts)
+}
+
+// SetOpChallengeWindow is a paid mutator transaction binding the contract method 0x4c18293a.
+//
+// Solidity: function setOpChallengeWindow(uint256 _challangeWindow) returns()
+func (_MyBrevisApp *MyBrevisAppTransactor) SetOpChallengeWindow(opts *bind.TransactOpts, _challangeWindow *big.Int) (*types.Transaction, error) {
+	return _MyBrevisApp.contract.Transact(opts, "setOpChallengeWindow", _challangeWindow)
+}
+
+// SetOpChallengeWindow is a paid mutator transaction binding the contract method 0x4c18293a.
+//
+// Solidity: function setOpChallengeWindow(uint256 _challangeWindow) returns()
+func (_MyBrevisApp *MyBrevisAppSession) SetOpChallengeWindow(_challangeWindow *big.Int) (*types.Transaction, error) {
+	return _MyBrevisApp.Contract.SetOpChallengeWindow(&_MyBrevisApp.TransactOpts, _challangeWindow)
+}
+
+// SetOpChallengeWindow is a paid mutator transaction binding the contract method 0x4c18293a.
+//
+// Solidity: function setOpChallengeWindow(uint256 _challangeWindow) returns()
+func (_MyBrevisApp *MyBrevisAppTransactorSession) SetOpChallengeWindow(_challangeWindow *big.Int) (*types.Transaction, error) {
+	return _MyBrevisApp.Contract.SetOpChallengeWindow(&_MyBrevisApp.TransactOpts, _challangeWindow)
+}
+
+// TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
+//
+// Solidity: function transferOwnership(address newOwner) returns()
+func (_MyBrevisApp *MyBrevisAppTransactor) TransferOwnership(opts *bind.TransactOpts, newOwner common.Address) (*types.Transaction, error) {
+	return _MyBrevisApp.contract.Transact(opts, "transferOwnership", newOwner)
+}
+
+// TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
+//
+// Solidity: function transferOwnership(address newOwner) returns()
+func (_MyBrevisApp *MyBrevisAppSession) TransferOwnership(newOwner common.Address) (*types.Transaction, error) {
+	return _MyBrevisApp.Contract.TransferOwnership(&_MyBrevisApp.TransactOpts, newOwner)
+}
+
+// TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
+//
+// Solidity: function transferOwnership(address newOwner) returns()
+func (_MyBrevisApp *MyBrevisAppTransactorSession) TransferOwnership(newOwner common.Address) (*types.Transaction, error) {
+	return _MyBrevisApp.Contract.TransferOwnership(&_MyBrevisApp.TransactOpts, newOwner)
+}
+
+// MyBrevisAppOwnershipTransferredIterator is returned from FilterOwnershipTransferred and is used to iterate over the raw logs and unpacked data for OwnershipTransferred events raised by the MyBrevisApp contract.
+type MyBrevisAppOwnershipTransferredIterator struct {
+	Event *MyBrevisAppOwnershipTransferred // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *MyBrevisAppOwnershipTransferredIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(MyBrevisAppOwnershipTransferred)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(MyBrevisAppOwnershipTransferred)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *MyBrevisAppOwnershipTransferredIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *MyBrevisAppOwnershipTransferredIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// MyBrevisAppOwnershipTransferred represents a OwnershipTransferred event raised by the MyBrevisApp contract.
+type MyBrevisAppOwnershipTransferred struct {
+	PreviousOwner common.Address
+	NewOwner      common.Address
+	Raw           types.Log // Blockchain specific contextual infos
+}
+
+// FilterOwnershipTransferred is a free log retrieval operation binding the contract event 0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0.
+//
+// Solidity: event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
+func (_MyBrevisApp *MyBrevisAppFilterer) FilterOwnershipTransferred(opts *bind.FilterOpts, previousOwner []common.Address, newOwner []common.Address) (*MyBrevisAppOwnershipTransferredIterator, error) {
+
+	var previousOwnerRule []interface{}
+	for _, previousOwnerItem := range previousOwner {
+		previousOwnerRule = append(previousOwnerRule, previousOwnerItem)
+	}
+	var newOwnerRule []interface{}
+	for _, newOwnerItem := range newOwner {
+		newOwnerRule = append(newOwnerRule, newOwnerItem)
+	}
+
+	logs, sub, err := _MyBrevisApp.contract.FilterLogs(opts, "OwnershipTransferred", previousOwnerRule, newOwnerRule)
+	if err != nil {
+		return nil, err
+	}
+	return &MyBrevisAppOwnershipTransferredIterator{contract: _MyBrevisApp.contract, event: "OwnershipTransferred", logs: logs, sub: sub}, nil
+}
+
+// WatchOwnershipTransferred is a free log subscription operation binding the contract event 0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0.
+//
+// Solidity: event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
+func (_MyBrevisApp *MyBrevisAppFilterer) WatchOwnershipTransferred(opts *bind.WatchOpts, sink chan<- *MyBrevisAppOwnershipTransferred, previousOwner []common.Address, newOwner []common.Address) (event.Subscription, error) {
+
+	var previousOwnerRule []interface{}
+	for _, previousOwnerItem := range previousOwner {
+		previousOwnerRule = append(previousOwnerRule, previousOwnerItem)
+	}
+	var newOwnerRule []interface{}
+	for _, newOwnerItem := range newOwner {
+		newOwnerRule = append(newOwnerRule, newOwnerItem)
+	}
+
+	logs, sub, err := _MyBrevisApp.contract.WatchLogs(opts, "OwnershipTransferred", previousOwnerRule, newOwnerRule)
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(MyBrevisAppOwnershipTransferred)
+				if err := _MyBrevisApp.contract.UnpackLog(event, "OwnershipTransferred", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseOwnershipTransferred is a log parse operation binding the contract event 0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0.
+//
+// Solidity: event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
+func (_MyBrevisApp *MyBrevisAppFilterer) ParseOwnershipTransferred(log types.Log) (*MyBrevisAppOwnershipTransferred, error) {
+	event := new(MyBrevisAppOwnershipTransferred)
+	if err := _MyBrevisApp.contract.UnpackLog(event, "OwnershipTransferred", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
