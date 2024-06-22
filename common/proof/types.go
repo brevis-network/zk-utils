@@ -203,9 +203,9 @@ func (p Groth16Proof) AsBigInts() (a [2]*big.Int, b [2][2]*big.Int, c [2]*big.In
 	return
 }
 
-func (p Groth16Proof) OnChainProof() eth.IVerifierProof {
+func (p Groth16Proof) OnChainProof() eth.IBeaconVerifierProof {
 	a, b, c, commitment := p.AsBigInts()
-	proof := eth.IVerifierProof{
+	proof := eth.IBeaconVerifierProof{
 		A:          a,
 		B:          b,
 		C:          c,
