@@ -57,7 +57,7 @@ func (s SyncAggregate) String() string {
 }
 
 func (u ISMTSmtUpdate) String() string {
-	return fmt.Sprintf("newSmtRoot %x, endBlockHash %x, endBlockNum %d, nextChunkMerkleRoot %x, proof %s", u.NewSmtRoot, u.EndBlockHash, u.EndBlockNum, u.NextChunkMerkleRoot, u.Proof)
+	return fmt.Sprintf("newSmtRoot %x, endBlockHash %x, endBlockNum %d, nextChunkMerkleRoot %x, proof %s, commit: %s, Pok: %s", u.NewSmtRoot, u.EndBlockHash, u.EndBlockNum, u.NextChunkMerkleRoot, u.Proof, u.Commit, u.KnowledgeProof)
 }
 
 func (p IBeaconVerifierProof) String() string {
