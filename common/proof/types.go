@@ -200,7 +200,7 @@ func (p Groth16Proof) AsBigInts() (a [2]*big.Int, b [2][2]*big.Int, c [2]*big.In
 	b = [2][2]*big.Int{{utils.Hex2BigInt(p.B[0][0]), utils.Hex2BigInt(p.B[0][1])}, {utils.Hex2BigInt(p.B[1][0]), utils.Hex2BigInt(p.B[1][1])}}
 	c = [2]*big.Int{utils.Hex2BigInt(p.C[0]), utils.Hex2BigInt(p.C[1])}
 	commitment = [2]*big.Int{utils.Hex2BigInt(p.Commitment[0]), utils.Hex2BigInt(p.Commitment[1])}
-	commitmentPok = [2]*big.Int{utils.Hex2BigInt(p.Commitment[0]), utils.Hex2BigInt(p.Commitment[1])}
+	commitmentPok = [2]*big.Int{utils.Hex2BigInt(p.CommitmentPok[0]), utils.Hex2BigInt(p.CommitmentPok[1])}
 	return
 }
 
