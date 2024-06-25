@@ -192,20 +192,21 @@ type Groth16Proof struct {
 	B             [2][2]string `json:"b"`
 	C             [2]string    `json:"c"`
 	Commitment    [2]string    `json:"commitment"`
-	CommitmentPok [2]string    `json:"CommitmentPok"`
+	CommitmentPok [2]string    `json:"commitment_pok"`
 }
 
-func (p Groth16Proof) AsBigInts() (a [2]*big.Int, b [2][2]*big.Int, c [2]*big.Int, commitment [2]*big.Int) {
+func (p Groth16Proof) AsBigInts() (a [2]*big.Int, b [2][2]*big.Int, c [2]*big.Int, commitment, commitmentPok [2]*big.Int) {
 	a = [2]*big.Int{utils.Hex2BigInt(p.A[0]), utils.Hex2BigInt(p.A[1])}
 	b = [2][2]*big.Int{{utils.Hex2BigInt(p.B[0][0]), utils.Hex2BigInt(p.B[0][1])}, {utils.Hex2BigInt(p.B[1][0]), utils.Hex2BigInt(p.B[1][1])}}
 	c = [2]*big.Int{utils.Hex2BigInt(p.C[0]), utils.Hex2BigInt(p.C[1])}
 	commitment = [2]*big.Int{utils.Hex2BigInt(p.Commitment[0]), utils.Hex2BigInt(p.Commitment[1])}
+	commitmentPok = [2]*big.Int{utils.Hex2BigInt(p.CommitmentPok[0]), utils.Hex2BigInt(p.CommitmentPok[1])}
 	return
 }
 
-func (p Groth16Proof) OnChainProof() eth.IVerifierProof {
-	a, b, c, commitment := p.AsBigInts()
-	proof := eth.IVerifierProof{
+func (p Groth16Proof) OnChainProof() eth.IBeaconVerifierProof {
+	a, b, c, commitment, _ := p.AsBigInts()
+	proof := eth.IBeaconVerifierProof{
 		A:          a,
 		B:          b,
 		C:          c,
@@ -215,7 +216,7 @@ func (p Groth16Proof) OnChainProof() eth.IVerifierProof {
 }
 
 func (p Groth16Proof) BeaconProof() eth.IBeaconVerifierProof {
-	a, b, c, commitment := p.AsBigInts()
+	a, b, c, commitment, _ := p.AsBigInts()
 	proof := eth.IBeaconVerifierProof{
 		A:          a,
 		B:          b,
