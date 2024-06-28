@@ -5,7 +5,7 @@ import (
 )
 
 func (s *BrevisRequestRequestSent) String() string {
-	return fmt.Sprintf("< %s>", fmt.Sprintf("<requestId %x >", s.RequestId))
+	return fmt.Sprintf("< %s>", fmt.Sprintf("<requestId %x nonce %d>", s.ProofId, s.Nonce))
 }
 
 func (ev *BrevisRequestRequestSent) PrettyLog(onchid uint64) string {
@@ -14,8 +14,8 @@ func (ev *BrevisRequestRequestSent) PrettyLog(onchid uint64) string {
 
 func (s *BrevisRequestOpRequestsFulfilled) String() string {
 	var out string
-	for _, id := range s.RequestIds {
-		out += fmt.Sprintf("<requestId %x > ", id)
+	for i, id := range s.ProofIds {
+		out += fmt.Sprintf("<requestId %x nonce %d> ", id, s.Nonces[i])
 	}
 	return fmt.Sprintf("< %s>", out)
 }
