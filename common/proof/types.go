@@ -192,7 +192,7 @@ type Groth16Proof struct {
 	B             [2][2]string `json:"b"`
 	C             [2]string    `json:"c"`
 	Commitment    [2]string    `json:"commitment"`
-	CommitmentPok [2]string    `json:"commitment_pok"`
+	CommitmentPok [2]string    `json:"commitment_pokAABB"`
 }
 
 func (p Groth16Proof) AsBigInts() (a [2]*big.Int, b [2][2]*big.Int, c [2]*big.Int, commitment, commitmentPok [2]*big.Int) {
