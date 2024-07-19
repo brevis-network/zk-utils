@@ -203,7 +203,7 @@ func CheckEthBlockHash(
 		MaxFields:            17,
 		ArrayPrefixMaxHexLen: 4,
 		FieldMinHexLen:       []int{64, 64, 40, 64, 64, 64, 512, 0, 0, 0, 0, 0, 0, 64, 16, 0, 64},
-		FieldMaxHexLen:       []int{64, 64, 40, 64, 64, 64, 512, 14, 16, 8, 8, 8, 64, 64, 18, 16, 64},
+		FieldMaxHexLen:       []int{64, 64, 40, 64, 64, 64, 512, 14, 16, 8, 8, 8, 2000, 64, 18, 16, 64},
 	}
 	rlpout, totalRlpLength, fieldsLength, fields := blockHashArrayCheck.BlkHeaderRlpCheck(
 		api,
