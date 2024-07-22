@@ -323,6 +323,7 @@ type SDKQueryProvingInfoForReceipt struct {
 	CommitHash              string                    `json:"commit_hash"`
 	TransactionType         uint8                     `json:"transaction_type"`
 	QueryRaw                []string                  `json:"query_raw"`
+	UseLarge                bool                      `json:"use_large"`
 }
 
 type SDKQueryLogExtractInfo struct {
