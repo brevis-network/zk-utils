@@ -402,4 +402,5 @@ type SDKQueryProvingInfoForAppCircuit struct {
 	OutputCommitment  string   `json:"output_commitment"`
 	TogglesCommitment string   `json:"toggles_commitment"`
 	Toggles           []int    `json:"toggles"`
+	Output            string   `json:"output"`
 }
