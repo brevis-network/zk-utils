@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	ethBlockHeadMaxRound        = 5
+	ethBlockHeadMaxRound        = 8
 	EthBlockHeadMaxBlockHexSize = ethBlockHeadMaxRound * 272
 
 	StorageMaxValueLength     = 66
