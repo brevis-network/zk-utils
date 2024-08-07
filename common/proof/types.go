@@ -408,9 +408,7 @@ type SDKQueryProvingInfoForAppCircuit struct {
 
 type SubProveRequest struct {
 	RequestId        string                             `json:"request_id"`
-	ChainId          uint64                             `json:"chain_id"`
 	ReceiptInfos     *SDKQueryProvingInfoForReceipt     `json:"receipt_infos"`
 	StorageSlotInfos *SDKQueryProvingInfoForStorageSlot `json:"storage_slot_infos"`
 	TransactionInfos *SDKQueryProvingInfoForTransaction `json:"transaction_infos"`
-	SMTRoot          string                             `json:"smt_root"`
 }
