@@ -406,7 +406,7 @@ type SDKQueryProvingInfoForAppCircuit struct {
 	Output            string   `json:"output"`
 }
 
-type DoSubProveRequest struct {
+type SubProveRequest struct {
 	RequestId        string                             `json:"request_id"`
 	ChainId          uint64                             `json:"chain_id"`
 	ReceiptInfos     *SDKQueryProvingInfoForReceipt     `json:"receipt_infos"`
