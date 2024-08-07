@@ -324,6 +324,7 @@ type SDKQueryProvingInfoForReceipt struct {
 	TransactionType         uint8                     `json:"transaction_type"`
 	QueryRaw                []string                  `json:"query_raw"`
 	UseLarge                bool                      `json:"use_large"`
+	Status                  uint8                     `json:"status"`
 }
 
 type SDKQueryLogExtractInfo struct {
@@ -403,4 +404,13 @@ type SDKQueryProvingInfoForAppCircuit struct {
 	TogglesCommitment string   `json:"toggles_commitment"`
 	Toggles           []int    `json:"toggles"`
 	Output            string   `json:"output"`
+}
+
+type DoSubProveRequest struct {
+	RequestId        string                             `json:"request_id"`
+	ChainId          uint64                             `json:"chain_id"`
+	ReceiptInfos     *SDKQueryProvingInfoForReceipt     `json:"receipt_infos"`
+	StorageSlotInfos *SDKQueryProvingInfoForStorageSlot `json:"storage_slot_infos"`
+	TransactionInfos *SDKQueryProvingInfoForTransaction `json:"transaction_infos"`
+	SMTRoot          string                             `json:"smt_root"`
 }
