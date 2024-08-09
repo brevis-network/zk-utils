@@ -6,6 +6,7 @@ import (
 
 	"github.com/brevis-network/zk-utils/circuits/gadgets/keccak"
 	"github.com/brevis-network/zk-utils/circuits/gadgets/rlp"
+	"github.com/brevis-network/zk-utils/common/utils"
 	"github.com/consensys/gnark/frontend"
 )
 
@@ -26,7 +27,7 @@ const (
 	BranchNodeMaxRoundSize   = 4
 	BranchNodeMaxBlockSize   = BranchNodeMaxRoundSize * 272
 
-	BlockExtraDataHexMaxLength = 2000
+	BlockExtraDataHexMaxLength = utils.BlockExtraDataHexMaxLength
 )
 
 type EthAccountProofResult struct {

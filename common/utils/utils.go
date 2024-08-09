@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"bytes"
 	"errors"
 	"fmt"
 	"math/big"
@@ -10,6 +11,7 @@ import (
 	"github.com/consensys/gnark-crypto/ecc"
 	"github.com/consensys/gnark/frontend"
 	"github.com/ethereum/go-ethereum/common/hexutil"
+	"github.com/ethereum/go-ethereum/rlp"
 
 	"github.com/celer-network/goutils/log"
 	bls12377MiMC "github.com/consensys/gnark-crypto/ecc/bls12-377/fr/mimc"
@@ -208,4 +210,21 @@ func MiMCBlockPad0(data []byte, blockSize int) []byte {
 		}
 	}
 	return block
+}
+
+const BlockExtraDataHexMaxLength = 2000
+
+func ExportBlockHeaderExtraData(blockRlp string) ([]byte, error) {
+	rlpBytes := Hex2Bytes(blockRlp)
+	var decodedBlockRlp [][]byte
+	err := rlp.Decode(bytes.NewReader(rlpBytes), &decodedBlockRlp)
+	if err != nil {
+		return nil, fmt.Errorf("failed to decode block rlp: %s", err.Error())
+	}
+
+	if len(decodedBlockRlp) < 13 {
+		return nil, fmt.Errorf("block rlp decoded with unexpected length %s", blockRlp)
+	}
+
+	return decodedBlockRlp[12], nil
 }

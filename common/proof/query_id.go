@@ -1,6 +1,7 @@
 package proof
 
 import (
+	"fmt"
 	"math/big"
 
 	"github.com/brevis-network/zk-utils/common/utils"
@@ -121,6 +122,26 @@ func MiMCHashReceiptStatusCustomInputs(
 	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(receiptInfo.ReceiptIndex), 12)...)
 	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(receiptInfo.Status), 1)...)
 	roundData := utils.PackBitsToInt(bits)
+
+	extraData, err := utils.ExportBlockHeaderExtraData(receiptInfo.BlockRlp)
+	if err != nil {
+		return nil, err
+	}
+
+	var extraDataFV [utils.BlockExtraDataHexMaxLength]byte
+	if len(extraData)*2 > utils.BlockExtraDataHexMaxLength {
+		return nil, fmt.Errorf("block extra data %x length out of bound: %d", extraData, utils.BlockExtraDataHexMaxLength)
+	}
+	for i, b := range extraData {
+		extraDataFV[i*2] = b >> 4
+		bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(b>>4), 4)...)
+		bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(b&0x0F), 4)...)
+	}
+
+	for i := len(extraData) * 2; i < utils.BlockExtraDataHexMaxLength; i++ {
+		bits = append(bits, []uint{0, 0, 0, 0}...)
+	}
+
 	for _, v := range roundData {
 		hasher.Write(common.LeftPadBytes(v.Bytes(), 32))
 	}
