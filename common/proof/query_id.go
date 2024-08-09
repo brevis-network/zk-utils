@@ -111,6 +111,23 @@ func MiMCHashTxCustomInputs(
 	return hasher.Sum(nil), nil
 }
 
+func MiMCHashReceiptStatusCustomInputs(
+	receiptInfo *SDKQueryProvingInfoForReceipt,
+) ([]byte, error) {
+	hasher := mimc.NewMiMC()
+
+	var bits []uint
+	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(receiptInfo.BlockNumber), 8*4)...)
+	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(receiptInfo.ReceiptIndex), 12)...)
+	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(receiptInfo.Status), 1)...)
+	roundData := utils.PackBitsToInt(bits)
+	for _, v := range roundData {
+		hasher.Write(common.LeftPadBytes(v.Bytes(), 32))
+	}
+
+	return hasher.Sum(nil), nil
+}
+
 // 0x01 ===> 0x0000000000000000000000000000000000000000000000000000000000000001
 func GetPaddedSlotBytes(slot string) []byte {
 	slotBytes := utils.Hex2Bytes(slot)

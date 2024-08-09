@@ -190,6 +190,8 @@ type EthBlockHashResult struct {
 	StateRoot         [64]frontend.Variable
 	TransactionsRoot  [64]frontend.Variable
 	ReceiptsRoot      [64]frontend.Variable
+	ExtraDataLength   frontend.Variable
+	ExtraData         [2000]frontend.Variable
 }
 
 func CheckEthBlockHash(
@@ -235,6 +237,9 @@ func CheckEthBlockHash(
 		blockTime[i] = fields[11][i]
 	}
 
+	var extraData [2000]frontend.Variable
+	copy(extraData[:], fields[12])
+
 	return EthBlockHashResult{
 		Output:            rlpout,
 		BlockHash:         blockHash,
@@ -244,6 +249,8 @@ func CheckEthBlockHash(
 		StateRoot:         stateRoot,
 		TransactionsRoot:  transactionsRoot,
 		ReceiptsRoot:      receiptsRoot,
+		ExtraDataLength:   fieldsLength[12],
+		ExtraData:         extraData,
 	}
 
 }
