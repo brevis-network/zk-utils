@@ -121,7 +121,6 @@ func MiMCHashReceiptStatusCustomInputs(
 	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(receiptInfo.BlockNumber), 8*4)...)
 	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(receiptInfo.ReceiptIndex), 12)...)
 	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(receiptInfo.Status), 1)...)
-	roundData := utils.PackBitsToInt(bits)
 
 	extraData, err := utils.ExportBlockHeaderExtraData(receiptInfo.BlockRlp)
 	if err != nil {
@@ -141,6 +140,8 @@ func MiMCHashReceiptStatusCustomInputs(
 	for i := len(extraData) * 2; i < utils.BlockExtraDataHexMaxLength; i++ {
 		bits = append(bits, []uint{0, 0, 0, 0}...)
 	}
+
+	roundData := utils.PackBitsToInt(bits)
 
 	for _, v := range roundData {
 		hasher.Write(common.LeftPadBytes(v.Bytes(), 32))
