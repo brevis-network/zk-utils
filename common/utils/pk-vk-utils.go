@@ -79,16 +79,19 @@ func ReadWitness(filename string, witness witness.Witness) error {
 	return err
 }
 
-func WriteWitness(filename string, witness witness.Witness) {
+func WriteWitness(filename string, witness witness.Witness) error {
 	f, err := os.Create(filename)
 	if err != nil {
 		log.Error("witness writing failed... ", err)
+		return err
 	}
 
 	_, err = witness.WriteTo(f)
 	if err != nil {
 		log.Error("witness writing failed... ", err)
+		return err
 	}
+	return nil
 }
 
 func ReadPlonkCcs(filename string, ccs constraint.ConstraintSystem) error {
