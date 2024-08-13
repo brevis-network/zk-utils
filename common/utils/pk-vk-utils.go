@@ -190,16 +190,19 @@ func ReadVerifyingKey(filename string, vk groth16.VerifyingKey) error {
 	return err
 }
 
-func WriteVerifyingKey(vk groth16.VerifyingKey, filename string) {
+func WriteVerifyingKey(vk groth16.VerifyingKey, filename string) error {
 	f, err := os.Create(filename)
 	if err != nil {
 		log.Error("vk writing failed... ", err)
+		return err
 	}
 
 	_, err = vk.WriteTo(f)
 	if err != nil {
 		log.Error("vk writing failed... ", err)
+		return err
 	}
+	return nil
 }
 
 func ReadCcs(filename string, ccs constraint.ConstraintSystem) error {
