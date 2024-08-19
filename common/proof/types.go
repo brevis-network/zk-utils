@@ -324,7 +324,6 @@ type SDKQueryProvingInfoForReceipt struct {
 	TransactionType         uint8                     `json:"transaction_type"`
 	QueryRaw                []string                  `json:"query_raw"`
 	UseLarge                bool                      `json:"use_large"`
-	Status                  uint8                     `json:"status"`
 }
 
 type SDKQueryLogExtractInfo struct {
@@ -413,9 +412,26 @@ type SDKQueryProvingInfoForAppCircuit struct {
 	Output            string   `json:"output"`
 }
 
+type SDKQueryProvingInfoForBlockExtraData struct {
+	ChainId                 uint64   `json:"chain_id"`
+	BlockNumber             uint64   `json:"blk_num"`
+	BlockHash               string   `json:"block_hash"`
+	BlockTime               uint64   `json:"block_time"`
+	BlockRlp                string   `json:"block_rlp"`
+	BlockFieldsNum          int      `json:"block_fields_num"`
+	SMTRoot                 string   `json:"smt_root"`
+	ChunkProofs             []string `json:"chunk_proofs"`
+	SMTStartBlockNumber     uint64   `json:"smt_start_block_number"`
+	SMTStartBlockParentHash string   `json:"smt_start_block_parent_hash"`
+	SMTInitialBlockNum      uint64   `json:"smt_initial_block_number"`
+	SMTProofs               []string `json:"smt_proofs"`
+	CommitHash              string   `json:"commit_hash"`
+}
+
 type SubProveRequest struct {
-	RequestId       string                             `json:"request_id"`
-	ReceiptInfo     *SDKQueryProvingInfoForReceipt     `json:"receipt_info"`
-	StorageSlotInfo *SDKQueryProvingInfoForStorageSlot `json:"storage_slot_info"`
-	TransactionInfo *SDKQueryProvingInfoForTransaction `json:"transaction_info"`
+	RequestId          string                                `json:"request_id"`
+	ReceiptInfo        *SDKQueryProvingInfoForReceipt        `json:"receipt_info"`
+	StorageSlotInfo    *SDKQueryProvingInfoForStorageSlot    `json:"storage_slot_info"`
+	TransactionInfo    *SDKQueryProvingInfoForTransaction    `json:"transaction_info"`
+	BlockExtraDataInfo *SDKQueryProvingInfoForBlockExtraData `json:"block_extra_data_info"`
 }

@@ -112,15 +112,13 @@ func MiMCHashTxCustomInputs(
 	return hasher.Sum(nil), nil
 }
 
-func MiMCHashReceiptStatusCustomInputs(
-	receiptInfo *SDKQueryProvingInfoForReceipt,
+func MiMCHashBlockExtraDataCustomInputs(
+	receiptInfo *SDKQueryProvingInfoForBlockExtraData,
 ) ([]byte, error) {
 	hasher := mimc.NewMiMC()
 
 	var bits []uint
 	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(receiptInfo.BlockNumber), 8*4)...)
-	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(receiptInfo.ReceiptIndex), 12)...)
-	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(receiptInfo.Status), 1)...)
 
 	extraData, err := utils.ExportBlockHeaderExtraData(receiptInfo.BlockRlp)
 	if err != nil {
