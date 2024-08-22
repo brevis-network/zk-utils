@@ -181,9 +181,9 @@ func GenerateBls12377Hash(input []byte) []byte {
 	var i int
 	for i < len(bits) {
 		if i+bitSize > len(bits) {
-			frDataArray = append(frDataArray, BitsToFrBigInt(bits[i:], ecc.BLS12_377.ScalarField()))
+			frDataArray = append(frDataArray, BitsToFrBigInt(bits[i:], ecc.BN254.ScalarField()))
 		} else {
-			frDataArray = append(frDataArray, BitsToFrBigInt(bits[i:i+bitSize], ecc.BLS12_377.ScalarField()))
+			frDataArray = append(frDataArray, BitsToFrBigInt(bits[i:i+bitSize], ecc.BN254.ScalarField()))
 		}
 		i += bitSize
 	}
