@@ -404,6 +404,8 @@ type SDKQueryProvingInfoForAppCircuit struct {
 	TogglesCommitment string   `json:"toggles_commitment"`
 	Toggles           []int    `json:"toggles"`
 	Output            string   `json:"output"`
+
+	InputCommitmentsRoot string `json:"input_commitments_root"`
 }
 
 type SubProveRequest struct {
