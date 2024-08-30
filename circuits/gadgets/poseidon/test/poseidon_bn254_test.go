@@ -59,5 +59,14 @@ func (c *PoseidonTestCircuit) Define(api frontend.API) error {
 	}
 	currentPoseidonHash := poseidon.Sum()
 	api.AssertIsEqual(currentPoseidonHash, c.HashRes)
+
+	poseidon.Reset()
+
+	for i := 0; i < len(c.Preimage); i++ {
+		poseidon.Write(c.Preimage[i])
+	}
+	currentPoseidonHash = poseidon.Sum()
+	api.AssertIsEqual(currentPoseidonHash, c.HashRes)
+
 	return nil
 }

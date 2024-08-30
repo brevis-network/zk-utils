@@ -25,3 +25,7 @@ func (p *PoseidonCircuit) Write(data frontend.Variable) {
 func (p *PoseidonCircuit) Sum() frontend.Variable {
 	return poseidoncircuit.Poseidon(p.api, p.preimage)
 }
+
+func (p *PoseidonCircuit) Reset() {
+	p.preimage = nil
+}
