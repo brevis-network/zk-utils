@@ -1,7 +1,6 @@
 package proof
 
 import (
-	"bytes"
 	"fmt"
 
 	"github.com/celer-network/goutils/log"
@@ -26,6 +25,7 @@ func (p *ProofWriter) Delete(key []byte) error {
 	return nil
 }
 
+// Generate MPT Proof to prove transaction is included in the block
 func GetTransactionProof(bk *types.Block, index int) (nodes [][]byte, keyIndex, leafRlpPrefix []byte, err error) {
 	var indexBuf []byte
 	keyIndex = rlp.AppendUint64(indexBuf[:0], uint64(index))
@@ -59,6 +59,7 @@ func GetTransactionProof(bk *types.Block, index int) (nodes [][]byte, keyIndex, 
 	return proofWriter.Values, keyIndex, leafValue[:len(leafValue)-len(leafRlp[1])], nil
 }
 
+// Generate MPT Proof to prove the receipt is included in the block
 func GetReceiptProof(bk *types.Block, receipts types.Receipts, index int) (nodes [][]byte, keyIndex, leafRlpPrefix []byte, err error) {
 	var indexBuf []byte
 	keyIndex = rlp.AppendUint64(indexBuf[:0], uint64(index))
@@ -89,18 +90,4 @@ func GetReceiptProof(bk *types.Block, receipts types.Receipts, index int) (nodes
 		return
 	}
 	return proofWriter.Values, keyIndex, leafValue[:len(leafValue)-len(leafRlp[1])], nil
-}
-
-func GetReceiptRaw(receipt *types.Receipt) ([]byte, error) {
-	if receipt == nil {
-		return nil, fmt.Errorf("empty receipt")
-	}
-	var receipts types.Receipts
-	for i := 0; i < int(receipt.TransactionIndex); i++ {
-		receipts = append(receipts, nil)
-	}
-	receipts = append(receipts, receipt)
-	var buffer bytes.Buffer
-	receipts.EncodeIndex(int(receipt.TransactionIndex), &buffer)
-	return buffer.Bytes(), nil
 }

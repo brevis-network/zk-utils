@@ -118,16 +118,3 @@ func ParseBytes32(data []byte, frSize int) [2]*big.Int {
 
 	return [2]*big.Int{lo, hi}
 }
-
-// func ParseBytes322(data []byte) Bytes32 {
-// 	if len(data) > 32 {
-// 		panic(fmt.Errorf("ParseBytes32 called with data of length %d", len(data)))
-// 	}
-
-// 	bits := decomposeBits(new(big.Int).SetBytes(data), 256)
-
-// 	lo := recompose(bits[:numBitsPerVar], 1)
-// 	hi := recompose(bits[numBitsPerVar:], 1)
-
-// 	return Bytes32{[2]frontend.Variable{lo, hi}}
-// }
