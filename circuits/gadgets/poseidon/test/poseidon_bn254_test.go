@@ -14,7 +14,7 @@ import (
 
 func TestPoseidonHash(t *testing.T) {
 	assert := test.NewAssert(t)
-	poseidonHasher := utils.NewPoseidon()
+	poseidonHasher := utils.NewPoseidonBn254()
 
 	var preimage []frontend.Variable
 
@@ -50,7 +50,7 @@ type PoseidonTestCircuit struct {
 }
 
 func (c *PoseidonTestCircuit) Define(api frontend.API) error {
-	poseidon, err := poseidoncircuit.NewPoseidonCircuit(api)
+	poseidon, err := poseidoncircuit.NewBn254PoseidonCircuit(api)
 	if err != nil {
 		return err
 	}

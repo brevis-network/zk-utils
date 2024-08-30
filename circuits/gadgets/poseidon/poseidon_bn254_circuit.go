@@ -12,7 +12,7 @@ type PoseidonCircuit struct {
 }
 
 // NewMiMC returns a MiMC instance, that can be used in a gnark circuit
-func NewPoseidonCircuit(api frontend.API) (PoseidonCircuit, error) {
+func NewBn254PoseidonCircuit(api frontend.API) (PoseidonCircuit, error) {
 	return PoseidonCircuit{
 		api: api,
 	}, nil
