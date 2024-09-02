@@ -4,7 +4,6 @@ import (
 	"math/big"
 
 	"github.com/brevis-network/zk-utils/common/utils"
-	"github.com/consensys/gnark-crypto/ecc/bn254/fr/mimc"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 )
@@ -12,7 +11,7 @@ import (
 func MiMCHashReceiptCustomInputs(
 	receiptInfo *SDKQueryProvingInfoForReceipt,
 ) ([]byte, error) {
-	hasher := mimc.NewMiMC()
+	hasher := utils.NewPoseidonBn254()
 
 	var bits []uint
 	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(receiptInfo.BlockNumber), 8*4)...)
@@ -48,16 +47,20 @@ func MiMCHashReceiptCustomInputs(
 
 	roundData := utils.PackBitsToInt(bits)
 	for _, v := range roundData {
-		hasher.Write(common.LeftPadBytes(v.Bytes(), 32))
+		hasher.Write(new(big.Int).SetBytes(common.LeftPadBytes(v.Bytes(), 32)))
 	}
 
-	return hasher.Sum(nil), nil
+	result, err := hasher.Sum()
+	if err != nil {
+		return nil, err
+	}
+	return result.Bytes(), nil
 }
 
 func MiMCHashStorageCustomInputs(
 	data *SDKQueryProvingInfoForStorageSlot,
 ) ([]byte, error) {
-	hasher := mimc.NewMiMC()
+	hasher := utils.NewPoseidonBn254()
 
 	var bits []uint
 
@@ -74,16 +77,20 @@ func MiMCHashStorageCustomInputs(
 
 	roundData := utils.PackBitsToInt(bits)
 	for _, v := range roundData {
-		hasher.Write(common.LeftPadBytes(v.Bytes(), 32))
+		hasher.Write(new(big.Int).SetBytes(common.LeftPadBytes(v.Bytes(), 32)))
 	}
 
-	return hasher.Sum(nil), nil
+	result, err := hasher.Sum()
+	if err != nil {
+		return nil, err
+	}
+	return result.Bytes(), nil
 }
 
 func MiMCHashTxCustomInputs(
 	tsInfo *SDKQueryProvingInfoForTransaction,
 ) ([]byte, error) {
-	hasher := mimc.NewMiMC()
+	hasher := utils.NewPoseidonBn254()
 
 	var bits []uint
 
@@ -105,10 +112,14 @@ func MiMCHashTxCustomInputs(
 
 	roundData := utils.PackBitsToInt(bits)
 	for _, v := range roundData {
-		hasher.Write(common.LeftPadBytes(v.Bytes(), 32))
+		hasher.Write(new(big.Int).SetBytes(common.LeftPadBytes(v.Bytes(), 32)))
 	}
 
-	return hasher.Sum(nil), nil
+	result, err := hasher.Sum()
+	if err != nil {
+		return nil, err
+	}
+	return result.Bytes(), nil
 }
 
 // 0x01 ===> 0x0000000000000000000000000000000000000000000000000000000000000001
