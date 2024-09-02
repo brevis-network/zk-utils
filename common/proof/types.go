@@ -397,15 +397,15 @@ type TransactionExtraInfo struct {
 }
 
 type SDKQueryProvingInfoForAppCircuit struct {
-	Proof             string   `json:"proof"`
-	VerifyingKey      string   `json:"verifying_key"`
-	InputCommitments  []string `json:"input_commitments"`
-	OutputCommitment  string   `json:"output_commitment"`
-	TogglesCommitment string   `json:"toggles_commitment"`
-	Toggles           []int    `json:"toggles"`
-	Output            string   `json:"output"`
-
-	InputCommitmentsRoot string `json:"input_commitments_root"`
+	Proof                string   `json:"proof"`
+	VerifyingKey         string   `json:"verifying_key"`
+	InputCommitments     []string `json:"input_commitments"`
+	OutputCommitment     string   `json:"output_commitment"`
+	TogglesCommitment    string   `json:"toggles_commitment"`
+	Toggles              []int    `json:"toggles"`
+	Output               string   `json:"output"`
+	InputCommitmentsRoot string   `json:"input_commitments_root"`
+	Witness              string   `json:"witness"`
 }
 
 type SubProveRequest struct {
