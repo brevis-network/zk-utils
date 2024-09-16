@@ -3,6 +3,7 @@ package proof
 import (
 	"bytes"
 	"fmt"
+	"github.com/ethereum/go-ethereum/triedb"
 
 	"github.com/celer-network/goutils/log"
 	"github.com/ethereum/go-ethereum/core/rawdb"
@@ -30,7 +31,7 @@ func GetTransactionProof(bk *types.Block, index int) (nodes [][]byte, keyIndex, 
 	var indexBuf []byte
 	keyIndex = rlp.AppendUint64(indexBuf[:0], uint64(index))
 
-	db := trie.NewDatabase(rawdb.NewMemoryDatabase(), nil)
+	db := triedb.NewDatabase(rawdb.NewMemoryDatabase(), nil)
 	tt := trie.NewEmpty(db)
 	txRootHash := types.DeriveSha(bk.Transactions(), tt)
 	if txRootHash != bk.TxHash() {
@@ -63,7 +64,7 @@ func GetReceiptProof(bk *types.Block, receipts types.Receipts, index int) (nodes
 	var indexBuf []byte
 	keyIndex = rlp.AppendUint64(indexBuf[:0], uint64(index))
 
-	db := trie.NewDatabase(rawdb.NewMemoryDatabase(), nil)
+	db := triedb.NewDatabase(rawdb.NewMemoryDatabase(), nil)
 	tt := trie.NewEmpty(db)
 	receiptRootHash := types.DeriveSha(receipts, tt)
 	if receiptRootHash != bk.ReceiptHash() {
