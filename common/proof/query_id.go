@@ -1,13 +1,11 @@
 package proof
 
 import (
-	"fmt"
 	"math/big"
 
 	"github.com/brevis-network/zk-utils/common/utils"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/iden3/go-iden3-crypto/keccak256"
 )
 
 func MiMCHashReceiptCustomInputs(
@@ -111,11 +109,7 @@ func MiMCHashTxCustomInputs(
 	// var value32Byte = utils.ParseBytes32(value, 248)
 	// bits = append(bits, utils.Byte32ToFrBits(value32Byte, 248)...)
 
-	if len(tsInfo.MPTProofs) == 0 {
-		return nil, fmt.Errorf("empty input for leaf hash")
-	}
-	leaf := tsInfo.MPTProofs[len(tsInfo.MPTProofs)-1]
-	leafHash := keccak256.Hash(common.Hex2Bytes(leaf))
+	leafHash := utils.Hex2Bytes(tsInfo.LeafHash)
 	var leafHashByte = utils.ParseBytes32(leafHash, 248)
 	bits = append(bits, utils.Byte32ToFrBits(leafHashByte, 248)...)
 
