@@ -14,6 +14,8 @@ func GetStartBlockInfo(chainId uint64) ChainSMTStartBlockInfo {
 		blockNumber = 119300224
 	} else if chainId == 97 {
 		blockNumber = 41759160
+	} else if chainId == 56 {
+		blockNumber = 40077400
 	}
 
 	return ChainSMTStartBlockInfo{
