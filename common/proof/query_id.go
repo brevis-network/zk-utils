@@ -4,6 +4,7 @@ import (
 	"math/big"
 
 	"github.com/brevis-network/zk-utils/common/utils"
+	"github.com/celer-network/goutils/log"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 )
@@ -44,6 +45,8 @@ func MiMCHashReceiptCustomInputs(
 		var value32Byte = utils.ParseBytes32(value, 248)
 		bits = append(bits, utils.Byte32ToFrBits(value32Byte, 248)...)
 	}
+
+	log.Info("receipt bits: ", bits)
 
 	roundData := utils.PackBitsToInt(bits)
 	for _, v := range roundData {
