@@ -383,6 +383,8 @@ type SDKQueryProvingInfoForTransaction struct {
 	CommitHash              string               `json:"commit_hash"`
 	TransactionType         uint8                `json:"transaction_type"`
 	QueryRaw                []string             `json:"query_raw"`
+	ReceiptRlp              string               `json:"receipt_rlp"`
+	ReceiptMPTProofs        []string             `json:"receipt_mpt_proofs"`
 }
 
 type TransactionExtraInfo struct {
