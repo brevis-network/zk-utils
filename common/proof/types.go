@@ -349,6 +349,7 @@ type SDKQueryProvingInfoForStorageSlot struct {
 	StorageHash             string   `json:"storage_hash"`
 	BlockHash               string   `json:"block_hash"`
 	BlockNumber             uint64   `json:"block_number"`
+	BlockBaseFee            string   `json:"blk_base_fee"`
 	BlockRlp                string   `json:"block_rlp"`
 	BlockFieldsNum          int      `json:"block_fields_num"`
 	SMTRoot                 string   `json:"smt_root"`

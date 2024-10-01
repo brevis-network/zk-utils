@@ -69,6 +69,8 @@ func MiMCHashStorageCustomInputs(
 	var bits []uint
 
 	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(data.BlockNumber), 8*4)...)
+	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(data.BlockBaseFee), 8*16)...)
+
 	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(data.AccountAddress), 8*20)...)
 
 	var slot = utils.ParseBytes32(GetPaddedSlotBytes(data.Slot), 248)
@@ -97,8 +99,8 @@ func MiMCHashTxCustomInputs(
 	hasher := utils.NewPoseidonBn254()
 
 	var bits []uint
-	// bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(tsInfo.BlockNumber), 8*4)...)
-	// bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(receiptInfo.BlockBaseFee), 8*16)...)
+	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(tsInfo.BlockNumber), 8*4)...)
+	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(tsInfo.BlockBaseFee), 8*16)...)
 	// bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(tsInfo.ExtraInfo.ChainId), 8*4)...)
 	// bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(tsInfo.ExtraInfo.Nonce), 8*4)...)
 	// bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(tsInfo.ExtraInfo.MaxPriorityFeePerGas), 8*8)...)
