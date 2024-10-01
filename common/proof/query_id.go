@@ -16,6 +16,7 @@ func MiMCHashReceiptCustomInputs(
 
 	var bits []uint
 	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(receiptInfo.BlockNumber), 8*4)...)
+	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(receiptInfo.BlockBaseFee), 8*16)...)
 	for _, field := range receiptInfo.LogExtractInfos {
 		contractAddress, err := hexutil.Decode(field.ContractAddress)
 		if err != nil {
@@ -97,6 +98,7 @@ func MiMCHashTxCustomInputs(
 
 	var bits []uint
 	// bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(tsInfo.BlockNumber), 8*4)...)
+	// bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(receiptInfo.BlockBaseFee), 8*16)...)
 	// bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(tsInfo.ExtraInfo.ChainId), 8*4)...)
 	// bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(tsInfo.ExtraInfo.Nonce), 8*4)...)
 	// bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(tsInfo.ExtraInfo.MaxPriorityFeePerGas), 8*8)...)

@@ -306,6 +306,7 @@ type SDKQueryProvingInfoForReceipt struct {
 	ChainId                 uint64                    `json:"chain_id"`
 	LogExtractInfos         []*SDKQueryLogExtractInfo `json:"log_extract_infos"`
 	BlockNumber             uint64                    `json:"blk_num"`
+	BlockBaseFee            string                    `json:"blk_base_fee"`
 	ReceiptIndex            uint64                    `json:"receipt_index"`
 	ReceiptRlp              string                    `json:"receipt_rlp"`
 	BlockHash               string                    `json:"block_hash"`
@@ -367,6 +368,7 @@ type SDKQueryProvingInfoForTransaction struct {
 	LeafHash                string               `json:"leaf_hash"`
 	BlockHash               string               `json:"block_hash"`
 	BlockNumber             uint64               `json:"blk_num"`
+	BlockBaseFee            string               `json:"blk_base_fee"`
 	BlockTime               uint64               `json:"block_time"`
 	MPTKey                  string               `json:"mpt_key"`
 	MPTProofs               []string             `json:"mpt_proofs"`
