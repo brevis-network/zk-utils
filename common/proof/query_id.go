@@ -17,12 +17,15 @@ func MiMCHashReceiptCustomInputs(
 	var bits []uint
 	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(receiptInfo.BlockNumber), 8*4)...)
 	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(receiptInfo.BlockBaseFee), 8*16)...)
+	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(receiptInfo.MPTKey), 8*4)...)
 	for _, field := range receiptInfo.LogExtractInfos {
 		contractAddress, err := hexutil.Decode(field.ContractAddress)
 		if err != nil {
 			return nil, err
 		}
 		bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(contractAddress), 8*20)...)
+
+		bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(field.LogIndex), 8*2)...)
 
 		logTopic0, err := hexutil.Decode(field.LogTopic0)
 		if err != nil {
@@ -101,6 +104,8 @@ func MiMCHashTxCustomInputs(
 	var bits []uint
 	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(tsInfo.BlockNumber), 8*4)...)
 	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(tsInfo.BlockBaseFee), 8*16)...)
+	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(tsInfo.MPTKey), 8*4)...)
+
 	// bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(tsInfo.ExtraInfo.ChainId), 8*4)...)
 	// bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(tsInfo.ExtraInfo.Nonce), 8*4)...)
 	// bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(tsInfo.ExtraInfo.MaxPriorityFeePerGas), 8*8)...)
