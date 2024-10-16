@@ -125,6 +125,9 @@ func MiMCHashTxCustomInputs(
 	var leafHashByte = utils.ParseBytes32(leafHash, 248)
 	bits = append(bits, utils.Byte32ToFrBits(leafHashByte, 248)...)
 
+	log.Infof("Block n: %d, Fee: %s, MPTK: %s, LeafHash: %s ", tsInfo.BlockNumber, tsInfo.BlockBaseFee, tsInfo.MPTKey, tsInfo.LeafHash)
+	log.Info("tx bits: ", bits)
+
 	roundData := utils.PackBitsToInt(bits)
 	for _, v := range roundData {
 		hasher.Write(new(big.Int).SetBytes(common.LeftPadBytes(v.Bytes(), 32)))
