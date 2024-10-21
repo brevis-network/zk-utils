@@ -306,6 +306,7 @@ type SDKQueryProvingInfoForReceipt struct {
 	ChainId                 uint64                    `json:"chain_id"`
 	LogExtractInfos         []*SDKQueryLogExtractInfo `json:"log_extract_infos"`
 	BlockNumber             uint64                    `json:"blk_num"`
+	BlockBaseFee            string                    `json:"blk_base_fee"`
 	ReceiptIndex            uint64                    `json:"receipt_index"`
 	ReceiptRlp              string                    `json:"receipt_rlp"`
 	BlockHash               string                    `json:"block_hash"`
@@ -348,6 +349,7 @@ type SDKQueryProvingInfoForStorageSlot struct {
 	StorageHash             string   `json:"storage_hash"`
 	BlockHash               string   `json:"block_hash"`
 	BlockNumber             uint64   `json:"block_number"`
+	BlockBaseFee            string   `json:"blk_base_fee"`
 	BlockRlp                string   `json:"block_rlp"`
 	BlockFieldsNum          int      `json:"block_fields_num"`
 	SMTRoot                 string   `json:"smt_root"`
@@ -367,6 +369,7 @@ type SDKQueryProvingInfoForTransaction struct {
 	LeafHash                string               `json:"leaf_hash"`
 	BlockHash               string               `json:"block_hash"`
 	BlockNumber             uint64               `json:"blk_num"`
+	BlockBaseFee            string               `json:"blk_base_fee"`
 	BlockTime               uint64               `json:"block_time"`
 	MPTKey                  string               `json:"mpt_key"`
 	MPTProofs               []string             `json:"mpt_proofs"`
@@ -383,6 +386,8 @@ type SDKQueryProvingInfoForTransaction struct {
 	CommitHash              string               `json:"commit_hash"`
 	TransactionType         uint8                `json:"transaction_type"`
 	QueryRaw                []string             `json:"query_raw"`
+	ReceiptRlp              string               `json:"receipt_rlp"`
+	ReceiptMPTProofs        []string             `json:"receipt_mpt_proofs"`
 }
 
 type TransactionExtraInfo struct {
@@ -397,15 +402,15 @@ type TransactionExtraInfo struct {
 }
 
 type SDKQueryProvingInfoForAppCircuit struct {
-	Proof             string   `json:"proof"`
-	VerifyingKey      string   `json:"verifying_key"`
-	InputCommitments  []string `json:"input_commitments"`
-	OutputCommitment  string   `json:"output_commitment"`
-	TogglesCommitment string   `json:"toggles_commitment"`
-	Toggles           []int    `json:"toggles"`
-	Output            string   `json:"output"`
-
-	InputCommitmentsRoot string `json:"input_commitments_root"`
+	Proof                string   `json:"proof"`
+	VerifyingKey         string   `json:"verifying_key"`
+	InputCommitments     []string `json:"input_commitments"`
+	OutputCommitment     string   `json:"output_commitment"`
+	TogglesCommitment    string   `json:"toggles_commitment"`
+	Toggles              []int    `json:"toggles"`
+	Output               string   `json:"output"`
+	InputCommitmentsRoot string   `json:"input_commitments_root"`
+	Witness              string   `json:"witness"`
 }
 
 type SubProveRequest struct {

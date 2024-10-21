@@ -1,7 +1,6 @@
 package utils
 
 import (
-	"fmt"
 	"io"
 	"os"
 
@@ -34,7 +33,7 @@ func ReadPlonkProvingKey(filename string, pk plonk.ProvingKey) error {
 	return err
 }
 
-func WritePlonkProvingKey(pk plonk.ProvingKey, filename string) {
+func WritePlonkProvingKey(filename string, pk plonk.ProvingKey) {
 	f, err := os.Create(filename)
 	if err != nil {
 		log.Error("pk writing open failed... ", err)
@@ -56,16 +55,17 @@ func ReadPlonkVerifyingKey(filename string, vk plonk.VerifyingKey) error {
 	return err
 }
 
-func WritePlonkVerifyingKey(vk plonk.VerifyingKey, filename string) {
+func WritePlonkVerifyingKey(filename string, vk plonk.VerifyingKey) error {
 	f, err := os.Create(filename)
 	if err != nil {
-		log.Error("vk writing failed... ", err)
+		return err
 	}
 
 	_, err = vk.WriteTo(f)
 	if err != nil {
-		log.Error("vk writing failed... ", err)
+		return err
 	}
+	return nil
 }
 
 func ReadWitness(filename string, witness witness.Witness) error {
@@ -105,21 +105,22 @@ func ReadPlonkCcs(filename string, ccs constraint.ConstraintSystem) error {
 	return err
 }
 
-func WritePlonkCcs(css constraint.ConstraintSystem, filename string) {
+func WritePlonkCcs(filename string, css constraint.ConstraintSystem) error {
 	f, err := os.Create(filename)
 	if err != nil {
-		fmt.Printf("ccs writing open failed... %s", err)
+		return err
 	}
 	_, err = css.WriteTo(f)
 	if err != nil {
-		fmt.Printf("ccs writing failed... %s", err)
+		return err
 	}
+	return nil
 }
 
-func WritePlonkVKSolidity(vk plonk.VerifyingKey, filename string) {
+func WritePlonkVKSolidity(filename string, vk plonk.VerifyingKey) error {
 	f, err := os.Create(filename)
 	if err != nil {
-		log.Error(err)
+		return err
 	}
 
 	defer f.Close()
@@ -127,8 +128,9 @@ func WritePlonkVKSolidity(vk plonk.VerifyingKey, filename string) {
 	err = vk.ExportSolidity(f)
 
 	if err != nil {
-		log.Error("Failed to export verifying solidity")
+		return err
 	}
+	return nil
 }
 
 func ReadPlonkProofFromLocalFile(filename string, proof plonk.Proof) error {
@@ -171,15 +173,16 @@ func ReadProvingKey(filename string, pk groth16.ProvingKey) error {
 	return err
 }
 
-func WriteProvingKey(pk groth16.ProvingKey, filename string) {
+func WriteProvingKey(filename string, pk groth16.ProvingKey) error {
 	f, err := os.Create(filename)
 	if err != nil {
-		log.Error("pk writing open failed... ", err)
+		return err
 	}
 	_, err = pk.WriteTo(f)
 	if err != nil {
-		log.Error("pk writing failed... ", err)
+		return err
 	}
+	return nil
 }
 
 func ReadVerifyingKey(filename string, vk groth16.VerifyingKey) error {
@@ -193,7 +196,7 @@ func ReadVerifyingKey(filename string, vk groth16.VerifyingKey) error {
 	return err
 }
 
-func WriteVerifyingKey(vk groth16.VerifyingKey, filename string) error {
+func WriteVerifyingKey(filename string, vk groth16.VerifyingKey) error {
 	f, err := os.Create(filename)
 	if err != nil {
 		log.Error("vk writing failed... ", err)
@@ -219,21 +222,22 @@ func ReadCcs(filename string, ccs constraint.ConstraintSystem) error {
 	return err
 }
 
-func WriteCcs(css constraint.ConstraintSystem, filename string) {
+func WriteCcs(filename string, css constraint.ConstraintSystem) error {
 	f, err := os.Create(filename)
 	if err != nil {
-		fmt.Printf("ccs writing open failed... %s", err)
+		return err
 	}
 	_, err = css.WriteTo(f)
 	if err != nil {
-		fmt.Printf("ccs writing failed... %s", err)
+		return err
 	}
+	return nil
 }
 
-func WriteVKSolidity(vk groth16.VerifyingKey, filename string) {
+func WriteVKSolidity(filename string, vk groth16.VerifyingKey) error {
 	f, err := os.Create(filename)
 	if err != nil {
-		log.Error(err)
+		return err
 	}
 
 	defer f.Close()
@@ -241,8 +245,9 @@ func WriteVKSolidity(vk groth16.VerifyingKey, filename string) {
 	err = vk.ExportSolidity(f)
 
 	if err != nil {
-		log.Error("Failed to export verifying solidity")
+		return err
 	}
+	return nil
 }
 
 func ReadProofFromLocalFile(filename string, proof groth16.Proof) error {
@@ -256,7 +261,7 @@ func ReadProofFromLocalFile(filename string, proof groth16.Proof) error {
 	return err
 }
 
-func WriteProofIntoLocalFile(proof groth16.Proof, filename string) error {
+func WriteProofIntoLocalFile(filename string, proof groth16.Proof) error {
 	f, err := os.Create(filename)
 	if err != nil {
 		log.Error(err)
@@ -278,7 +283,7 @@ func ReadPublicInputs(filename string) ([]byte, error) {
 	return os.ReadFile(filename)
 }
 
-func WritePublicInputs(publicInputs []byte, filename string) error {
+func WritePublicInputs(filename string, publicInputs []byte) error {
 	f, err := os.Create(filename)
 	if err != nil {
 		log.Error(err)

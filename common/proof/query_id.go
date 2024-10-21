@@ -4,7 +4,6 @@ import (
 	"math/big"
 
 	"github.com/brevis-network/zk-utils/common/utils"
-	"github.com/consensys/gnark-crypto/ecc/bls12-377/fr/mimc"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 )
@@ -12,16 +11,20 @@ import (
 func MiMCHashReceiptCustomInputs(
 	receiptInfo *SDKQueryProvingInfoForReceipt,
 ) ([]byte, error) {
-	hasher := mimc.NewMiMC()
+	hasher := utils.NewPoseidonBn254()
 
 	var bits []uint
 	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(receiptInfo.BlockNumber), 8*4)...)
+	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(receiptInfo.BlockBaseFee), 8*16)...)
+	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(receiptInfo.MPTKey), 8*4)...)
 	for _, field := range receiptInfo.LogExtractInfos {
 		contractAddress, err := hexutil.Decode(field.ContractAddress)
 		if err != nil {
 			return nil, err
 		}
 		bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(contractAddress), 8*20)...)
+
+		bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(field.LogIndex), 8*2)...)
 
 		logTopic0, err := hexutil.Decode(field.LogTopic0)
 		if err != nil {
@@ -48,20 +51,26 @@ func MiMCHashReceiptCustomInputs(
 
 	roundData := utils.PackBitsToInt(bits)
 	for _, v := range roundData {
-		hasher.Write(common.LeftPadBytes(v.Bytes(), 32))
+		hasher.Write(new(big.Int).SetBytes(common.LeftPadBytes(v.Bytes(), 32)))
 	}
 
-	return hasher.Sum(nil), nil
+	result, err := hasher.Sum()
+	if err != nil {
+		return nil, err
+	}
+	return result.Bytes(), nil
 }
 
 func MiMCHashStorageCustomInputs(
 	data *SDKQueryProvingInfoForStorageSlot,
 ) ([]byte, error) {
-	hasher := mimc.NewMiMC()
+	hasher := utils.NewPoseidonBn254()
 
 	var bits []uint
 
 	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(data.BlockNumber), 8*4)...)
+	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(data.BlockBaseFee), 8*16)...)
+
 	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(data.AccountAddress), 8*20)...)
 
 	var slot = utils.ParseBytes32(GetPaddedSlotBytes(data.Slot), 248)
@@ -74,41 +83,55 @@ func MiMCHashStorageCustomInputs(
 
 	roundData := utils.PackBitsToInt(bits)
 	for _, v := range roundData {
-		hasher.Write(common.LeftPadBytes(v.Bytes(), 32))
+		hasher.Write(new(big.Int).SetBytes(common.LeftPadBytes(v.Bytes(), 32)))
 	}
 
-	return hasher.Sum(nil), nil
+	result, err := hasher.Sum()
+	if err != nil {
+		return nil, err
+	}
+	return result.Bytes(), nil
 }
 
 func MiMCHashTxCustomInputs(
 	tsInfo *SDKQueryProvingInfoForTransaction,
 ) ([]byte, error) {
-	hasher := mimc.NewMiMC()
+	hasher := utils.NewPoseidonBn254()
 
 	var bits []uint
-
 	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(tsInfo.BlockNumber), 8*4)...)
-	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(tsInfo.ExtraInfo.ChainId), 8*4)...)
-	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(tsInfo.ExtraInfo.Nonce), 8*4)...)
-	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(tsInfo.ExtraInfo.MaxPriorityFeePerGas), 8*8)...)
-	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(tsInfo.ExtraInfo.MaxFeePerGas), 8*8)...)
-	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(tsInfo.ExtraInfo.GasLimit), 8*4)...)
-	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(tsInfo.ExtraInfo.From), 8*20)...)
-	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(tsInfo.ExtraInfo.To), 8*20)...)
+	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(tsInfo.BlockBaseFee), 8*16)...)
+	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(tsInfo.MPTKey), 8*4)...)
 
-	value, err := hexutil.Decode(tsInfo.ExtraInfo.Value)
-	if err != nil {
-		return nil, err
-	}
-	var value32Byte = utils.ParseBytes32(value, 248)
-	bits = append(bits, utils.Byte32ToFrBits(value32Byte, 248)...)
+	// bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(tsInfo.ExtraInfo.ChainId), 8*4)...)
+	// bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(tsInfo.ExtraInfo.Nonce), 8*4)...)
+	// bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(tsInfo.ExtraInfo.MaxPriorityFeePerGas), 8*8)...)
+	// bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(tsInfo.ExtraInfo.MaxFeePerGas), 8*8)...)
+	// bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(tsInfo.ExtraInfo.GasLimit), 8*4)...)
+	// bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(tsInfo.ExtraInfo.From), 8*20)...)
+	// bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(tsInfo.ExtraInfo.To), 8*20)...)
+
+	// value, err := hexutil.Decode(tsInfo.ExtraInfo.Value)
+	// if err != nil {
+	// 	return nil, err
+	// }
+	// var value32Byte = utils.ParseBytes32(value, 248)
+	// bits = append(bits, utils.Byte32ToFrBits(value32Byte, 248)...)
+
+	leafHash := utils.Hex2Bytes(tsInfo.LeafHash)
+	var leafHashByte = utils.ParseBytes32(leafHash, 248)
+	bits = append(bits, utils.Byte32ToFrBits(leafHashByte, 248)...)
 
 	roundData := utils.PackBitsToInt(bits)
 	for _, v := range roundData {
-		hasher.Write(common.LeftPadBytes(v.Bytes(), 32))
+		hasher.Write(new(big.Int).SetBytes(common.LeftPadBytes(v.Bytes(), 32)))
 	}
 
-	return hasher.Sum(nil), nil
+	result, err := hasher.Sum()
+	if err != nil {
+		return nil, err
+	}
+	return result.Bytes(), nil
 }
 
 // 0x01 ===> 0x0000000000000000000000000000000000000000000000000000000000000001
