@@ -6,7 +6,6 @@ import (
 
 	"github.com/ethereum/go-ethereum/triedb"
 
-	"github.com/celer-network/goutils/log"
 	"github.com/ethereum/go-ethereum/core/rawdb"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/rlp"
@@ -36,7 +35,8 @@ func GetTransactionProof(bk *types.Block, index int) (nodes [][]byte, keyIndex, 
 	tt := trie.NewEmpty(db)
 	txRootHash := types.DeriveSha(bk.Transactions(), tt)
 	if txRootHash != bk.TxHash() {
-		log.Errorf("tx root hash mismatch, blk: %d, index: %d, tx root hash: %x != %x", bk.NumberU64(), index, txRootHash, bk.TxHash())
+		err = fmt.Errorf("tx root hash mismatch, blk: %d, index: %d, tx root hash: %x != %x", bk.NumberU64(), index, txRootHash, bk.TxHash())
+		return
 	}
 
 	proofWriter := &ProofWriter{
@@ -68,7 +68,8 @@ func GetReceiptProof(bk *types.Block, receipts types.Receipts, index int) (nodes
 	tt := trie.NewEmpty(db)
 	receiptRootHash := types.DeriveSha(receipts, tt)
 	if receiptRootHash != bk.ReceiptHash() {
-		log.Errorf("tx root hash mismatch, blk: %d, index: %d, tx root hash: %x != %x", bk.NumberU64(), index, receiptRootHash, bk.ReceiptHash())
+		err = fmt.Errorf("tx root hash mismatch, blk: %d, index: %d, tx root hash: %x != %x", bk.NumberU64(), index, receiptRootHash, bk.ReceiptHash())
+		return
 	}
 
 	proofWriter := &ProofWriter{

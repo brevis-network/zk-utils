@@ -4,7 +4,6 @@ import (
 	"math/big"
 
 	"github.com/brevis-network/zk-utils/common/utils"
-	"github.com/celer-network/goutils/log"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 )
@@ -49,8 +48,6 @@ func MiMCHashReceiptCustomInputs(
 		var value32Byte = utils.ParseBytes32(value, 248)
 		bits = append(bits, utils.Byte32ToFrBits(value32Byte, 248)...)
 	}
-
-	log.Info("receipt bits: ", bits)
 
 	roundData := utils.PackBitsToInt(bits)
 	for _, v := range roundData {
@@ -124,9 +121,6 @@ func MiMCHashTxCustomInputs(
 	leafHash := utils.Hex2Bytes(tsInfo.LeafHash)
 	var leafHashByte = utils.ParseBytes32(leafHash, 248)
 	bits = append(bits, utils.Byte32ToFrBits(leafHashByte, 248)...)
-
-	log.Infof("Block n: %d, Fee: %s, MPTK: %s, LeafHash: %s ", tsInfo.BlockNumber, tsInfo.BlockBaseFee, tsInfo.MPTKey, tsInfo.LeafHash)
-	log.Info("tx bits: ", bits)
 
 	roundData := utils.PackBitsToInt(bits)
 	for _, v := range roundData {
