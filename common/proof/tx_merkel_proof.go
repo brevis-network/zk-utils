@@ -3,6 +3,7 @@ package proof
 import (
 	"bytes"
 	"fmt"
+
 	"github.com/ethereum/go-ethereum/triedb"
 
 	"github.com/celer-network/goutils/log"
@@ -37,7 +38,6 @@ func GetTransactionProof(bk *types.Block, index int) (nodes [][]byte, keyIndex, 
 	if txRootHash != bk.TxHash() {
 		log.Errorf("tx root hash mismatch, blk: %d, index: %d, tx root hash: %x != %x", bk.NumberU64(), index, txRootHash, bk.TxHash())
 	}
-	log.Infof("blk: %d, index: %d, tx root hash: %x", bk.NumberU64(), index, txRootHash)
 
 	proofWriter := &ProofWriter{
 		Keys:   [][]byte{},
