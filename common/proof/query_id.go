@@ -49,6 +49,8 @@ func MiMCHashReceiptCustomInputs(
 		bits = append(bits, utils.Byte32ToFrBits(value32Byte, 248)...)
 	}
 
+	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(receiptInfo.BlockTime), 8*8)...)
+
 	roundData := utils.PackBitsToInt(bits)
 	for _, v := range roundData {
 		hasher.Write(new(big.Int).SetBytes(common.LeftPadBytes(v.Bytes(), 32)))
@@ -80,6 +82,8 @@ func MiMCHashStorageCustomInputs(
 
 	var value = utils.ParseBytes32(storageValue.Bytes(), 248)
 	bits = append(bits, utils.Byte32ToFrBits(value, 248)...)
+
+	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(data.BlockTime), 8*8)...)
 
 	roundData := utils.PackBitsToInt(bits)
 	for _, v := range roundData {
@@ -121,6 +125,8 @@ func MiMCHashTxCustomInputs(
 	leafHash := utils.Hex2Bytes(tsInfo.LeafHash)
 	var leafHashByte = utils.ParseBytes32(leafHash, 248)
 	bits = append(bits, utils.Byte32ToFrBits(leafHashByte, 248)...)
+
+	bits = append(bits, utils.DecomposeBits(utils.Var2BigInt(tsInfo.BlockTime), 8*8)...)
 
 	roundData := utils.PackBitsToInt(bits)
 	for _, v := range roundData {

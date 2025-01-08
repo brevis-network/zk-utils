@@ -360,6 +360,7 @@ type SDKQueryProvingInfoForStorageSlot struct {
 	SMTProofs               []string `json:"smt_proofs"`
 	CommitHash              string   `json:"commit_hash"`
 	QueryRaw                []string `json:"query_raw"`
+	BlockTime               uint64   `json:"block_time"`
 }
 
 type SDKQueryProvingInfoForTransaction struct {
