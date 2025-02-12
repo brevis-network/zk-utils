@@ -415,6 +415,7 @@ type SDKQueryProvingInfoForAppCircuit struct {
 	InputCommitmentsRoot string   `json:"input_commitments_root"`
 	Witness              string   `json:"witness"`       // plonky2 witness for go-sdk, groth_16 witness for vm-sdk
 	PublicValues         string   `json:"public_values"` // (input commitment + 3 * dummy commitment + output commitment)
+	VKHash               string   `json:"vk_hash"`
 }
 
 type SubProveRequest struct {
