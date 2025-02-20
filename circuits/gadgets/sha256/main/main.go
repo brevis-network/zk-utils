@@ -72,6 +72,8 @@ func shaOnGroth16(input []byte, isBenchSetup bool) {
 		ExpectedResult: [32]frontend.Variable{},
 	}
 
+	fmt.Printf("in>>%x\n", input)
+
 	goSha256 := sha256.New()
 	goSha256.Write(input[:])
 	out := goSha256.Sum(nil)

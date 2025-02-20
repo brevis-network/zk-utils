@@ -2,6 +2,7 @@ package s3api
 
 import (
 	"io"
+	"os"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"
@@ -28,9 +29,28 @@ type Client struct {
 }
 
 func NewClient(bucket string) (*Client, error) {
+	var cre *credentials.Credentials
+
+	// from aws
+	id := os.Getenv("AWS_ACCESS_KEY_ID")
+	if id == "" {
+		id = os.Getenv("AWS_ACCESS_KEY")
+	}
+	secret := os.Getenv("AWS_SECRET_ACCESS_KEY")
+	if secret == "" {
+		secret = os.Getenv("AWS_SECRET_KEY")
+	}
+
+	if id != "" || secret != "" {
+		log.Infof("find ak sk in env, use it")
+		cre = credentials.NewCredentials(&credentials.EnvProvider{})
+	} else {
+		log.Infof("do not find ak sk in env, use local .aws cre or ec2 role")
+	}
+
 	sess, err := session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewCredentials(&credentials.EnvProvider{}),
+		Credentials: cre,
 	})
 	if err != nil {
 		return nil, err
