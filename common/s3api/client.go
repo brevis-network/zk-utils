@@ -41,7 +41,7 @@ func NewClient(bucket string) (*Client, error) {
 		secret = os.Getenv("AWS_SECRET_KEY")
 	}
 
-	if id != "" || secret != "" {
+	if id != "" && secret != "" {
 		log.Infof("find ak sk in env, use it")
 		cre = credentials.NewCredentials(&credentials.EnvProvider{})
 	} else {
