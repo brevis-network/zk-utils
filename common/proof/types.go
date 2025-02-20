@@ -299,6 +299,8 @@ type SDKQueryProvingInfo struct {
 	SMTRoot          string                               `json:"smt_root"`
 	BatchSize        uint64                               `json:"batch_size"`
 	AppCircuitInfo   *SDKQueryProvingInfoForAppCircuit    `json:"app_circuit_info"`
+	UseVM            bool                                 `json:"use_vm"`
+	VMAppInfo        *SDKQueryProvingInfoForAppCircuit    `json:"vm_app_info"`
 }
 
 type SDKQueryProvingInfoForReceipt struct {
@@ -411,7 +413,9 @@ type SDKQueryProvingInfoForAppCircuit struct {
 	Toggles              []int    `json:"toggles"`
 	Output               string   `json:"output"`
 	InputCommitmentsRoot string   `json:"input_commitments_root"`
-	Witness              string   `json:"witness"`
+	Witness              string   `json:"witness"`       // plonky2 witness for go-sdk, groth_16 witness for vm-sdk
+	PublicValues         string   `json:"public_values"` // (input commitment + 3 * dummy commitment + output commitment)
+	VKHash               string   `json:"vk_hash"`
 }
 
 type SubProveRequest struct {
