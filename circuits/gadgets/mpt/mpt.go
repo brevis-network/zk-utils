@@ -164,11 +164,11 @@ func CheckMPTInclusionFixedKeyLength(
 			}
 		}
 
-		var extesionCheckNodeRlpAtCurrentLayer []frontend.Variable
+		var extensionCheckNodeRlpAtCurrentLayer []frontend.Variable
 
 		for i := 0; i < maxExtensionRlpHexLen; i++ {
 			rlpAtI := api.Mul(nodeTypes[layer], nodeRlp[layer][i])
-			extesionCheckNodeRlpAtCurrentLayer = append(extesionCheckNodeRlpAtCurrentLayer, rlpAtI)
+			extensionCheckNodeRlpAtCurrentLayer = append(extensionCheckNodeRlpAtCurrentLayer, rlpAtI)
 		}
 
 		extensionCheckResults[layer] = extensionCheck.CheckExtension(
@@ -177,7 +177,7 @@ func CheckMPTInclusionFixedKeyLength(
 			keySelector,
 			nodeRefLength,
 			nodeRefs,
-			extesionCheckNodeRlpAtCurrentLayer,
+			extensionCheckNodeRlpAtCurrentLayer,
 			nodePathPrefixLength[layer],
 		)
 
@@ -196,7 +196,7 @@ func CheckMPTInclusionFixedKeyLength(
 
 		for i := 0; i < MaxBranchNodeRlpHexLen; i++ {
 			rlpAtI := api.Mul(nodeTypes[layer], nodeRlp[layer][i])
-			extesionCheckNodeRlpAtCurrentLayer = append(extesionCheckNodeRlpAtCurrentLayer, rlpAtI)
+			extensionCheckNodeRlpAtCurrentLayer = append(extensionCheckNodeRlpAtCurrentLayer, rlpAtI)
 			branchCheckNodeRlpAtCurrentLayer = append(branchCheckNodeRlpAtCurrentLayer, api.Sub(nodeRlp[layer][i], rlpAtI))
 		}
 		branchCheckResults[layer] = branchCheck.CheckBranch(
@@ -373,11 +373,11 @@ func CheckMPTInclusionNoBranchTermination(
 			}
 		}
 
-		var extesionCheckNodeRlpAtCurrentLayer []frontend.Variable
+		var extensionCheckNodeRlpAtCurrentLayer []frontend.Variable
 
 		for i := 0; i < maxExtensionRlpHexLen; i++ {
 			rlpAtI := api.Mul(nodeTypes[layer], nodeRlp[layer][i])
-			extesionCheckNodeRlpAtCurrentLayer = append(extesionCheckNodeRlpAtCurrentLayer, rlpAtI)
+			extensionCheckNodeRlpAtCurrentLayer = append(extensionCheckNodeRlpAtCurrentLayer, rlpAtI)
 		}
 
 		extensionCheckResults[layer] = extensionCheck.CheckExtension(
@@ -386,7 +386,7 @@ func CheckMPTInclusionNoBranchTermination(
 			keySelector,
 			nodeRefLength,
 			nodeRefs,
-			extesionCheckNodeRlpAtCurrentLayer,
+			extensionCheckNodeRlpAtCurrentLayer,
 			nodePathPrefixLength[layer],
 		)
 
@@ -405,7 +405,7 @@ func CheckMPTInclusionNoBranchTermination(
 
 		for i := 0; i < maxBranchRlpHexLen; i++ {
 			rlpAtI := api.Mul(nodeTypes[layer], nodeRlp[layer][i])
-			extesionCheckNodeRlpAtCurrentLayer = append(extesionCheckNodeRlpAtCurrentLayer, rlpAtI)
+			extensionCheckNodeRlpAtCurrentLayer = append(extensionCheckNodeRlpAtCurrentLayer, rlpAtI)
 			branchCheckNodeRlpAtCurrentLayer = append(branchCheckNodeRlpAtCurrentLayer, api.Sub(nodeRlp[layer][i], rlpAtI))
 		}
 
